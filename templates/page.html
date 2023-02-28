@@ -3,3 +3,35 @@
 {% block main_content %}
     {{ post_macros::content(page=page)}}
 {% endblock main_content %}
+
+{% block giscus %}
+<noscript>Please enable JavaScript for accessing the comments</noscript>
+<script src="https://giscus.app/client.js"
+        data-repo="marcpinet/marcpinet.github.io"
+        data-repo-id="R_kgDOJDP6MA"
+        data-category="Q&A"
+        data-category-id="DIC_kwDOJDP6MM4CUiRW"
+        data-mapping="title"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="dark_dimmed"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+<script>
+function update() {
+    const islight = document.documentElement.classList.contains("light");
+    const theme = islight ? 'light' : 'dark_dimmed';
+
+    const message = { setConfig: { 	theme: theme } };
+    const iframe = document.querySelector('.giscus-frame');
+    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+}
+document.getElementById('mode').addEventListener('click', () => setTimeout(update, 100)); // hack since callback order is undefined
+window.addEventListener('load', update);
+</script>
+{% endblock giscus %}
