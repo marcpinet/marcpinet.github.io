@@ -68,7 +68,7 @@ path = "about"
 <b>to: </b>7/2022<br>
 <b>field(s): </b>internet of things, lorawan<br>
 <b>summary: </b>Development of an emergency app (from scratch) with LoRaWAN protocol.<br>
-<b>report: </b><a href="dniit.pdf" target="_blank">PINET Marc - Internship Report.pdf</a><br><br>
+<b>report: </b><a href="/dniit.pdf" target="_blank">PINET Marc - Internship Report.pdf</a><br><br>
 
 ### Air France
 <img src="/about_img/exp/airfrance.png" alt="Polytech Nice Sophia" width="99" height="99"><br>
