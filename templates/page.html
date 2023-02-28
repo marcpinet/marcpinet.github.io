@@ -24,14 +24,14 @@
 </script>
 <script>
 function update() {
-    const islight = document.documentElement.classList.contains("light");
+    const islight = document.getElementById("themeswitch").checked;
     const theme = islight ? 'light' : 'dark_dimmed';
 
     const message = { setConfig: { 	theme: theme } };
     const iframe = document.querySelector('.giscus-frame');
     iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
 }
-document.getElementById('mode').addEventListener('click', () => setTimeout(update, 100)); // hack since callback order is undefined
+document.getElementById('themeswitch').addEventListener('click', () => setTimeout(update, 100)); // hack since callback order is undefined
 window.addEventListener('load', update);
 </script>
 {% endblock giscus %}
