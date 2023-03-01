@@ -45,7 +45,7 @@ a{
   font-weight:1000;
 }
 
-a:hover {
+a:not(.icon):hover {
   background-color: var(--primary-color);
   color: var(--hover-color);
 }
