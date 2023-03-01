@@ -4,9 +4,7 @@ path = "about"
 template = "about.html"
 +++
 
----
-
-## Skills
+## 🤹 Skills
 
 ### Programming Languages <i>(only those I like to use)</i>
 
@@ -36,7 +34,7 @@ template = "about.html"
 <br>
 <br>
 
-## Education
+## 🎓 Education
 
 ### Polytech Nice Sophia
 <img src="/about_img/edu/polytech.svg" alt="Polytech Nice Sophia" width="155" height="99"><br>
@@ -61,7 +59,7 @@ template = "about.html"
 <br>
 <br>
 
-## Work Experience
+## 💼 Work Experience
 
 ### Da Nang International Institute of Technology (DNIIT)
 <img src="/about_img/exp/dniit.png" alt="Da Nang International Institute of Technology" width="350" height="99"><br>
