@@ -17,8 +17,16 @@
 }
 
 header {
+  z-index: 100;
   width: 100%;
   background-color: var(--navbar-color);
+  box-shadow: 2px 2px 30px rgba(0, 0, 0, 0.5);
+
+  position: -webkit-sticky;
+  position: sticky;
+  
+  /* Adapt the header to be sticky without being disordered*/
+  top: 0;
 }
 .navbar{
   max-width : var(--max-layout-width);
