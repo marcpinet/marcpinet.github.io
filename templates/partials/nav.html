@@ -8,11 +8,11 @@
         {%- if config.extra.menu %}
         <nav class="nav-title nav-navs">
             {% for menu in config.extra.menu %}
-            <a class="nav-links" href={{ menu.url }}>
+            <a class="nav-links" href={{ menu.url }} style ="display: inline-block;  line-height: 1.2; vertical-align: middle;">
                 {%- if menu.icon %}
-                <img alt={{ menu.name }} height="15" width="15" src="/menu_icon/{{ menu.icon }}" />
+                <img alt={{ menu.name }} height="20" width="20" src="/menu_icon/{{ menu.icon }}" style="vertical-align: middle;"/>
                 {% endif %}
-                {{ menu.name }}</a>
+                {{ menu.name }}</a>ㅤ
             {% endfor %}
         </nav>
         {% endif %}
