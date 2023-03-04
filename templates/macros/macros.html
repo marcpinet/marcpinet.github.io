@@ -11,7 +11,7 @@
             <time>{{ page.date | date(format="%Y-%m-%d") }}</time>
             {% endif -%}
             <br />
-            <span>{{ page.reading_time }} minute(s) read</span>
+            <span>{{ page.reading_time }} min read</span>
             {% if page.draft %}
             <span class="draft-label">DRAFT</span>
             {% endif %}
@@ -113,14 +113,14 @@
                 {% if page.taxonomies and page.taxonomies.tags %}
                 <div class="post-tags">
                     <nav class="nav tags">
-                        🏷:
+                        <img src="/label.png" alt="Tags" width="18" height="18"> 
                         {% for tag in page.taxonomies.tags %}
-                        <a href={{ get_taxonomy_url(kind='tags' , name=tag) | safe }}>{{ tag }}</a> &nbsp;
+                        <a href={{ get_taxonomy_url(kind='tags' , name=tag) | safe }}>#{{ tag }}</a> &nbsp;
                         {% endfor %}
                     </nav>
                 </div>
                 {% endif %}
-                ||<span> {{ page.reading_time }} minute(s) read</span>
+                <span> {{ page.reading_time }} min read</span>
             </div>
         </div>
 
