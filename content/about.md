@@ -37,7 +37,8 @@ template = "about.html"
 <a class="icon" href="https://github.com/" target="_blank"><img class="skills" src="/about_img/tools/github.svg" alt="GitHub" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <br>
 <br>
-
+<hr>
+<br>
 <h2 style="color: #ffaa69">🎓 Education</h2>
 
 ### Polytech Nice Sophia
@@ -61,6 +62,8 @@ template = "about.html"
 <b>speciality: </b>computer science<br>
 <b>summary: </b>Equivalent of a 2-year Technical degree with 3 months of internship at the end.
 <br>
+<br>
+<hr>
 <br>
 
 <h2 style="color: #ffaa69">💼 Work Experience</h2>

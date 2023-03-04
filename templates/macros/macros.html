@@ -68,7 +68,7 @@
 {% endmacro tags %}
 
 {% macro page_header(title) %}
-<h2 style="color: #ffaa69">
+<h2 style="color: #ffaa69;">
     {{ title }}
 </h2>
 {% endmacro content %}
@@ -98,29 +98,27 @@
 <main>
     <article>
         <div class="title">
-            {#<h1 class="title">{{ page.title }}</h1>#}
-            {{ post_macros::page_header(title=page.title) }}
-
             <div class="meta">
-                {% if page.date %}
-                Posted on <time>{{ page.date | date(format="%Y-%m-%d") }}</time>
-                {% endif %}
-
                 {% if page.draft %}
                 <span class="draft-label">DRAFT</span>
                 {% endif %}
-
+                <br>
                 {% if page.taxonomies and page.taxonomies.tags %}
                 <div class="post-tags">
                     <nav class="nav tags">
+                        {% if page.date %}
+                        Posted on <time>{{ page.date | date(format="%Y-%m-%d") }}</time>
+                        {% endif %} || 
                         <img src="/label.png" alt="Tags" width="18" height="18"> 
                         {% for tag in page.taxonomies.tags %}
-                        <a href={{ get_taxonomy_url(kind='tags' , name=tag) | safe }}>#{{ tag }}</a> &nbsp;
+                        <a href={{ get_taxonomy_url(kind='tags' , name=tag) | safe }}>#{{ tag }}</a>&nbsp;
                         {% endfor %}
+                        <span>|| {{ page.reading_time }} min read</span>
                     </nav>
                 </div>
+                {#<h1 class="title">{{ page.title }}</h1>#}
+                {{ post_macros::page_header(title=page.title) }}
                 {% endif %}
-                <span> {{ page.reading_time }} min read</span>
             </div>
         </div>
 
@@ -134,6 +132,8 @@
         {# Optional table of contents #}
         {% if config.extra.toc | default(value=false) %}
         {% if page.toc %}
+        <hr>
+        <br>
         <h1>Table of Contents</h1>
         <ul>
             {% for h1 in page.toc %}
@@ -161,11 +161,17 @@
             </li>
             {% endfor %}
         </ul>
+        <br>
+        <hr>
+        <br>
         {% endif %}
         {% endif %}
 
         <section class="body">
             {{ page.content | safe }}
+            <br>
+            <hr>
+            <br>
         </section>
 
     </article>
