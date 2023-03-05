@@ -68,9 +68,9 @@
 {% endmacro tags %}
 
 {% macro page_header(title) %}
-<h2 style="color: #ffaa69;">
+<h1 style="color: #ffaa69;">
     {{ title }}
-</h2>
+</h1>
 {% endmacro content %}
 
 
@@ -134,33 +134,42 @@
         {% if page.toc %}
         <hr>
         <br>
-        <h1>Table of Contents</h1>
+        <h2>Table of Contents</h2>
         <ul>
             {% for h1 in page.toc %}
             <li>
-                <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
-                {% if h1.children %}
-                <ul>
-                    {% for h2 in h1.children %}
+              <a href="{{ h1.permalink | safe }}">{{ h1.title }}</a>
+              {% if h1.children %}
+              <ul>
+                {% for h2 in h1.children %}
+                <li>
+                  <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
+                  {% if h2.children %}
+                  <ul>
+                    {% for h3 in h2.children %}
                     <li>
-                        <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
-                    </li>
-
-                    {% if h2.children %}
-                    <ul>
-                        {% for h3 in h2.children %}
+                      <a href="{{ h3.permalink | safe }}">{{ h3.title }}</a>
+                      {% if h3.children %}
+                      <ul>
+                        {% for h4 in h3.children %}
                         <li>
-                            <a href="{{ h3.permalink | safe }}">{{ h3.title }}</a>
+                          <a href="{{ h4.permalink | safe }}">{{ h4.title }}</a>
                         </li>
                         {% endfor %}
-                    </ul>
-                    {% endif %}
+                      </ul>
+                      {% endif %}
+                    </li>
                     {% endfor %}
-                </ul>
-                {% endif %}
+                  </ul>
+                  {% endif %}
+                </li>
+                {% endfor %}
+              </ul>
+              {% endif %}
             </li>
             {% endfor %}
-        </ul>
+          </ul>
+          
         <br>
         <hr>
         <br>
