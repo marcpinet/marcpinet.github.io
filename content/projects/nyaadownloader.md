@@ -6,5 +6,5 @@ weight = 1
 
 [extra]
 remote_image = "/nyaadownloader/img.png"
-link_to = "https://github.com/marcpinet/sort-visualizer"
+link_to = "https://github.com/marcpinet/nyaadownloader"
 +++
