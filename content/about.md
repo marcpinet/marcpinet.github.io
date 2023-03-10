@@ -13,9 +13,9 @@ template = "about.html"
     }
 </style>
 <a class="icon" href="https://www.python.org/" target="_blank"><img class="skills" src="/about_img/proglang/python.svg" alt="Python" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://www.oracle.com/" target="_blank"><img class="skills" src="/about_img/proglang/java.svg" alt="Jada" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://www.rust-lang.org/fr" target="_blank"><img class="skills" src="/about_img/proglang/rust.svg" alt="Rust" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
+<a class="icon" href="https://www.oracle.com/" target="_blank"><img class="skills" src="/about_img/proglang/java.svg" alt="Java" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://isocpp.org/" target="_blank"><img class="skills" src="/about_img/proglang/cpp.svg" alt="C++" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
+<a class="icon" href="https://www.rust-lang.org/fr" target="_blank"><img class="skills" src="/about_img/proglang/rust.svg" alt="Rust" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://www.iso.org/standard/74528.html" target="_blank"><img class="skills" src="/about_img/proglang/c.svg" alt="C" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://docs.oracle.com/database/121/LNPLS/toc.htm" target="_blank"><img class="skills" src="/about_img/proglang/plsql.svg" alt="PLSQL" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://www.gnu.org/software/bash/" target="_blank"><img class="skills" src="/about_img/proglang/bash.svg" alt="Bash" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>
