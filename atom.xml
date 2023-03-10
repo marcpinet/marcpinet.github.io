@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+	<title>marcpinet</title>
+	<subtitle>A random CS engineering student yelling at things</subtitle>
+	<link href="https://marcpinet.me/atom.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://marcpinet.me"/>
+	<generator uri="https://www.getzola.org/">Zola</generator>
+	<updated>2023-03-03T00:00:00+00:00</updated>
+	<id>https://marcpinet.me/atom.xml</id>
+	<entry xml:lang="en">
+		<title>Neat Cars</title>
+		<published>2023-03-03T00:00:00+00:00</published>
+		<updated>2023-03-03T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://marcpinet.me/projects/neat-cars/" type="text/html"/>
+		<id>https://marcpinet.me/projects/neat-cars/</id>
+		<content type="html"></content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Connect4 AI</title>
+		<published>2023-02-18T00:00:00+00:00</published>
+		<updated>2023-02-18T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://marcpinet.me/projects/connect4ai/" type="text/html"/>
+		<id>https://marcpinet.me/projects/connect4ai/</id>
+		<content type="html"></content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Sort Visualizer</title>
+		<published>2022-03-18T00:00:00+00:00</published>
+		<updated>2022-03-18T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://marcpinet.me/projects/sorting-visualizer/" type="text/html"/>
+		<id>https://marcpinet.me/projects/sorting-visualizer/</id>
+		<content type="html"></content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Maze Generator And Solver</title>
+		<published>2022-03-01T00:00:00+00:00</published>
+		<updated>2022-03-01T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://marcpinet.me/projects/maze-gen-and-solve/" type="text/html"/>
+		<id>https://marcpinet.me/projects/maze-gen-and-solve/</id>
+		<content type="html"></content>
+	</entry>
+	<entry xml:lang="en">
+		<title>Epidemic Modeling</title>
+		<published>2022-01-18T00:00:00+00:00</published>
+		<updated>2022-01-18T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://marcpinet.me/projects/epidemic-modeling/" type="text/html"/>
+		<id>https://marcpinet.me/projects/epidemic-modeling/</id>
+		<content type="html"></content>
+	</entry>
+	<entry xml:lang="en">
+		<title>NyaaDownloader</title>
+		<published>2021-09-04T00:00:00+00:00</published>
+		<updated>2021-09-04T00:00:00+00:00</updated>
+		<link rel="alternate" href="https://marcpinet.me/projects/nyaadownloader/" type="text/html"/>
+		<id>https://marcpinet.me/projects/nyaadownloader/</id>
+		<content type="html"></content>
+	</entry>
+</feed>
