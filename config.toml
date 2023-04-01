@@ -1,0 +1,58 @@
+# The URL the site will be built for
+base_url = "https://marcpinet.me"
+title = "marcpinet"
+description = "a random cs engineering student sharing his thoughts"
+generate_feed = true
+minify_html = true
+
+# For overriding the default output directory `public`, set it to another value (e.g.: "docs")
+output_dir = "public"
+
+taxonomies = [
+    {name = "tags", feed = true},
+]
+
+# Whether to automatically compile all Sass files in the sass directory
+compile_sass = true
+
+# Whether to build a search index to be used later on by a JavaScript library
+build_search_index = true
+
+[markdown]
+# Whether to do syntax highlighting
+# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
+highlight_code = true
+
+# The theme to use for code highlighting.
+# See below for list of allowed values.
+highlight_theme = "css"
+
+# When set to "true", emoji aliases translated to their corresponding
+# Unicode emoji equivalent in the rendered Markdown files. (e.g.: :smile: => 😄)
+render_emoji = true
+
+[extra]
+# Put all your custom variables here
+toc = true
+use_cdn = false
+
+# Full path after the base URL required. So if you were to place it in "static" it would be "/favicon.ico"
+favicon = "/favicon.ico"
+
+# This header image is used for SEO. For example if you were to share an image via Messenger/Instagram/Twitter a preview picture is also presented
+headerImage = "/me.png"
+
+# The icon is display besides the menu text but is not necessary. It needs to be placed under "menu_icon" in the static "folder"
+menu = [
+    { name = "Projects", url = "/projects", weight = 1, icon = "projects.png" },
+    { name = "About Me", url = "/about", weight = 1, icon = "about_me.png" },
+    { name = "Contact", url = "/contact", weight = 1, icon = "contact.png" },
+]
+
+#The icons available can be found in "social_icons" in the "static" folder
+socials = [
+    { name = "Github", url = "https://github.com/marcpinet/", icon = "github" },
+    { name = "Linkedin", url = "https://www.linkedin.com/in/marc-pinet/", icon = "linkedin" },
+    { name = "Linkedin", url = "https://www.twitter.com/Roux_____/", icon = "twitter" },
+    { name = "Linkedin", url = "https://instagram.com/marc.pnt/", icon = "instagram" }
+]
