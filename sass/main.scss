@@ -372,16 +372,17 @@ body{
   }
 
 
-  .file-container:hover .tooltip {
+.file-container:hover .tooltip {
     visibility: visible;
     opacity: 1;
   }
 }
 
 .form-container {
-  max-height: calc(100vh - 200px); /* Ajustez cette valeur en fonction de l'espace occupé par le header et le footer */
+  max-height: calc(100vh - 200px);
   overflow-y: auto;
   padding-right: 1rem;
+  overflow: visible;
 }
 
 
