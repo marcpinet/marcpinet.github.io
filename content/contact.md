@@ -16,7 +16,6 @@ template = "about.html"
         margin-bottom: 2rem;
     }
 </style>
-</style>
 
 <div class="form-container">
     <form
