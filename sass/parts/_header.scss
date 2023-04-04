@@ -121,3 +121,16 @@ header .main {
   color: var(--meta-color);
   letter-spacing: -0.5px;
 }
+
+.navbar .nav-links {
+  margin-right: 1.5rem;
+}
+
+.navbar .social {
+  margin-right: 0.3rem;
+}
+
+.navbar .social:last-child {
+  margin-right: 15rem;
+}
+
