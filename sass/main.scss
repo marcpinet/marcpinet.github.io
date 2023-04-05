@@ -217,10 +217,13 @@ body{
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    white-space: nowrap;
+    white-space: pre-wrap;
     opacity: 0;
     transition: opacity 0.3s;
     box-sizing: border-box;
+    max-width: 90vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35vw, 1fr))
   }
 
   @media (max-width: 480px) {
@@ -235,7 +238,6 @@ body{
         padding-right: 10px;
     }
   }
-
 
   .file-container:hover .tooltip {
     visibility: visible;
@@ -352,10 +354,13 @@ body{
     top: 100%;
     left: 50%;
     transform: translateX(-50%);
-    white-space: nowrap;
+    white-space: pre-wrap;
     opacity: 0;
     transition: opacity 0.3s;
     box-sizing: border-box;
+    max-width: 90vw;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35vw, 1fr))
   }
 
   @media (max-width: 480px) {
@@ -370,7 +375,6 @@ body{
         padding-right: 10px;
     }
   }
-
 
 .file-container:hover .tooltip {
     visibility: visible;
