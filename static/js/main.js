@@ -25,3 +25,19 @@ function switchTheme(e) {
 
 // event listener on checkbox change
 themeSwitcher.addEventListener('change', switchTheme, false);
+
+// easter egg
+let bannerImg = document.querySelectorAll('.banner-home-img');
+let clickCount = 0;
+
+bannerImg.forEach(function(img) {
+  img.addEventListener('click', function() {
+    clickCount++;
+
+    if (clickCount === 5) {
+      let pageContent = document.querySelector('.content');
+      pageContent.classList.toggle('upside-down');
+      clickCount = 0;
+    }
+  });
+});
