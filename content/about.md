@@ -27,11 +27,13 @@ template = "about.html"
         transform: scale(1.3);
     }
 </style>
+
 <a class="icon" href="https://www.python.org/" target="_blank"><img class="skills" src="/about_img/proglang/python.svg" alt="Python" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://www.oracle.com/" target="_blank"><img class="skills" src="/about_img/proglang/java.svg" alt="Java" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://isocpp.org/" target="_blank"><img class="skills" src="/about_img/proglang/cpp.svg" alt="C++" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://www.rust-lang.org/fr" target="_blank"><img class="skills" src="/about_img/proglang/rust.svg" alt="Rust" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://www.iso.org/standard/74528.html" target="_blank"><img class="skills" src="/about_img/proglang/c.svg" alt="C" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
+<a class="icon" href="https://kotlinlang.org/" target="_blank"><img class="skills" src="/about_img/proglang/kotlin.svg" alt="Kotlin" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://docs.oracle.com/database/121/LNPLS/toc.htm" target="_blank"><img class="skills" src="/about_img/proglang/plsql.svg" alt="PLSQL" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://www.gnu.org/software/bash/" target="_blank"><img class="skills" src="/about_img/proglang/bash.svg" alt="Bash" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>
 
@@ -46,10 +48,12 @@ template = "about.html"
 <a class="icon" href="https://code.visualstudio.com/" target="_blank"><img class="skills" src="/about_img/tools/vscode.svg" alt="Visual Studio Code" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://www.jetbrains.com/idea/" target="_blank"><img class="skills" src="/about_img/tools/idea.svg" alt="IntelliJ IDEA" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://www.jetbrains.com/clion/" target="_blank"><img class="skills" src="/about_img/tools/clion.svg" alt="CLion" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
+<a class="icon" href="https://developer.android.com/studio" target="_blank"><img class="skills" src="/about_img/tools/android_studio.svg" alt="Android Studio" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://visualstudio.microsoft.com/vs/" target="_blank"><img class="skills" src="/about_img/tools/vs.svg" alt="Visual Studio 2022" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://www.arduino.cc/" target="_blank"><img class="skills" src="/about_img/tools/arduino.svg" alt="Arduino" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://git-scm.com/" target="_blank"><img class="skills" src="/about_img/tools/git.svg" alt="Git" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://github.com/" target="_blank"><img class="skills" src="/about_img/tools/github.svg" alt="GitHub" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
+<a class="icon" href="https://firebase.google.com/" target="_blank"><img class="skills" src="/about_img/tools/firebase.svg" alt="Firebase" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <br>
 <br>
 <hr>
