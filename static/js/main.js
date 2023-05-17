@@ -1,12 +1,23 @@
-//https://codepen.io/codeorum/pen/bGedRJO
-
 var themeSwitcher = document.querySelector('.theme-switcher input');
 var currentTheme = localStorage.getItem('theme');
 
-// check what is current theme right now and activate it
+// check if there is a theme saved in local storage
 if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
+
     if (currentTheme === 'light') {
+        themeSwitcher.checked = true;
+    }
+} else {
+    // If no theme is saved in local storage, use the user's system theme
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // User prefers dark theme
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        // User prefers light theme or the preference is not set, default to light theme
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
         themeSwitcher.checked = true;
     }
 }
@@ -16,8 +27,7 @@ function switchTheme(e) {
     if (e.target.checked) {
         document.documentElement.setAttribute('data-theme', 'light');
         localStorage.setItem('theme', 'light');
-    }
-    else {        
+    } else {        
         document.documentElement.setAttribute('data-theme', 'dark');
         localStorage.setItem('theme', 'dark');
     }    
@@ -31,13 +41,13 @@ let bannerImg = document.querySelectorAll('.banner-home-img');
 let clickCount = 0;
 
 bannerImg.forEach(function(img) {
-  img.addEventListener('click', function() {
-    clickCount++;
+    img.addEventListener('click', function() {
+        clickCount++;
 
-    if (clickCount === 5) {
-      let pageContent = document.querySelector('.content');
-      pageContent.classList.toggle('upside-down');
-      clickCount = 0;
-    }
-  });
+        if (clickCount === 5) {
+            let pageContent = document.querySelector('.content');
+            pageContent.classList.toggle('upside-down');
+            clickCount = 0;
+        }
+    });
 });
