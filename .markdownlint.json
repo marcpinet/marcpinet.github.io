@@ -1,0 +1,21 @@
+{
+    "MD033": {
+      "allowed_elements": [
+        "div",
+        "a",
+        "span",
+        "img",
+        "audio",
+        "style",
+        "source",
+        "h1",
+        "h2",
+        "h3",
+        "h4",
+        "h5",
+        "br"
+      ]
+    },
+    "MD013": false,
+    "MD050": false
+  }
