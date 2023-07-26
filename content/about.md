@@ -58,6 +58,31 @@ template = "about.html"
 <br>
 <hr>
 <br>
+
+<h2 style="color: #ffaa69">💼 Work Experience</h2>
+
+### Da Nang International Institute of Technology (DNIIT)
+<a class="icon" href="https://dniit.edu.vn/" target="_blank"><img src="/about_img/exp/dniit.png" alt="Da Nang International Institute of Technology" width="350" height="99"></a><br>
+<b>from: </b>5/2022<br>
+<b>to: </b>7/2022<br>
+<b>field(s): </b>internet of things, lorawan<br>
+<b>summary: </b>Development of an emergency app (from scratch) with LoRaWAN protocol.<br>
+<b>report: </b><a href="/dniit.pdf" target="_blank">PINET Marc - Internship Report.pdf</a><br><br>
+
+### Air France
+<a class="icon" href="https://wwws.airfrance.fr/" target="_blank"><img src="/about_img/exp/airfrance.png" alt="Polytech Nice Sophia" width="99" height="99"></a><br>
+<b>from: </b>12/2017<br>
+<b>to: </b>1/2018<br>
+<b>field(s): </b>angularjs<br>
+<b>summary: </b>Observership alongside a team of front-end (AngularJS) developers.<br><br>
+
+### Intel Corporation
+<a class="icon" href="https://intel.com/" target="_blank"><img src="/about_img/exp/intel.png" alt="Intel Corporation" width="99" height="99"></a><br>
+<b>from: </b>12/2016<br>
+<b>to: </b>12/2016<br>
+<b>field(s): </b>microprocessors, transistors, architecture<br>
+<b>summary: </b>Observership alongside a Senior Digital Designer.<br><br>
+
 <h2 style="color: #ffaa69">🎓 Education</h2>
 
 ### Polytech Nice Sophia
@@ -84,27 +109,3 @@ template = "about.html"
 <br>
 <hr>
 <br>
-
-<h2 style="color: #ffaa69">💼 Work Experience</h2>
-
-### Da Nang International Institute of Technology (DNIIT)
-<a class="icon" href="https://dniit.edu.vn/" target="_blank"><img src="/about_img/exp/dniit.png" alt="Da Nang International Institute of Technology" width="350" height="99"></a><br>
-<b>from: </b>5/2022<br>
-<b>to: </b>7/2022<br>
-<b>field(s): </b>internet of things, lorawan<br>
-<b>summary: </b>Development of an emergency app (from scratch) with LoRaWAN protocol.<br>
-<b>report: </b><a href="/dniit.pdf" target="_blank">PINET Marc - Internship Report.pdf</a><br><br>
-
-### Air France
-<a class="icon" href="https://wwws.airfrance.fr/" target="_blank"><img src="/about_img/exp/airfrance.png" alt="Polytech Nice Sophia" width="99" height="99"></a><br>
-<b>from: </b>12/2017<br>
-<b>to: </b>1/2018<br>
-<b>field(s): </b>angularjs<br>
-<b>summary: </b>Observership alongside a team of front-end (AngularJS) developers.<br><br>
-
-### Intel Corporation
-<a class="icon" href="https://intel.com/" target="_blank"><img src="/about_img/exp/intel.png" alt="Intel Corporation" width="99" height="99"></a><br>
-<b>from: </b>12/2016<br>
-<b>to: </b>12/2016<br>
-<b>field(s): </b>microprocessors, transistors, architecture<br>
-<b>summary: </b>Observership alongside a Senior Digital Designer.<br><br>
