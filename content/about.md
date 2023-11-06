@@ -110,3 +110,24 @@ template = "about.html"
 <br>
 <hr>
 <br>
+
+<h2 style="color: #ffaa69">🪪 Certifications & Licenses</h2>
+
+### Google Cybersecurity
+<a class="icon" href="https://coursera.org/verify/professional-cert/MFCTKJRLEZER" target="_blank"><img src="/about_img/certifs/google.png" alt="Google" width="99" height="99"></a><br>
+<b>issued: </b>9/2023<br>
+<b>field(s): </b>cybersecurity, risk management, pentest, python programming<br><br>
+
+### EIT Digital Quantum Computing and Information 
+<a class="icon" href="https://www.eitdigital.eu/" target="_blank"><img src="/about_img/certifs/eitdigital.jpeg" alt="EIT Digital" width="99" height="99"></a><br>
+<b>issued: </b>7/2023<br>
+<b>field(s): </b>quantum computing, cryptograpy, math, cybersecurity, data privacy, python qiskit<br><br>
+
+### Permis de conduire (B)
+<a class="icon" href="https://ants.gouv.fr/" target="_blank"><img src="/about_img/certifs/ants.jpeg" alt="ANTS" width="99" height="99"></a><br>
+<b>issued: </b>11/2022<br>
+<b>field(s): </b>none
+<br>
+<br>
+<hr>
+<br>
