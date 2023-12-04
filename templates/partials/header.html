@@ -29,7 +29,12 @@
         trailing_slash=false) }}">
     <link rel="stylesheet" type="text/css" media="screen" href={{ get_url(path="main.css" ) }} />
 
-
+    {%- if config.extra.search_bar %}
+        <script type="text/javascript" src="{{ get_url(path="elasticlunr.min.js") }}"></script>
+        <script type="text/javascript" src="{{ get_url(path="search_index.en.js") }}"></script>
+        <script type="text/javascript" src="{{ get_url(path="search.js") }}"></script>
+    {% endif %}
+    
     {% if config.extra.stylesheets %}
     {% for stylesheet in config.extra.stylesheets %}
     <link rel="stylesheet" href="{{ get_url(path=stylesheet) }}">

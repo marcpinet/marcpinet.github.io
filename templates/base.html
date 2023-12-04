@@ -16,6 +16,9 @@
         {% endblock giscus %}
     </div>
     {% include "partials/footer.html" %}
+
+    <script type="text/javascript" src="{{ get_url(path="elasticlunr.min.js") }}"></script>
+    <script type="text/javascript" src="{{ get_url(path="search.js") }}"></script>
 </body>
 
 </html>

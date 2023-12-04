@@ -35,6 +35,7 @@ render_emoji = true
 # Put all your custom variables here
 toc = true
 use_cdn = false
+search_bar = true
 
 # Full path after the base URL required. So if you were to place it in "static" it would be "/favicon.ico"
 favicon = "/favicon.ico"
@@ -46,7 +47,7 @@ headerImage = "/me.png"
 menu = [
     { name = "Projects", url = "/projects", weight = 1, icon = "projects.png" },
     { name = "About Me", url = "/about", weight = 1, icon = "about_me.png" },
-    { name = "Contact", url = "/contact", weight = 1, icon = "contact.png" },
+    #{ name = "Contact", url = "/contact", weight = 1, icon = "contact.png" },
 ]
 
 #The icons available can be found in "social_icons" in the "static" folder
