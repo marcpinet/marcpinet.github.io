@@ -62,6 +62,14 @@ template = "about.html"
 
 <h2 style="color: #ffaa69">💼 Work Experience</h2>
 
+### SAP Labs France
+<a class="icon" href="https://www.sap.com/" target="_blank"><img src="/about_img/exp/sap.png" alt="SAP Labs France" width="99" height="99"></a><br>
+<b>from: </b>4/2024<br>
+<b>to: </b>8/2024<br>
+<b>field(s): </b>artificial intelligence, predictions, machine learning, data science, angular, java, databases<br>
+<b>summary: </b>Development of AI solutions for SAP Cloud ALM with time series analysis, to improve observability for customers.<br>
+<b>report: </b><a href="/sap.pdf" target="_blank">Coming soon...</a><br><br>
+
 ### Da Nang International Institute of Technology (DNIIT)
 <a class="icon" href="https://dniit.edu.vn/" target="_blank"><img src="/about_img/exp/dniit.png" alt="Da Nang International Institute of Technology" width="350" height="99"></a><br>
 <b>from: </b>5/2022<br>
@@ -113,7 +121,14 @@ template = "about.html"
 
 <h2 style="color: #ffaa69">🪪 Certifications & Licenses</h2>
 
+### TOEIC
+
+<a class="icon" href="https://www.etsglobal.org/fr/fr" target="_blank"><img src="/about_img/certifs/toeic.png" alt="TOEIC" width="99" height="99"></a><br>
+<b>issued: </b>12/2023<br>
+<b>field(s): </b>english<br><br>
+
 ### Google Cybersecurity
+
 <a class="icon" href="https://coursera.org/verify/professional-cert/MFCTKJRLEZER" target="_blank"><img src="/about_img/certifs/google.png" alt="Google" width="99" height="99"></a><br>
 <b>issued: </b>9/2023<br>
 <b>field(s): </b>cybersecurity, risk management, pentest, python programming<br><br>
