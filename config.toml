@@ -54,6 +54,5 @@ menu = [
 socials = [
     { name = "Github", url = "https://github.com/marcpinet/", icon = "github" },
     { name = "Linkedin", url = "https://www.linkedin.com/in/marc-pinet/", icon = "linkedin" },
-    { name = "Twitter", url = "https://www.twitter.com/Roux_____/", icon = "twitter" },
     { name = "Instagram", url = "https://instagram.com/marc.pnt/", icon = "instagram" }
 ]
