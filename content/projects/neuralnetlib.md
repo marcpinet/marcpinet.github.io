@@ -1,6 +1,6 @@
 +++
 title = "Neuralnetlib"
-description = "🧠 A simple convolutional neural network library written in python with only numpy"
+description = "🧠 A convolutional neural network library written in python with only numpy"
 date = "2023-11-10"
 weight = 1
 
