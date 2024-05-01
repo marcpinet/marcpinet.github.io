@@ -6,7 +6,7 @@ template = "about.html"
 
 <h2 style="color: #ffaa69">🤹 Skills</h2>
 
-### Programming Languages <i>(only those I like to use)</i>
+### Cool stuff
 <style>
 
     h2 { 
@@ -29,32 +29,15 @@ template = "about.html"
 </style>
 
 <a class="icon" href="https://www.python.org/" target="_blank"><img class="skills" src="/about_img/proglang/python.svg" alt="Python" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://www.oracle.com/" target="_blank"><img class="skills" src="/about_img/proglang/java.svg" alt="Java" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank"><img class="skills" src="/about_img/proglang/csharp.svg" alt="C#" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://isocpp.org/" target="_blank"><img class="skills" src="/about_img/proglang/cpp.svg" alt="C++" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://www.rust-lang.org/fr" target="_blank"><img class="skills" src="/about_img/proglang/rust.svg" alt="Rust" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://www.iso.org/standard/74528.html" target="_blank"><img class="skills" src="/about_img/proglang/c.svg" alt="C" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://kotlinlang.org/" target="_blank"><img class="skills" src="/about_img/proglang/kotlin.svg" alt="Kotlin" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
+<a class="icon" href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank"><img class="skills" src="/about_img/proglang/csharp.svg" alt="C#" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://docs.oracle.com/database/121/LNPLS/toc.htm" target="_blank"><img class="skills" src="/about_img/proglang/plsql.svg" alt="PLSQL" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://www.gnu.org/software/bash/" target="_blank"><img class="skills" src="/about_img/proglang/bash.svg" alt="Bash" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>
 
-### Operating Systems
+### Where I use the cool stuff
 
 <a class="icon" href="https://www.microsoft.com/" target="_blank"><img class="skills" src="/about_img/os/windows.svg" alt="Windows" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://www.linux.org/" target="_blank"><img class="skills" src="/about_img/os/linux.svg" alt="Linux" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <a class="icon" href="https://www.android.com/" target="_blank"><img class="skills" src="/about_img/os/android.svg" alt="Android" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-
-### Tools
-
-<a class="icon" href="https://code.visualstudio.com/" target="_blank"><img class="skills" src="/about_img/tools/vscode.svg" alt="Visual Studio Code" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://www.jetbrains.com/idea/" target="_blank"><img class="skills" src="/about_img/tools/idea.svg" alt="IntelliJ IDEA" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://www.jetbrains.com/clion/" target="_blank"><img class="skills" src="/about_img/tools/clion.svg" alt="CLion" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://developer.android.com/studio" target="_blank"><img class="skills" src="/about_img/tools/android_studio.svg" alt="Android Studio" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://visualstudio.microsoft.com/vs/" target="_blank"><img class="skills" src="/about_img/tools/vs.svg" alt="Visual Studio 2022" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://www.arduino.cc/" target="_blank"><img class="skills" src="/about_img/tools/arduino.svg" alt="Arduino" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://git-scm.com/" target="_blank"><img class="skills" src="/about_img/tools/git.svg" alt="Git" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://github.com/" target="_blank"><img class="skills" src="/about_img/tools/github.svg" alt="GitHub" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://firebase.google.com/" target="_blank"><img class="skills" src="/about_img/tools/firebase.svg" alt="Firebase" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
 <br>
 <br>
 <hr>
@@ -66,6 +49,7 @@ template = "about.html"
 <a class="icon" href="https://www.sap.com/" target="_blank"><img src="/about_img/exp/sap.png" alt="SAP Labs France" width="99" height="99"></a><br>
 <b>from: </b>4/2024<br>
 <b>to: </b>8/2024<br>
+<b>position: </b>AI Engineer Intern<br>
 <b>field(s): </b>artificial intelligence, predictions, deep learning, data science, machine learning, python<br>
 <b>summary: </b>Development of AI solutions for anomaly detection, time series correlation and log analysis.<br>
 <b>report: </b><a href="/sap.pdf" target="_blank">Coming soon...</a><br><br>
@@ -74,6 +58,7 @@ template = "about.html"
 <a class="icon" href="https://dniit.edu.vn/" target="_blank"><img src="/about_img/exp/dniit.png" alt="Da Nang International Institute of Technology" width="350" height="99"></a><br>
 <b>from: </b>5/2022<br>
 <b>to: </b>7/2022<br>
+<b>position: </b>Software Developer Intern<br>
 <b>field(s): </b>internet of things, lorawan<br>
 <b>summary: </b>Development of an emergency app (from scratch) with LoRaWAN protocol.<br>
 <b>report: </b><a href="/dniit.pdf" target="_blank">PINET Marc - Internship Report.pdf</a><br><br>
@@ -82,6 +67,7 @@ template = "about.html"
 <a class="icon" href="https://wwws.airfrance.fr/" target="_blank"><img src="/about_img/exp/airfrance.png" alt="Polytech Nice Sophia" width="99" height="99"></a><br>
 <b>from: </b>12/2017<br>
 <b>to: </b>1/2018<br>
+<b>position: </b>Intern<br>
 <b>field(s): </b>angularjs<br>
 <b>summary: </b>Observership alongside a team of front-end (AngularJS) developers.<br><br>
 
@@ -89,6 +75,7 @@ template = "about.html"
 <a class="icon" href="https://intel.com/" target="_blank"><img src="/about_img/exp/intel.png" alt="Intel Corporation" width="99" height="99"></a><br>
 <b>from: </b>12/2016<br>
 <b>to: </b>12/2016<br>
+<b>position: </b>Intern<br>
 <b>field(s): </b>microprocessors, transistors, architecture<br>
 <b>summary: </b>Observership alongside a Senior Digital Designer.<br><br>
 
