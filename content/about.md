@@ -49,8 +49,8 @@ template = "about.html"
 ### SAP Labs France
 <a class="icon" href="https://www.sap.com/" target="_blank"><img src="/about_img/exp/sap.png" alt="SAP Labs France" width="99" height="99"></a><br>
 <b>from: </b>4/2024<br>
-<b>to: </b>8/2024<br>
-<b>position: </b>AI Engineer Intern<br>
+<b>to: </b>Now<br>
+<b>position: </b>ML Engineer Intern<br>
 <b>field(s): </b>artificial intelligence, predictions, deep learning, data science, machine learning, python<br>
 <b>summary: </b>Development of AI solutions for anomaly detection, time series correlation and log analysis.<br>
 <b>report: </b><a href="/sap.pdf" target="_blank">Coming soon...</a><br><br>
