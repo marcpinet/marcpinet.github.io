@@ -51,8 +51,8 @@ template = "about.html"
 <b>from: </b>4/2024<br>
 <b>to: </b>Now<br>
 <b>position: </b>ML Engineer Intern<br>
-<b>field(s): </b>artificial intelligence, predictions, deep learning, data science, machine learning, python<br>
-<b>summary: </b>Development of AI solutions for anomaly detection, time series correlation and log analysis.<br>
+<b>field(s): </b>artificial intelligence, predictions, deep learning, data science, machine learning, python, engineering, statistics, math<br>
+<b>summary: </b>Development of AI solutions for correlating logs with metrics, anomaly detection and time series analysis to deduce trends.<br>
 <b>report: </b><a href="/sap.pdf" target="_blank">Coming soon...</a><br><br>
 
 ### Da Nang International Institute of Technology (DNIIT)
