@@ -4,9 +4,6 @@ path = "about"
 template = "about.html"
 +++
 
-<h2 style="color: #ffaa69">🤹 Skills</h2>
-
-### Cool stuff
 <style>
 
     h2 { 
