@@ -28,22 +28,6 @@ template = "about.html"
     }
 </style>
 
-<a class="icon" href="https://www.python.org/" target="_blank"><img class="skills" src="/about_img/proglang/python.svg" alt="Python" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://www.rust-lang.org/fr" target="_blank"><img class="skills" src="/about_img/proglang/rust.svg" alt="Rust" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://learn.microsoft.com/en-us/dotnet/csharp/" target="_blank"><img class="skills" src="/about_img/proglang/csharp.svg" alt="C#" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://kotlinlang.org/" target="_blank"><img class="skills" src="/about_img/proglang/kotlin.svg" alt="Kotlin" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://docs.oracle.com/database/121/LNPLS/toc.htm" target="_blank"><img class="skills" src="/about_img/proglang/plsql.svg" alt="PLSQL" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-
-### Where I use the cool stuff
-
-<a class="icon" href="https://www.microsoft.com/" target="_blank"><img class="skills" src="/about_img/os/windows.svg" alt="Windows" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://www.linux.org/" target="_blank"><img class="skills" src="/about_img/os/linux.svg" alt="Linux" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<a class="icon" href="https://www.android.com/" target="_blank"><img class="skills" src="/about_img/os/android.svg" alt="Android" width="50" height="50" style="width: 50px; height: 50px; transition: transform 0.2s ease-out;"></a>ㅤ
-<br>
-<br>
-<hr>
-<br>
-
 <h2 style="color: #ffaa69">💼 Work Experience</h2>
 
 ### SAP Labs France
