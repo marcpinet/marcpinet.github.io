@@ -31,11 +31,11 @@ template = "about.html"
 <a class="icon" href="https://www.sap.com/" target="_blank"><img src="/about_img/exp/sap.png" alt="SAP Labs France" width="99" height="99"></a><br>
 <b>from: </b>4/2024<br>
 <b>to: </b>Now<br>
-<b>older position(s): </b>ML/AI Engineer Intern<br>
 <b>current position: </b>ML/AI Engineer Apprentice<br>
+<b>older position(s): </b>ML/AI Engineer Intern<br>
 <b>field(s): </b>artificial intelligence, predictions, deep learning, data science, machine learning, python, engineering, statistics, math<br>
 <b>summary: </b>Development of AI solutions for correlating logs with metrics, anomaly detection and time series analysis to deduce trends.<br>
-<b>report: </b><a href="/sap.pdf" target="_blank">Coming soon...</a><br><br>
+<b>report: </b><a href="/sap.pdf" target="_blank">C❌ Confidential</a><br><br>
 
 ### Da Nang International Institute of Technology (DNIIT)
 <a class="icon" href="https://dniit.edu.vn/" target="_blank"><img src="/about_img/exp/dniit.png" alt="Da Nang International Institute of Technology" width="350" height="99"></a><br>
