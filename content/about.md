@@ -91,6 +91,15 @@ template = "about.html"
 
 <h2 style="color: #ffaa69">🪪 Certifications & Licenses</h2>
 
+### Permis bateau (Côtier)
+<a class="icon" href="https://ants.gouv.fr/" target="_blank"><img src="/about_img/certifs/ants.jpeg" alt="ANTS" width="99" height="99"></a><br>
+<b>issued: </b>6/2024<br>
+<b>field(s): </b>none
+<br>
+<br>
+<hr>
+<br>
+
 ### TOEIC
 
 <a class="icon" href="https://www.etsglobal.org/fr/fr" target="_blank"><img src="/about_img/certifs/toeic.png" alt="TOEIC" width="99" height="99"></a><br>
