@@ -29,38 +29,46 @@ template = "about.html"
 
 ### SAP Labs France
 <a class="icon" href="https://www.sap.com/" target="_blank"><img src="/about_img/exp/sap.png" alt="SAP Labs France" width="99" height="99"></a><br>
-<b>from: </b>4/2024<br>
+<b>from: </b>9/2024<br>
 <b>to: </b>Now<br>
-<b>current position: </b>ML/AI Engineer Apprentice<br>
-<b>older position(s): </b>ML/AI Engineer Intern<br>
+<br><b>position: </b>ML/AI Engineer Apprentice<br>
 <b>field(s): </b>artificial intelligence, predictions, deep learning, data science, machine learning, python, engineering, statistics, math<br>
-<b>summary: </b>Development of AI solutions for correlating logs with metrics, anomaly detection and time series analysis to deduce trends.<br>
+<br><b>summary: </b>Unsupervised anomaly detection system across multiple complex, unlabeled data sources (logs, metrics, traces) combining anomalous log pattern variation detection, time series correlation and causal inference. Optimized a real-time processing pipeline, reducing memory footprint by 70% and improving scalability by 3x, enabling analysis of 10M+ events/day. Implemented a RAG-enhanced LLM agent which produces comprehensive, detailed reports of ongoing system anomalies with root cause analysis.<br>
+<b>report: </b>❌ Confidential<br><br>
+
+### SAP Labs France
+<a class="icon" href="https://www.sap.com/" target="_blank"><img src="/about_img/exp/sap.png" alt="SAP Labs France" width="99" height="99"></a><br>
+<b>from: </b>4/2024<br>
+<b>to: </b>8/2024<br>
+<br><b>position: </b>Data Scientist Intern<br>
+<b>field(s): </b>artificial intelligence, predictions, deep learning, data science, machine learning, python, engineering, statistics, math<br>
+<br><b>summary: </b>Time series trends analysis using tools such as Prophet, SARIMA, STL, and DTW. Identified correlations between logs and metrics to predict system behaviors. Built a robust pipeline for live data retrieval from internal APIs with integrated data preprocessing.<br>
 <b>report: </b>❌ Confidential<br><br>
 
 ### Da Nang International Institute of Technology (DNIIT)
 <a class="icon" href="https://dniit.edu.vn/" target="_blank"><img src="/about_img/exp/dniit.png" alt="Da Nang International Institute of Technology" width="350" height="99"></a><br>
 <b>from: </b>5/2022<br>
 <b>to: </b>7/2022<br>
-<b>position: </b>Software Developer Intern<br>
-<b>field(s): </b>internet of things, lorawan<br>
-<b>summary: </b>Development of an emergency app (from scratch) with LoRaWAN protocol.<br>
+<br><b>position: </b>IoT Developer Intern<br>
+<b>field(s): </b>internet of things, lorawan, embedded systems<br>
+<br><b>summary: </b>Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensuring emergency communication in remote areas without internet access.<br>
 <b>report: </b><a href="/dniit.pdf" target="_blank">PINET Marc - Internship Report.pdf</a><br><br>
 
 ### Air France
 <a class="icon" href="https://wwws.airfrance.fr/" target="_blank"><img src="/about_img/exp/airfrance.png" alt="Polytech Nice Sophia" width="99" height="99"></a><br>
 <b>from: </b>12/2017<br>
 <b>to: </b>1/2018<br>
-<b>position: </b>Intern<br>
+<br><b>position: </b>Intern<br>
 <b>field(s): </b>angularjs<br>
-<b>summary: </b>Observership alongside a team of front-end (AngularJS) developers.<br><br>
+<br><b>summary: </b>Gained hands-on experience in full-stack development, alongside senior developers.<br><br>
 
 ### Intel Corporation
 <a class="icon" href="https://intel.com/" target="_blank"><img src="/about_img/exp/intel.png" alt="Intel Corporation" width="99" height="99"></a><br>
 <b>from: </b>12/2016<br>
 <b>to: </b>12/2016<br>
-<b>position: </b>Intern<br>
+<br><b>position: </b>Intern<br>
 <b>field(s): </b>microprocessors, transistors, architecture<br>
-<b>summary: </b>Observership alongside a Senior Digital Designer.<br><br>
+<br><b>summary: </b>Introduced to processor architecture, with a Senior SoC (System-on-chip) Designer.<br><br>
 
 <h2 style="color: #ffaa69">🎓 Education</h2>
 
@@ -69,7 +77,7 @@ template = "about.html"
 <b>from: </b>9/2022<br>
 <b>to: </b>9/2025<br>
 <b>speciality: </b>computer science & engineering<br>
-<b>summary: </b>Engineer school where I'm currently studying in.<br><br>
+<b>summary: </b>Engineer school, specialized in Artificial Intelligence & Data Engineering.<br><br>
 
 ### Université du Québec à Chicoutimi
 <a class="icon" href="https://uqac.ca/" target="_blank"><img src="/about_img/edu/uqac.png" alt="UQAC" width="250" height="75"></a><br>
@@ -90,6 +98,18 @@ template = "about.html"
 <br>
 
 <h2 style="color: #ffaa69">🪪 Certifications & Licenses</h2>
+
+### DeepLearning.AI Deep Learning Specialization
+
+<a class="icon" href="https://coursera.org/verify/professional-cert/MFCTKJRLEZER" target="_blank"><img src="/about_img/certifs/mldl.webp" alt="stanford" width="99" height="99"></a><br>
+<b>issued: </b>1/2025<br>
+<b>field(s): </b>deep learning, ai, statistics, math<br><br>
+
+### DeepLearning.AI Machine Learning Specialization
+
+<a class="icon" href="https://coursera.org/verify/professional-cert/MFCTKJRLEZER" target="_blank"><img src="/about_img/certifs/mldl.webp" alt="stanford" width="99" height="99"></a><br>
+<b>issued: </b>1/2025<br>
+<b>field(s): </b>machine learning, ai, statistics, math<br><br>
 
 ### Permis bateau (Côtier)
 <a class="icon" href="https://ants.gouv.fr/" target="_blank"><img src="/about_img/certifs/ants.jpeg" alt="ANTS" width="99" height="99"></a><br>
