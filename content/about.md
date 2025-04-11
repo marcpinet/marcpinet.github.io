@@ -34,7 +34,7 @@ template = "about.html"
 <br><b>position: </b>ML/AI Engineer Apprentice<br>
 <b>field(s): </b>artificial intelligence, predictions, deep learning, data science, machine learning, python, engineering, statistics, math<br>
 <br><b>summary: </b>Unsupervised anomaly detection system across multiple complex, unlabeled data sources (logs, metrics, traces) combining anomalous log pattern variation detection, time series correlation and causal inference. Optimized a real-time processing pipeline, reducing memory footprint by 70% and improving scalability by 3x, enabling analysis of 10M+ events/day. Implemented a RAG-enhanced LLM agent which produces comprehensive, detailed reports of ongoing system anomalies with root cause analysis.<br>
-<b>report: </b>❌ Confidential<br><br>
+<br><b>report: </b>❌ Confidential<br><br>
 
 ### SAP Labs France
 <a class="icon" href="https://www.sap.com/" target="_blank"><img src="/about_img/exp/sap.png" alt="SAP Labs France" width="99" height="99"></a><br>
@@ -43,7 +43,7 @@ template = "about.html"
 <br><b>position: </b>Data Scientist Intern<br>
 <b>field(s): </b>artificial intelligence, predictions, deep learning, data science, machine learning, python, engineering, statistics, math<br>
 <br><b>summary: </b>Time series trends analysis using tools such as Prophet, SARIMA, STL, and DTW. Identified correlations between logs and metrics to predict system behaviors. Built a robust pipeline for live data retrieval from internal APIs with integrated data preprocessing.<br>
-<b>report: </b>❌ Confidential<br><br>
+<br><b>report: </b>❌ Confidential<br><br>
 
 ### Da Nang International Institute of Technology (DNIIT)
 <a class="icon" href="https://dniit.edu.vn/" target="_blank"><img src="/about_img/exp/dniit.png" alt="Da Nang International Institute of Technology" width="350" height="99"></a><br>
@@ -52,7 +52,7 @@ template = "about.html"
 <br><b>position: </b>IoT Developer Intern<br>
 <b>field(s): </b>internet of things, lorawan, embedded systems<br>
 <br><b>summary: </b>Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensuring emergency communication in remote areas without internet access.<br>
-<b>report: </b><a href="/dniit.pdf" target="_blank">PINET Marc - Internship Report.pdf</a><br><br>
+<br><b>report: </b><a href="/dniit.pdf" target="_blank">PINET Marc - Internship Report.pdf</a><br><br>
 
 ### Air France
 <a class="icon" href="https://wwws.airfrance.fr/" target="_blank"><img src="/about_img/exp/airfrance.png" alt="Polytech Nice Sophia" width="99" height="99"></a><br>
@@ -114,11 +114,7 @@ template = "about.html"
 ### Permis bateau (Côtier)
 <a class="icon" href="https://ants.gouv.fr/" target="_blank"><img src="/about_img/certifs/ants.jpeg" alt="ANTS" width="99" height="99"></a><br>
 <b>issued: </b>6/2024<br>
-<b>field(s): </b>none
-<br>
-<br>
-<hr>
-<br>
+<b>field(s): </b>none<br><br>
 
 ### TOEIC
 
