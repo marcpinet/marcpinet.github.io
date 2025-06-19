@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Marc Pinet</title>
+    <subtitle>yet another persobal blog</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://marcpinet.me/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://marcpinet.me"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2024-05-27T00:00:00+00:00</updated>
+    <id>https://marcpinet.me/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Handigits</title>
+        <published>2024-05-27T00:00:00+00:00</published>
+        <updated>2024-05-27T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://marcpinet.me/projects/handigits/"/>
+        <id>https://marcpinet.me/projects/handigits/</id>
+        
+        <content type="html" xml:base="https://marcpinet.me/projects/handigits/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Neuralnetlib</title>
+        <published>2023-11-10T00:00:00+00:00</published>
+        <updated>2023-11-10T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://marcpinet.me/projects/neuralnetlib/"/>
+        <id>https://marcpinet.me/projects/neuralnetlib/</id>
+        
+        <content type="html" xml:base="https://marcpinet.me/projects/neuralnetlib/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Work in progress...</title>
+        <published>2023-04-01T00:00:00+00:00</published>
+        <updated>2023-04-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://marcpinet.me/posts/wip/"/>
+        <id>https://marcpinet.me/posts/wip/</id>
+        
+        <content type="html" xml:base="https://marcpinet.me/posts/wip/">&lt;p&gt;Coming soon!&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Neat Cars</title>
+        <published>2023-03-03T00:00:00+00:00</published>
+        <updated>2023-03-03T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://marcpinet.me/projects/neat-cars/"/>
+        <id>https://marcpinet.me/projects/neat-cars/</id>
+        
+        <content type="html" xml:base="https://marcpinet.me/projects/neat-cars/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Connect4 AI</title>
+        <published>2023-02-18T00:00:00+00:00</published>
+        <updated>2023-02-18T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://marcpinet.me/projects/connect4ai/"/>
+        <id>https://marcpinet.me/projects/connect4ai/</id>
+        
+        <content type="html" xml:base="https://marcpinet.me/projects/connect4ai/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Sort Visualizer</title>
+        <published>2022-03-18T00:00:00+00:00</published>
+        <updated>2022-03-18T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://marcpinet.me/projects/sorting-visualizer/"/>
+        <id>https://marcpinet.me/projects/sorting-visualizer/</id>
+        
+        <content type="html" xml:base="https://marcpinet.me/projects/sorting-visualizer/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Maze Generator And Solver</title>
+        <published>2022-03-01T00:00:00+00:00</published>
+        <updated>2022-03-01T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://marcpinet.me/projects/maze-gen-and-solve/"/>
+        <id>https://marcpinet.me/projects/maze-gen-and-solve/</id>
+        
+        <content type="html" xml:base="https://marcpinet.me/projects/maze-gen-and-solve/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Epidemic Modeling</title>
+        <published>2022-01-18T00:00:00+00:00</published>
+        <updated>2022-01-18T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://marcpinet.me/projects/epidemic-modeling/"/>
+        <id>https://marcpinet.me/projects/epidemic-modeling/</id>
+        
+        <content type="html" xml:base="https://marcpinet.me/projects/epidemic-modeling/"></content>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>NyaaDownloader</title>
+        <published>2021-09-04T00:00:00+00:00</published>
+        <updated>2021-09-04T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://marcpinet.me/projects/nyaadownloader/"/>
+        <id>https://marcpinet.me/projects/nyaadownloader/</id>
+        
+        <content type="html" xml:base="https://marcpinet.me/projects/nyaadownloader/"></content>
+        
+    </entry>
+</feed>
