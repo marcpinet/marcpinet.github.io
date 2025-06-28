@@ -1,0 +1,117 @@
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-on-scroll.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.custom-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    mix-blend-mode: difference;
+    transition: all 0.1s ease;
+    opacity: 0.8;
+}
+
+.custom-cursor.cursor-hover {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 109, 0, 0.3);
+    border: 2px solid var(--primary-color);
+}
+
+.custom-cursor-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 4px;
+    height: 4px;
+    background: white;
+    border-radius: 50%;
+}
+
+.particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000;
+    animation: particle-explosion 1s ease-out forwards;
+}
+
+@keyframes particle-explosion {
+    0% {
+        opacity: 1;
+        transform: scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0) rotate(360deg) translateY(-50px);
+    }
+}
+
+html::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--scroll-progress, 0%);
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), #ffaa69);
+    z-index: 1000;
+    transition: width 0.1s ease;
+}
+
+@media (max-width: 768px) {
+    .custom-cursor {
+        display: none;
+    }
+}
+
+.card:nth-child(odd) {
+    animation-delay: 0.1s;
+}
+
+.card:nth-child(even) {
+    animation-delay: 0.2s;
+}
+
+.bloglist-table-row:nth-child(odd) {
+    animation-delay: 0.1s;
+}
+
+.bloglist-table-row:nth-child(even) {
+    animation-delay: 0.2s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animate-on-scroll,
+    .custom-cursor,
+    .particle {
+        animation: none;
+        transition: none;
+    }
+    
+    .card:hover,
+    .bloglist-table-row:hover {
+        transform: none;
+    }
+}
