@@ -18,7 +18,7 @@ template = "about.html"
 </a>
 </div>
 
-#### PhD Researcher in Deep Learning for Anomaly Detection & Explainable AI 
+#### PhD Researcher in Deep Learning for Anomaly Detection & Explainable AI
 
 **Period:** Oct 2025 - Present  
 **Fields:** Deep Learning • Explainable AI • Anomaly Detection • Time Series Analysis • Large Language Models (LLMs) • Retrieval-Augmented Generation (RAG) • Linear Algebra • Statistics • Probability
@@ -204,112 +204,116 @@ Equivalent of a Associate Degree in France, with 4 months of internship at the e
 
 </div>
 
-<div class="about-section">
+<div class="about-section certifications">
 
 ## 🪪 Certifications & Licenses
 
-<div class="certification-entry">
+<div class="certification-grid">
 
-### DeepLearning.AI Deep Learning Specialization
-
+<div class="certification-entry position-1">
 <div class="cert-logo">
 <a href="https://coursera.org/verify/professional-cert/MFCTKJRLEZER" target="_blank">
-<img src="/about_img/certifs/mldl.webp" alt="DeepLearning.AI" width="99" height="99">
+<img src="/about_img/certifs/mldl.webp" alt="DeepLearning.AI" width="100" height="100">
 </a>
 </div>
-
-**Issued:** January 2025  
-**Fields:** Deep Learning • AI • Statistics • Linear Algebra
-
+<div class="cert-content">
+<h3>DeepLearning.AI Deep Learning Specialization</h3>
+<div class="cert-meta">
+<strong>Issued: January 2025</strong>
+<div class="fields">Deep Learning • AI • Statistics • Linear Algebra</div>
+</div>
+</div>
 </div>
 
-<div class="certification-entry">
-
-### DeepLearning.AI Machine Learning Specialization
-
+<div class="certification-entry position-2">
 <div class="cert-logo">
 <a href="https://coursera.org/verify/professional-cert/MFCTKJRLEZER" target="_blank">
-<img src="/about_img/certifs/mldl.webp" alt="DeepLearning.AI" width="99" height="99">
+<img src="/about_img/certifs/mldl.webp" alt="DeepLearning.AI" width="100" height="100">
 </a>
 </div>
-
-**Issued:** January 2025  
-**Fields:** Machine Learning • AI • Statistics • Linear Algebra
-
+<div class="cert-content">
+<h3>DeepLearning.AI Machine Learning Specialization</h3>
+<div class="cert-meta">
+<strong>Issued: January 2025</strong>
+<div class="fields">Machine Learning • AI • Statistics • Linear Algebra</div>
+</div>
+</div>
 </div>
 
-<div class="certification-entry">
-
-### Boating License
-
-<div class="cert-logo">
-<a href="https://ants.gouv.fr/" target="_blank">
-<img src="/about_img/certifs/ants.jpeg" alt="ANTS" width="99" height="99">
-</a>
-</div>
-
-**Issued:** June 2024  
-**Fields:** Personal
-
-</div>
-
-<div class="certification-entry">
-
-### TOEIC
-
+<div class="certification-entry position-5">
 <div class="cert-logo">
 <a href="https://www.etsglobal.org/fr/fr" target="_blank">
-<img src="/about_img/certifs/toeic.png" alt="TOEIC" width="99" height="99">
+<img src="/about_img/certifs/toeic.png" alt="TOEIC" width="90" height="90">
 </a>
 </div>
-
-**Issued:** December 2023  
-**Fields:** English
-
+<div class="cert-content">
+<h3>TOEIC</h3>
+<div class="cert-meta">
+<strong>Issued: December 2023</strong>
+<div class="fields">English</div>
+</div>
+</div>
 </div>
 
-<div class="certification-entry">
-
-### Google Cybersecurity
-
+<div class="certification-entry position-3">
 <div class="cert-logo">
 <a href="https://coursera.org/verify/professional-cert/MFCTKJRLEZER" target="_blank">
-<img src="/about_img/certifs/google.png" alt="Google" width="99" height="99">
+<img src="/about_img/certifs/google.png" alt="Google" width="90" height="90">
 </a>
 </div>
-
-**Issued:** September 2023  
-**Fields:** Cybersecurity • Risk Management • Pentest • Python Programming
-
+<div class="cert-content">
+<h3>Google Cybersecurity</h3>
+<div class="cert-meta">
+<strong>Issued: September 2023</strong>
+<div class="fields">Cybersecurity • Risk Management • Pentest • Python Programming</div>
+</div>
+</div>
 </div>
 
-<div class="certification-entry">
-
-### EIT Digital Quantum Computing and Information
-
+<div class="certification-entry position-4">
 <div class="cert-logo">
 <a href="https://www.eitdigital.eu/" target="_blank">
-<img src="/about_img/certifs/eitdigital.jpeg" alt="EIT Digital" width="99" height="99">
+<img src="/about_img/certifs/eitdigital.jpeg" alt="EIT Digital" width="80" height="80">
 </a>
 </div>
-
-**Issued:** July 2023  
-**Fields:** Quantum Computing • Cryptography • Math • Cybersecurity • Data Privacy • Python Qiskit
-
+<div class="cert-content">
+<h3>EIT Digital Quantum Computing</h3>
+<div class="cert-meta">
+<strong>Issued: July 2023</strong>
+<div class="fields">Quantum Computing • Cryptography</div>
+</div>
+</div>
 </div>
 
-<div class="certification-entry">
-
-### Driving License
-
+<div class="certification-entry position-6">
 <div class="cert-logo">
 <a href="https://ants.gouv.fr/" target="_blank">
-<img src="/about_img/certifs/ants.jpeg" alt="ANTS" width="99" height="99">
+<img src="/about_img/certifs/ants.jpeg" alt="ANTS" width="70" height="70">
 </a>
 </div>
+<div class="cert-content">
+<h3>Boating License</h3>
+<div class="cert-meta">
+<strong>Issued: June 2024</strong>
+<div class="fields">Personal</div>
+</div>
+</div>
+</div>
 
-**Issued:** November 2022  
-**Fields:** Personal
+<div class="certification-entry position-7">
+<div class="cert-logo">
+<a href="https://ants.gouv.fr/" target="_blank">
+<img src="/about_img/certifs/ants.jpeg" alt="ANTS" width="70" height="70">
+</a>
+</div>
+<div class="cert-content">
+<h3>Driving License</h3>
+<div class="cert-meta">
+<strong>Issued: November 2022</strong>
+<div class="fields">Personal</div>
+</div>
+</div>
+</div>
 
 </div>
 
