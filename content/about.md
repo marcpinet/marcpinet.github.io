@@ -277,7 +277,12 @@ Equivalent of a Associate Degree in France, with 4 months of internship at the e
 <h3>DeepLearning.AI Deep Learning Specialization</h3>
 <div class="cert-meta">
 <strong>Issued: January 2025</strong>
-<div class="fields">Deep Learning • AI • Statistics • Linear Algebra</div>
+<div class="fields">
+<span class="field-tag">Deep Learning</span>
+<span class="field-tag">AI</span>
+<span class="field-tag">Statistics</span>
+<span class="field-tag">Linear Algebra</span>
+</div>
 </div>
 </div>
 </div>
@@ -292,7 +297,12 @@ Equivalent of a Associate Degree in France, with 4 months of internship at the e
 <h3>DeepLearning.AI Machine Learning Specialization</h3>
 <div class="cert-meta">
 <strong>Issued: January 2025</strong>
-<div class="fields">Machine Learning • AI • Statistics • Linear Algebra</div>
+<div class="fields">
+<span class="field-tag">Machine Learning</span>
+<span class="field-tag">AI</span>
+<span class="field-tag">Statistics</span>
+<span class="field-tag">Linear Algebra</span>
+</div>
 </div>
 </div>
 </div>
@@ -307,7 +317,9 @@ Equivalent of a Associate Degree in France, with 4 months of internship at the e
 <h3>TOEIC</h3>
 <div class="cert-meta">
 <strong>Issued: December 2023</strong>
-<div class="fields">English</div>
+<div class="fields">
+<span class="field-tag">English</span>
+</div>
 </div>
 </div>
 </div>
@@ -322,7 +334,12 @@ Equivalent of a Associate Degree in France, with 4 months of internship at the e
 <h3>Google Cybersecurity</h3>
 <div class="cert-meta">
 <strong>Issued: September 2023</strong>
-<div class="fields">Cybersecurity • Risk Management • Pentest • Python Programming</div>
+<div class="fields">
+<span class="field-tag">Cybersecurity</span>
+<span class="field-tag">Risk Management</span>
+<span class="field-tag">Pentest</span>
+<span class="field-tag">Python</span>
+</div>
 </div>
 </div>
 </div>
@@ -337,7 +354,10 @@ Equivalent of a Associate Degree in France, with 4 months of internship at the e
 <h3>EIT Digital Quantum Computing</h3>
 <div class="cert-meta">
 <strong>Issued: July 2023</strong>
-<div class="fields">Quantum Computing • Cryptography</div>
+<div class="fields">
+<span class="field-tag">Quantum Computing</span>
+<span class="field-tag">Cryptography</span>
+</div>
 </div>
 </div>
 </div>
@@ -352,7 +372,6 @@ Equivalent of a Associate Degree in France, with 4 months of internship at the e
 <h3>Boating License</h3>
 <div class="cert-meta">
 <strong>Issued: June 2024</strong>
-<div class="fields">Personal</div>
 </div>
 </div>
 </div>
@@ -367,7 +386,6 @@ Equivalent of a Associate Degree in France, with 4 months of internship at the e
 <h3>Driving License</h3>
 <div class="cert-meta">
 <strong>Issued: November 2022</strong>
-<div class="fields">Personal</div>
 </div>
 </div>
 </div>
