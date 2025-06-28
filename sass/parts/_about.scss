@@ -1,0 +1,97 @@
+.about-section {
+    margin-bottom: 3rem;
+    
+    h2 {
+        font-size: 2.2rem;
+        font-weight: bold;
+        color: #ffaa69;
+        margin-bottom: 2rem;
+        position: relative;
+        
+        &::after {
+            content: "";
+            display: block;
+            height: 1px;
+            background: var(--light-border-color);
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+    }
+}
+
+.experience-entry, .education-entry, .certification-entry {
+    background: var(--bg-1);
+    border: 1px solid var(--light-border-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    h3 {
+        color: var(--text-color);
+        margin-top: 0;
+        margin-bottom: 1rem;
+        font-size: 1.4rem;
+    }
+    
+    h4 {
+        color: #ffaa69;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+        font-size: 1.2rem;
+        
+        &:first-of-type {
+            margin-top: 1rem;
+        }
+    }
+    
+    hr {
+        border: none;
+        height: 1px;
+        background: var(--light-border-color);
+        margin: 1.5rem 0;
+    }
+    
+    .company-logo, .cert-logo {
+        margin-bottom: 1rem;
+        
+        img {
+            border-radius: 8px;
+            transition: transform 0.2s ease;
+            
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+    
+    strong {
+        color: var(--meta-color);
+        font-size: 0.9rem;
+    }
+    
+    p {
+        line-height: 1.6;
+        margin-bottom: 0.5rem;
+    }
+    
+    a {
+        color: #ffaa69;
+        text-decoration: none;
+        
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .experience-entry, .education-entry, .certification-entry {
+        padding: 1rem;
+    }
+}
