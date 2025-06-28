@@ -61,13 +61,17 @@ header {
 .nav-links{
   text-decoration: none;
   color: var(--text-color);
-  padding:5px;
-  border-radius:5px;
-  transition:100ms;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
+
 .nav-links:hover {
   color: var(--links);
-  background-color:var(--secondary-color);
+  background-color: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 109, 0, 0.2);
 }
 header .main {
   display: flex;

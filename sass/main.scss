@@ -14,6 +14,8 @@
 @import "parts/_about.scss";
 @import 'syntax/syntax-ayu-dark.scss';
 @import "parts/_search.scss";
+@import "parts/_scroll-progress.scss";
+@import "parts/_cursor-effects.scss";
 
 :root {
   --max-layout-width:900px;
