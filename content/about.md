@@ -21,7 +21,17 @@ template = "about.html"
 #### PhD Researcher in Deep Learning for Anomaly Detection & Explainable AI
 
 **Period:** Oct 2025 - Present  
-**Fields:** Deep Learning • Explainable AI • Anomaly Detection • Time Series Analysis • Large Language Models (LLMs) • Retrieval-Augmented Generation (RAG) • Linear Algebra • Statistics • Probability
+<div class="fields">
+<span class="field-tag">Deep Learning</span>
+<span class="field-tag">Explainable AI</span>
+<span class="field-tag">Anomaly Detection</span>
+<span class="field-tag">Time Series Analysis</span>
+<span class="field-tag">Large Language Models</span>
+<span class="field-tag">Retrieval-Augmented Generation</span>
+<span class="field-tag">Linear Algebra</span>
+<span class="field-tag">Statistics</span>
+<span class="field-tag">Probability</span>
+</div>
 
 Self-supervised detection and explanation of anomalies in time series data for large-scale network security. Research focus on developing robust deep learning models for real-time anomaly characterization, including occasional out-of-distribution cases, and LLM+RAG-based methods for automated interpretation using business knowledge bases.
 
@@ -42,7 +52,15 @@ Self-supervised detection and explanation of anomalies in time series data for l
 #### AI/ML R&D Engineer Apprentice
 
 **Period:** Aug 2024 - Sep 2025  
-**Fields:** Artificial Intelligence • Predictions • Deep Learning • Data Science • Machine Learning • Statistics • Probability
+<div class="fields">
+<span class="field-tag">Artificial Intelligence</span>
+<span class="field-tag">Predictions</span>
+<span class="field-tag">Deep Learning</span>
+<span class="field-tag">Data Science</span>
+<span class="field-tag">Machine Learning</span>
+<span class="field-tag">Statistics</span>
+<span class="field-tag">Probability</span>
+</div>
 
 Unsupervised anomaly detection system for heterogeneous data (logs, metrics, traces) using pattern variation detection and time series correlation. Optimized real-time pipeline reducing memory by 70% and improving scalability 3x for 10M+ events/day. Built RAG-enhanced LLM agent for automated anomaly reports with root cause analysis.
 
@@ -53,7 +71,14 @@ Unsupervised anomaly detection system for heterogeneous data (logs, metrics, tra
 #### Data Scientist Intern
 
 **Period:** Apr 2024 - Aug 2024  
-**Fields:** Artificial Intelligence • Predictions • Deep Learning • Data Science • Machine Learning • Statistics
+<div class="fields">
+<span class="field-tag">Artificial Intelligence</span>
+<span class="field-tag">Predictions</span>
+<span class="field-tag">Deep Learning</span>
+<span class="field-tag">Data Science</span>
+<span class="field-tag">Machine Learning</span>
+<span class="field-tag">Statistics</span>
+</div>
 
 Time series trends analysis using tools such as Prophet, SARIMA, STL, and DTW. Identified correlations between logs and metrics to predict system behaviors. Built a robust pipeline for live data retrieval from internal APIs with integrated data preprocessing.
 
@@ -74,7 +99,11 @@ Time series trends analysis using tools such as Prophet, SARIMA, STL, and DTW. I
 #### IoT Developer Intern
 
 **Period:** Apr 2022 - Jul 2022  
-**Fields:** Internet of Things • LoRaWAN • Embedded Systems
+<div class="fields">
+<span class="field-tag">Internet of Things</span>
+<span class="field-tag">LoRaWAN</span>
+<span class="field-tag">Embedded Systems</span>
+</div>
 
 Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensuring emergency communication in remote areas without internet access.
 
@@ -95,7 +124,10 @@ Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensur
 #### Developer Intern
 
 **Period:** Jun 2018 - Jul 2018  
-**Fields:** AngularJS • Full-Stack Development
+<div class="fields">
+<span class="field-tag">AngularJS</span>
+<span class="field-tag">Full-Stack Development</span>
+</div>
 
 Gained hands-on experience in full-stack development, alongside senior developers.
 
@@ -114,7 +146,11 @@ Gained hands-on experience in full-stack development, alongside senior developer
 #### Observer Intern
 
 **Period:** Dec 2016  
-**Fields:** Microprocessors • Transistors • Architecture
+<div class="fields">
+<span class="field-tag">Microprocessors</span>
+<span class="field-tag">Transistors</span>
+<span class="field-tag">Architecture</span>
+</div>
 
 Introduced to processor architecture, with a Senior SoC (System-on-chip) Designer.
 
@@ -139,7 +175,18 @@ Introduced to processor architecture, with a Senior SoC (System-on-chip) Designe
 #### PhD in Computer Science - Deep Learning & Explainable AI
 
 **Period:** Oct 2025 - Present  
-**Fields:** Artificial Intelligence • Deep Learning • Explainable AI • Anomaly Detection • Time Series Analysis • Large Language Models (LLMs) • Retrieval-Augmented Generation (RAG) • Linear Algebra • Statistics • Probability
+<div class="fields">
+<span class="field-tag">Artificial Intelligence</span>
+<span class="field-tag">Deep Learning</span>
+<span class="field-tag">Explainable AI</span>
+<span class="field-tag">Anomaly Detection</span>
+<span class="field-tag">Time Series Analysis</span>
+<span class="field-tag">Large Language Models</span>
+<span class="field-tag">Retrieval-Augmented Generation</span>
+<span class="field-tag">Linear Algebra</span>
+<span class="field-tag">Statistics</span>
+<span class="field-tag">Probability</span>
+</div>
 
 Thesis: Self-supervised deep learning detection and explanation of anomalies in time series.
 
@@ -158,7 +205,11 @@ Thesis: Self-supervised deep learning detection and explanation of anomalies in 
 #### Engineer's degree
 
 **Period:** Sep 2022 - Sep 2025  
-**Fields:** Computer Science
+<div class="fields">
+<span class="field-tag">Computer Science</span>
+<span class="field-tag">Artificial Intelligence</span>
+<span class="field-tag">Data Engineering</span>
+</div>
 
 Engineer school, specialized in Artificial Intelligence & Data Engineering.
 
@@ -177,7 +228,10 @@ Engineer school, specialized in Artificial Intelligence & Data Engineering.
 #### Exchange Student
 
 **Period:** Jan 2022 - May 2022  
-**Fields:** Computer Science (0711)
+<div class="fields">
+<span class="field-tag">Computer Science</span>
+<span class="field-tag">International Exchange</span>
+</div>
 
 Thanks to IUT Nice Côte d'Azur as a reward for my academic performance, I got to take my last semester in Canada.
 
@@ -196,7 +250,11 @@ Thanks to IUT Nice Côte d'Azur as a reward for my academic performance, I got t
 #### Associate Degree
 
 **Period:** Sep 2020 - Jul 2022  
-**Fields:** Computer Science
+<div class="fields">
+<span class="field-tag">Computer Science</span>
+<span class="field-tag">Software Development</span>
+<span class="field-tag">Internship</span>
+</div>
 
 Equivalent of a Associate Degree in France, with 4 months of internship at the end.
 
