@@ -14,7 +14,23 @@
             {%- set show_pages = section.pages -%}
         {% endif -%}
 
-        {{ post_macros::cards_posts(pages=show_pages) }}
+        {%- set pinned_pages = [] -%}
+        {%- set regular_pages = [] -%}
+        
+        {%- for page in show_pages -%}
+            {%- if page.extra.pinned -%}
+                {%- set_global pinned_pages = pinned_pages | concat(with=page) -%}
+            {%- else -%}
+                {%- set_global regular_pages = regular_pages | concat(with=page) -%}
+            {%- endif -%}
+        {%- endfor -%}
+        
+        {%- set sorted_pinned = pinned_pages | sort(attribute="extra.pin_order") -%}
+        {%- set sorted_regular = regular_pages | sort(attribute="date") | reverse -%}
+        
+        {%- set final_pages = sorted_pinned | concat(with=sorted_regular) -%}
+        
+        {{ post_macros::cards_posts(pages=final_pages) }}
     </main>
 
     {% if paginator %}

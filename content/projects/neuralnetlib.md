@@ -1,7 +1,7 @@
 +++
 title = "Neuralnetlib"
 description = "🧠 A flexible machine & deep learning framework built from scratch using only NumPy."
-date = "2023-11-10"
+date = "2024-11-30"
 weight = 1
 
 [extra]
