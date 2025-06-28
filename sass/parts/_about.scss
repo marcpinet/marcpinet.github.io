@@ -16,6 +16,12 @@
             width: 100%;
             margin-top: 0.5rem;
         }
+
+.about-section.certifications {
+    .fields {
+        justify-content: center;
+    }
+}
     }
     
     &.certifications {
@@ -279,5 +285,11 @@
 @media (max-width: 768px) {
     .experience-entry, .education-entry, .certification-entry {
         padding: 1rem;
+    }
+}
+
+.about-section.certifications {
+    .fields {
+        justify-content: center;
     }
 }

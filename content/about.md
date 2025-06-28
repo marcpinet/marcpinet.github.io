@@ -176,7 +176,6 @@ Introduced to processor architecture, with a Senior SoC (System-on-chip) Designe
 
 **Period:** Oct 2025 - Present  
 <div class="fields">
-<span class="field-tag">Artificial Intelligence</span>
 <span class="field-tag">Deep Learning</span>
 <span class="field-tag">Explainable AI</span>
 <span class="field-tag">Anomaly Detection</span>
