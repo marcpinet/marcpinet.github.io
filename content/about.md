@@ -64,8 +64,6 @@ Self-supervised detection, representation and explanation of anomalies in time s
 
 Unsupervised anomaly detection system for heterogeneous data (logs, metrics, traces) using pattern variation detection and time series correlation. Optimized real-time pipeline reducing memory by 70% and improving scalability 3x for 10M+ events/day. Built RAG-enhanced LLM agent for automated anomaly reports with root cause analysis.
 
-**📄 Report:** ❌ Confidential
-
 ---
 
 #### Data Scientist Intern
@@ -81,8 +79,6 @@ Unsupervised anomaly detection system for heterogeneous data (logs, metrics, tra
 </div>
 
 Time series trends analysis using tools such as Prophet, SARIMA, STL, and DTW. Identified correlations between logs and metrics to predict system behaviors. Built a robust pipeline for live data retrieval from internal APIs with integrated data preprocessing.
-
-**📄 Report:** ❌ Confidential
 
 </div>
 
@@ -106,8 +102,6 @@ Time series trends analysis using tools such as Prophet, SARIMA, STL, and DTW. I
 </div>
 
 Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensuring emergency communication in remote areas without internet access.
-
-**📄 Report:** [PINET Marc - Internship Report.pdf](/dniit.pdf)
 
 </div>
 
