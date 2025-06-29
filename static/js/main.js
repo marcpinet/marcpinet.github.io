@@ -53,7 +53,10 @@ bannerImg.forEach(function(img) {
         // Remove the class after animation completes
         setTimeout(() => {
             img.classList.remove(`click-${clickCount}`);
-        }, clickCount === 5 ? 800 : 300 + (clickCount * 100));
+        }, clickCount === 1 ? 800 : 
+             clickCount === 2 ? 900 : 
+             clickCount === 3 ? 1000 : 
+             clickCount === 4 ? 1100 : 1500);
 
         if (clickCount === 5) {
             let pageContent = document.querySelector('.content');
@@ -63,7 +66,7 @@ bannerImg.forEach(function(img) {
             setTimeout(() => {
                 clickCount = 0;
                 img.classList.remove('click-1', 'click-2', 'click-3', 'click-4', 'click-5');
-            }, 1000);
+            }, 1600);
         }
     });
 });
