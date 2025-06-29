@@ -18,7 +18,7 @@ template = "about.html"
 </a>
 </div>
 
-#### PhD Researcher in Deep Learning for Anomaly Detection & Explainable AI
+#### PhD Researcher in Deep Anomaly Detection & xAI in Time Series
 
 **Period:** Oct 2025 - Present  
 <div class="fields">
