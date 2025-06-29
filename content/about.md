@@ -18,14 +18,14 @@ template = "about.html"
 </a>
 </div>
 
-#### PhD Researcher in Deep Anomaly Detection & XAI in Time Series
+#### PhD Researcher in Deep Anomaly Detection in Time Series & XAI
 
 **Period:** Oct 2025 - Present  
 <div class="fields">
 <span class="field-tag">Deep Learning</span>
-<span class="field-tag">Explainable AI</span>
 <span class="field-tag">Anomaly Detection</span>
 <span class="field-tag">Time Series Analysis</span>
+<span class="field-tag">Explainable AI</span>
 <span class="field-tag">Large Language Models</span>
 <span class="field-tag">Retrieval-Augmented Generation</span>
 <span class="field-tag">Linear Algebra</span>
@@ -171,9 +171,9 @@ Introduced to processor architecture, with a Senior SoC (System-on-chip) Designe
 **Period:** Oct 2025 - Present  
 <div class="fields">
 <span class="field-tag">Deep Learning</span>
-<span class="field-tag">Explainable AI</span>
 <span class="field-tag">Anomaly Detection</span>
 <span class="field-tag">Time Series Analysis</span>
+<span class="field-tag">Explainable AI</span>
 <span class="field-tag">Large Language Models</span>
 <span class="field-tag">Retrieval-Augmented Generation</span>
 <span class="field-tag">Linear Algebra</span>
