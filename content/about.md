@@ -33,7 +33,7 @@ template = "about.html"
 <span class="field-tag">Probability</span>
 </div>
 
-Self-supervised detection and explanation of anomalies in time series data for large-scale network security. Research focus on developing robust deep learning models for real-time anomaly characterization, including occasional out-of-distribution cases, and LLM+RAG-based methods for automated interpretation using business knowledge bases.
+Self-supervised detection, representation and explanation of anomalies in time series data for large-scale network security. Research focus on developing deep learning models for real-time anomaly characterization, including occasional out-of-distribution cases, and LLM+RAG-based methods for automated interpretation using business knowledge bases.
 
 **📄 Thesis:** *Work in progress...*
 
@@ -383,7 +383,7 @@ Equivalent of a Associate Degree in France, with 4 months of internship at the e
 </a>
 </div>
 <div class="cert-content">
-<h3>Driving License</h3>
+<h3>Driver's License</h3>
 <div class="cert-meta">
 <strong>Issued: Nov 2022</strong>
 </div>
