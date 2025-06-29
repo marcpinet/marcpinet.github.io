@@ -1,1 +1,32 @@
-function initFieldsToggle() {\n    document.addEventListener('DOMContentLoaded', function() {\n        const fieldContainers = document.querySelectorAll('.fields');\n        \n        fieldContainers.forEach(container => {\n            const tags = container.querySelectorAll('.field-tag:not(.expand-fields)');\n            \n            if (tags.length > 5) {\n                container.classList.add('collapsed');\n                \n                const expandBtn = document.createElement('span');\n                expandBtn.className = 'field-tag expand-fields';\n                expandBtn.textContent = `+${tags.length - 5} more`;\n                expandBtn.style.order = '999';\n                \n                expandBtn.addEventListener('click', function() {\n                    if (container.classList.contains('collapsed')) {\n                        container.classList.remove('collapsed');\n                        expandBtn.textContent = 'Show less';\n                    } else {\n                        container.classList.add('collapsed');\n                        expandBtn.textContent = `+${tags.length - 5} more`;\n                    }\n                });\n                \n                container.appendChild(expandBtn);\n            }\n        });\n    });\n}\n\ninitFieldsToggle();\n
+function initFieldsToggle() {
+    document.addEventListener('DOMContentLoaded', function () {
+        const fieldContainers = document.querySelectorAll('.fields');
+
+        fieldContainers.forEach(container => {
+            const tags = container.querySelectorAll('.field-tag:not(.expand-fields)');
+
+            if (tags.length > 5) {
+                container.classList.add('collapsed');
+
+                const expandBtn = document.createElement('span');
+                expandBtn.className = 'field-tag expand-fields';
+                expandBtn.textContent = `+${tags.length - 5} more`;
+                expandBtn.style.order = '999';
+
+                expandBtn.addEventListener('click', function () {
+                    if (container.classList.contains('collapsed')) {
+                        container.classList.remove('collapsed');
+                        expandBtn.textContent = 'Show less';
+                    } else {
+                        container.classList.add('collapsed');
+                        expandBtn.textContent = `+${tags.length - 5} more`;
+                    }
+                });
+
+                container.appendChild(expandBtn);
+            }
+        });
+    });
+}
+
+initFieldsToggle();

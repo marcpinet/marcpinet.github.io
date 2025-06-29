@@ -54,9 +54,9 @@ bannerImg.forEach(function(img) {
         setTimeout(() => {
             img.classList.remove(`click-${clickCount}`);
         }, clickCount === 1 ? 800 : 
-             clickCount === 2 ? 900 : 
-             clickCount === 3 ? 1000 : 
-             clickCount === 4 ? 1100 : 1500);
+             clickCount === 2 ? 1000 : 
+             clickCount === 3 ? 1200 : 
+             clickCount === 4 ? 1400 : 1800);
 
         if (clickCount === 5) {
             let pageContent = document.querySelector('.content');
