@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     initScrollProgress();
     initSmoothNavigation();
-    initCursorEffects();
     initClickEffects();
 });
 
