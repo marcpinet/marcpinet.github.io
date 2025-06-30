@@ -55,8 +55,9 @@
     <meta property="og:type" content="article" />
 
     {% if config.extra.headerImage %}
-        <meta property="og:image" content="{{ config.extra.headerImage }}">
-        <meta name="twitter:card" content="{{ config.extra.headerImage }}">
+        <meta property="og:image" content="{{ get_url(path=config.extra.headerImage) }}">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="{{ get_url(path=config.extra.headerImage) }}">
     {% endif %}
 
     {% set current_url = current_url | default(value="/") %}
