@@ -36,37 +36,4 @@ function switchTheme(e) {
 // event listener on checkbox change
 themeSwitcher.addEventListener('change', switchTheme, false);
 
-// easter egg
-let bannerImg = document.querySelectorAll('.banner-home-img');
-let clickCount = 0;
 
-bannerImg.forEach(function(img) {
-    img.addEventListener('click', function() {
-        clickCount++;
-
-        // Remove any existing click classes
-        img.classList.remove('click-1', 'click-2', 'click-3', 'click-4', 'click-5');
-        
-        // Add the appropriate click class
-        img.classList.add(`click-${clickCount}`);
-        
-        // Remove the class after animation completes
-        setTimeout(() => {
-            img.classList.remove(`click-${clickCount}`);
-        }, clickCount === 1 ? 800 : 
-             clickCount === 2 ? 1000 : 
-             clickCount === 3 ? 1200 : 
-             clickCount === 4 ? 1400 : 1800);
-
-        if (clickCount === 5) {
-            let pageContent = document.querySelector('.content');
-            pageContent.classList.toggle('upside-down');
-            
-            // Reset click count and remove all click classes after a delay
-            setTimeout(() => {
-                clickCount = 0;
-                img.classList.remove('click-1', 'click-2', 'click-3', 'click-4', 'click-5');
-            }, 1600);
-        }
-    });
-});

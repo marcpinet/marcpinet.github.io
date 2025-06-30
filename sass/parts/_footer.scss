@@ -1,16 +1,16 @@
 footer {
-    background-color: var(--navbar-color);
-    border-top: 1px solid var(--light-border-color);
-    padding: 3rem 0;
-    font-family: var(--post-font-family);
-    margin-top: 1rem;
-  }
+background-color: var(--navbar-color);
+border-top: 1px solid var(--light-border-color);
+padding: 1.5rem 0;
+font-family: var(--post-font-family);
+margin-top: 1rem;
+}
   
   footer section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1.25rem;
+    gap: 0.5rem;
   }
   footer nav {
     display: flex;
