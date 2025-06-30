@@ -77,7 +77,7 @@ body{
   margin: 0 auto;
   padding: 0 24px;
   word-wrap: break-word;
-  min-height: 80vh;
+  min-height: calc(100vh - 242px);
 }
 @media only screen and (max-width:1000px) {
   .content{
@@ -390,7 +390,7 @@ body{
   max-height: calc(100vh - 200px);
   box-sizing: border-box;
   max-width: 100%;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 ::-webkit-scrollbar {
