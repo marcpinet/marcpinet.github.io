@@ -1,7 +1,7 @@
 # The URL the site will be built for
-base_url = "https://marcpinet.me"
+base_url = "https://marcpinet.fr"
 title = "Marc Pinet"
-description = "yet another persobal blog"
+description = "yet another personal blog"
 generate_feed = true
 minify_html = true
 
