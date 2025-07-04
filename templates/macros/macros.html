@@ -191,13 +191,12 @@
             {% else %}
             <div class="card-image-placeholder"></div>
             {% endif %}
-            
-            {% if page.extra.pinned %}
-            <div class="pinned-badge" title="Pinned project">📌</div>
-            {% endif %}
         </div>
 
         <div class="card-info">
+            {% if page.extra.pinned %}
+            <div class="pinned-badge" title="Pinned project">📌</div>
+            {% endif %}
             <h1 class="card-title">
                 {% if page.extra.link_to %}
                 <a rel="noopener noreferrer" target="_blank" href={{ page.extra.link_to }}>{{page.title}}</a>
