@@ -13,7 +13,7 @@ template = "about.html"
 ### Orange Innovation
 
 <div class="company-logo">
-<a href="https://orange.com/" target="_blank">
+<a href="https://hellofuture.orange.com/fr/" target="_blank">
 <img src="/about_img/exp/orange.png" alt="Orange Innovation" width="99" height="99">
 </a>
 </div>
