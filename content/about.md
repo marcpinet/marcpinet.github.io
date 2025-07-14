@@ -29,6 +29,7 @@ template = "about.html"
 <span class="field-tag">Explainable AI</span>
 <span class="field-tag">Large Language Models</span>
 <span class="field-tag">Retrieval-Augmented Generation</span>
+<span class="field-tag">GraphRAG</span>
 <span class="field-tag">Linear Algebra</span>
 <span class="field-tag">Statistics</span>
 <span class="field-tag">Probability</span>
@@ -176,8 +177,6 @@ Introduced to processor architecture, with a Senior SoC (System-on-chip) Designe
 <span class="field-tag">Self-Supervised Learning</span>
 <span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Explainable AI</span>
-<span class="field-tag">Large Language Models</span>
-<span class="field-tag">Retrieval-Augmented Generation</span>
 <span class="field-tag">Linear Algebra</span>
 <span class="field-tag">Statistics</span>
 <span class="field-tag">Probability</span>
@@ -197,16 +196,41 @@ Thesis: Self-supervised deep learning detection and explanation of anomalies in 
 </a>
 </div>
 
-#### Engineer's degree
+#### Master's in Computer Science
 
 **Period:** Sep 2022 - Sep 2025  
 <div class="fields">
 <span class="field-tag">Computer Science</span>
 <span class="field-tag">Artificial Intelligence</span>
 <span class="field-tag">Data Engineering</span>
+<span class="field-tag">Internet of Things</span>
+<span class="field-tag">Cybersecurity</span>
+<span class="field-tag">Machine Learning</span>
+<span class="field-tag">Deep Learning</span>
+<span class="field-tag">Data Structures</span>
+<span class="field-tag">Knowledge Graphs</span>
+<span class="field-tag">Object-Oriented Programming</span>
+<span class="field-tag">Database Management System</span>
+<span class="field-tag">System Architecture</span>
+<span class="field-tag">Network Architecture</span>
+<span class="field-tag">DevOps</span>
+<span class="field-tag">Algorithms</span>
+<span class="field-tag">Mathematics</span>
+<span class="field-tag">Java</span>
+<span class="field-tag">C++</span>
+<span class="field-tag">C</span>
+<span class="field-tag">C#</span>
+<span class="field-tag">Kotlin</span>
+<span class="field-tag">Python</span>
+<span class="field-tag">PL/SQL</span>
+<span class="field-tag">Docker</span>
+<span class="field-tag">Linux</span>
+<span class="field-tag">Git</span>
+<span class="field-tag">Bash</span>
+<span class="field-tag">Android</span>
 </div>
 
-Engineer school, specialized in Artificial Intelligence & Data Engineering.
+Ranked among the top 5 engineering schools in Computer Science in France, with a final-year focus on Artificial Intelligence & Data Engineering.
 
 </div>
 
@@ -220,12 +244,30 @@ Engineer school, specialized in Artificial Intelligence & Data Engineering.
 </a>
 </div>
 
-#### Exchange Student
+#### Exchange Semester
 
 **Period:** Jan 2022 - May 2022  
 <div class="fields">
 <span class="field-tag">Computer Science</span>
-<span class="field-tag">International Exchange</span>
+<span class="field-tag">Advanced Algorithms</span>
+<span class="field-tag">Algorithm Complexity</span>
+<span class="field-tag">Dynamic Programming</span>
+<span class="field-tag">Data Structures</span>
+<span class="field-tag">Mathematics</span>
+<span class="field-tag">Object-Oriented Programming</span>
+<span class="field-tag">Object-Oriented Modeling</span>
+<span class="field-tag">Design Patterns</span>
+<span class="field-tag">Application Security</span>
+<span class="field-tag">Cybersecurity</span>
+<span class="field-tag">Database Management</span>
+<span class="field-tag">SQL Injection Prevention</span>
+<span class="field-tag">Model Checking</span>
+<span class="field-tag">C++</span>
+<span class="field-tag">Java</span>
+<span class="field-tag">C#</span>
+<span class="field-tag">SQL</span>
+<span class="field-tag">PL/SQL</span>
+<span class="field-tag">Bash</span>
 </div>
 
 Thanks to IUT Nice Côte d'Azur as a reward for my academic performance, I got to take my last semester in Canada.
@@ -242,16 +284,31 @@ Thanks to IUT Nice Côte d'Azur as a reward for my academic performance, I got t
 </a>
 </div>
 
-#### Associate Degree
+#### Associate of Science in Computer Science
 
 **Period:** Sep 2020 - Jul 2022  
 <div class="fields">
 <span class="field-tag">Computer Science</span>
 <span class="field-tag">Software Development</span>
-<span class="field-tag">Internship</span>
+<span class="field-tag">Data Structures</span>
+<span class="field-tag">Object-Oriented Programming</span>
+<span class="field-tag">Database Management System</span>
+<span class="field-tag">System Architecture</span>
+<span class="field-tag">Network Architecture</span>
+<span class="field-tag">Algorithms</span>
+<span class="field-tag">Mathematics</span>
+<span class="field-tag">DevOps</span>
+<span class="field-tag">Linux</span>
+<span class="field-tag">Java</span>
+<span class="field-tag">C</span>
+<span class="field-tag">PL/SQL</span>
+<span class="field-tag">HTML</span>
+<span class="field-tag">CSS</span>
+<span class="field-tag">Bash</span>
+<span class="field-tag">English</span>
 </div>
 
-Equivalent of a Associate Degree in France, with 4 months of internship at the end.
+Equivalent of a DUT (Diplôme Universitaire de Technologie) in France, with 4 months of internship at the end.
 
 </div>
 
@@ -270,7 +327,7 @@ Equivalent of a Associate Degree in France, with 4 months of internship at the e
 </a>
 </div>
 <div class="cert-content">
-<h3>DeepLearning.AI Deep Learning Specialization</h3>
+<h3>Stanford | DeepLearning.AI Deep Learning Specialization</h3>
 <div class="cert-meta">
 <strong>Issued: Jan 2025</strong>
 <div class="fields">
@@ -290,7 +347,7 @@ Equivalent of a Associate Degree in France, with 4 months of internship at the e
 </a>
 </div>
 <div class="cert-content">
-<h3>DeepLearning.AI Machine Learning Specialization</h3>
+<h3>Stanford | DeepLearning.AI Machine Learning Specialization</h3>
 <div class="cert-meta">
 <strong>Issued: Jan 2025</strong>
 <div class="fields">
