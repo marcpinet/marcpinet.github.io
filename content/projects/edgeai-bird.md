@@ -1,6 +1,6 @@
 +++
 title = "EdgeAI Bird"
-description = "📡 CNN model for birdsong classification on an embedded microcontroller which then sends the predictions wirelessly via LoRaWAN to TTN."
+description = "📡 CNN-based bird species audio recognition, optimized using TinyML on STM32 microcontroller with real-time I2S audio processing, 16-bit fixed-point quantization, and LoRaWAN IoT connectivity achieving 86% accuracy with optimized memory footprint for embedded deployment."
 date = "2024-04-20"
 weight = 1
 

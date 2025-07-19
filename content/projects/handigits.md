@@ -1,6 +1,6 @@
 +++
 title = "Handigits"
-description = "🖐️ Background-independent deep learning model for hand sign digit recognition, using my own Deep Learning framework! (Neuralnetlib)"
+description = "🖐️ Background-independent deep learning model for hand sign digit recognition. Used my own framework (Neuralnetlib) for model training and inference, and Google MediaPipe for hand tracking and preprocessing"
 date = "2024-05-27"
 weight = 1
 

@@ -1,6 +1,6 @@
 +++
 title = "Neat Cars"
-description = "🚗 Draw a circuit and watch self-driving cars evolve thanks to the NEAT genetic algorithm."
+description = "🚗 Autonomous vehicle AI agents leveraging NEAT genetic programming and evolutionary reinforcement learning to optimize neural network topologies with real-time visualization and multi-generational evolution."
 date = "2023-03-03"
 weight = 1
 
