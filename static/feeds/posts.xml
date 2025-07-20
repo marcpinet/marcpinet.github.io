@@ -4,13 +4,13 @@
     <link>https://marcpinet.fr</link>
     <description>Latest blog posts and articles</description>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Jul 2025 14:02:21 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 20 Jul 2025 14:25:25 GMT</lastBuildDate>
     <generator>Custom RSS Generator</generator>
     <atom:link href="https://marcpinet.fr/feeds/posts.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>Work in progress...</title>
       <link>https://marcpinet.fr/posts/wip/</link>
-      <description>This is a work in progress post.</description>
+      <description>Coming soon!</description>
       <pubDate>Thu, 01 Jan 1970 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://marcpinet.fr/posts/wip/</guid>
     </item>
