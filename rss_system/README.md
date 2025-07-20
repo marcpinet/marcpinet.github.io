@@ -196,7 +196,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git add static/feeds/ static/atom.xml static/rss_state.json
+          git add static/feeds/
           git commit -m "Update RSS feeds" || exit 0
           git push
 ```
