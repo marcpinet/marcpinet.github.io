@@ -7,9 +7,9 @@ from content_parser import ContentParser
 from rss_generator import RSSFeedGenerator
 
 class RSSManager:
-    def __init__(self, content_root: str, output_dir: str, base_url: str = "https://marcpinet.fr"):
+    def __init__(self, content_root: str, output_dir: str, base_url: str = "https://marcpinet.fr", site_title: str = "Marc Pinet"):
         self.parser = ContentParser(content_root)
-        self.generator = RSSFeedGenerator(base_url, "Marc Pinet")
+        self.generator = RSSFeedGenerator(base_url, site_title)
         self.output_dir = Path(output_dir)
         self.feeds_dir = self.output_dir / 'feeds'
         self.feeds_dir.mkdir(parents=True, exist_ok=True)
