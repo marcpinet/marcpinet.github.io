@@ -2,75 +2,84 @@ name: Generate RSS Feeds
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
     paths:
-      - 'content/**'
-      - 'rss_system/**'
+      - "content/**"
+      - "rss_system/**"
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: "0 */6 * * *"
   workflow_dispatch:
 
 jobs:
   generate-rss:
     runs-on: ubuntu-latest
-   
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.GITHUB_TOKEN }}
-     
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
-          cache: 'pip'
-     
+          python-version: "3.9"
+          cache: "pip"
+
       - name: Install dependencies
         run: |
           cd rss_system
           pip install -r requirements.txt
-     
+
       - name: Check RSS system status
         run: |
           cd rss_system
           python main.py --status
-     
+
       - name: Generate RSS feeds
         run: |
           cd rss_system
           python main.py --verbose
-     
+
+      - name: Copy master feed to site root
+        run: |
+          if [ -f "static/feeds/atom.xml" ]; then
+            cp static/feeds/atom.xml static/atom.xml
+            echo "✅ Copied atom.xml to site root"
+          else
+            echo "❌ feeds/atom.xml not found"
+          fi
+
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet -- static/feeds/; then
+          if git diff --quiet -- static/feeds/ static/atom.xml; then
             echo "changes=false" >> $GITHUB_OUTPUT
             echo "No RSS feed changes detected"
           else
             echo "changes=true" >> $GITHUB_OUTPUT
             echo "RSS feed changes detected"
-            git diff --name-only -- static/feeds/
+            git diff --name-only -- static/feeds/ static/atom.xml
           fi
-     
+
       - name: Commit and push RSS feeds
         if: steps.changes.outputs.changes == 'true'
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          
-          # Add all RSS feeds and cache
-          git add static/feeds/
-          
+
+          # Add all RSS feeds and the root atom.xml
+          git add static/feeds/ static/atom.xml
+
           git commit -m "🤖 Auto-update RSS feeds [skip ci]"
           git push
-     
+
       - name: Output summary
         run: |
           echo "## RSS Feed Generation Summary" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-         
+
           if [ "${{ steps.changes.outputs.changes }}" == "true" ]; then
             echo "✅ **New RSS feeds generated and committed**" >> $GITHUB_STEP_SUMMARY
             echo "" >> $GITHUB_STEP_SUMMARY
@@ -79,7 +88,7 @@ jobs:
           else
             echo "ℹ️ **No new content detected - RSS feeds unchanged**" >> $GITHUB_STEP_SUMMARY
           fi
-         
+
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Available RSS Feeds:" >> $GITHUB_STEP_SUMMARY
           echo "- 📡 [All Updates](https://marcpinet.fr/feeds/atom.xml)" >> $GITHUB_STEP_SUMMARY
