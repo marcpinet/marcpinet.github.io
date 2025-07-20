@@ -1,0 +1,64 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Marc Pinet - Experiences</title>
+    <link>https://marcpinet.fr</link>
+    <description>Latest work experiences and career updates</description>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Jul 2025 15:58:25 GMT</lastBuildDate>
+    <generator>Custom RSS Generator</generator>
+    <atom:link href="https://marcpinet.fr/feeds/experiences.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>New Position: PhD Researcher in Self-Supervised Deep Anomaly Detection &amp; XAI at Orange Innovation</title>
+      <link>https://marcpinet.fr/about/</link>
+      <description>Position: PhD Researcher in Self-Supervised Deep Anomaly Detection &amp; XAI | Company: Orange Innovation | Duration: Oct 2025 - Present | Summary: Self-supervised detection, representation and explanation of anomalies in time series data for large-scale network security. Research focus on developing deep learning models for real-time anomaly characterization, including occasional out-of-distribution cases, and LLM+RAG-based methods for automated interpretation using business knowledge bases. **📄 Thesis:** *Work in progress...* | Key Technologies: Deep Learning, Anomaly Detection, Self-Supervised Learning, Time Series Analysis</description>
+      <pubDate>Wed, 01 Oct 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:experience:a7d387a5eac4d8774da14123b4e4ac13</guid>
+      <category>Deep Learning</category>
+      <category>Anomaly Detection</category>
+      <category>Self-Supervised Learning</category>
+      <category>Time Series Analysis</category>
+      <category>Explainable AI</category>
+    </item>
+    <item>
+      <title>New Position: AI/ML R&amp;D Engineer Apprentice at SAP Labs France</title>
+      <link>https://marcpinet.fr/about/</link>
+      <description>Position: AI/ML R&amp;D Engineer Apprentice | Company: SAP Labs France | Duration: Aug 2024 - Sep 2025 | Summary: Unsupervised anomaly detection system for heterogeneous data (logs, metrics, traces) using pattern variation detection and time series correlation. Optimized real-time pipeline reducing memory by 70% and improving scalability 3x for 10M+ events/day. Built RAG-enhanced LLM agent for automated anomaly reports with root cause analysis. | Key Technologies: Artificial Intelligence, Predictions, Deep Learning, Data Science</description>
+      <pubDate>Mon, 01 Sep 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:experience:13bd44e708d6b695805be3ab0bb247b2</guid>
+      <category>Artificial Intelligence</category>
+      <category>Predictions</category>
+      <category>Deep Learning</category>
+      <category>Data Science</category>
+      <category>Machine Learning</category>
+    </item>
+    <item>
+      <title>New Position: IoT Developer Intern at Da Nang International Institute of Technology (DNIIT)</title>
+      <link>https://marcpinet.fr/about/</link>
+      <description>Position: IoT Developer Intern | Company: Da Nang International Institute of Technology (DNIIT) | Duration: Apr 2022 - Jul 2022 | Summary: Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensuring emergency communication in remote areas without internet access. | Key Technologies: Internet of Things, LoRaWAN, Embedded Systems</description>
+      <pubDate>Fri, 01 Jul 2022 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:experience:c4b24388e98381ba7de12f7d811f4ec0</guid>
+      <category>Internet of Things</category>
+      <category>LoRaWAN</category>
+      <category>Embedded Systems</category>
+    </item>
+    <item>
+      <title>New Position: Developer Intern at Air France</title>
+      <link>https://marcpinet.fr/about/</link>
+      <description>Position: Developer Intern | Company: Air France | Duration: Jun 2018 - Jul 2018 | Summary: Gained hands-on experience in full-stack development, alongside senior developers. | Key Technologies: AngularJS, Full-Stack Development</description>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:experience:8df9736c514ecfc33364ebde918fffa0</guid>
+      <category>AngularJS</category>
+      <category>Full-Stack Development</category>
+    </item>
+    <item>
+      <title>New Position: Observer Intern at Intel Corporation</title>
+      <link>https://marcpinet.fr/about/</link>
+      <description>Position: Observer Intern | Company: Intel Corporation | Duration: Dec 2016 | Summary: Introduced to processor architecture, with a Senior SoC (System-on-chip) Designer. | Key Technologies: Microprocessors, Transistors, Architecture</description>
+      <pubDate>Thu, 01 Dec 2016 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:experience:c2f5daac0e458cc1b6569e0423997c97</guid>
+      <category>Microprocessors</category>
+      <category>Transistors</category>
+      <category>Architecture</category>
+    </item>
+  </channel>
+</rss>

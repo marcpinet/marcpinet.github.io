@@ -1,7 +1,6 @@
-import os
 import json
 from pathlib import Path
-from typing import Dict, List, Optional
+from typing import Dict, List
 from datetime import datetime
 from content_parser import ContentParser
 from rss_generator import RSSFeedGenerator

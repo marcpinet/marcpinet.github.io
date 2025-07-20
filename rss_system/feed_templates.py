@@ -2,7 +2,6 @@ from datetime import datetime
 from typing import List, Dict
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
-import html
 
 class FeedTemplates:
     def __init__(self, base_url: str = "https://marcpinet.fr", title: str = "Marc Pinet"):

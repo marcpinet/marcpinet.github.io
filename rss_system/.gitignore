@@ -1,12 +1,10 @@
 # RSS System Generated Files
 # ==========================
 
-# Generated RSS feeds (in static/feeds/)
-../static/feeds/*.xml
-../static/atom.xml
-
-# RSS system state file
-../static/rss_state.json
+# RSS system cache (but keep the feeds themselves)
+rss_system/rss_cache.json
+rss_system/__pycache__/
+rss_system/*.log
 
 # Log files
 *.log

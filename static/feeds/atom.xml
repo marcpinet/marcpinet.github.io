@@ -1,0 +1,302 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Marc Pinet - All Updates</title>
+    <link>https://marcpinet.fr</link>
+    <description>All updates from Marc Pinet - posts, projects, experiences, education, and certifications</description>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Jul 2025 15:58:25 GMT</lastBuildDate>
+    <generator>Custom RSS Generator</generator>
+    <atom:link href="https://marcpinet.fr/feeds/all.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>New Position: PhD Researcher in Self-Supervised Deep Anomaly Detection &amp; XAI at Orange Innovation</title>
+      <link>https://marcpinet.fr/</link>
+      <description>Position: PhD Researcher in Self-Supervised Deep Anomaly Detection &amp; XAI | Company: Orange Innovation | Duration: Oct 2025 - Present | Summary: Self-supervised detection, representation and explanation of anomalies in time series data for large-scale network security. Research focus on developing deep learning models for real-time anomaly characterization, including occasional out-of-distribution cases, and LLM+RAG-based methods for automated interpretation using business knowledge bases. **📄 Thesis:** *Work in progress...* | Key Technologies: Deep Learning, Anomaly Detection, Self-Supervised Learning, Time Series Analysis</description>
+      <pubDate>Wed, 01 Oct 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:experience:a7d387a5eac4d8774da14123b4e4ac13</guid>
+      <category>Deep Learning</category>
+      <category>Anomaly Detection</category>
+      <category>Self-Supervised Learning</category>
+      <category>Time Series Analysis</category>
+      <category>Explainable AI</category>
+    </item>
+    <item>
+      <title>New Education: PhD in Computer Science - Artificial Intelligence at Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG)</title>
+      <link>https://marcpinet.fr/about/</link>
+      <description>Degree: PhD in Computer Science - Artificial Intelligence | Institution: Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG) | Period: Oct 2025 - Present | Details: Thesis: Self-supervised deep learning detection and explanation of anomalies in time series. | Focus Areas: Deep Learning, Anomaly Detection, Self-Supervised Learning, Time Series Analysis</description>
+      <pubDate>Wed, 01 Oct 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:education:808dd1b5f48aed8959ba8e6f950d5719</guid>
+      <category>Deep Learning</category>
+      <category>Anomaly Detection</category>
+      <category>Self-Supervised Learning</category>
+      <category>Time Series Analysis</category>
+      <category>Explainable AI</category>
+    </item>
+    <item>
+      <title>New Position: AI/ML R&amp;D Engineer Apprentice at SAP Labs France</title>
+      <link>https://marcpinet.fr/</link>
+      <description>Position: AI/ML R&amp;D Engineer Apprentice | Company: SAP Labs France | Duration: Aug 2024 - Sep 2025 | Summary: Unsupervised anomaly detection system for heterogeneous data (logs, metrics, traces) using pattern variation detection and time series correlation. Optimized real-time pipeline reducing memory by 70% and improving scalability 3x for 10M+ events/day. Built RAG-enhanced LLM agent for automated anomaly reports with root cause analysis. | Key Technologies: Artificial Intelligence, Predictions, Deep Learning, Data Science</description>
+      <pubDate>Mon, 01 Sep 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:experience:13bd44e708d6b695805be3ab0bb247b2</guid>
+      <category>Artificial Intelligence</category>
+      <category>Predictions</category>
+      <category>Deep Learning</category>
+      <category>Data Science</category>
+      <category>Machine Learning</category>
+    </item>
+    <item>
+      <title>New Education: Master's in Computer Science at Polytech Nice Sophia</title>
+      <link>https://marcpinet.fr/about/</link>
+      <description>Degree: Master's in Computer Science | Institution: Polytech Nice Sophia | Period: Sep 2022 - Sep 2025 | Details: Ranked among the top 5 engineering schools in Computer Science in France, with a final-year focus on Artificial Intelligence &amp; Data Engineering. | Focus Areas: Computer Science, Artificial Intelligence, Data Engineering, Internet of Things</description>
+      <pubDate>Mon, 01 Sep 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:education:00da1357ff440c2208457a7bd322d73f</guid>
+      <category>Computer Science</category>
+      <category>Artificial Intelligence</category>
+      <category>Data Engineering</category>
+      <category>Internet of Things</category>
+      <category>Cybersecurity</category>
+    </item>
+    <item>
+      <title>New Project: Mimimi</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🎵 Self-supervised complex neural network for machine sound anomaly detection using phase-aware spectral analysis. Implements deep complex convolutions with attention mechanisms to capture both real and imaginary components from audio spectrograms, achieving near-SOTA anomaly detection through machine ID classification on industrial sound data.</description>
+      <pubDate>Sun, 20 Jul 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Project: WebsemOG24</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🌐 A semantic web project enriching Olympics data through spaCy's deep learning models and knowledge graphs. Features enrichments through APIs, SPARQL inference rules, and SHACL constraints. Expanded from 355 to 15,000+ triples with DBpedia/Wikidata linking.</description>
+      <pubDate>Fri, 31 Jan 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Certification: Stanford | DeepLearning.AI Deep Learning Specialization</title>
+      <link>https://marcpinet.fr/</link>
+      <description>Certification: Stanford | DeepLearning.AI Deep Learning Specialization | Issued: Jan 2025 | Areas: Deep Learning, AI, Statistics, Linear Algebra</description>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:certification:f45eec5a7a8b2825f5be21a9a583d735</guid>
+      <category>Deep Learning</category>
+      <category>AI</category>
+      <category>Statistics</category>
+      <category>Linear Algebra</category>
+    </item>
+    <item>
+      <title>New Certification: Stanford | DeepLearning.AI Machine Learning Specialization</title>
+      <link>https://marcpinet.fr/</link>
+      <description>Certification: Stanford | DeepLearning.AI Machine Learning Specialization | Issued: Jan 2025 | Areas: Machine Learning, AI, Statistics, Linear Algebra</description>
+      <pubDate>Wed, 01 Jan 2025 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:certification:e92edb45d23e635c3a14cd06afa77f4b</guid>
+      <category>Machine Learning</category>
+      <category>AI</category>
+      <category>Statistics</category>
+      <category>Linear Algebra</category>
+    </item>
+    <item>
+      <title>New Project: Neuralnetlib</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🧠 A flexible machine &amp; deep learning framework built from scratch in pure NumPy, featuring advanced architectures such as Transformers, GANs, variational autoencoders, and bidirectional RNNs. Includes modern optimizers (Adam, RAdam, AdaBelief), advanced loss functions (Focal, Asymmetric), common preprocessing pipelines (BPE tokenization, image augmentation), and much more.</description>
+      <pubDate>Sat, 30 Nov 2024 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Certification: Boating License</title>
+      <link>https://marcpinet.fr/</link>
+      <description>Certification: Boating License | Issued: Jun 2024</description>
+      <pubDate>Sat, 01 Jun 2024 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:certification:c8cfbe524c411967646fed3544eefe63</guid>
+    </item>
+    <item>
+      <title>New Project: Handigits</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🖐️ Background-independent deep learning model for hand sign digit recognition. Used my own framework (Neuralnetlib) for model training and inference, and Google MediaPipe for hand tracking and preprocessing</description>
+      <pubDate>Mon, 27 May 2024 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Project: EdgeAI Bird</title>
+      <link>https://marcpinet.fr/</link>
+      <description>📡 CNN-based bird species audio recognition, optimized using TinyML on STM32 microcontroller with real-time I2S audio processing, 16-bit fixed-point quantization, and LoRaWAN IoT connectivity achieving 86% accuracy with optimized memory footprint for embedded deployment.</description>
+      <pubDate>Sat, 20 Apr 2024 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Project: Quanridor</title>
+      <link>https://marcpinet.fr/</link>
+      <description>♟️ Quoridor game, enhanced with fog of war, available for both web and mobile platforms (with bots and online support) using only pure HTML CSS &amp; Javascript.</description>
+      <pubDate>Sat, 06 Apr 2024 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Certification: TOEIC</title>
+      <link>https://marcpinet.fr/</link>
+      <description>Certification: TOEIC | Issued: Dec 2023 | Areas: English</description>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:certification:ae40817ce57e71223b403526ece659c6</guid>
+      <category>English</category>
+    </item>
+    <item>
+      <title>New Project: LetsGoBiking</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🚲 Pathfinding for JCDecaux bike sharing systems with optimized server architecture, intelligent caching, distributed proxies, and real-time route calculation.</description>
+      <pubDate>Tue, 28 Nov 2023 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Certification: Google Cybersecurity</title>
+      <link>https://marcpinet.fr/</link>
+      <description>Certification: Google Cybersecurity | Issued: Sep 2023 | Areas: Cybersecurity, Risk Management, Pentest, Python</description>
+      <pubDate>Fri, 01 Sep 2023 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:certification:71d6738827fe5c071e39a5080cf4df94</guid>
+      <category>Cybersecurity</category>
+      <category>Risk Management</category>
+      <category>Pentest</category>
+      <category>Python</category>
+    </item>
+    <item>
+      <title>New Certification: EIT Digital Quantum Computing</title>
+      <link>https://marcpinet.fr/</link>
+      <description>Certification: EIT Digital Quantum Computing | Issued: Jul 2023 | Areas: Quantum Computing, Cryptography</description>
+      <pubDate>Sat, 01 Jul 2023 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:certification:d7e37258539f370437965195d2f22586</guid>
+      <category>Quantum Computing</category>
+      <category>Cryptography</category>
+    </item>
+    <item>
+      <title>New Project: Polyquiz</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🫳 Parkison-friendly website that tracks user's movements and gives feedbacks for nurses based on recorded statistics.</description>
+      <pubDate>Sun, 18 Jun 2023 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Project: Poubelledroid</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🗑️ An app designed to facilitate the search and cleanup of abandoned waste with a reward system to further engage users in the process.</description>
+      <pubDate>Wed, 24 May 2023 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Project: Neat Cars</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🚗 Autonomous vehicle AI agents leveraging NEAT genetic programming and evolutionary reinforcement learning to optimize neural network topologies with real-time visualization and multi-generational evolution.</description>
+      <pubDate>Fri, 03 Mar 2023 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Project: Connect4 AI</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🤖 A simple and extensible Connect4 with graphical user interface where you can play against an AI (Minimax with Alpha Beta Pruning).</description>
+      <pubDate>Sat, 18 Feb 2023 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Project: Parm</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🧀 PARM (Polytech ARM-based embedded processor), ARMv7-Compatible CPU in Logisim with Custom Assembler and C-to-Assembly Toolchain for Embedded Systems Simulation.</description>
+      <pubDate>Mon, 30 Jan 2023 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Certification: Driver's License</title>
+      <link>https://marcpinet.fr/</link>
+      <description>Certification: Driver's License | Issued: Nov 2022</description>
+      <pubDate>Tue, 01 Nov 2022 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:certification:89c42ae3f32994d34be5aa7b2de8c595</guid>
+    </item>
+    <item>
+      <title>New Project: LoTexto</title>
+      <link>https://marcpinet.fr/</link>
+      <description>💬 An app made from scratch that allows LoRaWAN communications for emergency messages in Vietnam.</description>
+      <pubDate>Fri, 01 Jul 2022 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Position: IoT Developer Intern at Da Nang International Institute of Technology (DNIIT)</title>
+      <link>https://marcpinet.fr/</link>
+      <description>Position: IoT Developer Intern | Company: Da Nang International Institute of Technology (DNIIT) | Duration: Apr 2022 - Jul 2022 | Summary: Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensuring emergency communication in remote areas without internet access. | Key Technologies: Internet of Things, LoRaWAN, Embedded Systems</description>
+      <pubDate>Fri, 01 Jul 2022 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:experience:c4b24388e98381ba7de12f7d811f4ec0</guid>
+      <category>Internet of Things</category>
+      <category>LoRaWAN</category>
+      <category>Embedded Systems</category>
+    </item>
+    <item>
+      <title>New Education: Associate of Science in Computer Science at IUT Nice Côte d'Azur</title>
+      <link>https://marcpinet.fr/about/</link>
+      <description>Degree: Associate of Science in Computer Science | Institution: IUT Nice Côte d'Azur | Period: Sep 2020 - Jul 2022 | Details: Equivalent of a DUT (Diplôme Universitaire de Technologie) in France, with 4 months of internship at the end. | Focus Areas: Computer Science, Software Development, Data Structures, Object-Oriented Programming</description>
+      <pubDate>Fri, 01 Jul 2022 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:education:c5156d2573ab188d99e04dd156412d86</guid>
+      <category>Computer Science</category>
+      <category>Software Development</category>
+      <category>Data Structures</category>
+      <category>Object-Oriented Programming</category>
+      <category>Database Management System</category>
+    </item>
+    <item>
+      <title>New Education: Exchange Semester at Université du Québec à Chicoutimi</title>
+      <link>https://marcpinet.fr/about/</link>
+      <description>Degree: Exchange Semester | Institution: Université du Québec à Chicoutimi | Period: Jan 2022 - May 2022 | Details: Thanks to IUT Nice Côte d'Azur as a reward for my academic performance, I got to take my last semester in Canada. | Focus Areas: Computer Science, Advanced Algorithms, Algorithm Complexity, Dynamic Programming</description>
+      <pubDate>Sun, 01 May 2022 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:education:f32d0e68f5f079348aedfdd06250ccbd</guid>
+      <category>Computer Science</category>
+      <category>Advanced Algorithms</category>
+      <category>Algorithm Complexity</category>
+      <category>Dynamic Programming</category>
+      <category>Data Structures</category>
+    </item>
+    <item>
+      <title>New Project: Sort Visualizer</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🧮 A simple sorting algorithm visualizer (with a lot of algorithms to observe). You can also adjust the size of the array to be sorted and much more!</description>
+      <pubDate>Fri, 18 Mar 2022 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Project: Maze Generator And Solver</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🌽 A simple maze generator and solver written in Python with Pygame. You can visualize many algorithms and see how they work.</description>
+      <pubDate>Tue, 01 Mar 2022 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Project: Epidemic Modeling</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🦠 Python script that simulates a pandemic using moving dots with tweakable parameters and then generates a graph according to obtained values. Validated against research literature with real-time intervention scenario analysis.</description>
+      <pubDate>Tue, 18 Jan 2022 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Project: NyaaDownloader</title>
+      <link>https://marcpinet.fr/</link>
+      <description>⚡️ A tool to download multiple torrents or transfer magnets from Nyaa.si. A lot of customization options are available to guarantee good results.</description>
+      <pubDate>Sat, 04 Sep 2021 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Position: Developer Intern at Air France</title>
+      <link>https://marcpinet.fr/</link>
+      <description>Position: Developer Intern | Company: Air France | Duration: Jun 2018 - Jul 2018 | Summary: Gained hands-on experience in full-stack development, alongside senior developers. | Key Technologies: AngularJS, Full-Stack Development</description>
+      <pubDate>Sun, 01 Jul 2018 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:experience:8df9736c514ecfc33364ebde918fffa0</guid>
+      <category>AngularJS</category>
+      <category>Full-Stack Development</category>
+    </item>
+    <item>
+      <title>New Position: Observer Intern at Intel Corporation</title>
+      <link>https://marcpinet.fr/</link>
+      <description>Position: Observer Intern | Company: Intel Corporation | Duration: Dec 2016 | Summary: Introduced to processor architecture, with a Senior SoC (System-on-chip) Designer. | Key Technologies: Microprocessors, Transistors, Architecture</description>
+      <pubDate>Thu, 01 Dec 2016 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:experience:c2f5daac0e458cc1b6569e0423997c97</guid>
+      <category>Microprocessors</category>
+      <category>Transistors</category>
+      <category>Architecture</category>
+    </item>
+    <item>
+      <title>Work in progress...</title>
+      <link>https://marcpinet.fr/</link>
+      <description>This is a work in progress post.</description>
+      <pubDate>Thu, 01 Jan 1970 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+  </channel>
+</rss>

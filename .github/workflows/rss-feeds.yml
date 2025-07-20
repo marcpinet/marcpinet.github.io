@@ -45,10 +45,13 @@ jobs:
       - name: Check for changes
         id: changes
         run: |
-          if git diff --quiet HEAD~1 HEAD -- static/feeds/ static/atom.xml static/rss_state.json; then
+          if git diff --quiet -- static/feeds/ static/atom.xml; then
             echo "changes=false" >> $GITHUB_OUTPUT
+            echo "No RSS feed changes detected"
           else
             echo "changes=true" >> $GITHUB_OUTPUT
+            echo "RSS feed changes detected"
+            git diff --name-only -- static/feeds/ static/atom.xml
           fi
       
       - name: Commit and push RSS feeds
@@ -56,7 +59,13 @@ jobs:
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git add static/feeds/ static/atom.xml static/rss_state.json
+          git add static/feeds/ static/atom.xml
+          
+          # Only add cache if it exists (optional)
+          if [ -f "rss_system/rss_cache.json" ]; then
+            git add rss_system/rss_cache.json
+          fi
+          
           git commit -m "🤖 Auto-update RSS feeds [skip ci]"
           git push
       
@@ -67,15 +76,18 @@ jobs:
           
           if [ "${{ steps.changes.outputs.changes }}" == "true" ]; then
             echo "✅ **New RSS feeds generated and committed**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "### Changed files:" >> $GITHUB_STEP_SUMMARY
+            git diff --name-only HEAD~1 HEAD -- static/feeds/ static/atom.xml | sed 's/^/- /' >> $GITHUB_STEP_SUMMARY || echo "- No specific files to list" >> $GITHUB_STEP_SUMMARY
           else
             echo "ℹ️ **No new content detected - RSS feeds unchanged**" >> $GITHUB_STEP_SUMMARY
           fi
           
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "### Available RSS Feeds:" >> $GITHUB_STEP_SUMMARY
-          echo "- 📡 [All Updates](/atom.xml)" >> $GITHUB_STEP_SUMMARY
-          echo "- 📰 [Blog Posts](/feeds/posts.xml)" >> $GITHUB_STEP_SUMMARY
-          echo "- 🚀 [Projects](/feeds/projects.xml)" >> $GITHUB_STEP_SUMMARY
-          echo "- 💼 [Work Experience](/feeds/experiences.xml)" >> $GITHUB_STEP_SUMMARY
-          echo "- 🎓 [Education](/feeds/education.xml)" >> $GITHUB_STEP_SUMMARY
-          echo "- 🪪 [Certifications](/feeds/certifications.xml)" >> $GITHUB_STEP_SUMMARY
+          echo "- 📡 [All Updates](https://marcpinet.fr/atom.xml)" >> $GITHUB_STEP_SUMMARY
+          echo "- 📰 [Blog Posts](https://marcpinet.fr/feeds/posts.xml)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🚀 [Projects](https://marcpinet.fr/feeds/projects.xml)" >> $GITHUB_STEP_SUMMARY
+          echo "- 💼 [Work Experience](https://marcpinet.fr/feeds/experiences.xml)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎓 [Education](https://marcpinet.fr/feeds/education.xml)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🪪 [Certifications](https://marcpinet.fr/feeds/certifications.xml)" >> $GITHUB_STEP_SUMMARY

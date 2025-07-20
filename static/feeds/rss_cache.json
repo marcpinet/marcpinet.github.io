@@ -1,0 +1,185 @@
+{
+  "timestamp": "2025-07-20T15:58:25.505382",
+  "content": {
+    "posts": [
+      {
+        "id": "811284516322222be2106dccd39f8b77",
+        "date": "1970-01-01",
+        "title": "Work in progress..."
+      }
+    ],
+    "projects": [
+      {
+        "id": "2b83f91b3cb1358f579cfb1565a5a094",
+        "date": "2025-07-20",
+        "title": "Mimimi"
+      },
+      {
+        "id": "7d72bcb4e4854026683d6295f6b4de11",
+        "date": "2025-01-31",
+        "title": "WebsemOG24"
+      },
+      {
+        "id": "71a56fc5946266f68ceff6c3aa1f433a",
+        "date": "2024-11-30",
+        "title": "Neuralnetlib"
+      },
+      {
+        "id": "5941c21a67da653705925e0c5bc53273",
+        "date": "2024-05-27",
+        "title": "Handigits"
+      },
+      {
+        "id": "6d82510dea70b8c6f5abd6d7bc63f64a",
+        "date": "2024-04-20",
+        "title": "EdgeAI Bird"
+      },
+      {
+        "id": "78d8b1507fcb31c3c67b403fa998c1d4",
+        "date": "2024-04-06",
+        "title": "Quanridor"
+      },
+      {
+        "id": "f231b9e836c737d4804a187567f40f4b",
+        "date": "2023-11-28",
+        "title": "LetsGoBiking"
+      },
+      {
+        "id": "84a33ae23af6801c5d587c7e86ac08e5",
+        "date": "2023-06-18",
+        "title": "Polyquiz"
+      },
+      {
+        "id": "84b3e68bc845694686635c110f35444f",
+        "date": "2023-05-24",
+        "title": "Poubelledroid"
+      },
+      {
+        "id": "a893453300968735a6f59a3d93c53727",
+        "date": "2023-03-03",
+        "title": "Neat Cars"
+      },
+      {
+        "id": "62273ab96270df8721a4982a965d6886",
+        "date": "2023-02-18",
+        "title": "Connect4 AI"
+      },
+      {
+        "id": "89769f51fc37b7aa14a52db5a299326f",
+        "date": "2023-01-30",
+        "title": "Parm"
+      },
+      {
+        "id": "c2275fb2c2fc0ca52ba352d8e69e8267",
+        "date": "2022-07-01",
+        "title": "LoTexto"
+      },
+      {
+        "id": "38d6ed39a8f7fd9b7244211bf9967d4d",
+        "date": "2022-03-18",
+        "title": "Sort Visualizer"
+      },
+      {
+        "id": "01f7f8ad1ced18d694c7dc4581114f13",
+        "date": "2022-03-01",
+        "title": "Maze Generator And Solver"
+      },
+      {
+        "id": "68d85c59ee541f29eb583e77c6de9f46",
+        "date": "2022-01-18",
+        "title": "Epidemic Modeling"
+      },
+      {
+        "id": "d81d90afb665396348355faaf9c8451c",
+        "date": "2021-09-04",
+        "title": "NyaaDownloader"
+      }
+    ],
+    "experiences": [
+      {
+        "id": "a7d387a5eac4d8774da14123b4e4ac13",
+        "date": "2025-10-01",
+        "title": "PhD Researcher in Self-Supervised Deep Anomaly Detection & XAI at Orange Innovation"
+      },
+      {
+        "id": "13bd44e708d6b695805be3ab0bb247b2",
+        "date": "2025-09-01",
+        "title": "AI/ML R&D Engineer Apprentice at SAP Labs France"
+      },
+      {
+        "id": "c4b24388e98381ba7de12f7d811f4ec0",
+        "date": "2022-07-01",
+        "title": "IoT Developer Intern at Da Nang International Institute of Technology (DNIIT)"
+      },
+      {
+        "id": "8df9736c514ecfc33364ebde918fffa0",
+        "date": "2018-07-01",
+        "title": "Developer Intern at Air France"
+      },
+      {
+        "id": "c2f5daac0e458cc1b6569e0423997c97",
+        "date": "2016-12-01",
+        "title": "Observer Intern at Intel Corporation"
+      }
+    ],
+    "education": [
+      {
+        "id": "808dd1b5f48aed8959ba8e6f950d5719",
+        "date": "2025-10-01",
+        "title": "PhD in Computer Science - Artificial Intelligence at Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG)"
+      },
+      {
+        "id": "00da1357ff440c2208457a7bd322d73f",
+        "date": "2025-09-01",
+        "title": "Master's in Computer Science at Polytech Nice Sophia"
+      },
+      {
+        "id": "c5156d2573ab188d99e04dd156412d86",
+        "date": "2022-07-01",
+        "title": "Associate of Science in Computer Science at IUT Nice Côte d'Azur"
+      },
+      {
+        "id": "f32d0e68f5f079348aedfdd06250ccbd",
+        "date": "2022-05-01",
+        "title": "Exchange Semester at Université du Québec à Chicoutimi"
+      }
+    ],
+    "certifications": [
+      {
+        "id": "f45eec5a7a8b2825f5be21a9a583d735",
+        "date": "2025-01-01",
+        "title": "Stanford | DeepLearning.AI Deep Learning Specialization"
+      },
+      {
+        "id": "e92edb45d23e635c3a14cd06afa77f4b",
+        "date": "2025-01-01",
+        "title": "Stanford | DeepLearning.AI Machine Learning Specialization"
+      },
+      {
+        "id": "c8cfbe524c411967646fed3544eefe63",
+        "date": "2024-06-01",
+        "title": "Boating License"
+      },
+      {
+        "id": "ae40817ce57e71223b403526ece659c6",
+        "date": "2023-12-01",
+        "title": "TOEIC"
+      },
+      {
+        "id": "71d6738827fe5c071e39a5080cf4df94",
+        "date": "2023-09-01",
+        "title": "Google Cybersecurity"
+      },
+      {
+        "id": "d7e37258539f370437965195d2f22586",
+        "date": "2023-07-01",
+        "title": "EIT Digital Quantum Computing"
+      },
+      {
+        "id": "89c42ae3f32994d34be5aa7b2de8c595",
+        "date": "2022-11-01",
+        "title": "Driver's License"
+      }
+    ]
+  }
+}

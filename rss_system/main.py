@@ -1,10 +1,8 @@
 #!/usr/bin/env python3
 import argparse
 import sys
-import os
-from pathlib import Path
 from config import Config
-from manager import RSSManager
+from rss_manager import RSSManager
 
 def main():
     parser = argparse.ArgumentParser(description='RSS Feed Generator for Marc Pinet\'s Website')
