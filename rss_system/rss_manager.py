@@ -41,6 +41,8 @@ class RSSManager:
         }
         
         self._save_cache(current_content)
+        self.copy_master_feed_to_root()
+        
         return stats
     
     def get_status(self) -> Dict:
@@ -118,3 +120,12 @@ class RSSManager:
         feed_path = self.feeds_dir / filename
         with open(feed_path, 'w', encoding='utf-8', newline='\n') as f:
             f.write(content)
+            
+    def copy_master_feed_to_root(self) -> None:
+        source = self.feeds_dir / 'atom.xml'
+        destination = self.output_dir / 'atom.xml'
+        
+        if source.exists():
+            import shutil
+            shutil.copy2(source, destination)
+            print(f"Copied master feed to root: {destination}")

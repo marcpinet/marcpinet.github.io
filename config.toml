@@ -2,7 +2,7 @@
 base_url = "https://marcpinet.fr"
 title = "Marc Pinet"
 description = "yet another personal blog"
-generate_feed = true
+generate_feed = false
 minify_html = true
 
 # For overriding the default output directory `public`, set it to another value (e.g.: "docs")
