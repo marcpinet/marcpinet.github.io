@@ -127,5 +127,20 @@ class RSSManager:
         
         if source.exists():
             import shutil
-            shutil.copy2(source, destination)
-            print(f"Copied master feed to root: {destination}")
+            try:
+                shutil.copy2(source, destination)
+                print(f"✅ Copied master feed to root: {destination}")
+                
+                if destination.exists():
+                    size = destination.stat().st_size
+                    print(f"✅ Root atom.xml created successfully ({size} bytes)")
+                else:
+                    print("❌ Failed to create root atom.xml")
+            except Exception as e:
+                print(f"❌ Error copying atom.xml: {e}")
+        else:
+            print(f"❌ Source file not found: {source}")
+            # Lister ce qui existe dans feeds/
+            if self.feeds_dir.exists():
+                files = list(self.feeds_dir.glob("*.xml"))
+                print(f"Available XML files: {[f.name for f in files]}")

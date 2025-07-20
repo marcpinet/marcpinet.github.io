@@ -42,13 +42,23 @@ jobs:
           cd rss_system
           python main.py --verbose
 
+      - name: Debug RSS generation
+        run: |
+          echo "=== Generated files in static/feeds/ ==="
+          ls -la static/feeds/ || echo "feeds directory not found"
+          echo "=== Content of feeds directory ==="
+          find static/feeds/ -name "*.xml" -exec wc -l {} \; || echo "No XML files found"
+
       - name: Copy master feed to site root
         run: |
           if [ -f "static/feeds/atom.xml" ]; then
             cp static/feeds/atom.xml static/atom.xml
             echo "✅ Copied atom.xml to site root"
+            ls -la static/atom.xml  # Vérifier que le fichier existe
           else
             echo "❌ feeds/atom.xml not found"
+            ls -la static/feeds/  # Voir ce qui existe
+            exit 1  # Arrêter si le fichier source n'existe pas
           fi
 
       - name: Check for changes
@@ -69,8 +79,21 @@ jobs:
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
-          # Add all RSS feeds and the root atom.xml
-          git add static/feeds/ static/atom.xml
+          # Add feeds directory first
+          git add static/feeds/
+
+          # Only add root atom.xml if it exists
+          if [ -f "static/atom.xml" ]; then
+            git add static/atom.xml
+            echo "✅ Added static/atom.xml"
+          else
+            echo "⚠️ static/atom.xml not found, skipping"
+          fi
+
+          # Add cache if it exists
+          if [ -f "rss_system/rss_cache.json" ]; then
+            git add rss_system/rss_cache.json
+          fi
 
           git commit -m "🤖 Auto-update RSS feeds [skip ci]"
           git push
