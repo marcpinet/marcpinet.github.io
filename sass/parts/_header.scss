@@ -32,17 +32,19 @@ header {
   max-width : var(--max-layout-width);
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: space-between;
-  padding: 0.7em 0;
+  align-items: center;
+  padding: 0.7em 24px;
   margin:0 auto;
 }
 @media only screen and (max-width:1000px) {
   .navbar{
     max-width: var(--normal-layout-width);
+    flex-wrap: wrap;
+    gap: 10px;
   }
   .nav-navs{
-    margin: 0 auto;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -93,15 +95,14 @@ header .main {
   color:#ff6d00;
 }
 .socials {
-  /* flex-child */
   flex-grow: 0;
-  /* flex-container */
+  flex-shrink: 0;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: flex-end;
-  gap: 6px;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
 }
 
 .social {
@@ -127,14 +128,12 @@ header .main {
 }
 
 .navbar .nav-links {
-  margin-right: 1.5rem;
+  margin-right: 1rem;
 }
 
 .navbar .social {
   margin-right: 0.3rem;
 }
 
-.navbar .social:last-child {
-  margin-right: 15rem;
-}
+
 
