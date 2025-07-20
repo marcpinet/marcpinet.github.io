@@ -90,6 +90,13 @@
     .company-logo, .cert-logo {
         margin-bottom: 1rem;
         
+        a {
+            &:hover {
+                background-color: transparent !important;
+                color: inherit !important;
+            }
+        }
+        
         img {
             border-radius: 8px;
             transition: transform 0.2s ease;
