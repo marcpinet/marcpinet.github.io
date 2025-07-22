@@ -6,4 +6,6 @@ weight = 1
 [extra]
 remote_image = "/mimimi/img.png"
 link_to = "https://github.com/marcpinet/mimimi"
+pinned = true
+pin_order = 2
 +++
