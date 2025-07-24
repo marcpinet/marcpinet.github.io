@@ -168,7 +168,7 @@ Introduced to processor architecture, with a Senior SoC (System-on-chip) Designe
 </a>
 </div>
 
-#### PhD in Computer Science - Artificial Intelligence
+#### Industrial PhD in Computer Science - Artificial Intelligence
 
 **Period:** Oct 2025 - Present  
 <div class="fields">
