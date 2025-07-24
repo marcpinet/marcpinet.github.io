@@ -4,7 +4,7 @@
     <link>https://marcpinet.fr</link>
     <description>All updates from Marc Pinet - posts, projects, experiences, education, and certifications</description>
     <language>en-us</language>
-    <lastBuildDate>Thu, 24 Jul 2025 18:18:08 GMT</lastBuildDate>
+    <lastBuildDate>Thu, 24 Jul 2025 20:37:25 GMT</lastBuildDate>
     <generator>Custom RSS Generator</generator>
     <atom:link href="https://marcpinet.fr/feeds/all.xml" rel="self" type="application/rss+xml"/>
     <item>
@@ -20,11 +20,11 @@
       <category>Explainable AI</category>
     </item>
     <item>
-      <title>New Education: PhD in Computer Science - Artificial Intelligence at Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG)</title>
+      <title>New Education: Industrial PhD in Computer Science - Artificial Intelligence at Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG)</title>
       <link>https://marcpinet.fr/about/</link>
-      <description>Degree: PhD in Computer Science - Artificial Intelligence | Institution: Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG) | Period: Oct 2025 - Present | Details: Thesis: Self-supervised deep learning detection and explanation of anomalies in time series. | Focus Areas: Deep Learning, Anomaly Detection, Self-Supervised Learning, Time Series Analysis</description>
+      <description>Degree: Industrial PhD in Computer Science - Artificial Intelligence | Institution: Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG) | Period: Oct 2025 - Present | Details: Thesis: Self-supervised deep learning detection and explanation of anomalies in time series. | Focus Areas: Deep Learning, Anomaly Detection, Self-Supervised Learning, Time Series Analysis</description>
       <pubDate>Wed, 01 Oct 2025 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">marcpinet.fr:education:808dd1b5f48aed8959ba8e6f950d5719</guid>
+      <guid isPermaLink="false">marcpinet.fr:education:cd09aeaecc80a363c36374d8ccc8b339</guid>
       <category>Deep Learning</category>
       <category>Anomaly Detection</category>
       <category>Self-Supervised Learning</category>
