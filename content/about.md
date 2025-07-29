@@ -18,7 +18,7 @@ template = "about.html"
 </a>
 </div>
 
-#### PhD Researcher in Self-Supervised Deep Anomaly Detection & XAI
+#### PhD Researcher in Machine Learning
 
 **Period:** Oct 2025 - Present  
 <div class="fields">
@@ -35,7 +35,7 @@ template = "about.html"
 <span class="field-tag">Probability</span>
 </div>
 
-Self-supervised detection, representation and explanation of anomalies in time series data for large-scale network security. Research focus on developing deep learning models for real-time anomaly characterization, including occasional out-of-distribution cases, and LLM+RAG-based methods for automated interpretation using business knowledge bases.
+Self-supervised detection, representation and explanation of anomalies in time series data for large-scale network security. Research focus on developing robust deep learning models for real-time anomaly characterization and LLM+RAG-based methods for automated interpretation using business knowledge bases, eliminating the need for human expert intervention.
 
 **📄 Thesis:** *Work in progress...*
 
