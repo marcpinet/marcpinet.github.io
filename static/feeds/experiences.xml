@@ -4,13 +4,13 @@
     <link>https://marcpinet.fr</link>
     <description>Latest work experiences and career updates</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 29 Jul 2025 22:02:53 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 29 Jul 2025 22:10:39 GMT</lastBuildDate>
     <generator>Custom RSS Generator</generator>
     <atom:link href="https://marcpinet.fr/feeds/experiences.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>New Position: PhD Researcher in Machine Learning at Orange Innovation</title>
       <link>https://marcpinet.fr/about/</link>
-      <description>Position: PhD Researcher in Machine Learning | Company: Orange Innovation | Duration: Oct 2025 - Present | Summary: Self-supervised detection, representation and explanation of anomalies in time series data for large-scale network security. Research focus on developing robust deep learning models for real-time anomaly characterization and LLM+RAG-based methods for automated interpretation using business knowledge bases, eliminating the need for human expert intervention. **📄 Thesis:** *Work in progress...* | Key Technologies: Deep Learning, Anomaly Detection, Self-Supervised Learning, Time Series Analysis</description>
+      <description>Position: PhD Researcher in Machine Learning | Company: Orange Innovation | Duration: Oct 2025 - Present | Summary: Self-supervised detection and explanation of anomalies in time series data for large-scale network security. Research focus on developing robust deep learning architectures for real-time anomaly characterization, and LLMs combined with RAG-based methods for automated interpretation using business knowledge bases, eliminating human expert intervention. **📄 Thesis:** *Work in progress...* | Key Technologies: Deep Learning, Anomaly Detection, Self-Supervised Learning, Time Series Analysis</description>
       <pubDate>Wed, 01 Oct 2025 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">marcpinet.fr:experience:02931982fd13905fcd964c7ab80fab3e</guid>
       <category>Deep Learning</category>
