@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-29T19:14:58.379577",
+  "timestamp": "2025-07-29T22:02:53.165489",
   "content": {
     "posts": [
       {
@@ -97,9 +97,9 @@
     ],
     "experiences": [
       {
-        "id": "a7d387a5eac4d8774da14123b4e4ac13",
+        "id": "02931982fd13905fcd964c7ab80fab3e",
         "date": "2025-10-01",
-        "title": "PhD Researcher in Self-Supervised Deep Anomaly Detection & XAI at Orange Innovation"
+        "title": "PhD Researcher in Machine Learning at Orange Innovation"
       },
       {
         "id": "13bd44e708d6b695805be3ab0bb247b2",
