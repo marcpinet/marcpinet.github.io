@@ -35,7 +35,7 @@ template = "about.html"
 <span class="field-tag">Probability</span>
 </div>
 
-Self-supervised detection, representation and explanation of anomalies in time series data for large-scale network security. Research focus on developing robust deep learning models for real-time anomaly characterization and LLM+RAG-based methods for automated interpretation using business knowledge bases, eliminating the need for human expert intervention.
+Self-supervised detection and explanation of anomalies in time series data for large-scale network security. Research focus on developing robust deep learning architectures for real-time anomaly characterization, and LLMs combined with RAG-based methods for automated interpretation using business knowledge bases, eliminating human expert intervention.
 
 **📄 Thesis:** *Work in progress...*
 
