@@ -196,7 +196,7 @@ Thesis: Self-supervised deep learning detection and explanation of anomalies in 
 </a>
 </div>
 
-#### Master's in Computer Science
+#### Engineer's Degree (with MSc) in Computer Science
 
 **Period:** Sep 2022 - Sep 2025  
 <div class="fields">
