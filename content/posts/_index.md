@@ -5,5 +5,5 @@ title = "Articles"
 sort_by = "date"
 
 [extra]
-desc = {title = "", img = "/homepage/me.jpg?resize=640:*", text = "My research focuses on self-supervised deep learning methods for anomaly detection and interpretability in time series data."}
+desc = {title = "", img = "/homepage/me.jpg?resize=640:*", text = "My research focuses on self-supervised deep learning methods for anomaly detection in time series data."}
 +++
