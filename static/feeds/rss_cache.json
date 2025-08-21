@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-08-21T18:17:06.481475",
+  "timestamp": "2025-08-21T22:35:15.945885",
   "content": {
     "posts": [
       {
@@ -124,9 +124,9 @@
     ],
     "education": [
       {
-        "id": "cd09aeaecc80a363c36374d8ccc8b339",
+        "id": "fc5dae97ef4ca725945a54d0d9ed3668",
         "date": "2025-10-01",
-        "title": "Industrial PhD in Computer Science - Artificial Intelligence at Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG)"
+        "title": "Industrial PhD in Computer Science - Deep Learning at Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG/Inria/CNRS)"
       },
       {
         "id": "5770039b9d1d27bbad4d0462d19255e8",
