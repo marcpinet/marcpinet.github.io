@@ -160,7 +160,7 @@ Introduced to processor architecture, with a Senior SoC (System-on-chip) Designe
 
 <div class="education-entry">
 
-### Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG)
+### Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG/Inria/CNRS)
 
 <div class="company-logo">
 <a href="https://www.univ-grenoble-alpes.fr/" target="_blank">
@@ -168,7 +168,7 @@ Introduced to processor architecture, with a Senior SoC (System-on-chip) Designe
 </a>
 </div>
 
-#### Industrial PhD in Computer Science - Artificial Intelligence
+#### Industrial PhD in Computer Science - Deep Learning
 
 **Period:** Oct 2025 - Present  
 <div class="fields">
