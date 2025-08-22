@@ -52,7 +52,7 @@ menu = [
 
 #The icons available can be found in "social_icons" in the "static" folder
 socials = [
-    { name = "CV", url = "https://raw.githubusercontent.com/marcpinet/marcpinet/cv/cv.pdf", icon = "cv" },
+    { name = "CV", url = "https://raw.githubusercontent.com/marcpinet/marcpinet.github.io/cv/cv.pdf", icon = "cv" },
     { name = "Github", url = "https://github.com/marcpinet/", icon = "github" },
     { name = "Linkedin", url = "https://www.linkedin.com/in/marc-pinet/", icon = "linkedin" },
     { name = "Scholar", url = "https://scholar.google.com/citations?user=NsXT970AAAAJ", icon = "scholar" },
