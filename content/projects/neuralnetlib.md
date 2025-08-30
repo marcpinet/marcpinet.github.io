@@ -8,5 +8,5 @@ weight = 1
 remote_image = "/neuralnetlib/img.gif"
 link_to = "https://github.com/marcpinet/neuralnetlib"
 pinned = true
-pin_order = 1
+pin_order = 2
 +++
