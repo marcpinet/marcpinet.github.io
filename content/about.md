@@ -117,7 +117,7 @@ Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensur
 </a>
 </div>
 
-#### Developer Intern
+#### Software Developer Intern
 
 **Period:** Jun 2018 - Jul 2018  
 <div class="fields">
