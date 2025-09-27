@@ -199,10 +199,11 @@
             <div class="pinned-badge" title="Pinned project">📌</div>
             {% endif %}
             <h1 class="card-title">
-                {% if page.extra.link_to %}
-                <a rel="noopener noreferrer" target="_blank" href={{ page.extra.link_to }}>{{page.title}}</a>
-                {% else %}
                 <a href={{ page.permalink }}>{{page.title}}</a>
+                {% if page.extra.link_to %}
+                <a rel="noopener noreferrer" target="_blank" href={{ page.extra.link_to }} class="github-link" title="View on GitHub">
+                    <img src="/social_icons/github.svg" alt="GitHub" class="github-icon">
+                </a>
                 {% endif %}
             </h1>
 
