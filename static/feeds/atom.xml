@@ -4,57 +4,9 @@
     <link>https://marcpinet.fr</link>
     <description>All updates from Marc Pinet - posts, projects, experiences, education, and certifications</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 Sep 2025 08:59:39 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 27 Sep 2025 09:10:32 GMT</lastBuildDate>
     <generator>Custom RSS Generator</generator>
     <atom:link href="https://marcpinet.fr/feeds/all.xml" rel="self" type="application/rss+xml"/>
-    <item>
-      <title>New Position: PhD Researcher in Machine Learning at Orange Innovation</title>
-      <link>https://marcpinet.fr/</link>
-      <description>Position: PhD Researcher in Machine Learning | Company: Orange Innovation | Duration: Oct 2025 - Present | Summary: Self-supervised detection and explanation of anomalies in time series data for large-scale network security. Research focus on developing robust deep learning architectures for real-time anomaly characterization, and LLMs combined with RAG-based methods for automated interpretation using business knowledge bases, eliminating human expert intervention. **📄 Thesis:** *Work in progress...* | Key Technologies: Deep Learning, Anomaly Detection, Self-Supervised Learning, Time Series Analysis</description>
-      <pubDate>Wed, 01 Oct 2025 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">marcpinet.fr:experience:02931982fd13905fcd964c7ab80fab3e</guid>
-      <category>Deep Learning</category>
-      <category>Anomaly Detection</category>
-      <category>Self-Supervised Learning</category>
-      <category>Time Series Analysis</category>
-      <category>Explainable AI</category>
-    </item>
-    <item>
-      <title>New Education: Industrial PhD in Computer Science - Deep Learning at Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG/Inria/CNRS)</title>
-      <link>https://marcpinet.fr/about/</link>
-      <description>Degree: Industrial PhD in Computer Science - Deep Learning | Institution: Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG/Inria/CNRS) | Period: Oct 2025 - Present | Details: Thesis: Self-supervised deep learning detection and explanation of anomalies in time series. | Focus Areas: Deep Learning, Anomaly Detection, Self-Supervised Learning, Time Series Analysis</description>
-      <pubDate>Wed, 01 Oct 2025 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">marcpinet.fr:education:fc5dae97ef4ca725945a54d0d9ed3668</guid>
-      <category>Deep Learning</category>
-      <category>Anomaly Detection</category>
-      <category>Self-Supervised Learning</category>
-      <category>Time Series Analysis</category>
-      <category>Explainable AI</category>
-    </item>
-    <item>
-      <title>New Position: AI/ML R&amp;D Engineer Apprentice at SAP Labs France</title>
-      <link>https://marcpinet.fr/</link>
-      <description>Position: AI/ML R&amp;D Engineer Apprentice | Company: SAP Labs France | Duration: Aug 2024 - Sep 2025 | Summary: Unsupervised anomaly detection system for heterogeneous data (logs, metrics, traces) using pattern variation detection and time series correlation. Optimized real-time pipeline reducing memory by 70% and improving scalability 3x for 10M+ events/day. Built RAG-enhanced LLM agent for automated anomaly reports with root cause analysis. | Key Technologies: Time Series Analysis, Machine Learning, Natural Language Processing (NLP), Retrieval-Augmented Generation (RAG)</description>
-      <pubDate>Mon, 01 Sep 2025 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">marcpinet.fr:experience:13bd44e708d6b695805be3ab0bb247b2</guid>
-      <category>Time Series Analysis</category>
-      <category>Machine Learning</category>
-      <category>Natural Language Processing (NLP)</category>
-      <category>Retrieval-Augmented Generation (RAG)</category>
-      <category>Chain of Thought (CoT)</category>
-    </item>
-    <item>
-      <title>New Education: Engineer's Degree (with MSc) in Computer Science at Polytech Nice Sophia</title>
-      <link>https://marcpinet.fr/about/</link>
-      <description>Degree: Engineer's Degree (with MSc) in Computer Science | Institution: Polytech Nice Sophia | Period: Sep 2022 - Sep 2025 | Details: Ranked among the top 5 engineering schools in Computer Science in France, with a final-year focus on Artificial Intelligence &amp; Data Engineering. | Focus Areas: Computer Science, Machine Learning, Deep Learning, Data Engineering</description>
-      <pubDate>Mon, 01 Sep 2025 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">marcpinet.fr:education:5770039b9d1d27bbad4d0462d19255e8</guid>
-      <category>Computer Science</category>
-      <category>Machine Learning</category>
-      <category>Deep Learning</category>
-      <category>Data Engineering</category>
-      <category>Knowledge Graphs</category>
-    </item>
     <item>
       <title>New Project: Mimimi</title>
       <link>https://marcpinet.fr/</link>
@@ -209,42 +161,6 @@
       <guid isPermaLink="true">https://marcpinet.fr/</guid>
     </item>
     <item>
-      <title>New Position: IoT Developer Intern at Da Nang International Institute of Technology (DNIIT)</title>
-      <link>https://marcpinet.fr/</link>
-      <description>Position: IoT Developer Intern | Company: Da Nang International Institute of Technology (DNIIT) | Duration: Apr 2022 - Jul 2022 | Summary: Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensuring emergency communication in remote areas without internet access. | Key Technologies: LoRaWAN, Embedded Systems, Internet of Things (IoT), Bluetooth Low Energy (BLE)</description>
-      <pubDate>Fri, 01 Jul 2022 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">marcpinet.fr:experience:c4b24388e98381ba7de12f7d811f4ec0</guid>
-      <category>LoRaWAN</category>
-      <category>Embedded Systems</category>
-      <category>Internet of Things (IoT)</category>
-      <category>Bluetooth Low Energy (BLE)</category>
-      <category>Database Management System (DBMS)</category>
-    </item>
-    <item>
-      <title>New Education: Associate of Science in Computer Science at IUT Nice Côte d'Azur</title>
-      <link>https://marcpinet.fr/about/</link>
-      <description>Degree: Associate of Science in Computer Science | Institution: IUT Nice Côte d'Azur | Period: Sep 2020 - Jul 2022 | Details: Equivalent of a DUT (Diplôme Universitaire de Technologie) in France, with 4 months of internship at the end. | Focus Areas: Computer Science, Software Development, Data Structures, Object-Oriented Programming</description>
-      <pubDate>Fri, 01 Jul 2022 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">marcpinet.fr:education:c5156d2573ab188d99e04dd156412d86</guid>
-      <category>Computer Science</category>
-      <category>Software Development</category>
-      <category>Data Structures</category>
-      <category>Object-Oriented Programming</category>
-      <category>Database Management System (DBMS)</category>
-    </item>
-    <item>
-      <title>New Education: Exchange Semester at Université du Québec à Chicoutimi</title>
-      <link>https://marcpinet.fr/about/</link>
-      <description>Degree: Exchange Semester | Institution: Université du Québec à Chicoutimi | Period: Jan 2022 - May 2022 | Details: Thanks to IUT Nice Côte d'Azur as a reward for my academic performance, I got to take my last semester in Canada. | Focus Areas: Computer Science, Advanced Algorithms, Algorithm Complexity, Dynamic Programming</description>
-      <pubDate>Sun, 01 May 2022 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">marcpinet.fr:education:f32d0e68f5f079348aedfdd06250ccbd</guid>
-      <category>Computer Science</category>
-      <category>Advanced Algorithms</category>
-      <category>Algorithm Complexity</category>
-      <category>Dynamic Programming</category>
-      <category>Data Structures</category>
-    </item>
-    <item>
       <title>New Project: Sort Visualizer</title>
       <link>https://marcpinet.fr/</link>
       <description>🧮 A simple sorting algorithm visualizer (with a lot of algorithms to observe). You can also adjust the size of the array to be sorted and much more!</description>
@@ -271,26 +187,6 @@
       <description>⚡️ A tool to download multiple torrents or transfer magnets from Nyaa.si. A lot of customization options are available to guarantee good results.</description>
       <pubDate>Sat, 04 Sep 2021 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://marcpinet.fr/</guid>
-    </item>
-    <item>
-      <title>New Position: Software Developer Intern at Air France</title>
-      <link>https://marcpinet.fr/</link>
-      <description>Position: Software Developer Intern | Company: Air France | Duration: Jun 2018 - Jul 2018 | Summary: Gained hands-on experience in full-stack development, alongside senior developers. | Key Technologies: AngularJS, Node.js, Full-Stack Development</description>
-      <pubDate>Sun, 01 Jul 2018 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">marcpinet.fr:experience:5eccbae3a7301d9690af38ca4aa392b9</guid>
-      <category>AngularJS</category>
-      <category>Node.js</category>
-      <category>Full-Stack Development</category>
-    </item>
-    <item>
-      <title>New Position: Observer Intern at Intel Corporation</title>
-      <link>https://marcpinet.fr/</link>
-      <description>Position: Observer Intern | Company: Intel Corporation | Duration: Dec 2016 | Summary: Introduced to processor architecture, with a Senior SoC (System-on-chip) Designer. | Key Technologies: Microprocessors, Transistors, System On a Chip (SoC)</description>
-      <pubDate>Thu, 01 Dec 2016 00:00:00 GMT</pubDate>
-      <guid isPermaLink="false">marcpinet.fr:experience:c2f5daac0e458cc1b6569e0423997c97</guid>
-      <category>Microprocessors</category>
-      <category>Transistors</category>
-      <category>System On a Chip (SoC)</category>
     </item>
     <item>
       <title>Work in progress...</title>

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-09-27T08:59:39.757689",
+  "timestamp": "2025-09-27T09:10:32.235786",
   "content": {
     "posts": [
       {
@@ -95,55 +95,8 @@
         "title": "NyaaDownloader"
       }
     ],
-    "experiences": [
-      {
-        "id": "02931982fd13905fcd964c7ab80fab3e",
-        "date": "2025-10-01",
-        "title": "PhD Researcher in Machine Learning at Orange Innovation"
-      },
-      {
-        "id": "13bd44e708d6b695805be3ab0bb247b2",
-        "date": "2025-09-01",
-        "title": "AI/ML R&D Engineer Apprentice at SAP Labs France"
-      },
-      {
-        "id": "c4b24388e98381ba7de12f7d811f4ec0",
-        "date": "2022-07-01",
-        "title": "IoT Developer Intern at Da Nang International Institute of Technology (DNIIT)"
-      },
-      {
-        "id": "5eccbae3a7301d9690af38ca4aa392b9",
-        "date": "2018-07-01",
-        "title": "Software Developer Intern at Air France"
-      },
-      {
-        "id": "c2f5daac0e458cc1b6569e0423997c97",
-        "date": "2016-12-01",
-        "title": "Observer Intern at Intel Corporation"
-      }
-    ],
-    "education": [
-      {
-        "id": "fc5dae97ef4ca725945a54d0d9ed3668",
-        "date": "2025-10-01",
-        "title": "Industrial PhD in Computer Science - Deep Learning at Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG/Inria/CNRS)"
-      },
-      {
-        "id": "5770039b9d1d27bbad4d0462d19255e8",
-        "date": "2025-09-01",
-        "title": "Engineer's Degree (with MSc) in Computer Science at Polytech Nice Sophia"
-      },
-      {
-        "id": "c5156d2573ab188d99e04dd156412d86",
-        "date": "2022-07-01",
-        "title": "Associate of Science in Computer Science at IUT Nice Côte d'Azur"
-      },
-      {
-        "id": "f32d0e68f5f079348aedfdd06250ccbd",
-        "date": "2022-05-01",
-        "title": "Exchange Semester at Université du Québec à Chicoutimi"
-      }
-    ],
+    "experiences": [],
+    "education": [],
     "certifications": [
       {
         "id": "f45eec5a7a8b2825f5be21a9a583d735",
