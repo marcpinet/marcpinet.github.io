@@ -28,7 +28,7 @@ template = "about.html"
 <span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Explainable AI</span>
 <span class="field-tag">Large Language Models</span>
-<span class="field-tag">Retrieval-Augmented Generation</span>
+<span class="field-tag">Retrieval-Augmented Generation (RAG)</span>
 <span class="field-tag">GraphRAG</span>
 <span class="field-tag">Linear Algebra</span>
 <span class="field-tag">Statistics</span>
@@ -55,11 +55,15 @@ Self-supervised detection and explanation of anomalies in time series data for l
 
 **Period:** Aug 2024 - Sep 2025  
 <div class="fields">
-<span class="field-tag">Artificial Intelligence</span>
-<span class="field-tag">Predictions</span>
-<span class="field-tag">Deep Learning</span>
-<span class="field-tag">Data Science</span>
+<span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Machine Learning</span>
+<span class="field-tag">Natural Language Processing (NLP)</span>
+<span class="field-tag">Retrieval-Augmented Generation (RAG)</span>
+<span class="field-tag">Chain of Thought (CoT)</span>
+<span class="field-tag">Agentic AI</span>
+<span class="field-tag">Data Science</span>
+<span class="field-tag">Data Engineering</span>
+<span class="field-tag">MLOps</span>
 <span class="field-tag">Statistics</span>
 <span class="field-tag">Probability</span>
 </div>
@@ -72,12 +76,14 @@ Unsupervised anomaly detection system for heterogeneous data (logs, metrics, tra
 
 **Period:** Apr 2024 - Aug 2024  
 <div class="fields">
-<span class="field-tag">Artificial Intelligence</span>
-<span class="field-tag">Predictions</span>
-<span class="field-tag">Deep Learning</span>
-<span class="field-tag">Data Science</span>
+<span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Machine Learning</span>
+<span class="field-tag">Natural Language Processing (NLP)</span>
+<span class="field-tag">Data Science</span>
+<span class="field-tag">Data Engineering</span>
+<span class="field-tag">MLOps</span>
 <span class="field-tag">Statistics</span>
+<span class="field-tag">Probability</span>
 </div>
 
 Time series trends analysis using tools such as Prophet, SARIMA, STL, and DTW. Identified correlations between logs and metrics to predict system behaviors. Built a robust pipeline for live data retrieval from internal APIs with integrated data preprocessing.
@@ -98,9 +104,11 @@ Time series trends analysis using tools such as Prophet, SARIMA, STL, and DTW. I
 
 **Period:** Apr 2022 - Jul 2022  
 <div class="fields">
-<span class="field-tag">Internet of Things</span>
 <span class="field-tag">LoRaWAN</span>
 <span class="field-tag">Embedded Systems</span>
+<span class="field-tag">Internet of Things (IoT)</span>
+<span class="field-tag">Bluetooth Low Energy (BLE)</span>
+<span class="field-tag">Database Management System (DBMS)</span>
 </div>
 
 Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensuring emergency communication in remote areas without internet access.
@@ -122,6 +130,7 @@ Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensur
 **Period:** Jun 2018 - Jul 2018  
 <div class="fields">
 <span class="field-tag">AngularJS</span>
+<span class="field-tag">Node.js</span>
 <span class="field-tag">Full-Stack Development</span>
 </div>
 
@@ -145,7 +154,7 @@ Gained hands-on experience in full-stack development, alongside senior developer
 <div class="fields">
 <span class="field-tag">Microprocessors</span>
 <span class="field-tag">Transistors</span>
-<span class="field-tag">Architecture</span>
+<span class="field-tag">System On a Chip (SoC)</span>
 </div>
 
 Introduced to processor architecture, with a Senior SoC (System-on-chip) Designer.
@@ -201,27 +210,24 @@ Thesis: Self-supervised deep learning detection and explanation of anomalies in 
 **Period:** Sep 2022 - Sep 2025  
 <div class="fields">
 <span class="field-tag">Computer Science</span>
-<span class="field-tag">Artificial Intelligence</span>
-<span class="field-tag">Data Engineering</span>
-<span class="field-tag">Internet of Things</span>
-<span class="field-tag">Cybersecurity</span>
 <span class="field-tag">Machine Learning</span>
 <span class="field-tag">Deep Learning</span>
-<span class="field-tag">Data Structures</span>
+<span class="field-tag">Data Engineering</span>
 <span class="field-tag">Knowledge Graphs</span>
-<span class="field-tag">Object-Oriented Programming</span>
-<span class="field-tag">Database Management System</span>
+<span class="field-tag">Embedded Systems</span>
+<span class="field-tag">Cybersecurity</span>
 <span class="field-tag">System Architecture</span>
 <span class="field-tag">Network Architecture</span>
 <span class="field-tag">DevOps</span>
 <span class="field-tag">Algorithms</span>
 <span class="field-tag">Mathematics</span>
-<span class="field-tag">Java</span>
-<span class="field-tag">C++</span>
-<span class="field-tag">C</span>
-<span class="field-tag">C#</span>
-<span class="field-tag">Kotlin</span>
 <span class="field-tag">Python</span>
+<span class="field-tag">Java</span>
+<span class="field-tag">C#</span>
+<span class="field-tag">C</span>
+<span class="field-tag">C++</span>
+<span class="field-tag">Kotlin</span>
+<span class="field-tag">JavaScript</span>
 <span class="field-tag">PL/SQL</span>
 <span class="field-tag">Docker</span>
 <span class="field-tag">Linux</span>
@@ -258,10 +264,8 @@ Ranked among the top 5 engineering schools in Computer Science in France, with a
 <span class="field-tag">Object-Oriented Modeling</span>
 <span class="field-tag">Design Patterns</span>
 <span class="field-tag">Application Security</span>
-<span class="field-tag">Cybersecurity</span>
-<span class="field-tag">Database Management</span>
+<span class="field-tag">Database Management System (DBMS)</span>
 <span class="field-tag">SQL Injection Prevention</span>
-<span class="field-tag">Model Checking</span>
 <span class="field-tag">C++</span>
 <span class="field-tag">Java</span>
 <span class="field-tag">C#</span>
@@ -292,7 +296,7 @@ Thanks to IUT Nice Côte d'Azur as a reward for my academic performance, I got t
 <span class="field-tag">Software Development</span>
 <span class="field-tag">Data Structures</span>
 <span class="field-tag">Object-Oriented Programming</span>
-<span class="field-tag">Database Management System</span>
+<span class="field-tag">Database Management System (DBMS)</span>
 <span class="field-tag">System Architecture</span>
 <span class="field-tag">Network Architecture</span>
 <span class="field-tag">Algorithms</span>
@@ -305,7 +309,6 @@ Thanks to IUT Nice Côte d'Azur as a reward for my academic performance, I got t
 <span class="field-tag">HTML</span>
 <span class="field-tag">CSS</span>
 <span class="field-tag">Bash</span>
-<span class="field-tag">English</span>
 </div>
 
 Equivalent of a DUT (Diplôme Universitaire de Technologie) in France, with 4 months of internship at the end.
@@ -332,7 +335,6 @@ Equivalent of a DUT (Diplôme Universitaire de Technologie) in France, with 4 mo
 <strong>Issued: Jan 2025</strong>
 <div class="fields">
 <span class="field-tag">Deep Learning</span>
-<span class="field-tag">AI</span>
 <span class="field-tag">Statistics</span>
 <span class="field-tag">Linear Algebra</span>
 </div>
@@ -352,7 +354,6 @@ Equivalent of a DUT (Diplôme Universitaire de Technologie) in France, with 4 mo
 <strong>Issued: Jan 2025</strong>
 <div class="fields">
 <span class="field-tag">Machine Learning</span>
-<span class="field-tag">AI</span>
 <span class="field-tag">Statistics</span>
 <span class="field-tag">Linear Algebra</span>
 </div>
@@ -391,7 +392,6 @@ Equivalent of a DUT (Diplôme Universitaire de Technologie) in France, with 4 mo
 <span class="field-tag">Cybersecurity</span>
 <span class="field-tag">Risk Management</span>
 <span class="field-tag">Pentest</span>
-<span class="field-tag">Python</span>
 </div>
 </div>
 </div>
@@ -410,6 +410,7 @@ Equivalent of a DUT (Diplôme Universitaire de Technologie) in France, with 4 mo
 <div class="fields">
 <span class="field-tag">Quantum Computing</span>
 <span class="field-tag">Cryptography</span>
+<span class="field-tag">Qiskit</span>
 </div>
 </div>
 </div>
