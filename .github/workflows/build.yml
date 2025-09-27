@@ -4,6 +4,9 @@ on:
  push:
   branches:
    - main
+ schedule:
+   # Run daily at 2 AM UTC to fetch updated READMEs
+   - cron: '0 2 * * *'
 
 jobs:
   build:
@@ -12,6 +15,31 @@ jobs:
     steps:
     - name: Checkout main
       uses: actions/checkout@v4
+      
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+        
+    - name: Install Python dependencies
+      run: |
+        cd scripts
+        pip install -r requirements.txt
+        
+    - name: Fetch README content from GitHub repositories
+      run: |
+        cd scripts
+        python fetch_readmes.py
+        
+    - name: Commit updated project files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add content/projects/*.md
+        git diff --staged --quiet || git commit -m "🤖 Auto-update project READMEs [skip ci]"
+        git push
+      continue-on-error: true
+        
     - name: Build and deploy
       uses: shalzz/zola-deploy-action@v0.18.0
       env:
