@@ -4,7 +4,7 @@
     <link>https://marcpinet.fr</link>
     <description>Educational achievements and academic updates</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 Sep 2025 06:14:53 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 27 Sep 2025 08:59:39 GMT</lastBuildDate>
     <generator>Custom RSS Generator</generator>
     <atom:link href="https://marcpinet.fr/feeds/education.xml" rel="self" type="application/rss+xml"/>
     <item>
@@ -22,14 +22,14 @@
     <item>
       <title>New Education: Engineer's Degree (with MSc) in Computer Science at Polytech Nice Sophia</title>
       <link>https://marcpinet.fr/about/</link>
-      <description>Degree: Engineer's Degree (with MSc) in Computer Science | Institution: Polytech Nice Sophia | Period: Sep 2022 - Sep 2025 | Details: Ranked among the top 5 engineering schools in Computer Science in France, with a final-year focus on Artificial Intelligence &amp; Data Engineering. | Focus Areas: Computer Science, Artificial Intelligence, Data Engineering, Internet of Things</description>
+      <description>Degree: Engineer's Degree (with MSc) in Computer Science | Institution: Polytech Nice Sophia | Period: Sep 2022 - Sep 2025 | Details: Ranked among the top 5 engineering schools in Computer Science in France, with a final-year focus on Artificial Intelligence &amp; Data Engineering. | Focus Areas: Computer Science, Machine Learning, Deep Learning, Data Engineering</description>
       <pubDate>Mon, 01 Sep 2025 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">marcpinet.fr:education:5770039b9d1d27bbad4d0462d19255e8</guid>
       <category>Computer Science</category>
-      <category>Artificial Intelligence</category>
+      <category>Machine Learning</category>
+      <category>Deep Learning</category>
       <category>Data Engineering</category>
-      <category>Internet of Things</category>
-      <category>Cybersecurity</category>
+      <category>Knowledge Graphs</category>
     </item>
     <item>
       <title>New Education: Associate of Science in Computer Science at IUT Nice Côte d'Azur</title>
@@ -41,7 +41,7 @@
       <category>Software Development</category>
       <category>Data Structures</category>
       <category>Object-Oriented Programming</category>
-      <category>Database Management System</category>
+      <category>Database Management System (DBMS)</category>
     </item>
     <item>
       <title>New Education: Exchange Semester at Université du Québec à Chicoutimi</title>

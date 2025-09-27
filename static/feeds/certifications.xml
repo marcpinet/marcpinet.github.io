@@ -4,28 +4,26 @@
     <link>https://marcpinet.fr</link>
     <description>New certifications and professional achievements</description>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 Sep 2025 06:14:53 GMT</lastBuildDate>
+    <lastBuildDate>Sat, 27 Sep 2025 08:59:39 GMT</lastBuildDate>
     <generator>Custom RSS Generator</generator>
     <atom:link href="https://marcpinet.fr/feeds/certifications.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>New Certification: Stanford | DeepLearning.AI Deep Learning Specialization</title>
       <link>https://marcpinet.fr/about/</link>
-      <description>Certification: Stanford | DeepLearning.AI Deep Learning Specialization | Issued: Jan 2025 | Areas: Deep Learning, AI, Statistics, Linear Algebra</description>
+      <description>Certification: Stanford | DeepLearning.AI Deep Learning Specialization | Issued: Jan 2025 | Areas: Deep Learning, Statistics, Linear Algebra</description>
       <pubDate>Wed, 01 Jan 2025 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">marcpinet.fr:certification:f45eec5a7a8b2825f5be21a9a583d735</guid>
       <category>Deep Learning</category>
-      <category>AI</category>
       <category>Statistics</category>
       <category>Linear Algebra</category>
     </item>
     <item>
       <title>New Certification: Stanford | DeepLearning.AI Machine Learning Specialization</title>
       <link>https://marcpinet.fr/about/</link>
-      <description>Certification: Stanford | DeepLearning.AI Machine Learning Specialization | Issued: Jan 2025 | Areas: Machine Learning, AI, Statistics, Linear Algebra</description>
+      <description>Certification: Stanford | DeepLearning.AI Machine Learning Specialization | Issued: Jan 2025 | Areas: Machine Learning, Statistics, Linear Algebra</description>
       <pubDate>Wed, 01 Jan 2025 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">marcpinet.fr:certification:e92edb45d23e635c3a14cd06afa77f4b</guid>
       <category>Machine Learning</category>
-      <category>AI</category>
       <category>Statistics</category>
       <category>Linear Algebra</category>
     </item>
@@ -47,22 +45,22 @@
     <item>
       <title>New Certification: Google Cybersecurity</title>
       <link>https://marcpinet.fr/about/</link>
-      <description>Certification: Google Cybersecurity | Issued: Sep 2023 | Areas: Cybersecurity, Risk Management, Pentest, Python</description>
+      <description>Certification: Google Cybersecurity | Issued: Sep 2023 | Areas: Cybersecurity, Risk Management, Pentest</description>
       <pubDate>Fri, 01 Sep 2023 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">marcpinet.fr:certification:71d6738827fe5c071e39a5080cf4df94</guid>
       <category>Cybersecurity</category>
       <category>Risk Management</category>
       <category>Pentest</category>
-      <category>Python</category>
     </item>
     <item>
       <title>New Certification: EIT Digital Quantum Computing</title>
       <link>https://marcpinet.fr/about/</link>
-      <description>Certification: EIT Digital Quantum Computing | Issued: Jul 2023 | Areas: Quantum Computing, Cryptography</description>
+      <description>Certification: EIT Digital Quantum Computing | Issued: Jul 2023 | Areas: Quantum Computing, Cryptography, Qiskit</description>
       <pubDate>Sat, 01 Jul 2023 00:00:00 GMT</pubDate>
       <guid isPermaLink="false">marcpinet.fr:certification:d7e37258539f370437965195d2f22586</guid>
       <category>Quantum Computing</category>
       <category>Cryptography</category>
+      <category>Qiskit</category>
     </item>
     <item>
       <title>New Certification: Driver's License</title>
