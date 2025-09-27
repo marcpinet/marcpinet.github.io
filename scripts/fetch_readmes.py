@@ -182,6 +182,9 @@ def convert_task_lists(content):
     
     return content
 
+import re
+import markdown
+
 def convert_github_tables(content):
     """Convert markdown tables to HTML tables with wrapper"""
     lines = content.split('\n')
@@ -191,7 +194,6 @@ def convert_github_tables(content):
     while i < len(lines):
         line = lines[i]
 
-        # Détection d'un header de table
         if '|' in line and i + 1 < len(lines) and re.match(r'^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?\s*$', lines[i + 1]):
             header = [c.strip() for c in line.strip().strip('|').split('|')]
             i += 2
@@ -203,13 +205,13 @@ def convert_github_tables(content):
 
             table_html = '<div class="table-wrapper">\n<table>\n<thead>\n<tr>'
             for h in header:
-                table_html += f'<th>{h}</th>'
+                table_html += f'<th>{markdown.markdown(h)}</th>'
             table_html += '</tr>\n</thead>\n<tbody>\n'
 
             for row in rows:
                 table_html += '<tr>'
                 for c in row:
-                    table_html += f'<td>{c}</td>'
+                    table_html += f'<td>{markdown.markdown(c)}</td>'
                 table_html += '</tr>\n'
 
             table_html += '</tbody>\n</table>\n</div>'

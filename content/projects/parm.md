@@ -159,19 +159,19 @@ See the [presentation](https://github.com/marcpinet/parm/tree/main/presentation/
 <div class="table-wrapper">
 <table>
 <thead>
-<tr><th>Program</th><th>Description</th></tr>
+<tr><th><p>Program</p></th><th><p>Description</p></th></tr>
 </thead>
 <tbody>
-<tr><td>crypto</td><td>Cryptography</td></tr>
-<tr><td>fixed</td><td>Fixed Point Decimal Numbers</td></tr>
-<tr><td>math</td><td>Mathematical tools</td></tr>
-<tr><td>parm</td><td>Main Header</td></tr>
-<tr><td>stdio</td><td>Text Input/Output (keyboard, terminal)</td></tr>
-<tr><td>string</td><td>Basic implementation of strings</td></tr>
-<tr><td>string2</td><td>Other basic implementation of strings</td></tr>
-<tr><td>trigo</td><td>Trigonometric functions (Taylor series)</td></tr>
-<tr><td>utils</td><td>Debugging Tools</td></tr>
-<tr><td>video</td><td>Matrix screen</td></tr>
+<tr><td><p>crypto</p></td><td><p>Cryptography</p></td></tr>
+<tr><td><p>fixed</p></td><td><p>Fixed Point Decimal Numbers</p></td></tr>
+<tr><td><p>math</p></td><td><p>Mathematical tools</p></td></tr>
+<tr><td><p>parm</p></td><td><p>Main Header</p></td></tr>
+<tr><td><p>stdio</p></td><td><p>Text Input/Output (keyboard, terminal)</p></td></tr>
+<tr><td><p>string</p></td><td><p>Basic implementation of strings</p></td></tr>
+<tr><td><p>string2</p></td><td><p>Other basic implementation of strings</p></td></tr>
+<tr><td><p>trigo</p></td><td><p>Trigonometric functions (Taylor series)</p></td></tr>
+<tr><td><p>utils</p></td><td><p>Debugging Tools</p></td></tr>
+<tr><td><p>video</p></td><td><p>Matrix screen</p></td></tr>
 </tbody>
 </table>
 </div>
@@ -181,14 +181,14 @@ See the [presentation](https://github.com/marcpinet/parm/tree/main/presentation/
 <div class="table-wrapper">
 <table>
 <thead>
-<tr><th>Program</th><th>Description</th></tr>
+<tr><th><p>Program</p></th><th><p>Description</p></th></tr>
 </thead>
 <tbody>
-<tr><td>calckeyb</td><td>Calculator with keyboard and terminal</td></tr>
-<tr><td>calculator</td><td>Calculator with DIP-switches</td></tr>
-<tr><td>simple_add</td><td>Adds two variables and displays it in RES</td></tr>
-<tr><td>testfp</td><td>Demonstrate fixed-point number macros</td></tr>
-<tr><td>tty</td><td>Display "Project PARM" in terminal</td></tr>
+<tr><td><p>calckeyb</p></td><td><p>Calculator with keyboard and terminal</p></td></tr>
+<tr><td><p>calculator</p></td><td><p>Calculator with DIP-switches</p></td></tr>
+<tr><td><p>simple_add</p></td><td><p>Adds two variables and displays it in RES</p></td></tr>
+<tr><td><p>testfp</p></td><td><p>Demonstrate fixed-point number macros</p></td></tr>
+<tr><td><p>tty</p></td><td><p>Display "Project PARM" in terminal</p></td></tr>
 </tbody>
 </table>
 </div>

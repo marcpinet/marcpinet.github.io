@@ -166,14 +166,14 @@ The network consists of three main components:
 <div class="table-wrapper">
 <table>
 <thead>
-<tr><th>Machine Type</th><th>Paper (%)</th><th>Best Machine ID (%)</th><th>Average of all IDs (%)</th></tr>
+<tr><th><p>Machine Type</p></th><th><p>Paper (%)</p></th><th><p>Best Machine ID (%)</p></th><th><p>Average of all IDs (%)</p></th></tr>
 </thead>
 <tbody>
-<tr><td>Fan</td><td>96.40</td><td>88.33</td><td>83.43</td></tr>
-<tr><td>Pump</td><td>98.75</td><td>99.48</td><td>87.15</td></tr>
-<tr><td>Slider</td><td>96.87</td><td>99.84</td><td>92.35</td></tr>
-<tr><td>Valve</td><td>96.87</td><td>93.06</td><td>85.22</td></tr>
-<tr><td>**Average**</td><td>**97.22**</td><td>**95.18**</td><td>**87.04**</td></tr>
+<tr><td><p>Fan</p></td><td><p>96.40</p></td><td><p>88.33</p></td><td><p>83.43</p></td></tr>
+<tr><td><p>Pump</p></td><td><p>98.75</p></td><td><p>99.48</p></td><td><p>87.15</p></td></tr>
+<tr><td><p>Slider</p></td><td><p>96.87</p></td><td><p>99.84</p></td><td><p>92.35</p></td></tr>
+<tr><td><p>Valve</p></td><td><p>96.87</p></td><td><p>93.06</p></td><td><p>85.22</p></td></tr>
+<tr><td><p><strong>Average</strong></p></td><td><p><strong>97.22</strong></p></td><td><p><strong>95.18</strong></p></td><td><p><strong>87.04</strong></p></td></tr>
 </tbody>
 </table>
 </div>
@@ -332,17 +332,17 @@ Where:
 <div class="table-wrapper">
 <table>
 <thead>
-<tr><th>Parameter</th><th>Value</th><th>Description</th></tr>
+<tr><th><p>Parameter</p></th><th><p>Value</p></th><th><p>Description</p></th></tr>
 </thead>
 <tbody>
-<tr><td>Sample Rate</td><td>16 kHz</td><td>Audio sampling frequency</td></tr>
-<tr><td>FFT Size</td><td>1024</td><td>STFT window size</td></tr>
-<tr><td>Hop Length</td><td>512</td><td>STFT hop size</td></tr>
-<tr><td>Frames</td><td>64</td><td>Time frames per sample</td></tr>
-<tr><td>Learning Rate</td><td>1e-4</td><td>Adam optimizer learning rate</td></tr>
-<tr><td>Batch Size</td><td>32</td><td>Training batch size</td></tr>
-<tr><td>Epochs</td><td>30</td><td>Maximum training epochs</td></tr>
-<tr><td>Patience</td><td>20</td><td>Early stopping patience</td></tr>
+<tr><td><p>Sample Rate</p></td><td><p>16 kHz</p></td><td><p>Audio sampling frequency</p></td></tr>
+<tr><td><p>FFT Size</p></td><td><p>1024</p></td><td><p>STFT window size</p></td></tr>
+<tr><td><p>Hop Length</p></td><td><p>512</p></td><td><p>STFT hop size</p></td></tr>
+<tr><td><p>Frames</p></td><td><p>64</p></td><td><p>Time frames per sample</p></td></tr>
+<tr><td><p>Learning Rate</p></td><td><p>1e-4</p></td><td><p>Adam optimizer learning rate</p></td></tr>
+<tr><td><p>Batch Size</p></td><td><p>32</p></td><td><p>Training batch size</p></td></tr>
+<tr><td><p>Epochs</p></td><td><p>30</p></td><td><p>Maximum training epochs</p></td></tr>
+<tr><td><p>Patience</p></td><td><p>20</p></td><td><p>Early stopping patience</p></td></tr>
 </tbody>
 </table>
 </div>
