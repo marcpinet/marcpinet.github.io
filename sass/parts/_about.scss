@@ -50,17 +50,12 @@
 }
 
 .experience-entry, .education-entry, .certification-entry {
-    background: var(--bg-1);
+    background: var(--about-entry-bg);
     border: 1px solid var(--light-border-color);
     border-radius: 12px;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    
-    &:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    }
+    transition: none;
     
     h3 {
         color: var(--text-color);
@@ -99,11 +94,7 @@
         
         img {
             border-radius: 8px;
-            transition: transform 0.2s ease;
-            
-            &:hover {
-                transform: scale(1.05);
-            }
+            transition: none;
         }
     }
     
@@ -131,12 +122,7 @@
             border-radius: 12px;
             border: 1px solid var(--light-border-color);
             white-space: nowrap;
-            transition: all 0.2s ease;
-            
-            &:hover {
-                background: var(--light-border-color);
-                color: var(--text-color);
-            }
+            transition: none;
         }
         
         &.collapsed {
@@ -151,31 +137,22 @@
                 right: 0;
                 width: 50px;
                 height: 100%;
-                background: linear-gradient(to right, transparent, var(--bg-1));
+                background: linear-gradient(to right, transparent, var(--about-entry-bg));
                 pointer-events: none;
             }
         }
         
         .expand-fields {
             background: #ffaa69;
-            color: var(--bg-1);
+            color: var(--about-entry-bg);
             font-weight: 500;
             cursor: pointer;
-            
-            &:hover {
-                background: #ff8a3d;
-                transform: scale(1.05);
-            }
         }
     }
     
     a {
         color: #ffaa69;
         text-decoration: none;
-        
-        &:hover {
-            text-decoration: underline;
-        }
     }
 }
 
@@ -193,11 +170,7 @@
             max-width: 80px;
             height: auto;
             border-radius: 8px;
-            transition: transform 0.2s ease;
-            
-            &:hover {
-                transform: scale(1.05);
-            }
+            transition: none;
         }
     }
     
