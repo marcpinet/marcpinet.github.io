@@ -62,7 +62,6 @@ link_to = "https://github.com/marcpinet/edgeai-bird"
 }
 
 .table-wrapper th {
-    background-color: #f6f8fa;
     font-weight: 600;
 }
 

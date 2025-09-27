@@ -62,7 +62,6 @@ link_to = "https://github.com/marcpinet/parm"
 }
 
 .table-wrapper th {
-    background-color: #f6f8fa;
     font-weight: 600;
 }
 
@@ -158,30 +157,40 @@ See the [presentation](https://github.com/marcpinet/parm/tree/main/presentation/
 ### C Headers
 
 <div class="table-wrapper">
-| Program | Description |
-|-|-|
-| crypto | Cryptography |
-| fixed | Fixed Point Decimal Numbers |
-| math | Mathematical tools |
-| parm | Main Header |
-| stdio | Text Input/Output (keyboard, terminal) |
-| string | Basic implementation of strings |
-| string2 | Other basic implementation of strings |
-| trigo | Trigonometric functions (Taylor series) |
-| utils | Debugging Tools |
-| video | Matrix screen |
+<table>
+<thead>
+<tr><th>Program</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>crypto</td><td>Cryptography</td></tr>
+<tr><td>fixed</td><td>Fixed Point Decimal Numbers</td></tr>
+<tr><td>math</td><td>Mathematical tools</td></tr>
+<tr><td>parm</td><td>Main Header</td></tr>
+<tr><td>stdio</td><td>Text Input/Output (keyboard, terminal)</td></tr>
+<tr><td>string</td><td>Basic implementation of strings</td></tr>
+<tr><td>string2</td><td>Other basic implementation of strings</td></tr>
+<tr><td>trigo</td><td>Trigonometric functions (Taylor series)</td></tr>
+<tr><td>utils</td><td>Debugging Tools</td></tr>
+<tr><td>video</td><td>Matrix screen</td></tr>
+</tbody>
+</table>
 </div>
 
 ### C programs
 
 <div class="table-wrapper">
-| Program | Description |
-|-|-|
-| calckeyb| Calculator with keyboard and terminal |
-| calculator | Calculator with DIP-switches |
-| simple_add | Adds two variables and displays it in RES |
-| testfp | Demonstrate fixed-point number macros |
-| tty | Display "Project PARM" in terminal |
+<table>
+<thead>
+<tr><th>Program</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>calckeyb</td><td>Calculator with keyboard and terminal</td></tr>
+<tr><td>calculator</td><td>Calculator with DIP-switches</td></tr>
+<tr><td>simple_add</td><td>Adds two variables and displays it in RES</td></tr>
+<tr><td>testfp</td><td>Demonstrate fixed-point number macros</td></tr>
+<tr><td>tty</td><td>Display "Project PARM" in terminal</td></tr>
+</tbody>
+</table>
 </div>
 
 ### MMIO

@@ -62,7 +62,6 @@ link_to = "https://github.com/marcpinet/neat-cars"
 }
 
 .table-wrapper th {
-    background-color: #f6f8fa;
     font-weight: 600;
 }
 
@@ -194,9 +193,7 @@ The main informations the car will use to drive are the distance to the walls in
 
 The sensors are represented by a green line in the rendering. Red means the sensor is detecting a wall.
 
-[
-
-![inputs](https://raw.githubusercontent.com/marcpinet/neat-cars/main/readme-data/car_sensors.png)](https://marcpinet.me)
+[![inputs](https://raw.githubusercontent.com/marcpinet/neat-cars/main/readme-data/car_sensors.png)](https://marcpinet.me)
 
 ### Outputs
 

@@ -183,33 +183,41 @@ def convert_task_lists(content):
     return content
 
 def convert_github_tables(content):
-    """Improve GitHub markdown table rendering"""
-    # This is already handled by most markdown processors, but we can add some styling
+    """Convert markdown tables to HTML tables with wrapper"""
     lines = content.split('\n')
-    in_table = False
     result = []
-    
-    for i, line in enumerate(lines):
-        if '|' in line and not in_table:
-            # Check if next line is a separator (contains |---| pattern)
-            if i + 1 < len(lines) and re.match(r'^\s*\|.*[-:]+.*\|\s*$', lines[i + 1]):
-                in_table = True
-                result.append('<div class="table-wrapper">')
-                result.append(line)
-            else:
-                result.append(line)
-        elif '|' in line and in_table:
-            result.append(line)
-        elif in_table and '|' not in line.strip():
-            in_table = False
-            result.append('</div>')
-            result.append(line)
+    i = 0
+
+    while i < len(lines):
+        line = lines[i]
+
+        # Détection d'un header de table
+        if '|' in line and i + 1 < len(lines) and re.match(r'^\s*\|?\s*:?-+:?\s*(\|\s*:?-+:?\s*)+\|?\s*$', lines[i + 1]):
+            header = [c.strip() for c in line.strip().strip('|').split('|')]
+            i += 2
+            rows = []
+            while i < len(lines) and '|' in lines[i]:
+                row = [c.strip() for c in lines[i].strip().strip('|').split('|')]
+                rows.append(row)
+                i += 1
+
+            table_html = '<div class="table-wrapper">\n<table>\n<thead>\n<tr>'
+            for h in header:
+                table_html += f'<th>{h}</th>'
+            table_html += '</tr>\n</thead>\n<tbody>\n'
+
+            for row in rows:
+                table_html += '<tr>'
+                for c in row:
+                    table_html += f'<td>{c}</td>'
+                table_html += '</tr>\n'
+
+            table_html += '</tbody>\n</table>\n</div>'
+            result.append(table_html)
         else:
             result.append(line)
-    
-    if in_table:
-        result.append('</div>')
-    
+            i += 1
+
     return '\n'.join(result)
 
 def convert_relative_links(content, owner, repo, branch="main"):
@@ -252,7 +260,7 @@ def fix_code_blocks_and_spacing(content):
         s = re.sub(r'([^#\n])(\n?)(#{1,6}\s+.*)', r'\1\n\n\3', s)
         
         # FIX: Ensure images have 2 newlines before them
-        s = re.sub(r'([^\n])(\n?)(\!\[[^\]]*\]\([^)]+\))', r'\1\n\n\3', s)
+        s = re.sub(r'([^\n\[])(\n?)(\!\[[^\]]*\]\([^)]+\))', r'\1\n\n\3', s)
         
         return s
 
@@ -340,7 +348,6 @@ def add_github_styles(content):
 }
 
 .table-wrapper th {
-    background-color: #f6f8fa;
     font-weight: 600;
 }
 

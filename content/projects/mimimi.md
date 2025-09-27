@@ -64,7 +64,6 @@ pin_order = 1
 }
 
 .table-wrapper th {
-    background-color: #f6f8fa;
     font-weight: 600;
 }
 
@@ -122,15 +121,9 @@ pre code {
 
 > A PyTorch implementation of the EUSIPCO 2021 paper ["Self-supervised Complex Network for Machine Sound Anomaly Detection"](https://eurasip.org/Proceedings/Eusipco/Eusipco2021/pdfs/0000586.pdf) by Kim et al.
 
-[
-
-![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[
-
-![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
-[
-
-![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## 📋 Overview
 
@@ -171,13 +164,18 @@ The network consists of three main components:
     </div>
 </div>
 <div class="table-wrapper">
-| Machine Type | Paper (%) | Best Machine ID (%) | Average of all IDs (%) |
-|--------------|-----------|---------------------|------------------------|
-| Fan          | 96.40     | 88.33               | 83.43                  |
-| Pump         | 98.75     | 99.48               | 87.15                  |
-| Slider       | 96.87     | 99.84               | 92.35                  |
-| Valve        | 96.87     | 93.06               | 85.22                  |
-| **Average**  | **97.22** | **95.18**           | **87.04**              |
+<table>
+<thead>
+<tr><th>Machine Type</th><th>Paper (%)</th><th>Best Machine ID (%)</th><th>Average of all IDs (%)</th></tr>
+</thead>
+<tbody>
+<tr><td>Fan</td><td>96.40</td><td>88.33</td><td>83.43</td></tr>
+<tr><td>Pump</td><td>98.75</td><td>99.48</td><td>87.15</td></tr>
+<tr><td>Slider</td><td>96.87</td><td>99.84</td><td>92.35</td></tr>
+<tr><td>Valve</td><td>96.87</td><td>93.06</td><td>85.22</td></tr>
+<tr><td>**Average**</td><td>**97.22**</td><td>**95.18**</td><td>**87.04**</td></tr>
+</tbody>
+</table>
 </div>
 
 <div class="github-alert github-alert-note" style="border-left: 4px solid #0969da; background-color: #0969da10; padding: 12px 16px; margin: 16px 0; border-radius: 6px;">
@@ -332,16 +330,21 @@ Where:
 ### Key Hyperparameters
 
 <div class="table-wrapper">
-| Parameter | Value | Description |
-|-----------|-------|-------------|
-| Sample Rate | 16 kHz | Audio sampling frequency |
-| FFT Size | 1024 | STFT window size |
-| Hop Length | 512 | STFT hop size |
-| Frames | 64 | Time frames per sample |
-| Learning Rate | 1e-4 | Adam optimizer learning rate |
-| Batch Size | 32 | Training batch size |
-| Epochs | 30 | Maximum training epochs |
-| Patience | 20 | Early stopping patience |
+<table>
+<thead>
+<tr><th>Parameter</th><th>Value</th><th>Description</th></tr>
+</thead>
+<tbody>
+<tr><td>Sample Rate</td><td>16 kHz</td><td>Audio sampling frequency</td></tr>
+<tr><td>FFT Size</td><td>1024</td><td>STFT window size</td></tr>
+<tr><td>Hop Length</td><td>512</td><td>STFT hop size</td></tr>
+<tr><td>Frames</td><td>64</td><td>Time frames per sample</td></tr>
+<tr><td>Learning Rate</td><td>1e-4</td><td>Adam optimizer learning rate</td></tr>
+<tr><td>Batch Size</td><td>32</td><td>Training batch size</td></tr>
+<tr><td>Epochs</td><td>30</td><td>Maximum training epochs</td></tr>
+<tr><td>Patience</td><td>20</td><td>Early stopping patience</td></tr>
+</tbody>
+</table>
 </div>
 
 ## 🎯 Anomaly Detection Strategy

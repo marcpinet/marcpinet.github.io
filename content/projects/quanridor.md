@@ -62,7 +62,6 @@ link_to = "https://github.com/marcpinet/quanridor"
 }
 
 .table-wrapper th {
-    background-color: #f6f8fa;
     font-weight: 600;
 }
 
