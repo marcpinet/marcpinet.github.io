@@ -1,0 +1,354 @@
+[data-theme="light"] .z-code {
+    color: #5c6166;
+    background-color: #fafafa;
+}
+
+[data-theme="light"] .z-comment,
+[data-theme="light"] .z-punctuation.z-definition.z-comment {
+    color: #787b8099;
+    font-style: italic;
+}
+
+[data-theme="light"] .z-variable {
+    color: #5c6166;
+}
+
+[data-theme="light"] .z-string,
+[data-theme="light"] .z-constant.z-other.z-symbol {
+    color: #86b300;
+}
+
+[data-theme="light"] .z-constant.z-numeric {
+    color: #ff6a00;
+}
+
+[data-theme="light"] .z-string.z-regexp,
+[data-theme="light"] .z-constant.z-character.z-escape {
+    color: #4cbf99;
+}
+
+[data-theme="light"] .z-constant.z-language {
+    color: #ff6a00;
+}
+
+[data-theme="light"] .z-constant.z-character,
+[data-theme="light"] .z-constant.z-other {
+    color: #ff6a00;
+}
+
+[data-theme="light"] .z-variable.z-member {
+    color: #f07178;
+}
+
+[data-theme="light"] .z-keyword,
+[data-theme="light"] .z-keyword.z-operator.z-word {
+    color: #fa8d3e;
+}
+
+[data-theme="light"] .z-keyword.z-operator {
+    color: #ed9366;
+}
+
+[data-theme="light"] .z-punctuation.z-separator,
+[data-theme="light"] .z-punctuation.z-terminator {
+    color: #5c6166;
+}
+
+[data-theme="light"] .z-punctuation.z-section {
+    color: #5c6166;
+}
+
+[data-theme="light"] .z-punctuation.z-accessor {
+    color: #ed9366;
+}
+
+[data-theme="light"] .z-punctuation.z-definition.z-annotation {
+    color: #5c6166;
+}
+
+[data-theme="light"] .z-variable.z-other.z-dollar.z-only.z-js,
+[data-theme="light"] .z-variable.z-other.z-object.z-dollar.z-only.z-js,
+[data-theme="light"] .z-variable.z-type.z-dollar.z-only.z-js,
+[data-theme="light"] .z-support.z-class.z-dollar.z-only.z-js {
+    color: #f2ae49;
+}
+
+[data-theme="light"] .z-storage {
+    color: #fa8d3e;
+}
+
+[data-theme="light"] .z-storage.z-type {
+    color: #fa8d3e;
+}
+
+[data-theme="light"] .z-entity.z-name.z-function {
+    color: #f29718;
+}
+
+[data-theme="light"] .z-entity.z-name,
+[data-theme="light"] .z-entity.z-name.z-tag,
+[data-theme="light"] .z-entity.z-name.z-label {
+    color: #55b4d4;
+}
+
+[data-theme="light"] .z-entity.z-other.z-inherited-class {
+    color: #55b4d4;
+    text-decoration: underline;
+}
+
+[data-theme="light"] .z-variable.z-parameter {
+    color: #ff6a00;
+}
+
+[data-theme="light"] .z-variable.z-language {
+    color: #55b4d4;
+    font-style: italic;
+}
+
+[data-theme="light"] .z-entity.z-name.z-tag,
+[data-theme="light"] .z-meta.z-tag.z-sgml {
+    color: #55b4d4;
+}
+
+[data-theme="light"] .z-punctuation.z-definition.z-tag.z-end,
+[data-theme="light"] .z-punctuation.z-definition.z-tag.z-begin,
+[data-theme="light"] .z-punctuation.z-definition.z-tag {
+    color: #55b4d4;
+}
+
+[data-theme="light"] .z-entity.z-other.z-attribute-name {
+    color: #f29718;
+}
+
+[data-theme="light"] .z-variable.z-function,
+[data-theme="light"] .z-variable.z-annotation {
+    color: #f29718;
+}
+
+[data-theme="light"] .z-support.z-function,
+[data-theme="light"] .z-support.z-macro {
+    color: #f07178;
+}
+
+[data-theme="light"] .z-support.z-constant {
+    color: #ed9366;
+    font-style: italic;
+}
+
+[data-theme="light"] .z-support.z-type,
+[data-theme="light"] .z-support.z-class {
+    color: #55b4d4;
+    font-style: italic;
+}
+
+[data-theme="light"] .z-invalid {
+    color: #ff3333;
+}
+
+[data-theme="light"] .z-invalid.z-deprecated {
+    color: #ffffff;
+    background-color: #fa8d3e;
+}
+
+[data-theme="light"] .z-meta.z-diff,
+[data-theme="light"] .z-meta.z-diff.z-header {
+    color: #a37acc;
+}
+
+[data-theme="light"] .z-source.z-ruby .z-variable.z-other.z-readwrite {
+    color: #f29718;
+}
+
+[data-theme="light"] .z-source.z-css .z-entity.z-name.z-tag,
+[data-theme="light"] .z-source.z-sass .z-entity.z-name.z-tag,
+[data-theme="light"] .z-source.z-scss .z-entity.z-name.z-tag,
+[data-theme="light"] .z-source.z-less .z-entity.z-name.z-tag,
+[data-theme="light"] .z-source.z-stylus .z-entity.z-name.z-tag {
+    color: #55b4d4;
+}
+
+[data-theme="light"] .z-source.z-css .z-support.z-type,
+[data-theme="light"] .z-source.z-sass .z-support.z-type,
+[data-theme="light"] .z-source.z-scss .z-support.z-type,
+[data-theme="light"] .z-source.z-less .z-support.z-type,
+[data-theme="light"] .z-source.z-stylus .z-support.z-type {
+    color: #787b8099;
+}
+
+[data-theme="light"] .z-support.z-type.z-property-name {
+    color: #55b4d4;
+}
+
+[data-theme="light"] .z-constant.z-numeric.z-line-number.z-find-in-files {
+    color: #787b8099;
+}
+
+[data-theme="light"] .z-constant.z-numeric.z-line-number.z-match {
+    color: #fa8d3e;
+}
+
+[data-theme="light"] .z-entity.z-name.z-filename.z-find-in-files {
+    color: #86b300;
+}
+
+[data-theme="light"] .z-message.z-error {
+    color: #ff3333;
+}
+
+[data-theme="light"] .z-markup.z-heading {
+    color: #fa8d3e;
+    font-weight: bold;
+}
+
+[data-theme="light"] .z-string.z-other.z-link,
+[data-theme="light"] .z-markup.z-underline.z-link {
+    color: #4cbf99;
+    text-decoration: underline;
+    font-style: italic;
+}
+
+[data-theme="light"] .z-punctuation.z-definition.z-image {
+    color: #f29718;
+}
+
+[data-theme="light"] .z-markup.z-italic {
+    color: #f07178;
+    font-style: italic;
+}
+
+[data-theme="light"] .z-markup.z-bold {
+    color: #f07178;
+    font-weight: bold;
+}
+
+[data-theme="light"] .z-markup.z-italic .z-markup.z-bold,
+[data-theme="light"] .z-markup.z-bold .z-markup.z-italic {
+    font-weight: bold;
+    font-style: italic;
+}
+
+[data-theme="light"] .z-markup.z-raw {
+    background-color: #f8f8f8;
+    color: #5c6166;
+}
+
+[data-theme="light"] .z-markup.z-raw.z-inline {
+    background-color: #f8f8f8;
+    color: #5c6166;
+}
+
+[data-theme="light"] .z-meta.z-separator {
+    color: #787b8099;
+    background-color: #f8f8f8;
+    font-weight: bold;
+}
+
+[data-theme="light"] .z-markup.z-quote {
+    color: #ff6a00;
+    font-style: italic;
+}
+
+[data-theme="light"] .z-markup.z-list.z-numbered.z-bullet,
+[data-theme="light"] .z-markup.z-list .z-punctuation.z-definition.z-list_item {
+    color: #4cbf99;
+}
+
+[data-theme="light"] .z-markup.z-inserted {
+    color: #86b300;
+}
+
+[data-theme="light"] .z-markup.z-changed {
+    color: #55b4d4;
+}
+
+[data-theme="light"] .z-markup.z-deleted {
+    color: #f07178;
+}
+
+[data-theme="light"] .z-markup.z-strike {
+    color: #f2ae49;
+}
+
+[data-theme="light"] .z-markup.z-table {
+    color: #55b4d4;
+    background-color: #f8f8f8;
+}
+
+[data-theme="light"] .z-text.z-html.z-markdown .z-markup.z-raw.z-inline {
+    color: #ed9366;
+}
+
+[data-theme="light"] .z-text.z-html.z-markdown .z-meta.z-dummy.z-line-break {
+    color: #787b8099;
+}
+
+[data-theme="light"] .z-markup.z-raw.z-block.z-fenced.z-markdown {
+    color: #5c6166;
+    background-color: #f8f8f8;
+}
+
+[data-theme="light"] .z-punctuation.z-definition.z-fenced.z-markdown,
+[data-theme="light"] .z-variable.z-language.z-fenced.z-markdown {
+    color: #787b8099;
+    background-color: #f8f8f8;
+}
+
+[data-theme="light"] .z-variable.z-language.z-fenced.z-markdown {
+    color: #787b8099;
+}
+
+[data-theme="light"] .z-markup.z-inserted.z-git_gutter {
+    color: #86b300;
+}
+
+[data-theme="light"] .z-markup.z-changed.z-git_gutter {
+    color: #55b4d4;
+}
+
+[data-theme="light"] .z-markup.z-deleted.z-git_gutter {
+    color: #ff3333;
+}
+
+[data-theme="light"] .z-markup.z-ignored.z-git_gutter {
+    color: #e7eaec;
+}
+
+[data-theme="light"] .z-markup.z-untracked.z-git_gutter {
+    color: #e7eaec;
+}
+
+[data-theme="light"] .z-gutter_color {
+    color: #5c6166;
+}
+
+[data-theme="light"] .z-acejump.z-label.z-blue {
+    color: #ffffff;
+    background-color: #55b4d4;
+}
+
+[data-theme="light"] .z-acejump.z-label.z-green {
+    color: #ffffff;
+    background-color: #86b300;
+}
+
+[data-theme="light"] .z-acejump.z-label.z-orange {
+    color: #ffffff;
+    background-color: #fa8d3e;
+}
+
+[data-theme="light"] .z-acejump.z-label.z-purple {
+    color: #ffffff;
+    background-color: #f07178;
+}
+
+[data-theme="light"] .z-sublimelinter.z-mark.z-warning {
+    color: #55b4d4;
+}
+
+[data-theme="light"] .z-sublimelinter.z-gutter-mark {
+    color: #5c6166;
+}
+
+[data-theme="light"] .z-sublimelinter.z-mark.z-error {
+    color: #ff3333;
+}

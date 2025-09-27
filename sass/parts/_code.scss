@@ -6,6 +6,17 @@ code {
   border: 1px solid var(--border-color);
 }
 
+[data-theme="dark"] code {
+  color: #f2f2f2;
+  background-color: var(--bg-1);
+}
+
+[data-theme="light"] code {
+  color: #262222;
+  background-color: #f8f8f8;
+  border-color: #e1e4e8;
+}
+
 pre {
   /* Rounded border */
   border-radius: 5px;
