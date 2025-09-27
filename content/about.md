@@ -20,7 +20,7 @@ template = "about.html"
 
 #### PhD Researcher in Machine Learning
 
-**Period:** Oct 2025 - Present  
+**Oct 2025 - Present**
 <div class="fields">
 <span class="field-tag">Deep Learning</span>
 <span class="field-tag">Anomaly Detection</span>
@@ -53,7 +53,7 @@ Self-supervised detection and explanation of anomalies in time series data for l
 
 #### AI/ML R&D Engineer Apprentice
 
-**Period:** Aug 2024 - Sep 2025  
+**Aug 2024 - Sep 2025**  
 <div class="fields">
 <span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Machine Learning</span>
@@ -74,7 +74,7 @@ Unsupervised anomaly detection system for heterogeneous data (logs, metrics, tra
 
 #### Data Scientist Intern
 
-**Period:** Apr 2024 - Aug 2024  
+**Apr 2024 - Aug 2024**  
 <div class="fields">
 <span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Machine Learning</span>
@@ -102,7 +102,7 @@ Time series trends analysis using tools such as Prophet, SARIMA, STL, and DTW. I
 
 #### IoT Developer Intern
 
-**Period:** Apr 2022 - Jul 2022  
+**Apr 2022 - Jul 2022**  
 <div class="fields">
 <span class="field-tag">LoRaWAN</span>
 <span class="field-tag">Embedded Systems</span>
@@ -127,7 +127,7 @@ Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensur
 
 #### Software Developer Intern
 
-**Period:** Jun 2018 - Jul 2018  
+**Jun 2018 - Jul 2018**  
 <div class="fields">
 <span class="field-tag">AngularJS</span>
 <span class="field-tag">Node.js</span>
@@ -150,7 +150,7 @@ Gained hands-on experience in full-stack development, alongside senior developer
 
 #### Observer Intern
 
-**Period:** Dec 2016  
+**Dec 2016 - Dec 2016**
 <div class="fields">
 <span class="field-tag">Microprocessors</span>
 <span class="field-tag">Transistors</span>
@@ -179,7 +179,7 @@ Introduced to processor architecture, with a Senior SoC (System-on-chip) Designe
 
 #### Industrial PhD in Computer Science - Deep Learning
 
-**Period:** Oct 2025 - Present  
+**Oct 2025 - Present  **
 <div class="fields">
 <span class="field-tag">Deep Learning</span>
 <span class="field-tag">Anomaly Detection</span>
@@ -207,7 +207,7 @@ Thesis: Self-supervised deep learning detection and explanation of anomalies in 
 
 #### Engineer's Degree (with MSc) in Computer Science
 
-**Period:** Sep 2022 - Sep 2025  
+**Sep 2022 - Sep 2025**  
 <div class="fields">
 <span class="field-tag">Computer Science</span>
 <span class="field-tag">Machine Learning</span>
@@ -252,7 +252,7 @@ Ranked among the top 5 engineering schools in Computer Science in France, with a
 
 #### Exchange Semester
 
-**Period:** Jan 2022 - May 2022  
+**Jan 2022 - May 2022**  
 <div class="fields">
 <span class="field-tag">Computer Science</span>
 <span class="field-tag">Advanced Algorithms</span>
@@ -290,7 +290,7 @@ Thanks to IUT Nice Côte d'Azur as a reward for my academic performance, I got t
 
 #### Associate of Science in Computer Science
 
-**Period:** Sep 2020 - Jul 2022  
+**Sep 2020 - Jul 2022**  
 <div class="fields">
 <span class="field-tag">Computer Science</span>
 <span class="field-tag">Software Development</span>
