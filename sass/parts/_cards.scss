@@ -18,11 +18,29 @@
     flex-direction: column;
 }
 
+.card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                                rgba(var(--hint-color-rgb), 0.05),
+                                transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease, background-position 0.1s ease;
+    z-index: 1;
+}
+
 .card:hover {
     transform: translateY(-5px);
     border-color: var(--primary-color);
     box-shadow: 0 15px 35px rgba(255, 109, 0, 0.15),
                 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover::before {
+    opacity: 0.8;
 }
 
 .card-info {
@@ -31,6 +49,7 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    z-index: 2;
 }
 
 .card-title {
@@ -56,6 +75,7 @@
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
+    z-index: 2;
 }
 
 .pinned-badge {

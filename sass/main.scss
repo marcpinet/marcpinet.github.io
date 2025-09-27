@@ -44,6 +44,7 @@
   --input-back: #4b4a4a;
   --input-color: #449cf8;
   --meta-color: rgb(198, 197, 197);
+  --hint-color-rgb: 255, 109, 0;
 }
 
 [data-theme="light"] {
@@ -62,6 +63,7 @@
   --input-back: rgb(158, 158, 158);
   --input-color: #ff6d00;
   --meta-color: rgb(158, 158, 158);
+  --hint-color-rgb: 255, 109, 0;
 }
 
 html {
