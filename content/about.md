@@ -179,7 +179,7 @@ Introduced to processor architecture, with a Senior SoC (System-on-chip) Designe
 
 #### Industrial PhD in Computer Science - Deep Learning
 
-**Oct 2025 - Present  **
+**Oct 2025 - Present**
 <div class="fields">
 <span class="field-tag">Deep Learning</span>
 <span class="field-tag">Anomaly Detection</span>
