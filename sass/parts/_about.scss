@@ -13,6 +13,20 @@
     text-decoration: none !important;
 }
 
+[data-theme="light"] .fields .field-tag,
+[data-theme="light"] .fields .field-tag a,
+[data-theme="light"] .fields .field-tag a:link,
+[data-theme="light"] .fields .field-tag a:visited,
+[data-theme="light"] .fields .field-tag a:hover,
+[data-theme="light"] .fields .field-tag a:active,
+[data-theme="light"] .fields .field-tag:hover a,
+[data-theme="light"] .fields .field-tag:hover a:link,
+[data-theme="light"] .fields .field-tag:hover a:visited,
+[data-theme="light"] .fields .field-tag:hover a:hover,
+[data-theme="light"] .fields .field-tag:hover a:active {
+    color: #1a1a1a !important;
+}
+
 .about-section {
     margin-bottom: 3rem;
     
@@ -157,6 +171,24 @@
             &:hover a, &:hover a:link, &:hover a:visited, &:hover a:hover, &:hover a:active {
                 color: var(--meta-color) !important;
                 background-color: transparent !important;
+            }
+        }
+        
+        [data-theme="light"] & .field-tag {
+            color: #1a1a1a;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            
+            &:hover {
+                color: #1a1a1a;
+                background: rgba(0, 0, 0, 0.05);
+            }
+            
+            a, a:link, a:visited, a:hover, a:active {
+                color: #1a1a1a !important;
+            }
+            
+            &:hover a, &:hover a:link, &:hover a:visited, &:hover a:hover, &:hover a:active {
+                color: #1a1a1a !important;
             }
         }
         

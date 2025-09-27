@@ -1,7 +1,7 @@
 +++
 title = "About"
 path = "about"
-template = "about.html"
+template = "about.html" 
 +++
 
 <div class="about-section">
@@ -37,7 +37,36 @@ template = "about.html"
 
 Self-supervised detection and explanation of anomalies in time series data for large-scale network security. Research focus on developing robust deep learning architectures for real-time anomaly characterization, and LLMs combined with RAG-based methods for automated interpretation using business knowledge bases, eliminating human expert intervention.
 
-**📄 Thesis:** *Work in progress...*
+</div>
+
+<div class="experience-entry">
+
+### Laboratoire d'Informatique de Grenoble (LIG/Inria/CNRS)
+
+<div class="company-logo">
+<a href="https://www.liglab.fr/fr" target="_blank">
+<img src="/about_img/exp/lig.svg" alt="Laboratoire d'Informatique de Grenoble (LIG/Inria/CNRS)" width="99" height="99">
+</a>
+</div>
+
+#### Industrial PhD Student
+
+**Oct 2025 - Present**
+<div class="fields">
+<span class="field-tag">Deep Learning</span>
+<span class="field-tag">Anomaly Detection</span>
+<span class="field-tag">Self-Supervised Learning</span>
+<span class="field-tag">Time Series Analysis</span>
+<span class="field-tag">Explainable AI</span>
+<span class="field-tag">Large Language Models</span>
+<span class="field-tag">Industrial Research</span>
+<span class="field-tag">Research Development</span>
+<span class="field-tag">Linear Algebra</span>
+<span class="field-tag">Statistics</span>
+<span class="field-tag">Probability</span>
+</div>
+
+Research on self-supervised deep learning for time series anomaly detection and explanation in collaboration with Orange Innovation. Developing novel XAI approaches for automated anomaly characterization and LLM-enhanced interpretation frameworks. Working towards publications in ML conferences.
 
 </div>
 
@@ -169,11 +198,11 @@ Introduced to processor architecture, with a Senior SoC (System-on-chip) Designe
 
 <div class="education-entry">
 
-### Université Grenoble Alpes × Laboratoire d'Informatique de Grenoble (LIG/Inria/CNRS)
+### Université Grenoble Alpes
 
 <div class="company-logo">
 <a href="https://www.univ-grenoble-alpes.fr/" target="_blank">
-<img src="/about_img/edu/uga.png" alt="Université Grenoble Alpes" width="215" height="99">
+<img src="/about_img/edu/uga.png" alt="Université Grenoble Alpes" width="235" height="99">
 </a>
 </div>
 
