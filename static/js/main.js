@@ -55,6 +55,25 @@ document.addEventListener('DOMContentLoaded', function() {
             card.style.setProperty('--mouse-y', '50%');
         });
     });
+    
+    // Make field tags clickable with Wikipedia links
+    const fieldTags = document.querySelectorAll('.field-tag');
+    fieldTags.forEach(tag => {
+        const tagText = tag.textContent.trim();
+        if (tagText && !tag.querySelector('a')) {
+            // Remove acronyms in parentheses for Wikipedia search only
+            const cleanedTextForSearch = tagText.replace(/\s*\([^)]*\)\s*/g, '').trim();
+            const wikipediaUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(cleanedTextForSearch)}`;
+            const link = document.createElement('a');
+            link.href = wikipediaUrl;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = tagText; // Keep original text with acronym for display
+            
+            tag.innerHTML = '';
+            tag.appendChild(link);
+        }
+    });
 });
 
 
