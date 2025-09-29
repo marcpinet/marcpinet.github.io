@@ -159,7 +159,7 @@ The network consists of three main components:
 <div style="flex: 1;">
             <strong style="color: #8250df; text-transform: uppercase; font-size: 14px; font-weight: 600;">IMPORTANT</strong>
 
-<div style="margin-top: 4px;">The following table compares the paper's results, which used the complete MIMII dataset (30+ GB), compared to mine which uses only the development subset (~4 GB).</div>
+<div style="margin-top: 4px;"><p>The following table compares the paper's results, which used the complete MIMII dataset (30+ GB), compared to mine which uses only the development subset (~4 GB).</p></div>
         </div>
     </div>
 </div>
@@ -186,8 +186,8 @@ The network consists of three main components:
 <div style="flex: 1;">
             <strong style="color: #0969da; text-transform: uppercase; font-size: 14px; font-weight: 600;">NOTE</strong>
 
-<div style="margin-top: 4px;">The paper didn't mention if it highlighted the best performing machine ID or the average across all IDs.
-Therefore, I decided to show both.</div>
+<div style="margin-top: 4px;"><p>The paper didn't mention if it highlighted the best performing machine ID or the average across all IDs.
+Therefore, I decided to show both.</p></div>
         </div>
     </div>
 </div>

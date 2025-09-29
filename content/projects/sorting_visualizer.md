@@ -140,15 +140,24 @@ When the Pygame window gets opened, press <kbd>SPACE</kbd> to start the algorith
 
 ### Quick Sort - Randomized Array
 
-https://user-images.githubusercontent.com/52708150/158039436-4f7f3847-20ff-4f5f-8981-53d9babdfc36.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/158039436-4f7f3847-20ff-4f5f-8981-53d9babdfc36.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/158039436-4f7f3847-20ff-4f5f-8981-53d9babdfc36.mp4">View video</a>
+</video>
 
 ### Merge Sort - Randomized Array
 
-https://user-images.githubusercontent.com/52708150/158039423-6e953005-65d8-437c-9da1-f279f738a600.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/158039423-6e953005-65d8-437c-9da1-f279f738a600.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/158039423-6e953005-65d8-437c-9da1-f279f738a600.mp4">View video</a>
+</video>
 
 ### Heap Sort - Randomized Array
 
-https://user-images.githubusercontent.com/52708150/158039415-4e5dfd88-dc88-4c53-9f15-f79d7954352d.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/158039415-4e5dfd88-dc88-4c53-9f15-f79d7954352d.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/158039415-4e5dfd88-dc88-4c53-9f15-f79d7954352d.mp4">View video</a>
+</video>
 
 ## Support 👨‍💻
 

@@ -115,6 +115,8 @@ pre code {
 }
 </style>
 
+# Quanridor
+
 ![quanridor](https://raw.githubusercontent.com/marcpinet/quanridor/main/readme-assets/quanridor-title.png)
 
 ### Showcase
@@ -200,8 +202,8 @@ There's also a chat system, emote system, leaderboard, statistics, and much more
 <div style="flex: 1;">
             <strong style="color: #0969da; text-transform: uppercase; font-size: 14px; font-weight: 600;">NOTE</strong>
 
-<div style="margin-top: 4px;">The only libraries required for the backend to work are `mongodb`, `nodemon`, `socket.io`, `jsonwebtoken` and `bcrypt`.
-There's also `husky` to enforce the use of `prettier` on every commit (and also for DevOps purposes)</div>
+<div style="margin-top: 4px;"><p>The only libraries required for the backend to work are <code>mongodb</code>, <code>nodemon</code>, <code>socket.io</code>, <code>jsonwebtoken</code> and <code>bcrypt</code>.
+There's also <code>husky</code> to enforce the use of <code>prettier</code> on every commit (and also for DevOps purposes)</p></div>
         </div>
     </div>
 </div>

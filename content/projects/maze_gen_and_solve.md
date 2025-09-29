@@ -115,6 +115,8 @@ pre code {
 }
 </style>
 
+# Maze Generator And Solver
+
 [![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg)](https://GitHub.com/Naereen/StrapDown.js/graphs/commit-activity) [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/) [![Windows](https://svgshare.com/i/ZhY.svg)](https://svgshare.com/i/ZhY.svg) [![Ask Me Anything !](https://img.shields.io/badge/Ask%20me-anything-1abc9c.svg)](https://GitHub.com/Naereen/ama)
 
 A simple maze generator and solver written in Python with Pygame where you can visualize many algorithms and see how they actually work.
@@ -135,11 +137,20 @@ Just launch the `main.py`, choose your algorithms and start the algorithms using
 
 ## Demo
 
-https://user-images.githubusercontent.com/52708150/156903512-38ebd385-285c-464c-b69d-1fc0079b1340.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/156903512-38ebd385-285c-464c-b69d-1fc0079b1340.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/156903512-38ebd385-285c-464c-b69d-1fc0079b1340.mp4">View video</a>
+</video>
 
-https://user-images.githubusercontent.com/52708150/156903514-40d80faa-2147-43e2-919e-34e096a4e033.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/156903514-40d80faa-2147-43e2-919e-34e096a4e033.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/156903514-40d80faa-2147-43e2-919e-34e096a4e033.mp4">View video</a>
+</video>
 
-https://user-images.githubusercontent.com/52708150/156903579-dfd3e9c6-e71b-4560-acb2-a4e9c9684936.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/156903579-dfd3e9c6-e71b-4560-acb2-a4e9c9684936.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/156903579-dfd3e9c6-e71b-4560-acb2-a4e9c9684936.mp4">View video</a>
+</video>
 
 ## Support 👨‍💻
 

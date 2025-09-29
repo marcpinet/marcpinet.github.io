@@ -115,6 +115,8 @@ pre code {
 }
 </style>
 
+# Handigits
+
 ## 📝 Description
 
 The goal of this project was to make a deep learning model that could recognize hand signs digits, no matter the environment.
@@ -127,7 +129,7 @@ The goal of this project was to make a deep learning model that could recognize 
 <div style="flex: 1;">
             <strong style="color: #1a7f37; text-transform: uppercase; font-size: 14px; font-weight: 600;">TIP</strong>
 
-<div style="margin-top: 4px;">NEW: The project now uses [Neuralnetlib, my own deep learning framework](https://github.com/marcpinet/neuralnetlib) instead of TensorFlow and Keras!</div>
+<div style="margin-top: 4px;"><p>NEW: The project now uses <a href="https://github.com/marcpinet/neuralnetlib">Neuralnetlib, my own deep learning framework</a> instead of TensorFlow and Keras!</p></div>
         </div>
     </div>
 </div>

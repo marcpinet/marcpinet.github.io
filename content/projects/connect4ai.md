@@ -115,6 +115,8 @@ pre code {
 }
 </style>
 
+# Connect4 AI
+
 ## 📝 Description
 
 A simple Connect4 made with C++ and SFML for the window.
@@ -123,7 +125,10 @@ Maybe, in the future, I'll implement other algorithms if I want to (such as MCTS
 
 ## 🎥 Demo Minimax with Alpha Beta Pruning
 
-https://user-images.githubusercontent.com/52708150/219687697-d5a2e5b7-3d84-40cd-907d-4ee64157e32d.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/219687697-d5a2e5b7-3d84-40cd-907d-4ee64157e32d.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/219687697-d5a2e5b7-3d84-40cd-907d-4ee64157e32d.mp4">View video</a>
+</video>
 
 ## 💡 How to use
 

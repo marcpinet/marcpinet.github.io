@@ -21,7 +21,6 @@ def fetch_readme(owner, repo):
     except requests.RequestException:
         pass
     
-    # Try master branch if main doesn't exist
     url = f"https://raw.githubusercontent.com/{owner}/{repo}/master/README.md"
     try:
         response = requests.get(url, timeout=10)
@@ -36,23 +35,18 @@ def convert_relative_images(content, owner, repo, branch="main"):
     """Convert relative image paths to absolute GitHub URLs"""
     base_url = f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/"
     
-    # Pattern for markdown images: ![alt](path)
     def replace_image(match):
         alt_text = match.group(1)
         image_path = match.group(2)
         
-        # Skip if already absolute URL
         if image_path.startswith(('http://', 'https://', '//')):
             return match.group(0)
         
-        # Convert relative path to absolute GitHub URL
         absolute_url = base_url + image_path
         return f"![{alt_text}]({absolute_url})"
     
-    # Replace markdown images
     content = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', replace_image, content)
     
-    # Also handle HTML img tags
     def replace_html_img(match):
         src = match.group(1)
         rest = match.group(2)
@@ -68,10 +62,10 @@ def convert_relative_images(content, owner, repo, branch="main"):
     return content
 
 def convert_github_video_urls(content, owner, repo):
-    """Convert standalone GitHub user-attachments video URLs to HTML video tags"""
+    """Convert standalone GitHub user-attachments and user-images video URLs to HTML video tags"""
     
-    # Pattern to match GitHub user-attachments URLs on their own line
-    pattern = r'^https://github\.com/user-attachments/assets/[a-f0-9-]+$'
+    pattern1 = r'^https://github\.com/user-attachments/assets/[a-f0-9-]+$'
+    pattern2 = r'^https://user-images\.githubusercontent\.com/[^\s]+\.(mp4|webm|ogg|mov)$'
     
     def replace_video_url(match):
         video_url = match.group(0)
@@ -80,8 +74,8 @@ def convert_github_video_urls(content, owner, repo):
     Your browser does not support the video tag. <a href="{video_url}">View video</a>
 </video>'''
     
-    # Replace standalone GitHub video URLs
-    content = re.sub(pattern, replace_video_url, content, flags=re.MULTILINE)
+    content = re.sub(pattern1, replace_video_url, content, flags=re.MULTILINE)
+    content = re.sub(pattern2, replace_video_url, content, flags=re.MULTILINE)
     
     return content
 
@@ -89,18 +83,14 @@ def convert_relative_videos(content, owner, repo, branch="main"):
     """Convert relative video paths and GitHub user-attachments to HTML video tags"""
     base_url = f"https://raw.githubusercontent.com/{owner}/{repo}/{branch}/"
     
-    # Video extensions
     video_extensions = r'\.(mp4|webm|ogg|mov|avi|mkv|m4v)$'
     
     def replace_video_link(match):
         alt_text = match.group(1) or "Video"
         video_path = match.group(2)
         
-        # Skip if already absolute URL (except GitHub user-attachments)
         if video_path.startswith(('http://', 'https://', '//')):
-            # Check if it's a GitHub user-attachments video
             if 'github.com/user-attachments/assets/' in video_path:
-                # Convert GitHub user-attachments to video tag
                 return f'''<video controls style="max-width: 100%; height: auto;">
     <source src="{video_path}" type="video/mp4">
     Your browser does not support the video tag. <a href="{video_path}">View video</a>
@@ -108,27 +98,24 @@ def convert_relative_videos(content, owner, repo, branch="main"):
             else:
                 return match.group(0)
         
-        # Skip if not a video file
         if not re.search(video_extensions, video_path, re.IGNORECASE):
             return match.group(0)
         
         absolute_url = base_url + video_path
         
-        # Convert to HTML video tag
         return f'''<video controls style="max-width: 100%; height: auto;">
     <source src="{absolute_url}" type="video/{video_path.split('.')[-1]}">
     Your browser does not support the video tag. <a href="{absolute_url}">Download video</a>
 </video>'''
     
-    # Replace markdown-style video links ![alt](video.mp4)
     content = re.sub(r'!\[([^\]]*)\]\(([^)]+)\)', replace_video_link, content)
     
     return content
 
 def convert_github_alerts(content):
     """Convert GitHub-style alerts to HTML"""
+    import markdown
     
-    # GitHub alert patterns
     alert_patterns = {
         'NOTE': ('note', '💡', '#0969da'),
         'TIP': ('tip', '💡', '#1a7f37'),
@@ -138,21 +125,21 @@ def convert_github_alerts(content):
     }
     
     for alert_type, (css_class, icon, color) in alert_patterns.items():
-        # Pattern: > [!NOTE] or > [!NOTE]\n> content
         pattern = rf'> \[!{alert_type}\]\s*\n((?:> .*\n?)*)'
         
         def replace_alert(match):
             alert_content = match.group(1)
-            # Remove the '> ' prefix from each line
             clean_content = re.sub(r'^> ', '', alert_content, flags=re.MULTILINE)
             clean_content = clean_content.strip()
+            
+            rendered_content = markdown.markdown(clean_content)
             
             return f'''<div class="github-alert github-alert-{css_class}" style="border-left: 4px solid {color}; background-color: {color}10; padding: 12px 16px; margin: 16px 0; border-radius: 6px;">
     <div style="display: flex; align-items: flex-start;">
         <span style="margin-right: 8px; font-size: 16px;">{icon}</span>
         <div style="flex: 1;">
             <strong style="color: {color}; text-transform: uppercase; font-size: 14px; font-weight: 600;">{alert_type}</strong>
-            <div style="margin-top: 4px;">{clean_content}</div>
+            <div style="margin-top: 4px;">{rendered_content}</div>
         </div>
     </div>
 </div>'''
@@ -164,7 +151,6 @@ def convert_github_alerts(content):
 def convert_task_lists(content):
     """Convert GitHub-style task lists to normal bullet points"""
     
-    # Convert unchecked tasks to normal bullet points
     content = re.sub(
         r'^(\s*)[-*]\s+\[\s\]\s+(.*)$',
         r'\1- \2',
@@ -172,7 +158,6 @@ def convert_task_lists(content):
         flags=re.MULTILINE
     )
     
-    # Convert checked tasks to normal bullet points with "✓" prefix
     content = re.sub(
         r'^(\s*)[-*]\s+\[[xX]\]\s+(.*)$',
         r'\1- ✓ \2',
@@ -226,24 +211,19 @@ def convert_relative_links(content, owner, repo, branch="main"):
     """Convert relative links to absolute GitHub URLs"""
     base_url = f"https://github.com/{owner}/{repo}/tree/{branch}/"
     
-    # Pattern for markdown links: [text](path)
     def replace_link(match):
         link_text = match.group(1)
         link_path = match.group(2)
         
-        # Skip if already absolute URL, anchor link, or special protocols
         if link_path.startswith(('http://', 'https://', '//', '#', 'mailto:', 'tel:', 'ftp:')):
             return match.group(0)
         
-        # Skip if it's an image (already handled by convert_relative_images)
         if link_path.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp', '.bmp')):
             return match.group(0)
         
-        # Convert relative path to absolute GitHub URL
         absolute_url = base_url + link_path
         return f"[{link_text}]({absolute_url})"
     
-    # Replace markdown links
     content = re.sub(r'\[([^\]]*)\]\(([^)]+)\)', replace_link, content)
     
     return content
@@ -258,10 +238,8 @@ def fix_code_blocks_and_spacing(content):
         s = re.sub(r'([^\n])(<video)', r'\1\n\n\2', s)
         s = re.sub(r'(</video>)([^\n])', r'\1\n\n\2', s)
         
-        # FIX: Ensure headings have 2 newlines before them
         s = re.sub(r'([^#\n])(\n?)(#{1,6}\s+.*)', r'\1\n\n\3', s)
         
-        # FIX: Ensure images have 2 newlines before them
         s = re.sub(r'([^\n\[])(\n?)(\!\[[^\]]*\]\([^)]+\))', r'\1\n\n\3', s)
         
         return s
@@ -414,39 +392,30 @@ def process_readme_content(content, owner, repo):
     
     print(f"  🔄 Processing README content...")
     
-    # 1. Convert relative images to absolute URLs
     content = convert_relative_images(content, owner, repo)
     print(f"  ✅ Converted relative images")
     
-    # 2. Convert relative links to absolute URLs
     content = convert_relative_links(content, owner, repo)
     print(f"  ✅ Converted relative links")
     
-    # 3. Convert relative videos to HTML video tags
     content = convert_relative_videos(content, owner, repo)
     print(f"  ✅ Converted relative videos")
 
-    # 3.5. Convert standalone GitHub video URLs
     content = convert_github_video_urls(content, owner, repo)
     print(f"  ✅ Converted GitHub video URLs")
     
-    # 4. Convert GitHub alerts
     content = convert_github_alerts(content)
     print(f"  ✅ Converted GitHub alerts")
     
-    # 5. Convert task lists to normal bullet points
     content = convert_task_lists(content)
     print(f"  ✅ Converted task lists")
     
-    # 6. Improve table rendering
     content = convert_github_tables(content)
     print(f"  ✅ Enhanced tables")
     
-    # 7. Fix code blocks and spacing (AFTER all HTML generation)
     content = fix_code_blocks_and_spacing(content)
     print(f"  ✅ Fixed code blocks and spacing")
     
-    # 8. Add GitHub-specific styles
     content = add_github_styles(content)
     print(f"  ✅ Added GitHub styles")
     
@@ -457,7 +426,6 @@ def process_project_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()
     
-    # Extract frontmatter
     if not content.startswith('+++'):
         return
     
@@ -468,7 +436,6 @@ def process_project_file(file_path):
     frontmatter = parts[1]
     existing_body = parts[2].strip()
     
-    # Extract link_to from frontmatter
     link_match = re.search(r'link_to\s*=\s*"([^"]+)"', frontmatter)
     if not link_match:
         return
@@ -481,24 +448,13 @@ def process_project_file(file_path):
     
     print(f"Processing {file_path.name}: {owner}/{repo}")
     
-    # Fetch README content
     readme_content = fetch_readme(owner, repo)
     if not readme_content:
         print(f"  ⚠️  Could not fetch README for {owner}/{repo}")
         return
     
-    # Process README content with GitHub-specific conversions
     readme_content = process_readme_content(readme_content, owner, repo)
     
-    # Clean up README content
-    # Remove title if it matches the project title
-    title_match = re.search(r'title\s*=\s*"([^"]+)"', frontmatter)
-    if title_match:
-        title = title_match.group(1)
-        # Remove first h1 if it matches title
-        readme_content = re.sub(rf'^#\s+{re.escape(title)}\s*\n', '', readme_content, flags=re.MULTILINE)
-    
-    # Build new content
     new_content = f"+++{frontmatter}+++"
     
     if readme_content.strip():
@@ -506,7 +462,6 @@ def process_project_file(file_path):
     elif existing_body:
         new_content += f"\n\n{existing_body}"
     
-    # Write back to file
     with open(file_path, 'w', encoding='utf-8') as f:
         f.write(new_content)
     

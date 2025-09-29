@@ -115,6 +115,8 @@ pre code {
 }
 </style>
 
+# NyaaDownloader
+
 🚀 Download many .torrent from Nyaa.si at a time! 🚀
 
 🔌 Instantly transfer them into your Bittorrent client 🔌
@@ -138,7 +140,10 @@ pre code {
 
 ## Demo
 
-https://user-images.githubusercontent.com/52708150/131512813-20f10705-0d71-4a09-9c3d-1af3983a666b.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/131512813-20f10705-0d71-4a09-9c3d-1af3983a666b.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/131512813-20f10705-0d71-4a09-9c3d-1af3983a666b.mp4">View video</a>
+</video>
 
 ## Getting Started
 
@@ -199,7 +204,10 @@ Don't forget to separate your uploaders with a ; (semicolon) if you want to down
 
 If you failed many times checking for an anime you like, you can try to find his full translated name from [MyAnimeList](https://myanimelist.net) as shown below.
 
-https://user-images.githubusercontent.com/52708150/230735983-0f5f0d1b-fd01-42c4-9934-3700ce6abe23.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/230735983-0f5f0d1b-fd01-42c4-9934-3700ce6abe23.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/230735983-0f5f0d1b-fd01-42c4-9934-3700ce6abe23.mp4">View video</a>
+</video>
 
 If you still didn't find what you were looking for, you can try to search some "keywords" of its title and find how uploaders you like name their uploads.
 

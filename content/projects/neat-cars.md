@@ -115,6 +115,8 @@ pre code {
 }
 </style>
 
+# Neat Cars
+
 ## 📝 Description
 
 Neat cars allows you to draw a track, choose a starting point and watch the magic happen: the cars will drive themselves and constantly improve their driving skills.
@@ -130,11 +132,17 @@ The project is based on a genetic algorithm called [NEAT (NeuroEvolution of Augm
 
 ### Track 1: With sensors - Infinite track
 
-https://user-images.githubusercontent.com/52708150/223087114-7d4e0401-bb33-46fd-9673-bd973de7235f.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/223087114-7d4e0401-bb33-46fd-9673-bd973de7235f.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/223087114-7d4e0401-bb33-46fd-9673-bd973de7235f.mp4">View video</a>
+</video>
 
 ### Track 2: Without sensors - Finite track
 
-https://user-images.githubusercontent.com/52708150/223087098-0bd16d36-cef2-4773-b657-5471fa1f5baa.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/223087098-0bd16d36-cef2-4773-b657-5471fa1f5baa.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/223087098-0bd16d36-cef2-4773-b657-5471fa1f5baa.mp4">View video</a>
+</video>
 
 ## 💡 How to use
 

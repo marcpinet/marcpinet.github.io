@@ -117,6 +117,8 @@ pre code {
 }
 </style>
 
+# Neuralnetlib
+
 ## 📝 Description
 
 This is a handmade machine and deep learning framework library, made in python, **using numpy as its only external dependency**.
@@ -364,7 +366,7 @@ history = model.fit(x_train, y_train, epochs=50, batch_size=32, verbose=True, ca
 <div style="flex: 1;">
             <strong style="color: #0969da; text-transform: uppercase; font-size: 14px; font-weight: 600;">NOTE</strong>
 
-<div style="margin-top: 4px;">You can also save and load models using the `save` and `load` methods.</div>
+<div style="margin-top: 4px;"><p>You can also save and load models using the <code>save</code> and <code>load</code> methods.</p></div>
         </div>
     </div>
 </div>
@@ -391,9 +393,9 @@ model = Model.load('my_model.json')
 <div style="flex: 1;">
             <strong style="color: #0969da; text-transform: uppercase; font-size: 14px; font-weight: 600;">NOTE</strong>
 
-<div style="margin-top: 4px;">PCA (Principal Component Analysis) was used to reduce the number of features to 2, so we could plot the decision boundary.
-Representing n-dimensional data in 2D is not easy, so the decision boundary may not be *always* accurate.
-I also tried with t-SNE, but the results were not good.</div>
+<div style="margin-top: 4px;"><p>PCA (Principal Component Analysis) was used to reduce the number of features to 2, so we could plot the decision boundary.
+Representing n-dimensional data in 2D is not easy, so the decision boundary may not be <em>always</em> accurate.
+I also tried with t-SNE, but the results were not good.</p></div>
         </div>
     </div>
 </div>

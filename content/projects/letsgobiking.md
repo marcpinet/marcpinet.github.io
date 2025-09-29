@@ -115,6 +115,8 @@ pre code {
 }
 </style>
 
+# LetsGoBiking
+
 ## 📝 Description
 
 This project involves the development of a self-hosted SOAP server (with cache, queue and proxy) in C
@@ -161,7 +163,7 @@ This project was developed as part of an advanced IT course, requiring careful p
 <div style="flex: 1;">
             <strong style="color: #d1242f; text-transform: uppercase; font-size: 14px; font-weight: 600;">WARNING</strong>
 
-<div style="margin-top: 4px;">Because of Windows 10/11 port access and protected system resources policies, you need to run the servers as administrator to allow them to host the services on `localhost`. If you don't intend to run the servers elsewhere than from your IDE, make sure to run your IDE as administrator aswell.</div>
+<div style="margin-top: 4px;"><p>Because of Windows 10/11 port access and protected system resources policies, you need to run the servers as administrator to allow them to host the services on <code>localhost</code>. If you don't intend to run the servers elsewhere than from your IDE, make sure to run your IDE as administrator aswell.</p></div>
         </div>
     </div>
 </div>
@@ -173,7 +175,7 @@ This project was developed as part of an advanced IT course, requiring careful p
 <div style="flex: 1;">
             <strong style="color: #0969da; text-transform: uppercase; font-size: 14px; font-weight: 600;">NOTE</strong>
 
-<div style="margin-top: 4px;">Assuming you've all your path environment variables ([msbuild](https://visualstudio.microsoft.com/downloads/?cid=learn-onpage-download-cta#build-tools-for-visual-studio-2022), [nuget](https://www.nuget.org/downloads), [activemq](https://activemq.apache.org/components/classic/download/) and [mvn](https://maven.apache.org/download.cgi)), you can directly run the `auto_start.bat`. Please, don't forget to setup the `.env file` in `/Server/.env`.</div>
+<div style="margin-top: 4px;"><p>Assuming you've all your path environment variables (<a href="https://visualstudio.microsoft.com/downloads/?cid=learn-onpage-download-cta#build-tools-for-visual-studio-2022">msbuild</a>, <a href="https://www.nuget.org/downloads">nuget</a>, <a href="https://activemq.apache.org/components/classic/download/">activemq</a> and <a href="https://maven.apache.org/download.cgi">mvn</a>), you can directly run the <code>auto_start.bat</code>. Please, don't forget to setup the <code>.env file</code> in <code>/Server/.env</code>.</p></div>
         </div>
     </div>
 </div>
@@ -223,7 +225,7 @@ Once you did all the steps above, you'll be prompted to choose a starting place 
 <div style="flex: 1;">
             <strong style="color: #0969da; text-transform: uppercase; font-size: 14px; font-weight: 600;">NOTE</strong>
 
-<div style="margin-top: 4px;">The returned itinerary will **ALWAYS** be the shortest path. If, by walking, you're making it faster rather than by going to a bike station, it will return the walk itinerary instead.</div>
+<div style="margin-top: 4px;"><p>The returned itinerary will <strong>ALWAYS</strong> be the shortest path. If, by walking, you're making it faster rather than by going to a bike station, it will return the walk itinerary instead.</p></div>
         </div>
     </div>
 </div>

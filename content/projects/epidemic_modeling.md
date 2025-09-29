@@ -115,6 +115,8 @@ pre code {
 }
 </style>
 
+# Epidemic Modeling
+
 🧬 Tweak transmission rate, recovery rate, death rate, number of people, and many more! 🧬
 
 ⚙️ Graphical User Interface with sliders and buttons. ⚙️
@@ -141,15 +143,24 @@ pre code {
 
 ### One wave of the epidemic was simulated
 
-https://user-images.githubusercontent.com/52708150/146844598-e74a4185-b21d-40bf-9046-5e6e4423ef77.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/146844598-e74a4185-b21d-40bf-9046-5e6e4423ef77.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/146844598-e74a4185-b21d-40bf-9046-5e6e4423ef77.mp4">View video</a>
+</video>
 
 ### Three waves of the epidemic were simulated
 
-https://user-images.githubusercontent.com/52708150/146844606-71d78f0f-11e3-47e2-8330-953a9d3600f4.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/146844606-71d78f0f-11e3-47e2-8330-953a9d3600f4.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/146844606-71d78f0f-11e3-47e2-8330-953a9d3600f4.mp4">View video</a>
+</video>
 
 ### Masked dots example
 
-https://user-images.githubusercontent.com/52708150/146844600-05ff0eda-c5c0-4466-9e31-b50abf161229.mp4
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://user-images.githubusercontent.com/52708150/146844600-05ff0eda-c5c0-4466-9e31-b50abf161229.mp4" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://user-images.githubusercontent.com/52708150/146844600-05ff0eda-c5c0-4466-9e31-b50abf161229.mp4">View video</a>
+</video>
 
 ### Support 👨‍💻
 

@@ -136,7 +136,7 @@ Poubelldroid is a school project for the course *IHM* at Polytech Nice Sophia. a
 <div style="flex: 1;">
             <strong style="color: #0969da; text-transform: uppercase; font-size: 14px; font-weight: 600;">NOTE</strong>
 
-<div style="margin-top: 4px;">Demo is not the latest version which includes better aestetic, visuals, settings and much more! (see below)</div>
+<div style="margin-top: 4px;"><p>Demo is not the latest version which includes better aestetic, visuals, settings and much more! (see below)</p></div>
         </div>
     </div>
 </div>
