@@ -18,6 +18,25 @@
     flex-direction: column;
 }
 
+.card-main-link {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+}
+
+.card-main-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.card-main-link .github-link {
+    position: relative;
+    z-index: 10;
+}
+
 .card::before {
     content: '';
     position: absolute;
@@ -28,7 +47,7 @@
                                 rgba(var(--hint-color-rgb), 0.08),
                                 transparent 55%);
     opacity: 0;
-    transition: opacity 0.3s ease, background-position 0.1s ease;
+    transition: opacity 0.15s ease;
     z-index: 1;
 }
 
@@ -49,7 +68,6 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    z-index: 2;
 }
 
 .card-title {
@@ -75,7 +93,6 @@
     position: relative;
     overflow: hidden;
     flex-shrink: 0;
-    z-index: 2;
 }
 
 .pinned-badge {
