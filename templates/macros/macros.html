@@ -229,13 +229,16 @@
 </div>
 {% endmacro cards_posts %}
 
-{% macro cards_articles(pages) %}
-<div class="cards">
-    {%- for page in pages %}
-    <div class="card">
-        <a href={{ page.permalink }} class="card-main-link">
-            <div class="card-image-container">
-                { page.title }}</a>
+{% macro list_title(pages, tag_name=false) %}
+{% if tag_name %}
+<h1>Entries tagged - "{{ term.name }}"</h1>
+{% else %}
+<h1 class="page-title">All articles</h1>
+{% endif %}
+<ul class="posts">
+    {% for page in pages %}
+    <li class="post">
+        <a href="{{ page.permalink }}">{{ page.title }}</a>
         <span class="meta">{{ page.date | date(format="%Y-%m-%d") }}</span>
     </li>
     {% endfor %}
