@@ -204,7 +204,7 @@
 }
 
 .github-link:hover .github-icon {
-    filter: invert(0.7);
+    filter: invert(52%) sepia(98%) saturate(2476%) hue-rotate(2deg) brightness(103%) contrast(104%);
 }
 
 [data-theme="light"] .github-icon {
@@ -212,5 +212,5 @@
 }
 
 [data-theme="light"] .github-link:hover .github-icon {
-    filter: invert(0.3);
+    filter: invert(52%) sepia(98%) saturate(2476%) hue-rotate(2deg) brightness(103%) contrast(104%);
 }
