@@ -1,11 +1,9 @@
 function debounce(func, wait) {
   var timeout;
-
   return function () {
     var context = this;
     var args = arguments;
     clearTimeout(timeout);
-
     timeout = setTimeout(function () {
       timeout = null;
       func.apply(context, args);
@@ -27,105 +25,86 @@ function makeTeaser(body, terms) {
   var TERM_WEIGHT = 40;
   var NORMAL_WORD_WEIGHT = 2;
   var FIRST_WORD_WEIGHT = 8;
-  var TEASER_MAX_WORDS = 30;
+  var TEASER_MAX_WORDS = 20;
 
   var stemmedTerms = terms.map(function (w) {
     return elasticlunr.stemmer(w.toLowerCase());
   });
-  var termFound = false;
-  var index = 0;
-  var weighted = []; // contains elements of ["word", weight, index_in_document]
 
-  // split in sentences, then words
-  var sentences = body.toLowerCase().split(". ");
+  var words = body.split(/\s+/); // split tout le texte
+  var weighted = [];
 
-  for (var i in sentences) {
-    var words = sentences[i].split(" ");
-    var value = FIRST_WORD_WEIGHT;
-
-    for (var j in words) {
-      var word = words[j];
-
-      if (word.length > 0) {
-        for (var k in stemmedTerms) {
-          if (elasticlunr.stemmer(word).startsWith(stemmedTerms[k])) {
-            value = TERM_WEIGHT;
-            termFound = true;
-          }
-        }
-        weighted.push([word, value, index]);
-        value = NORMAL_WORD_WEIGHT;
-      }
-
-      index += word.length;
-      index += 1;  // ' ' or '.' if last word in sentence
+  // Associe un poids à chaque mot
+  for (var i = 0; i < words.length; i++) {
+    var word = words[i];
+    var weight = NORMAL_WORD_WEIGHT;
+    if (i === 0 || words[i - 1].endsWith(".")) {
+      weight = FIRST_WORD_WEIGHT;
     }
-
-    index += 1;  // because we split at a two-char boundary '. '
+    for (var k in stemmedTerms) {
+      if (elasticlunr.stemmer(word.toLowerCase()).startsWith(stemmedTerms[k])) {
+        weight = TERM_WEIGHT;
+      }
+    }
+    weighted.push([word, weight]);
   }
 
   if (weighted.length === 0) {
-    return body;
+    return body.substring(0, 100) + "…";
   }
 
-  var windowWeights = [];
-  var windowSize = Math.min(weighted.length, TEASER_MAX_WORDS);
-  // We add a window with all the weights first
-  var curSum = 0;
-  for (var i = 0; i < windowSize; i++) {
-    curSum += weighted[i][1];
-  }
-  windowWeights.push(curSum);
-
-  for (var i = 0; i < weighted.length - windowSize; i++) {
-    curSum -= weighted[i][1];
-    curSum += weighted[i + windowSize][1];
-    windowWeights.push(curSum);
+  // Trouver l'index du premier mot correspondant
+  var firstMatchIndex = weighted.findIndex(w => w[1] === TERM_WEIGHT);
+  if (firstMatchIndex === -1) {
+    firstMatchIndex = 0; // fallback : pas trouvé
   }
 
-  // If we didn't find the term, just pick the first window
-  var maxSumIndex = 0;
-  if (termFound) {
-    var maxFound = 0;
-    // backwards
-    for (var i = windowWeights.length - 1; i >= 0; i--) {
-      if (windowWeights[i] > maxFound) {
-        maxFound = windowWeights[i];
-        maxSumIndex = i;
-      }
-    }
+  // Calcule une fenêtre centrée autour du mot trouvé
+  var halfWindow = Math.floor(TEASER_MAX_WORDS / 2);
+  var start = Math.max(0, firstMatchIndex - halfWindow);
+  var end = Math.min(weighted.length, start + TEASER_MAX_WORDS);
+
+  // Ajuster si on est trop près de la fin
+  if (end - start < TEASER_MAX_WORDS && start > 0) {
+    start = Math.max(0, end - TEASER_MAX_WORDS);
   }
 
+  // Construire le teaser
   var teaser = [];
-  var startIndex = weighted[maxSumIndex][2];
-  for (var i = maxSumIndex; i < maxSumIndex + windowSize; i++) {
-    var word = weighted[i];
-    if (startIndex < word[2]) {
-      // missing text from index to start of `word`
-      teaser.push(body.substring(startIndex, word[2]));
-      startIndex = word[2];
-    }
-
-    // add <em/> around search terms
-    if (word[1] === TERM_WEIGHT) {
-      teaser.push("<b>");
-    }
-    startIndex = word[2] + word[0].length;
-    teaser.push(body.substring(word[2], startIndex));
-
-    if (word[1] === TERM_WEIGHT) {
-      teaser.push("</b>");
+  if (start > 0) {
+    teaser.push("… ");
+  }
+  for (var i = start; i < end; i++) {
+    var word = weighted[i][0];
+    if (weighted[i][1] === TERM_WEIGHT) {
+      teaser.push("<b>" + word + "</b>");
+    } else {
+      teaser.push(word);
     }
   }
-  teaser.push("…");
-  return teaser.join("");
+  if (end < weighted.length) {
+    teaser.push(" …");
+  }
+
+  return teaser.join(" ");
 }
 
+
 function formatSearchResultItem(item, terms) {
-  return '<div class="search-results__item">'
-  + `<a href="${item.ref}">${item.doc.title}</a>`
-  + `<div>${makeTeaser(item.doc.body, terms)}</div>`
-  + '</div>';
+  // Titre + petit extrait max
+  var teaser = "";
+  if (item.doc.description) {
+    teaser = item.doc.description;
+  } else if (item.doc.body) {
+    teaser = makeTeaser(item.doc.body, terms);
+  }
+
+  return `
+    <div class="search-results__item">
+      <a href="${item.ref}">${item.doc.title}</a>
+      <p>${teaser}</p>
+    </div>
+  `;
 }
 
 function initSearch() {
@@ -136,26 +115,19 @@ function initSearch() {
 
   var options = {
     bool: "AND",
-    fields: {
-      title: {boost: 2},
-      body: {boost: 1},
-    }
+    fields: { title: {boost: 2}, body: {boost: 1} }
   };
   var currentTerm = "";
-
   var initIndex = elasticlunr.Index.load(window.searchIndex);
 
   $searchInput.addEventListener("keyup", debounce(async function() {
     var term = $searchInput.value.trim();
-    if (term === currentTerm) {
-      return;
-    }
+    if (term === currentTerm) return;
+
     $searchResults.style.display = term === "" ? "none" : "block";
     $searchResultsItems.innerHTML = "";
     currentTerm = term;
-    if (term === "") {
-      return;
-    }
+    if (term === "") return;
 
     var results = initIndex.search(term, options);
     if (results.length === 0) {
@@ -171,12 +143,11 @@ function initSearch() {
   }, 150));
 
   window.addEventListener('click', function(e) {
-    if ($searchResults.style.display == "block" && !$searchResults.contains(e.target)) {
+    if ($searchResults.style.display === "block" && !$searchResults.contains(e.target)) {
       $searchResults.style.display = "none";
     }
   });
 }
-
 
 if (document.readyState === "complete" ||
     (document.readyState !== "loading" && !document.documentElement.doScroll)
