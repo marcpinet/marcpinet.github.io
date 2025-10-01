@@ -3,7 +3,7 @@ background-color: var(--navbar-color);
 border-top: 1px solid var(--light-border-color);
 padding: 1.5rem 0;
 font-family: var(--post-font-family);
-margin-top: 3rem;
+margin-top: 1rem;
 }
   
   footer section {
@@ -19,6 +19,10 @@ margin-top: 3rem;
   }
 
   @media only screen and (max-width: 1400px) {
+    footer {
+      margin-top: 3rem;
+    }
+
     footer section {
       text-align: center;
     }
