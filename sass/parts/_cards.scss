@@ -74,6 +74,13 @@
     margin-top: 0.7em;
     margin-bottom: 0.5em;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    text-decoration: underline;
+    text-decoration-color: #ff6d00;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
 }
 
 .card-image {
@@ -206,10 +213,4 @@
 
 [data-theme="light"] .github-link:hover .github-icon {
     filter: invert(0.3);
-}
-
-.card-title {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
 }
