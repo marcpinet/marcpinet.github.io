@@ -12,6 +12,17 @@
             <a class="nav-links home-title" href={{ config.base_url }}>{{ config.title }}</a>
         </div>
 
+        <div class="navbar-mobile-theme-switcher">
+            <label class="theme-switcher" for="navbar-mobile-themeswitch">
+                <div class="background"></div>
+                <input type="checkbox" id="navbar-mobile-themeswitch">
+                <div class="switch">
+                    <img alt="theme switch to dark" class="moon" src="/menu_icon/moon.png">
+                    <img alt="theme switch to light" class="sun" src="/menu_icon/sun.png">
+                </div>
+            </label>
+        </div>
+
         <div class="nav-title nav-navs">
             <a class="nav-links home-title" href={{ config.base_url }}>{{ config.title }}</a>
         </div>
@@ -57,17 +68,6 @@
         <button class="mobile-menu-close" aria-label="Close menu" style="background: none;">×</button>
     </div>
 
-    <div class="mobile-theme-switcher-container">
-        <label class="theme-switcher mobile-theme-switcher" for="mobile-themeswitch">
-            <div class="background"></div>
-            <input type="checkbox" id="mobile-themeswitch">
-            <div class="switch">
-                <img alt="theme switch to dark" class="moon" src="/menu_icon/moon.png">
-                <img alt="theme switch to light" class="sun" src="/menu_icon/sun.png">
-            </div>
-        </label>
-    </div>
-
     <div class="mobile-menu-content">
         <div class="mobile-menu-items">
             <a class="mobile-menu-item mobile-home-item" href={{ config.base_url }}>
@@ -107,10 +107,7 @@
                 {% endfor %}
                 {% endif %}
             </div>
-            <div class="mobile-footer-text">
-                Made by <b>marcpinet</b> with ❤️ and powered by
-                <a href="https://getzola.org/" rel="noopener noreferrer" target="_blank">Zola</a>
-            </div>
+
         </div>
     </div>
 </div>
