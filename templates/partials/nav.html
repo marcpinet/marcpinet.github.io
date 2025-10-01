@@ -1,5 +1,17 @@
 <header>
     <div class="navbar">
+        <button class="hamburger-button" aria-label="Open menu" style="background: none;">
+            <div class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+
+        <div class="navbar-home-title">
+            <a class="nav-links home-title" href={{ config.base_url }}>{{ config.title }}</a>
+        </div>
+
         <div class="nav-title nav-navs">
             <a class="nav-links home-title" href={{ config.base_url }}>{{ config.title }}</a>
         </div>
@@ -37,3 +49,67 @@
         </nav>
     </div>
 </header>
+
+<div class="mobile-menu-overlay"></div>
+<div class="mobile-menu">
+    <div class="mobile-menu-header">
+        <a href={{ config.base_url }} class="home-title-mobile">{{ config.title }}</a>
+        <button class="mobile-menu-close" aria-label="Close menu" style="background: none;">×</button>
+    </div>
+
+    <div class="mobile-menu-content">
+        <div class="mobile-menu-items">
+            <a class="mobile-menu-item mobile-home-item" href={{ config.base_url }}>
+                <img alt="Home" src="/menu_icon/home.png"/>
+                Home
+            </a>
+            {%- if config.extra.menu %}
+            {% for menu in config.extra.menu %}
+            <a class="mobile-menu-item" href={{ menu.url }}>
+                {%- if menu.icon %}
+                <img alt={{ menu.name }} height="20" width="20" src="/menu_icon/{{ menu.icon }}"/>
+                {% endif %}
+                {{ menu.name }}
+            </a>
+            {% endfor %}
+            {% endif %}
+        </div>
+
+        {%- if config.extra.search_bar %}
+        <div class="mobile-search-container">
+            <div class="mobile-search-wrapper">
+                <input id="mobile-search" type="search" placeholder="Search">
+            </div>
+            <label class="theme-switcher mobile-theme-switcher" for="mobile-themeswitch">
+                <div class="background"></div>
+                <input type="checkbox" id="mobile-themeswitch">
+                <div class="switch">
+                    <img alt="theme switch to dark" class="moon" src="/menu_icon/moon.png">
+                    <img alt="theme switch to light" class="sun" src="/menu_icon/sun.png">
+                </div>
+            </label>
+            <div class="mobile-search-results">
+                <div class="mobile-search-results__items"></div>
+            </div>
+        </div>
+        {% endif %}
+
+        <div class="mobile-footer">
+            <div class="mobile-footer-socials">
+                {%- if config.extra.socials %}
+                {% for social in config.extra.socials %}
+                <a rel="noopener noreferrer" target="_blank" href="{{ social.url }}">
+                    <img alt="{{ social.name }}" title="{{ social.name }}" src="/social_icons/{{ social.icon }}.svg">
+                </a>
+                {% endfor %}
+                {% endif %}
+            </div>
+            <div class="mobile-footer-text">
+                Made by <b>marcpinet</b> with ❤️ and powered by
+                <a href="https://getzola.org/" rel="noopener noreferrer" target="_blank">Zola</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ get_url(path='mobile-menu.js') }}"></script>
