@@ -4,7 +4,7 @@
     <link>https://marcpinet.fr</link>
     <description>All updates from Marc Pinet - posts, projects, experiences, education, and certifications</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Oct 2025 12:24:06 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 01 Oct 2025 13:47:24 GMT</lastBuildDate>
     <generator>Custom RSS Generator</generator>
     <atom:link href="https://marcpinet.fr/feeds/all.xml" rel="self" type="application/rss+xml"/>
     <item>
@@ -191,7 +191,7 @@
     <item>
       <title>Work in progress...</title>
       <link>https://marcpinet.fr/</link>
-      <description>Coming soon!</description>
+      <description>This is a work in progress post.</description>
       <pubDate>Thu, 01 Jan 1970 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://marcpinet.fr/</guid>
     </item>
