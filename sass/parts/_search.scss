@@ -5,14 +5,17 @@
   position: relative;
   input {
     height: 30px;
-    width: 30;
+    width: 30px;
     border-style: none;
     outline: none;
     border-radius: 22px;
-    transition: all .3s ease-in-out;
+    transition: none;
     background-color:transparent;
     padding: 0 10px;
     color:var(--text-color);
+  }
+  input.loaded {
+    transition: all .3s ease-in-out;
   }
   input:focus{
     width: 268px;

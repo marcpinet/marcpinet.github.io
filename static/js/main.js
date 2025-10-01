@@ -34,6 +34,13 @@ themeSwitchers.forEach(switcher => {
     switcher.addEventListener('change', switchTheme, false);
 });
 
+window.addEventListener('load', function() {
+    const searchInput = document.querySelector('.search-container input');
+    if (searchInput) {
+        searchInput.classList.add('loaded');
+    }
+});
+
 // Glassy highlight effect on cards
 document.addEventListener('DOMContentLoaded', function() {
     const cards = document.querySelectorAll('.card');
