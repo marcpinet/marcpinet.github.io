@@ -65,7 +65,7 @@ header {
   color: var(--text-color);
   padding: 8px 16px;
   border-radius: 8px;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
 
@@ -100,6 +100,11 @@ header .main {
 .home-title{
   font-size: 1.6em;
   color:#ff6d00;
+  padding-left: 16px;
+  margin-left: -16px;
+}
+
+.home-title:hover {
 }
 .socials {
   flex-grow: 0;
