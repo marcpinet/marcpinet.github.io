@@ -4,9 +4,9 @@ import requests
 import re
 from pathlib import Path
 
-def extract_github_repo(link_to):
+def extract_github_repo(github_link):
     """Extract owner/repo from GitHub URL"""
-    match = re.search(r'github\.com/([^/]+)/([^/]+)', link_to)
+    match = re.search(r'github\.com/([^/]+)/([^/]+)', github_link)
     if match:
         return match.group(1), match.group(2)
     return None, None
@@ -436,12 +436,12 @@ def process_project_file(file_path):
     frontmatter = parts[1]
     existing_body = parts[2].strip()
     
-    link_match = re.search(r'link_to\s*=\s*"([^"]+)"', frontmatter)
+    link_match = re.search(r'github_link\s*=\s*"([^"]+)"', frontmatter)
     if not link_match:
         return
     
-    link_to = link_match.group(1)
-    owner, repo = extract_github_repo(link_to)
+    github_link = link_match.group(1)
+    owner, repo = extract_github_repo(github_link)
     
     if not owner or not repo:
         return

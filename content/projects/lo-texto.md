@@ -6,7 +6,7 @@ weight = 1
 
 [extra]
 remote_image = "/lo-texto/img.gif"
-link_to = "https://github.com/marcpinet/lo-texto"
+github_link = "https://github.com/marcpinet/lo-texto"
 +++
 
 <style>

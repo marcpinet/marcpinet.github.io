@@ -6,7 +6,7 @@ weight = 1
 
 [extra]
 remote_image = "/nyaadownloader/img.png"
-link_to = "https://github.com/marcpinet/nyaadownloader"
+github_link = "https://github.com/marcpinet/nyaadownloader"
 +++
 
 <style>

@@ -6,7 +6,7 @@ weight = 1
 
 [extra]
 remote_image = "/maze_gen_and_solve/img.gif"
-link_to = "https://github.com/marcpinet/maze-generator-and-solver"
+github_link = "https://github.com/marcpinet/maze-generator-and-solver"
 +++
 
 <style>

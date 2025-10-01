@@ -6,7 +6,7 @@ weight = 1
 
 [extra]
 remote_image = "/sort_visualizer/img.gif"
-link_to = "https://github.com/marcpinet/sort-visualizer"
+github_link = "https://github.com/marcpinet/sort-visualizer"
 +++
 
 <style>

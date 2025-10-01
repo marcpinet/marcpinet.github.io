@@ -1,13 +1,13 @@
 +++
 title = "Work in progress..."
-description = "This is a work in progress post."
 date = 1970-01-01
-venue = ""  # Conférence, Journal, etc.
-venue_url = ""  # Lien vers la conférence, le journal, etc.
-url = ""  # Lien vers le post original, si applicable (DOI, arXiv, etc.)
+
+[extra]
+status = "wip"                  # "published", "accepted", "in_review", "draft", "wip"
+venue = ""                      # Conference or Journal 
+venue_url = "about:blank"       # URL of the Conference or Journal
+url = "about:blank"             # URL of the paper
 
 [taxonomies]
 tags = ["wip", "test", "soon"]
 +++
-
-Coming soon!

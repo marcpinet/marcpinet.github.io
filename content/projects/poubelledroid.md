@@ -6,7 +6,7 @@ weight = 1
 
 [extra]
 remote_image = "/poubelledroid/img.gif"
-link_to = "https://github.com/marcpinet/poubelledroid"
+github_link = "https://github.com/marcpinet/poubelledroid"
 +++
 
 <style>

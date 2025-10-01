@@ -27,6 +27,9 @@
     color:var(--text-color);
     font-weight: 100;
   }
+  input:focus::placeholder {
+    color: transparent;
+  }
 }
 
 .search-results {

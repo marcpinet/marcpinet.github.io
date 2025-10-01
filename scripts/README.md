@@ -5,7 +5,7 @@ This system automatically fetches README.md content from your GitHub repositorie
 ## How it works
 
 1. **Script Analysis**: The `fetch_readmes.py` script reads all project files in `content/projects/`
-2. **GitHub Integration**: For each project with a `link_to` pointing to a GitHub repo, it fetches the README.md
+2. **GitHub Integration**: For each project with a `github_link` pointing to a GitHub repo, it fetches the README.md
 3. **GitHub Markdown Processing**: Converts GitHub-specific markdown features to HTML
 4. **Content Injection**: The processed README content is automatically added to your project page
 5. **Auto-Update**: GitHub Actions runs this daily and on every push
@@ -84,7 +84,7 @@ weight = 1
 
 [extra]
 remote_image = "/project/img.gif"
-link_to = "https://github.com/yourusername/yourrepo"  # 👈 This triggers README fetching
+github_link = "https://github.com/yourusername/yourrepo"  # 👈 This triggers README fetching
 pinned = true
 pin_order = 1
 +++
@@ -168,14 +168,14 @@ The script automatically adds CSS for:
 ## How to Add New Projects
 
 1. Create a new `.md` file in `content/projects/`
-2. Add the frontmatter with `link_to` pointing to your GitHub repo
+2. Add the frontmatter with `github_link` pointing to your GitHub repo
 3. Push to main branch
 4. The README will be automatically fetched and all GitHub features converted!
 
 ## Troubleshooting
 
 ### README not fetching?
-- Check that `link_to` points to a valid GitHub repository
+- Check that `github_link` points to a valid GitHub repository
 - Ensure the repository has a README.md file
 - Check the GitHub Actions log for error messages
 
@@ -194,8 +194,8 @@ The script automatically adds CSS for:
 - CSS is automatically injected
 
 ### Want to exclude a project?
-- Simply don't include `link_to` in the frontmatter
-- Or point `link_to` to something other than GitHub
+- Simply don't include `github_link` in the frontmatter
+- Or point `github_link` to something other than GitHub
 
 ### Need to update immediately?
 - Run the local test script

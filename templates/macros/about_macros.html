@@ -11,7 +11,38 @@
             <time>{{ page.date | date(format="%Y-%m-%d") }}</time>
             {% endif -%}
             <br />
-            <span>{{ page.reading_time }} minute(s) read</span>
+            {% if page.extra.status %}
+                <span>
+                    {% if page.extra.status == "published" %}
+                        Published in
+                    {% elif page.extra.status == "accepted" %}
+                        Accepted at
+                    {% elif page.extra.status == "in_review" %}
+                        Under review at
+                    {% elif page.extra.status == "preprint" %}
+                        Preprint
+                    {% elif page.extra.status == "wip" %}
+                        Work in progress
+                    {% else %}
+                        {{ page.extra.status }}
+                    {% endif %}
+
+                    {# si on a un venue, on l’ajoute #}
+                    {% if page.extra.venue %}
+                        {% if page.extra.venue_url %}
+                            <a href="{{ page.extra.venue_url }}" target="_blank" rel="noopener">{{ page.extra.venue }}</a>
+                        {% else %}
+                            {{ page.extra.venue }}
+                        {% endif %}
+                    {% endif %}
+
+                    {# si preprint avec lien externe (arXiv, DOI, etc.) #}
+                    {% if page.extra.status == "preprint" and page.extra.url %}
+                        <a href="{{ page.extra.url }}" target="_blank" rel="noopener">(link)</a>
+                    {% endif %}
+                </span>
+            {% endif %}
+
             {% if page.draft %}
             <span class="draft-label">DRAFT</span>
             {% endif %}
@@ -39,10 +70,6 @@
             {% set hide_read_more = true %}
             {% endif %}
         </div>
-
-        {% if not hide_read_more %}
-        <a class="readmore" href={{ page.permalink }}>Read more ⟶</a>
-        {% endif %}
     </section>
 
     {% endfor -%}
@@ -143,10 +170,10 @@
 
         <div class="card-info">
             <h1 class="card-title">
-                {% if page.extra.link_to %}
-                <a rel="noopener noreferrer" target="_blank" href={{ page.extra.link_to }}>{{page.title}}</a>
+                {% if page.extra.github_link %}
+                <a rel="noopener noreferrer" target="_blank" href={{ page.extra.github_link }}>{{page.title}}</a>
                 {% else %}
-                <a href={{ page.permalink }}>{{page.title}}</a>
+                <a href={{ page.extra.url }}>{{page.title}}</a>
                 {% endif %}
             </h1>
 

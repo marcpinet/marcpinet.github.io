@@ -6,7 +6,7 @@ weight = 1
 
 [extra]
 remote_image = "/edgeai-bird/img.gif"
-link_to = "https://github.com/marcpinet/edgeai-bird"
+github_link = "https://github.com/marcpinet/edgeai-bird"
 +++
 
 <style>

@@ -6,7 +6,7 @@ weight = 1
 
 [extra]
 remote_image = "/epidemic_modeling/img.gif"
-link_to = "https://github.com/marcpinet/epidemic-modeling"
+github_link = "https://github.com/marcpinet/epidemic-modeling"
 +++
 
 <style>

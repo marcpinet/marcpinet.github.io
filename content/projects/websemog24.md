@@ -6,7 +6,7 @@ weight = 1
 
 [extra]
 remote_image = "/websem-og24/img.gif"
-link_to = "https://github.com/marcpinet/websem-og24"
+github_link = "https://github.com/marcpinet/websem-og24"
 +++
 
 <style>

@@ -6,7 +6,7 @@ weight = 1
 
 [extra]
 remote_image = "/polyquiz/img.gif"
-link_to = "https://github.com/marcpinet/polyquiz"
+github_link = "https://github.com/marcpinet/polyquiz"
 +++
 
 <style>
