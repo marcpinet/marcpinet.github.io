@@ -163,24 +163,32 @@
     align-items: center;
     margin-left: 8px;
     opacity: 0.7;
-    transition: all 0.2s ease;
+    transition: opacity 0.2s ease;
     text-decoration: none;
 }
 
 .github-link:hover {
     opacity: 1;
-    transform: scale(1.1);
+    background-color: transparent;
 }
 
 .github-icon {
     width: 20px;
     height: 20px;
     filter: invert(1);
-    transition: all 0.2s ease;
+    transition: filter 0.2s ease;
+}
+
+.github-link:hover .github-icon {
+    filter: invert(0.7);
 }
 
 [data-theme="light"] .github-icon {
     filter: invert(0);
+}
+
+[data-theme="light"] .github-link:hover .github-icon {
+    filter: invert(0.3);
 }
 
 .card-title {

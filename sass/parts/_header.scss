@@ -69,11 +69,18 @@ header {
   position: relative;
 }
 
-.nav-links:hover {
+.nav-links:not(.social):hover {
   color: var(--links);
   background-color: var(--secondary-color);
-  transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(255, 109, 0, 0.2);
+}
+
+.nav-links.social {
+  padding: 2px;
+}
+
+.nav-links.social:hover {
+  background-color: transparent;
 }
 header .main {
   display: flex;
@@ -116,10 +123,19 @@ header .main {
   width: 24px;
   height: 24px;
   filter: invert(1);
-  }
+  transition: filter 0.2s ease;
+}
+
+.social:hover>img {
+  filter: invert(0.7);
+}
 
 [data-theme="light"] .social>img {
   filter: invert(0);
+}
+
+[data-theme="light"] .social:hover>img {
+  filter: invert(0.3);
 }
 
 .meta {
