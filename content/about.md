@@ -59,8 +59,7 @@ Self-supervised detection and explanation of anomalies in time series data for l
 <span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Explainable AI</span>
 <span class="field-tag">Large Language Models</span>
-<span class="field-tag">Industrial Research</span>
-<span class="field-tag">Research Development</span>
+<span class="field-tag">Research and Development</span>
 <span class="field-tag">Linear Algebra</span>
 <span class="field-tag">Statistics</span>
 <span class="field-tag">Probability</span>
@@ -95,6 +94,7 @@ Research on self-supervised deep learning for time series anomaly detection and 
 <span class="field-tag">MLOps</span>
 <span class="field-tag">Statistics</span>
 <span class="field-tag">Probability</span>
+<span class="field-tag">Research and Development</span>
 </div>
 
 Unsupervised anomaly detection system for heterogeneous data (logs, metrics, traces) using pattern variation detection and time series correlation. Optimized real-time pipeline reducing memory by 70% and improving scalability 3x for 10M+ events/day. Built RAG-enhanced LLM agent for automated anomaly reports with root cause analysis.
@@ -218,6 +218,7 @@ Introduced to processor architecture, with a Senior SoC (System-on-chip) Designe
 <span class="field-tag">Linear Algebra</span>
 <span class="field-tag">Statistics</span>
 <span class="field-tag">Probability</span>
+<span class="field-tag">Research and Development</span>
 </div>
 
 Thesis: Self-supervised deep learning detection and explanation of anomalies in time series.
