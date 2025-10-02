@@ -69,32 +69,52 @@
 
 {% block giscus %}
 <noscript>Please enable JavaScript for accessing the comments</noscript>
-<script src="https://giscus.app/client.js"
-        data-repo="marcpinet/marcpinet.github.io"
-        data-repo-id="R_kgDOJDP6MA"
-        data-category="Q&A"
-        data-category-id="DIC_kwDOJDP6MM4CUiRW"
-        data-mapping="title"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="dark_dimmed"
-        data-lang="en"
-        data-loading="lazy"
-        crossorigin="anonymous"
-        async>
-</script>
 <script>
-function update() {
-    const islight = document.getElementById("themeswitch").checked;
+(function() {
+    const currentTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isDark = currentTheme ? currentTheme === 'dark' : systemPrefersDark;
+    const giscusTheme = isDark ? 'dark_dimmed' : 'light';
+    
+    const script = document.createElement('script');
+    script.src = 'https://giscus.app/client.js';
+    script.setAttribute('data-repo', 'marcpinet/marcpinet.github.io');
+    script.setAttribute('data-repo-id', 'R_kgDOJDP6MA');
+    script.setAttribute('data-category', 'Q&A');
+    script.setAttribute('data-category-id', 'DIC_kwDOJDP6MM4CUiRW');
+    script.setAttribute('data-mapping', 'title');
+    script.setAttribute('data-strict', '0');
+    script.setAttribute('data-reactions-enabled', '1');
+    script.setAttribute('data-emit-metadata', '0');
+    script.setAttribute('data-input-position', 'bottom');
+    script.setAttribute('data-theme', giscusTheme);
+    script.setAttribute('data-lang', 'en');
+    script.setAttribute('data-loading', 'lazy');
+    script.setAttribute('crossorigin', 'anonymous');
+    script.async = true;
+    
+    document.currentScript.parentNode.insertBefore(script, document.currentScript.nextSibling);
+})();
+
+function updateGiscusTheme() {
+    const themeSwitchers = document.querySelectorAll('.theme-switcher input');
+    if (themeSwitchers.length === 0) return;
+    
+    const islight = themeSwitchers[0].checked;
     const theme = islight ? 'light' : 'dark_dimmed';
 
-    const message = { setConfig: { 	theme: theme } };
+    const message = { setConfig: { theme: theme } };
     const iframe = document.querySelector('.giscus-frame');
-    iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    if (iframe) {
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    }
 }
-document.getElementById('themeswitch').addEventListener('click', () => setTimeout(update, 100)); // hack since callback order is undefined
-window.addEventListener('load', update);
+
+window.addEventListener('load', function() {
+    const themeSwitchers = document.querySelectorAll('.theme-switcher input');
+    themeSwitchers.forEach(switcher => {
+        switcher.addEventListener('change', () => setTimeout(updateGiscusTheme, 100));
+    });
+});
 </script>
 {% endblock giscus %}
