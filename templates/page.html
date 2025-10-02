@@ -97,10 +97,8 @@
 })();
 
 function updateGiscusTheme() {
-    const themeSwitchers = document.querySelectorAll('.theme-switcher input');
-    if (themeSwitchers.length === 0) return;
-    
-    const islight = themeSwitchers[0].checked;
+    const currentTheme = localStorage.getItem('theme');
+    const islight = currentTheme === 'light';
     const theme = islight ? 'light' : 'dark_dimmed';
 
     const message = { setConfig: { theme: theme } };
