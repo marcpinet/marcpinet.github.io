@@ -157,15 +157,60 @@
     margin-top:3%;
     position: relative;
 }
+
+.bloglist-table-row::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+                                rgba(var(--hint-color-rgb), 0.08),
+                                transparent 55%);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    z-index: 1;
+}
+
+.bloglist-table-row h3 {
+    text-decoration: underline;
+    text-decoration-color: #ff6d00;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+
 .bloglist-container{
     display:flex;
     flex-wrap: wrap;
 }
+
 .bloglist-table-row:hover{
     transform: translateY(-3px);
     border-color: var(--primary-color);
     box-shadow: 0 8px 20px rgba(255, 109, 0, 0.12),
                 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.bloglist-table-row:hover::before {
+    opacity: 0.8;
+}
+
+.bloglist-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.bloglist-card-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.bloglist-table-row .tag-link,
+.bloglist-table-row .venue-link {
+    position: relative;
+    z-index: 10;
 }
 .bloglist-links{
     text-decoration:none;

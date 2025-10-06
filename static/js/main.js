@@ -43,7 +43,7 @@ window.addEventListener('load', function() {
 
 // Glassy highlight effect on cards
 document.addEventListener('DOMContentLoaded', function() {
-    const cards = document.querySelectorAll('.card');
+    const cards = document.querySelectorAll('.card, .bloglist-table-row');
     
     cards.forEach(card => {
         card.addEventListener('mousemove', function(e) {
