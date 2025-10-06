@@ -2,7 +2,6 @@
 <div class="bloglist-container">
     {%- for page in pages %}
     <section class="bloglist-table-row">
-        <a href={{ page.extra.url }} class="bloglist-card-link"></a>
         <h3>
             {{page.title}}
         </h3>
@@ -31,7 +30,7 @@
                     {# si on a un venue, on l'ajoute #}
                     {% if page.extra.venue %}
                         {% if page.extra.venue_url %}
-                            <a href="{{ page.extra.venue_url }}" target="_blank" rel="noopener" class="venue-link">{{ page.extra.venue }}</a>
+                            <a href="{{ page.extra.venue_url }}" target="_blank" rel="noopener">{{ page.extra.venue }}</a>
                         {% else %}
                             {{ page.extra.venue }}
                         {% endif %}
@@ -39,7 +38,7 @@
 
                     {# si preprint avec lien externe (arXiv, DOI, etc.) #}
                     {% if page.extra.status == "preprint" and page.extra.url %}
-                        <a href="{{ page.extra.url }}" target="_blank" rel="noopener" class="venue-link">(link)</a>
+                        <a href="{{ page.extra.url }}" target="_blank" rel="noopener">(link)</a>
                     {% endif %}
                 </span>
             {% endif %}
@@ -52,7 +51,7 @@
                 <div class="post-tags">
                     <nav class="nav tags">
                         {% for tag in page.taxonomies.tags %}
-                        <a href={{ get_taxonomy_url(kind='tags' , name=tag) | safe }} class="tag-link">#{{ tag }}</a>&nbsp;
+                        <a href={{ get_taxonomy_url(kind='tags' , name=tag) | safe }}>#{{ tag }}</a>&nbsp;
                         {% endfor %}
                     </nav>
                 </div>
@@ -167,12 +166,12 @@
                   <a href="{{ h2.permalink | safe }}">{{ h2.title }}</a>
                   {% if h2.children %}
                   <ul>
-                    {% for h3 in h3.children %}
+                    {% for h3 in h2.children %}
                     <li>
                       <a href="{{ h3.permalink | safe }}">{{ h3.title }}</a>
                       {% if h3.children %}
                       <ul>
-                        {% for h4 in h4.children %}
+                        {% for h4 in h3.children %}
                         <li>
                           <a href="{{ h4.permalink | safe }}">{{ h4.title }}</a>
                         </li>
