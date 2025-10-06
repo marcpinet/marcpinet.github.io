@@ -11,88 +11,100 @@ function debounce(func, wait) {
   };
 }
 
-// Taken from mdbook
-// The strategy is as follows:
-// First, assign a value to each word in the document:
-//  Words that correspond to search terms (stemmer aware): 40
-//  Normal words: 2
-//  First word in a sentence: 8
-// Then use a sliding window with a constant number of words and count the
-// sum of the values of the words within the window. Then use the window that got the
-// maximum sum. If there are multiple maximas, then get the last one.
-// Enclose the terms in <b>.
-function makeTeaser(body, terms) {
-  var TERM_WEIGHT = 40;
-  var NORMAL_WORD_WEIGHT = 2;
-  var FIRST_WORD_WEIGHT = 8;
-  var TEASER_MAX_WORDS = 20;
+function normalizeText(text) {
+  return text.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
 
-  var stemmedTerms = terms.map(function (w) {
-    return elasticlunr.stemmer(w.toLowerCase());
+function findMatches(text, terms) {
+  var normalizedText = normalizeText(text);
+  var matches = [];
+  
+  terms.forEach(function(term) {
+    var normalizedTerm = normalizeText(term);
+    var index = 0;
+    while ((index = normalizedText.indexOf(normalizedTerm, index)) !== -1) {
+      matches.push({ start: index, length: term.length, term: term });
+      index += normalizedTerm.length;
+    }
   });
+  
+  return matches;
+}
 
-  var words = body.split(/\s+/); // split tout le texte
-  var weighted = [];
+function calculateScore(doc, terms) {
+  var score = 0;
+  var titleLower = normalizeText(doc.title);
+  var bodyLower = normalizeText(doc.body || '');
+  
+  terms.forEach(function(term) {
+    var normalizedTerm = normalizeText(term);
+    
+    var titleExactMatches = (titleLower.match(new RegExp('\\b' + normalizedTerm + '\\b', 'g')) || []).length;
+    var titlePartialMatches = (titleLower.match(new RegExp(normalizedTerm, 'g')) || []).length - titleExactMatches;
+    
+    var bodyExactMatches = (bodyLower.match(new RegExp('\\b' + normalizedTerm + '\\b', 'g')) || []).length;
+    var bodyPartialMatches = (bodyLower.match(new RegExp(normalizedTerm, 'g')) || []).length - bodyExactMatches;
+    
+    score += titleExactMatches * 100;
+    score += titlePartialMatches * 50;
+    score += bodyExactMatches * 10;
+    score += bodyPartialMatches * 5;
+  });
+  
+  return score;
+}
 
-  // Associe un poids à chaque mot
-  for (var i = 0; i < words.length; i++) {
-    var word = words[i];
-    var weight = NORMAL_WORD_WEIGHT;
-    if (i === 0 || words[i - 1].endsWith(".")) {
-      weight = FIRST_WORD_WEIGHT;
+function makeTeaser(body, terms) {
+  var TEASER_MAX_WORDS = 30;
+  var words = body.split(/\s+/);
+  
+  if (words.length === 0) {
+    return '';
+  }
+  
+  var normalizedBody = normalizeText(body);
+  var firstMatchIndex = -1;
+  var firstMatchWord = -1;
+  
+  for (var i = 0; i < terms.length; i++) {
+    var normalizedTerm = normalizeText(terms[i]);
+    var index = normalizedBody.indexOf(normalizedTerm);
+    if (index !== -1 && (firstMatchIndex === -1 || index < firstMatchIndex)) {
+      firstMatchIndex = index;
+      var textBeforeMatch = body.substring(0, index);
+      firstMatchWord = textBeforeMatch.split(/\s+/).length - 1;
     }
-    for (var k in stemmedTerms) {
-      if (elasticlunr.stemmer(word.toLowerCase()).startsWith(stemmedTerms[k])) {
-        weight = TERM_WEIGHT;
-      }
-    }
-    weighted.push([word, weight]);
   }
-
-  if (weighted.length === 0) {
-    return body.substring(0, 100) + "…";
+  
+  if (firstMatchWord === -1) {
+    firstMatchWord = 0;
   }
-
-  // Trouver l'index du premier mot correspondant
-  var firstMatchIndex = weighted.findIndex(w => w[1] === TERM_WEIGHT);
-  if (firstMatchIndex === -1) {
-    firstMatchIndex = 0; // fallback : pas trouvé
-  }
-
-  // Calcule une fenêtre centrée autour du mot trouvé
+  
   var halfWindow = Math.floor(TEASER_MAX_WORDS / 2);
-  var start = Math.max(0, firstMatchIndex - halfWindow);
-  var end = Math.min(weighted.length, start + TEASER_MAX_WORDS);
-
-  // Ajuster si on est trop près de la fin
+  var start = Math.max(0, firstMatchWord - halfWindow);
+  var end = Math.min(words.length, start + TEASER_MAX_WORDS);
+  
   if (end - start < TEASER_MAX_WORDS && start > 0) {
     start = Math.max(0, end - TEASER_MAX_WORDS);
   }
-
-  // Construire le teaser
-  var teaser = [];
-  if (start > 0) {
-    teaser.push("… ");
-  }
-  for (var i = start; i < end; i++) {
-    var word = weighted[i][0];
-    if (weighted[i][1] === TERM_WEIGHT) {
-      teaser.push("<b>" + word + "</b>");
-    } else {
-      teaser.push(word);
-    }
-  }
-  if (end < weighted.length) {
-    teaser.push(" …");
-  }
-
-  return teaser.join(" ");
+  
+  var teaserWords = words.slice(start, end);
+  var teaserText = teaserWords.join(' ');
+  
+  terms.forEach(function(term) {
+    var normalizedTerm = normalizeText(term);
+    var regex = new RegExp('(' + normalizedTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    teaserText = teaserText.replace(regex, '<b>$1</b>');
+  });
+  
+  var prefix = start > 0 ? '… ' : '';
+  var suffix = end < words.length ? ' …' : '';
+  
+  return prefix + teaserText + suffix;
 }
 
-
 function formatSearchResultItem(item, terms) {
-  // Titre + petit extrait max
-  var teaser = "";
+  var teaser = '';
   if (item.doc.description) {
     teaser = item.doc.description;
   } else if (item.doc.body) {
@@ -107,52 +119,85 @@ function formatSearchResultItem(item, terms) {
   `;
 }
 
+function performSearch(docs, searchTerms) {
+  var results = [];
+  
+  docs.forEach(function(doc) {
+    var score = calculateScore(doc, searchTerms);
+    if (score > 0) {
+      results.push({
+        ref: doc.ref,
+        doc: doc,
+        score: score
+      });
+    }
+  });
+  
+  results.sort(function(a, b) {
+    return b.score - a.score;
+  });
+  
+  return results;
+}
+
 function initSearch() {
-  var $searchInput = document.getElementById("search");
-  var $searchResults = document.querySelector(".search-results");
-  var $searchResultsItems = document.querySelector(".search-results__items");
+  var $searchInput = document.getElementById('search');
+  var $searchResults = document.querySelector('.search-results');
+  var $searchResultsItems = document.querySelector('.search-results__items');
   var MAX_ITEMS = 10;
 
-  var options = {
-    bool: "AND",
-    fields: { title: {boost: 2}, body: {boost: 1} }
-  };
-  var currentTerm = "";
-  var initIndex = elasticlunr.Index.load(window.searchIndex);
+  var currentTerm = '';
+  var indexData = elasticlunr.Index.load(window.searchIndex);
+  var allDocs = [];
+  
+  indexData.documentStore.docs = indexData.documentStore.docs || {};
+  for (var ref in indexData.documentStore.docs) {
+    if (indexData.documentStore.docs.hasOwnProperty(ref)) {
+      var doc = indexData.documentStore.docs[ref];
+      allDocs.push({
+        ref: ref,
+        title: doc.title || '',
+        body: doc.body || '',
+        description: doc.description || ''
+      });
+    }
+  }
 
-  $searchInput.addEventListener("keyup", debounce(async function() {
+  $searchInput.addEventListener('keyup', debounce(function() {
     var term = $searchInput.value.trim();
     if (term === currentTerm) return;
 
-    $searchResults.style.display = term === "" ? "none" : "block";
-    $searchResultsItems.innerHTML = "";
+    $searchResults.style.display = term === '' ? 'none' : 'block';
+    $searchResultsItems.innerHTML = '';
     currentTerm = term;
-    if (term === "") return;
+    if (term === '') return;
 
-    var results = initIndex.search(term, options);
+    var searchTerms = term.split(/\s+/).filter(function(t) { return t.length > 0; });
+    var results = performSearch(allDocs, searchTerms);
+    
     if (results.length === 0) {
-      $searchResults.style.display = "none";
+      $searchResults.style.display = 'none';
       return;
     }
 
     for (var i = 0; i < Math.min(results.length, MAX_ITEMS); i++) {
-      var item = document.createElement("li");
-      item.innerHTML = formatSearchResultItem(results[i], term.split(" "));
+      var item = document.createElement('li');
+      item.innerHTML = formatSearchResultItem(results[i], searchTerms);
       $searchResultsItems.appendChild(item);
     }
   }, 150));
 
   window.addEventListener('click', function(e) {
-    if ($searchResults.style.display === "block" && !$searchResults.contains(e.target)) {
-      $searchResults.style.display = "none";
+    if ($searchResults.style.display === 'block' && !$searchResults.contains(e.target)) {
+      $searchResults.style.display = 'none';
     }
   });
 }
 
-if (document.readyState === "complete" ||
-    (document.readyState !== "loading" && !document.documentElement.doScroll)
+if (document.readyState === 'complete' ||
+    (document.readyState !== 'loading' && !document.documentElement.doScroll)
 ) {
   initSearch();
 } else {
-  document.addEventListener("DOMContentLoaded", initSearch);
+  document.addEventListener('DOMContentLoaded', initSearch);
 }
