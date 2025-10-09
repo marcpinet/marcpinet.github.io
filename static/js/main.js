@@ -89,7 +89,7 @@ function initTagsCollapse() {
             
             const showMoreBtn = document.createElement('span');
             showMoreBtn.className = 'show-more-tags';
-            showMoreBtn.textContent = 'show more';
+            showMoreBtn.textContent = 'Show more';
             showMoreBtn.style.cursor = 'pointer';
             
             let isExpanded = false;
@@ -105,7 +105,7 @@ function initTagsCollapse() {
                     }
                 }
                 
-                showMoreBtn.textContent = isExpanded ? 'show less' : 'show more';
+                showMoreBtn.textContent = isExpanded ? 'Show less' : 'Show more';
             });
             
             container.appendChild(showMoreBtn);
