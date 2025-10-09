@@ -20,11 +20,11 @@ Self-supervised detection and explanation of anomalies in time series data for l
 </div>
 
 <div class="fields">
-<span class="field-tag">Deep Learning</span>
 <span class="field-tag">Anomaly Detection</span>
 <span class="field-tag">Self-Supervised Learning</span>
 <span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Explainable AI</span>
+<span class="field-tag">Deep Learning</span>
 <span class="field-tag">Large Language Models (LLMs)</span>
 <span class="field-tag">Retrieval-Augmented Generation (RAG)</span>
 <span class="field-tag">GraphRAG</span>
@@ -59,11 +59,11 @@ Research on self-supervised deep learning for time series anomaly detection and 
 </div>
 
 <div class="fields">
-<span class="field-tag">Deep Learning</span>
 <span class="field-tag">Anomaly Detection</span>
 <span class="field-tag">Self-Supervised Learning</span>
 <span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Explainable AI</span>
+<span class="field-tag">Deep Learning</span>
 <span class="field-tag">Large Language Models (LLMs)</span>
 <span class="field-tag">Research and Development</span>
 <span class="field-tag">Linear Algebra</span>
@@ -94,9 +94,10 @@ Unsupervised anomaly detection system for heterogeneous data (logs, metrics, tra
 </div>
 
 <div class="fields">
+<span class="field-tag">Anomaly Detection</span>
 <span class="field-tag">Time Series Analysis</span>
-<span class="field-tag">Machine Learning</span>
 <span class="field-tag">Natural Language Processing (NLP)</span>
+<span class="field-tag">Machine Learning</span>
 <span class="field-tag">Retrieval-Augmented Generation (RAG)</span>
 <span class="field-tag">Chain of Thought (CoT)</span>
 <span class="field-tag">Agentic AI</span>
@@ -121,8 +122,8 @@ Time series trends analysis using tools such as Prophet, SARIMA, STL, and DTW. I
 
 <div class="fields">
 <span class="field-tag">Time Series Analysis</span>
-<span class="field-tag">Machine Learning</span>
 <span class="field-tag">Natural Language Processing (NLP)</span>
+<span class="field-tag">Machine Learning</span>
 <span class="field-tag">Data Science</span>
 <span class="field-tag">Data Engineering</span>
 <span class="field-tag">MLOps</span>

@@ -41,7 +41,6 @@ window.addEventListener('load', function() {
     }
 });
 
-// Glassy highlight effect on cards
 document.addEventListener('DOMContentLoaded', function() {
     const cards = document.querySelectorAll('.card, .bloglist-table-row');
     
@@ -56,24 +55,105 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Make field tags clickable with Wikipedia links
     const fieldTags = document.querySelectorAll('.field-tag');
     fieldTags.forEach(tag => {
         const tagText = tag.textContent.trim();
         if (tagText && !tag.querySelector('a')) {
-            // Remove acronyms in parentheses for Wikipedia search only
             const cleanedTextForSearch = tagText.replace(/\s*\([^)]*\)\s*/g, '').trim();
             const wikipediaUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(cleanedTextForSearch)}`;
             const link = document.createElement('a');
             link.href = wikipediaUrl;
             link.target = '_blank';
             link.rel = 'noopener noreferrer';
-            link.textContent = tagText; // Keep original text with acronym for display
+            link.textContent = tagText;
             
             tag.innerHTML = '';
             tag.appendChild(link);
         }
     });
+    
+    initTagsCollapse();
+    initDescriptionCollapse();
 });
 
+function initTagsCollapse() {
+    const fieldsContainers = document.querySelectorAll('.fields');
+    
+    fieldsContainers.forEach(container => {
+        const tags = container.querySelectorAll('.field-tag');
+        
+        if (tags.length > 3) {
+            for (let i = 3; i < tags.length; i++) {
+                tags[i].classList.add('hidden');
+            }
+            
+            const showMoreBtn = document.createElement('span');
+            showMoreBtn.className = 'show-more-tags';
+            showMoreBtn.textContent = 'show more';
+            showMoreBtn.style.cursor = 'pointer';
+            
+            let isExpanded = false;
+            
+            showMoreBtn.addEventListener('click', function() {
+                isExpanded = !isExpanded;
+                
+                for (let i = 3; i < tags.length; i++) {
+                    if (isExpanded) {
+                        tags[i].classList.remove('hidden');
+                    } else {
+                        tags[i].classList.add('hidden');
+                    }
+                }
+                
+                showMoreBtn.textContent = isExpanded ? 'show less' : 'show more';
+            });
+            
+            container.appendChild(showMoreBtn);
+        }
+    });
+}
 
+function initDescriptionCollapse() {
+    if (window.innerWidth <= 768) {
+        const descriptions = document.querySelectorAll('.entry-description');
+        
+        descriptions.forEach(description => {
+            const fullText = description.textContent.trim();
+            
+            if (fullText.length > 80) {
+                const truncatedText = fullText.substring(0, 80);
+                
+                description.innerHTML = truncatedText + '... ';
+                
+                const showMoreBtn = document.createElement('span');
+                showMoreBtn.className = 'show-more-description';
+                showMoreBtn.textContent = 'more';
+                
+                let isExpanded = false;
+                
+                showMoreBtn.addEventListener('click', function() {
+                    isExpanded = !isExpanded;
+                    
+                    if (isExpanded) {
+                        description.innerHTML = fullText + ' ';
+                        const showLessBtn = document.createElement('span');
+                        showLessBtn.className = 'show-more-description';
+                        showLessBtn.textContent = 'less';
+                        showLessBtn.addEventListener('click', function() {
+                            isExpanded = false;
+                            description.innerHTML = truncatedText + '... ';
+                            const newShowMoreBtn = document.createElement('span');
+                            newShowMoreBtn.className = 'show-more-description';
+                            newShowMoreBtn.textContent = 'more';
+                            newShowMoreBtn.addEventListener('click', arguments.callee.bind(this));
+                            description.appendChild(newShowMoreBtn);
+                        });
+                        description.appendChild(showLessBtn);
+                    }
+                });
+                
+                description.appendChild(showMoreBtn);
+            }
+        });
+    }
+}
