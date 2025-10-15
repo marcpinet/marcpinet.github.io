@@ -3,7 +3,7 @@
     {%- for page in pages %}
     <section class="bloglist-table-row">
         <h3>
-            {{page.title}}
+            <a href={{ page.permalink }} class="bloglist-card-link">{{page.title}}</a>
         </h3>
 
         <div class="meta">
@@ -30,7 +30,7 @@
                     {# si on a un venue, on l'ajoute #}
                     {% if page.extra.venue %}
                         {% if page.extra.venue_url %}
-                            <a href="{{ page.extra.venue_url }}" target="_blank" rel="noopener">{{ page.extra.venue }}</a>
+                            <a style="z-index:10;" class="venue-link" href="{{ page.extra.venue_url }}" target="_blank" rel="noopener" onclick="event.stopPropagation();">{{ page.extra.venue }}</a>
                         {% else %}
                             {{ page.extra.venue }}
                         {% endif %}
@@ -38,7 +38,7 @@
 
                     {# si preprint avec lien externe (arXiv, DOI, etc.) #}
                     {% if page.extra.status == "preprint" and page.extra.url %}
-                        <a href="{{ page.extra.url }}" target="_blank" rel="noopener">(link)</a>
+                        <a style="z-index:10;" class="venue-link" href="{{ page.extra.url }}" target="_blank" rel="noopener" onclick="event.stopPropagation();">(link)</a>
                     {% endif %}
                 </span>
             {% endif %}
@@ -51,7 +51,7 @@
                 <div class="post-tags">
                     <nav class="nav tags">
                         {% for tag in page.taxonomies.tags %}
-                        <a href={{ get_taxonomy_url(kind='tags' , name=tag) | safe }}>#{{ tag }}</a>&nbsp;
+                        <a style="z-index:10;" class="tag-link" href={{ get_taxonomy_url(kind='tags' , name=tag) | safe }} onclick="event.stopPropagation();">#{{ tag }}</a>&nbsp;
                         {% endfor %}
                     </nav>
                 </div>

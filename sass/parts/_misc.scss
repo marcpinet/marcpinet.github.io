@@ -46,7 +46,7 @@ a{
   font-weight:1000;
 }
 
-a:not(.icon):not(.card-link):not(.card-main-link):not(.github-link):not(.social):hover {
+a:not(.icon):not(.card-link):not(.card-main-link):not(.github-link):not(.social):not(.bloglist-card-link):hover {
   background-color: var(--primary-color);
   color: var(--hover-color);
 }

@@ -179,6 +179,17 @@
     text-underline-offset: 4px;
 }
 
+.bloglist-table-row h3 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.bloglist-table-row h3 a:hover {
+    text-decoration: none;
+    color: inherit;
+    background-color: transparent;
+}
+
 .bloglist-container{
     display:flex;
     flex-wrap: wrap;
@@ -196,6 +207,11 @@
 }
 
 .bloglist-card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.bloglist-card-link:hover {
     text-decoration: none;
     color: inherit;
 }
