@@ -52,12 +52,16 @@
     {% endif %}
 
     <meta property="og:title" content="{{ config.title }}">
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="website" />
 
     {% if config.extra.headerImage %}
         <meta property="og:image" content="{{ get_url(path=config.extra.headerImage) }}">
-        <meta name="twitter:card" content="summary">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:alt" content="{{ config.title }}">
+        <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:image" content="{{ get_url(path=config.extra.headerImage) }}">
+        <meta name="twitter:image:alt" content="{{ config.title }}">
     {% endif %}
 
     <meta name="theme-color" content="#fa6b06">
@@ -67,4 +71,22 @@
     
     <meta property="og:description" content="{{ config.description }}">
     <meta property="og:site_name" content="{{ config.title }}">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "{{ config.title }}",
+      "url": "{{ config.base_url }}",
+      "image": "{{ get_url(path=config.extra.headerImage) }}",
+      "description": "{{ config.description }}",
+      "sameAs": [
+        {% for social in config.extra.socials %}
+          {% if social.name != "Email" and social.name != "CV" and social.name != "RSS" %}
+            "{{ social.url }}"{% if not loop.last %},{% endif %}
+          {% endif %}
+        {% endfor %}
+      ]
+    }
+    </script>
 </head>

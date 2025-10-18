@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embed Preview Tester</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .input-section {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 60px;
+        }
+
+        button {
+            background: #fa6b06;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        button:hover {
+            background: #e05f05;
+        }
+
+        .preview-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .preview-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .preview-header {
+            background: #333;
+            color: white;
+            padding: 12px 16px;
+            font-weight: 600;
+        }
+
+        .preview-content {
+            padding: 16px;
+        }
+
+        .facebook-preview, .twitter-preview, .linkedin-preview {
+            border: 1px solid #e1e8ed;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .preview-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            background: #f0f0f0;
+        }
+
+        .preview-text {
+            padding: 12px;
+        }
+
+        .preview-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1d2129;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .preview-description {
+            font-size: 14px;
+            color: #606770;
+            line-height: 1.4;
+            margin-bottom: 4px;
+        }
+
+        .preview-url {
+            font-size: 12px;
+            color: #90949c;
+            text-transform: uppercase;
+        }
+
+        .twitter-preview {
+            max-width: 504px;
+        }
+
+        .twitter-preview .preview-image {
+            aspect-ratio: 2 / 1;
+            object-fit: cover;
+        }
+
+        .google-preview {
+            border-left: 3px solid #4285f4;
+            padding-left: 12px;
+        }
+
+        .google-preview .preview-url {
+            color: #4285f4;
+            font-size: 14px;
+            margin-bottom: 4px;
+        }
+
+        .google-preview .preview-title {
+            color: #1a0dab;
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .google-preview .preview-description {
+            font-size: 14px;
+            color: #545454;
+        }
+
+        .image-preview {
+            margin-top: 8px;
+            max-width: 120px;
+            border: 1px solid #ddd;
+        }
+
+        @media (max-width: 768px) {
+            .preview-section {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Embed Preview Tester</h1>
+        
+        <div class="input-section">
+            <label for="title">Title</label>
+            <input type="text" id="title" value="Marc Pinet" placeholder="Your site title">
+            
+            <label for="description">Description</label>
+            <textarea id="description" placeholder="Your site description">My Personal Website</textarea>
+            
+            <label for="url">URL</label>
+            <input type="text" id="url" value="https://marcpinet.fr" placeholder="https://example.com">
+            
+            <label for="image">Image URL</label>
+            <input type="text" id="image" value="https://marcpinet.fr/homepage/me.jpg" placeholder="https://example.com/image.jpg">
+            
+            <button onclick="updatePreview()">Update Preview</button>
+        </div>
+
+        <div class="preview-section">
+            <div class="preview-card">
+                <div class="preview-header">Facebook</div>
+                <div class="preview-content">
+                    <div class="facebook-preview">
+                        <img id="fb-img" class="preview-image" src="" alt="Preview">
+                        <div class="preview-text">
+                            <div class="preview-url" id="fb-url"></div>
+                            <div class="preview-title" id="fb-title"></div>
+                            <div class="preview-description" id="fb-desc"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-card">
+                <div class="preview-header">Twitter</div>
+                <div class="preview-content">
+                    <div class="twitter-preview">
+                        <img id="tw-img" class="preview-image" src="" alt="Preview">
+                        <div class="preview-text">
+                            <div class="preview-title" id="tw-title"></div>
+                            <div class="preview-description" id="tw-desc"></div>
+                            <div class="preview-url" id="tw-url"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-card">
+                <div class="preview-header">Google Search</div>
+                <div class="preview-content">
+                    <div class="google-preview">
+                        <div class="preview-url" id="g-url"></div>
+                        <div class="preview-title" id="g-title"></div>
+                        <div class="preview-description" id="g-desc"></div>
+                        <img id="g-img" class="image-preview" src="" alt="Preview">
+                    </div>
+                </div>
+            </div>
+
+            <div class="preview-card">
+                <div class="preview-header">LinkedIn</div>
+                <div class="preview-content">
+                    <div class="linkedin-preview">
+                        <img id="li-img" class="preview-image" src="" alt="Preview">
+                        <div class="preview-text">
+                            <div class="preview-title" id="li-title"></div>
+                            <div class="preview-description" id="li-desc"></div>
+                            <div class="preview-url" id="li-url"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updatePreview() {
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const url = document.getElementById('url').value;
+            const image = document.getElementById('image').value;
+
+            const domain = new URL(url).hostname;
+
+            document.getElementById('fb-title').textContent = title;
+            document.getElementById('fb-desc').textContent = description;
+            document.getElementById('fb-url').textContent = domain.toUpperCase();
+            document.getElementById('fb-img').src = image;
+
+            document.getElementById('tw-title').textContent = title;
+            document.getElementById('tw-desc').textContent = description;
+            document.getElementById('tw-url').textContent = domain;
+            document.getElementById('tw-img').src = image;
+
+            document.getElementById('g-title').textContent = title;
+            document.getElementById('g-desc').textContent = description;
+            document.getElementById('g-url').textContent = url;
+            document.getElementById('g-img').src = image;
+
+            document.getElementById('li-title').textContent = title;
+            document.getElementById('li-desc').textContent = description;
+            document.getElementById('li-url').textContent = domain;
+            document.getElementById('li-img').src = image;
+        }
+
+        window.addEventListener('load', updatePreview);
+    </script>
+</body>
+</html>
