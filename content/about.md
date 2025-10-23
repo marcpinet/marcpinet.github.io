@@ -50,7 +50,7 @@ Self-supervised detection and explanation of anomalies in time series data for l
 <div class="experience-entry">
 
 <div class="entry-header">
-<h3>Industrial PhD Student</h3>
+<h3>Industrial PhD Candidate</h3>
 <div class="entry-date">Oct 2025 - Present</div>
 </div>
 
