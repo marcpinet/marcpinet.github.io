@@ -532,6 +532,20 @@ Equivalent of a DUT (Diplôme Universitaire de Technologie) in France, with 4 mo
 </div>
 </div>
 
+<div class="certification-entry position-8">
+<div class="cert-logo">
+<a href="https://www.certificat-voltaire.fr/" target="_blank">
+<img src="/about_img/certifs/voltaire.svg" alt="Certificat Voltaire" width="70" height="70">
+</a>
+</div>
+<div class="cert-content">
+<h3>Certification Voltaire</h3>
+<div class="cert-meta">
+<strong>Issued: Jun 2021</strong>
+</div>
+</div>
+</div>
+
 </div>
 
 </div>
