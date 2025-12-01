@@ -4,7 +4,7 @@
     <link>https://marcpinet.fr</link>
     <description>All updates from Marc Pinet - posts, projects, experiences, education, and certifications</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 01 Dec 2025 12:25:47 GMT</lastBuildDate>
+    <lastBuildDate>Mon, 01 Dec 2025 17:04:16 GMT</lastBuildDate>
     <generator>Custom RSS Generator</generator>
     <atom:link href="https://marcpinet.fr/feeds/all.xml" rel="self" type="application/rss+xml"/>
     <item>
@@ -187,6 +187,13 @@
       <description>⚡️ A tool to download multiple torrents or transfer magnets from Nyaa.si. A lot of customization options are available to guarantee good results.</description>
       <pubDate>Sat, 04 Sep 2021 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
+    <item>
+      <title>New Certification: Certification Voltaire</title>
+      <link>https://marcpinet.fr/</link>
+      <description>Certification: Certification Voltaire | Issued: Jun 2021</description>
+      <pubDate>Tue, 01 Jun 2021 00:00:00 GMT</pubDate>
+      <guid isPermaLink="false">marcpinet.fr:certification:f11aa440eb24dec8f211374c96eb5ccd</guid>
     </item>
     <item>
       <title>Work in progress...</title>
