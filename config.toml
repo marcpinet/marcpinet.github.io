@@ -41,7 +41,7 @@ search_bar = true
 favicon = "/favicon.ico"
 
 # This header image is used for SEO. For example if you were to share an image via Messenger/Instagram/Twitter a preview picture is also presented
-headerImage = "/homepage/me.jpg"
+#headerImage = "/homepage/me.jpg"
 
 # The icon is display besides the menu text but is not necessary. It needs to be placed under "menu_icon" in the static "folder"
 menu = [
