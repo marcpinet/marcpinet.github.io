@@ -55,14 +55,14 @@ Self-supervised detection and explanation of anomalies in time series data for l
 </div>
 
 <div class="entry-description">
-Research on self-supervised deep learning for time series anomaly detection and explanation in collaboration with Orange Innovation. Developing novel XAI approaches for automated anomaly characterization and LLM-enhanced interpretation frameworks. Working towards publications in ML conferences.
+Research on self-supervised deep learning for time series anomaly detection and explanation in collaboration with Orange Innovation. Developing novel deep learning approaches for automated anomaly characterization and interpretation frameworks. Working towards publications in ML conferences.
 </div>
 
 <div class="fields">
 <span class="field-tag">Anomaly Detection</span>
 <span class="field-tag">Self-Supervised Learning</span>
 <span class="field-tag">Time Series Analysis</span>
-<span class="field-tag">Explainable AI</span>
+<span class="field-tag">Interpretability</span>
 <span class="field-tag">Deep Learning</span>
 <span class="field-tag">Large Language Models (LLMs)</span>
 <span class="field-tag">Research and Development</span>
@@ -250,7 +250,7 @@ Thesis: Self-supervised deep learning detection and explanation of anomalies in 
 <span class="field-tag">Anomaly Detection</span>
 <span class="field-tag">Self-Supervised Learning</span>
 <span class="field-tag">Time Series Analysis</span>
-<span class="field-tag">Explainable AI</span>
+<span class="field-tag">Interpretability</span>
 <span class="field-tag">Linear Algebra</span>
 <span class="field-tag">Statistics</span>
 <span class="field-tag">Probability</span>
