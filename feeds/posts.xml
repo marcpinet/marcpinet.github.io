@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+  <channel>
+    <title>Marc Pinet - Posts</title>
+    <link>https://marcpinet.fr</link>
+    <description>Latest blog posts and articles</description>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 01 Mar 2026 01:23:36 GMT</lastBuildDate>
+    <generator>Custom RSS Generator</generator>
+    <atom:link href="https://marcpinet.fr/feeds/posts.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Work in progress...</title>
+      <link>https://marcpinet.fr/posts/wip/</link>
+      <description>New post published</description>
+      <pubDate>Thu, 01 Jan 1970 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/posts/wip/</guid>
+    </item>
+  </channel>
+</rss>

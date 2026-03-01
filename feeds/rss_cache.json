@@ -1,0 +1,143 @@
+{
+  "timestamp": "2026-03-01T01:23:36.080895",
+  "content": {
+    "posts": [
+      {
+        "id": "d0968e32d17890b84bb5a3f8b0105170",
+        "date": "1970-01-01",
+        "title": "Work in progress..."
+      }
+    ],
+    "projects": [
+      {
+        "id": "9c82e67e9de0a54597726928c3c966cd",
+        "date": "2025-07-20",
+        "title": "Mimimi"
+      },
+      {
+        "id": "298ac205bfc9e7bce1426206761eee6f",
+        "date": "2025-01-31",
+        "title": "WebsemOG24"
+      },
+      {
+        "id": "cbcaa90016757863e41241981727ce33",
+        "date": "2024-11-30",
+        "title": "Neuralnetlib"
+      },
+      {
+        "id": "69a4d48653ab52b4f852792397103946",
+        "date": "2024-05-27",
+        "title": "Handigits"
+      },
+      {
+        "id": "e2dff1d6b938c6bd31ee20eb82f0c992",
+        "date": "2024-04-20",
+        "title": "EdgeAI Bird"
+      },
+      {
+        "id": "df46fd8600a8f8ca7c24ed687918f353",
+        "date": "2024-04-06",
+        "title": "Quanridor"
+      },
+      {
+        "id": "bbca2a32bb84e1f3f32b50ef3635458e",
+        "date": "2023-11-28",
+        "title": "LetsGoBiking"
+      },
+      {
+        "id": "911137aadd4aaeec66023a78188f117f",
+        "date": "2023-06-18",
+        "title": "Polyquiz"
+      },
+      {
+        "id": "ed93f002f156954e94c9d5c4982a9685",
+        "date": "2023-05-24",
+        "title": "Poubelledroid"
+      },
+      {
+        "id": "66d5e4319db6d99cfc9219d25aefa750",
+        "date": "2023-03-03",
+        "title": "Neat Cars"
+      },
+      {
+        "id": "21cb16f590a4de92b9392268e3c0c1c3",
+        "date": "2023-02-18",
+        "title": "Connect4 AI"
+      },
+      {
+        "id": "aa8b723298925e61118bb149d59ca0e6",
+        "date": "2023-01-30",
+        "title": "Parm"
+      },
+      {
+        "id": "8adb76c13f47cbb0a652500498ce8eab",
+        "date": "2022-07-01",
+        "title": "LoTexto"
+      },
+      {
+        "id": "1f8ab4cea88f678fafc73fb49ac47210",
+        "date": "2022-03-18",
+        "title": "Sort Visualizer"
+      },
+      {
+        "id": "9985638cf8a4b0df8d781592aa6bbdbd",
+        "date": "2022-03-01",
+        "title": "Maze Generator And Solver"
+      },
+      {
+        "id": "174f8cddbadf56564dc91f9356116ac4",
+        "date": "2022-01-18",
+        "title": "Epidemic Modeling"
+      },
+      {
+        "id": "efeed27991539baf5fd06bc95ab6c2ac",
+        "date": "2021-09-04",
+        "title": "NyaaDownloader"
+      }
+    ],
+    "experiences": [],
+    "education": [],
+    "certifications": [
+      {
+        "id": "f45eec5a7a8b2825f5be21a9a583d735",
+        "date": "2025-01-01",
+        "title": "Stanford | DeepLearning.AI Deep Learning Specialization"
+      },
+      {
+        "id": "e92edb45d23e635c3a14cd06afa77f4b",
+        "date": "2025-01-01",
+        "title": "Stanford | DeepLearning.AI Machine Learning Specialization"
+      },
+      {
+        "id": "c8cfbe524c411967646fed3544eefe63",
+        "date": "2024-06-01",
+        "title": "Boating License"
+      },
+      {
+        "id": "ae40817ce57e71223b403526ece659c6",
+        "date": "2023-12-01",
+        "title": "TOEIC"
+      },
+      {
+        "id": "71d6738827fe5c071e39a5080cf4df94",
+        "date": "2023-09-01",
+        "title": "Google Cybersecurity"
+      },
+      {
+        "id": "d7e37258539f370437965195d2f22586",
+        "date": "2023-07-01",
+        "title": "EIT Digital Quantum Computing"
+      },
+      {
+        "id": "89c42ae3f32994d34be5aa7b2de8c595",
+        "date": "2022-11-01",
+        "title": "Driver's License"
+      },
+      {
+        "id": "f11aa440eb24dec8f211374c96eb5ccd",
+        "date": "2021-06-01",
+        "title": "Certification Voltaire"
+      }
+    ]
+  }
+}
