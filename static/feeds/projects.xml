@@ -4,9 +4,16 @@
     <link>https://marcpinet.fr</link>
     <description>New projects and developments</description>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Apr 2026 18:50:39 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 08 Apr 2026 01:08:25 GMT</lastBuildDate>
     <generator>Custom RSS Generator</generator>
     <atom:link href="https://marcpinet.fr/feeds/projects.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>New Project: Citracer</title>
+      <link>https://marcpinet.fr/projects/citracer/</link>
+      <description>💬 Given a source PDF and a keyword, citracer parses the bibliography with GROBID, finds every occurrence of the keyword in the body, identifies the references cited near each occurrence, downloads those papers, and recursively walks the resulting citation graph. The output is an interactive HTML page.</description>
+      <pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/projects/citracer/</guid>
+    </item>
     <item>
       <title>New Project: Mimimi</title>
       <link>https://marcpinet.fr/projects/mimimi/</link>
