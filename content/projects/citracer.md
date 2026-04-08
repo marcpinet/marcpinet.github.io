@@ -127,7 +127,7 @@ Given a source PDF and a keyword, citracer parses the bibliography with GROBID, 
 
 > **Supported sources.** citracer currently resolves cited papers through three external services: [arXiv](https://arxiv.org/), [Semantic Scholar](https://www.semanticscholar.org/), and [OpenReview](https://openreview.net/) (for ICLR / TMLR papers not on arXiv). Workshop proceedings, books, and paywalled journal articles are not retrievable and appear as `unavailable` nodes in the graph.
 
-![citracer interactive graph](readme_data/graph.png)
+![citracer interactive graph](https://raw.githubusercontent.com/marcpinet/citracer/main/readme_data/graph.png)
 
 ## ⚙️ Installation
 
@@ -148,30 +148,44 @@ A [Semantic Scholar API key](https://www.semanticscholar.org/product/api#api-key
 python citation_tracer.py --pdf paper.pdf --keyword "channel-independent" --depth 3
 ```
 
-| Flag | Default | Description |
-|---|---|---|
-| `--pdf` | required | Path to the source PDF |
-| `--keyword` | required | Term to trace through citations |
-| `--depth` | `3` | Maximum recursion depth |
-| `--details` | off | Show passages directly in node tooltips |
-| `--output` | `./output/graph.html` | Output HTML file |
-| `--cache-dir` | `./cache` | Local cache for PDFs and metadata |
-| `--grobid-url` | `http://localhost:8070` | GROBID service URL |
-| `--s2-api-key` | none | Semantic Scholar API key |
-| `--context-window` | sentence-based | If set, fall back to a ±N character window for ref association |
-| `--no-open` | off | Do not open the result in a browser |
-| `-v, --verbose` | off | Verbose logging |
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th><p>Flag</p></th><th><p>Default</p></th><th><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr><td><p><code>--pdf</code></p></td><td><p>required</p></td><td><p>Path to the source PDF</p></td></tr>
+<tr><td><p><code>--keyword</code></p></td><td><p>required</p></td><td><p>Term to trace through citations</p></td></tr>
+<tr><td><p><code>--depth</code></p></td><td><p><code>3</code></p></td><td><p>Maximum recursion depth</p></td></tr>
+<tr><td><p><code>--details</code></p></td><td><p>off</p></td><td><p>Show passages directly in node tooltips</p></td></tr>
+<tr><td><p><code>--output</code></p></td><td><p><code>./output/graph.html</code></p></td><td><p>Output HTML file</p></td></tr>
+<tr><td><p><code>--cache-dir</code></p></td><td><p><code>./cache</code></p></td><td><p>Local cache for PDFs and metadata</p></td></tr>
+<tr><td><p><code>--grobid-url</code></p></td><td><p><code>http://localhost:8070</code></p></td><td><p>GROBID service URL</p></td></tr>
+<tr><td><p><code>--s2-api-key</code></p></td><td><p>none</p></td><td><p>Semantic Scholar API key</p></td></tr>
+<tr><td><p><code>--context-window</code></p></td><td><p>sentence-based</p></td><td><p>If set, fall back to a ±N character window for ref association</p></td></tr>
+<tr><td><p><code>--no-open</code></p></td><td><p>off</p></td><td><p>Do not open the result in a browser</p></td></tr>
+<tr><td><p><code>-v, --verbose</code></p></td><td><p>off</p></td><td><p>Verbose logging</p></td></tr>
+</tbody>
+</table>
+</div>
 
 ## 🎨 Output
 
 Nodes are colored by status:
 
-| Color | Status | Meaning |
-|---|---|---|
-| blue | `root` | The source PDF |
-| green | `analyzed` | PDF retrieved and the keyword was found in its text |
-| gray | `analyzed (no match)` | PDF retrieved and parsed, but the keyword does not appear |
-| red | `unavailable` | PDF could not be retrieved |
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th><p>Color</p></th><th><p>Status</p></th><th><p>Meaning</p></th></tr>
+</thead>
+<tbody>
+<tr><td><p>blue</p></td><td><p><code>root</code></p></td><td><p>The source PDF</p></td></tr>
+<tr><td><p>green</p></td><td><p><code>analyzed</code></p></td><td><p>PDF retrieved and the keyword was found in its text</p></td></tr>
+<tr><td><p>gray</p></td><td><p><code>analyzed (no match)</code></p></td><td><p>PDF retrieved and parsed, but the keyword does not appear</p></td></tr>
+<tr><td><p>red</p></td><td><p><code>unavailable</code></p></td><td><p>PDF could not be retrieved</p></td></tr>
+</tbody>
+</table>
+</div>
 
 Node size scales with the number of keyword occurrences. The interactive graph supports hover for live preview, click to pin a node, click on the legend to toggle visibility by status, and KaTeX rendering of LaTeX in passages.
 
@@ -209,18 +223,25 @@ citation_tracer/
 
 ## 🧩 Dependencies
 
-| Package | Used for |
-|---|---|
-| [GROBID](https://github.com/kermitt2/grobid) | PDF structural parsing (external service) |
-| [lxml](https://lxml.de/) | TEI XML processing |
-| [pymupdf](https://pymupdf.readthedocs.io/) | PDF text extraction (parser fallback) |
-| [arxiv](https://github.com/lukasschwab/arxiv.py) | arXiv search and download |
-| [pysbd](https://github.com/nipunsadvilkar/pySBD) | Sentence boundary detection |
-| [pyvis](https://pyvis.readthedocs.io/) | Interactive HTML graph rendering |
-| [rapidfuzz](https://github.com/rapidfuzz/RapidFuzz) | Fuzzy title matching |
-| [requests](https://requests.readthedocs.io/) | HTTP client |
-| [tqdm](https://github.com/tqdm/tqdm) | Progress bar |
-| [KaTeX](https://katex.org) | LaTeX math rendering in the HTML output (CDN) |
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th><p>Package</p></th><th><p>Used for</p></th></tr>
+</thead>
+<tbody>
+<tr><td><p><a href="https://github.com/kermitt2/grobid">GROBID</a></p></td><td><p>PDF structural parsing (external service)</p></td></tr>
+<tr><td><p><a href="https://lxml.de/">lxml</a></p></td><td><p>TEI XML processing</p></td></tr>
+<tr><td><p><a href="https://pymupdf.readthedocs.io/">pymupdf</a></p></td><td><p>PDF text extraction (parser fallback)</p></td></tr>
+<tr><td><p><a href="https://github.com/lukasschwab/arxiv.py">arxiv</a></p></td><td><p>arXiv search and download</p></td></tr>
+<tr><td><p><a href="https://github.com/nipunsadvilkar/pySBD">pysbd</a></p></td><td><p>Sentence boundary detection</p></td></tr>
+<tr><td><p><a href="https://pyvis.readthedocs.io/">pyvis</a></p></td><td><p>Interactive HTML graph rendering</p></td></tr>
+<tr><td><p><a href="https://github.com/rapidfuzz/RapidFuzz">rapidfuzz</a></p></td><td><p>Fuzzy title matching</p></td></tr>
+<tr><td><p><a href="https://requests.readthedocs.io/">requests</a></p></td><td><p>HTTP client</p></td></tr>
+<tr><td><p><a href="https://github.com/tqdm/tqdm">tqdm</a></p></td><td><p>Progress bar</p></td></tr>
+<tr><td><p><a href="https://katex.org">KaTeX</a></p></td><td><p>LaTeX math rendering in the HTML output (CDN)</p></td></tr>
+</tbody>
+</table>
+</div>
 
 External APIs:
 
