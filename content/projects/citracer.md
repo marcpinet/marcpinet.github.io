@@ -121,7 +121,10 @@ pre code {
 
 # citracer
 
-https://github.com/user-attachments/assets/36855b62-a9ab-4404-90c3-9ac7f418899c
+<video controls style="max-width: 100%; height: auto;">
+    <source src="https://github.com/user-attachments/assets/36855b62-a9ab-4404-90c3-9ac7f418899c" type="video/mp4">
+    Your browser does not support the video tag. <a href="https://github.com/user-attachments/assets/36855b62-a9ab-4404-90c3-9ac7f418899c">View video</a>
+</video>
 
 ## 📝 Description
 
@@ -170,7 +173,9 @@ The key can be provided in three ways, in order of precedence:
 2. `S2_API_KEY` environment variable in your shell
 3. A persistent **user config** at `~/.citracer/config.json`, set once via:
 
-   ```bash
+   
+
+```bash
    citracer config set-s2-key <your-key>
    ```
 
@@ -189,8 +194,8 @@ If none of these are set, the unauthenticated public endpoint is used as fallbac
 ## 🚀 Usage
 
 After `pip install citracer` the `citracer` command is on your `PATH`. The examples below use it directly. If you cloned the repo instead, use `python -m citracer` in place of `citracer`.
-
 ```bash
+
 # From a local PDF
 citracer --pdf test_data/crossad.pdf --keyword "channel-independent" --depth 5
 
@@ -205,77 +210,121 @@ citracer --url https://openreview.net/forum?id=cGDAkQo1C0p --keyword "instance n
 citracer --pdf paper.pdf --keyword "channel-independent" --keyword "patching"
 
 # Reverse trace: find papers that cite the source while mentioning the keyword
+
 # in their citation context. No PDF downloads, pure S2 metadata. Limit is optional.
 citracer --arxiv 2211.14730 --keyword "channel-independent" --reverse --reverse-limit 500
 
 # Export the graph for downstream analysis
 citracer --pdf paper.pdf --keyword "..." --export out/graph.json --export out/graph.graphml
+
 ```
 
 ### Source (exactly one required)
 
-| Flag | Description |
-|---|---|
-| `--pdf` | Path to a local source PDF |
-| `--doi` | DOI of the source paper (e.g. `10.48550/arxiv.2211.14730`). Generic DOIs are resolved via Semantic Scholar |
-| `--arxiv` | arXiv id of the source paper (e.g. `2211.14730`). Downloaded directly from arxiv.org |
-| `--url` | URL of the source paper (arxiv.org, doi.org, or openreview.net) |
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th><p>Flag</p></th><th><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr><td><p><code>--pdf</code></p></td><td><p>Path to a local source PDF</p></td></tr>
+<tr><td><p><code>--doi</code></p></td><td><p>DOI of the source paper (e.g. <code>10.48550/arxiv.2211.14730</code>). Generic DOIs are resolved via Semantic Scholar</p></td></tr>
+<tr><td><p><code>--arxiv</code></p></td><td><p>arXiv id of the source paper (e.g. <code>2211.14730</code>). Downloaded directly from arxiv.org</p></td></tr>
+<tr><td><p><code>--url</code></p></td><td><p>URL of the source paper (arxiv.org, doi.org, or openreview.net)</p></td></tr>
+</tbody>
+</table>
+</div>
 
 ### Trace options
 
-| Flag | Default | Description |
-|---|---|---|
-| `--keyword` | *required* | Term to trace through citations. **Repeat** to trace multiple keywords at once |
-| `--match-mode` | `any` | In multi-keyword mode, `any` marks a paper as matched if at least one keyword appears; `all` requires every keyword to appear at least once |
-| `--depth` | `3` | Maximum recursion depth |
-| `--context-window` | sentence-based | If set, fall back to a ±N character window for ref association instead of sentence-based |
-| `--consolidate` | off | Ask GROBID to consolidate each bibliographic reference against CrossRef (more accurate titles/DOIs but ~2-5s extra per PDF) |
-| `--grobid-workers` | `4` | Number of concurrent GROBID parse requests per BFS level |
-| `--grobid-url` | `http://localhost:8070` | GROBID service URL |
-| `--s2-api-key` | none | Semantic Scholar API key (see Installation for priority order) |
-| `--reverse` | off | Reverse trace: instead of walking down the source paper's bibliography, walk UP to papers that cite it. Filters citations by matching the keyword against [Semantic Scholar citation contexts](https://api.semanticscholar.org/api-docs/graph) (the 1-2 sentences around each citation), so no PDFs are downloaded. Default `--depth` remains 1 in this mode |
-| `--reverse-limit` | `500` | Max number of citing papers to fetch per level in reverse mode. Protects against runaway expansion on papers with thousands of citations |
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th><p>Flag</p></th><th><p>Default</p></th><th><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr><td><p><code>--keyword</code></p></td><td><p><em>required</em></p></td><td><p>Term to trace through citations. <strong>Repeat</strong> to trace multiple keywords at once</p></td></tr>
+<tr><td><p><code>--match-mode</code></p></td><td><p><code>any</code></p></td><td><p>In multi-keyword mode, <code>any</code> marks a paper as matched if at least one keyword appears; <code>all</code> requires every keyword to appear at least once</p></td></tr>
+<tr><td><p><code>--depth</code></p></td><td><p><code>3</code></p></td><td><p>Maximum recursion depth</p></td></tr>
+<tr><td><p><code>--context-window</code></p></td><td><p>sentence-based</p></td><td><p>If set, fall back to a ±N character window for ref association instead of sentence-based</p></td></tr>
+<tr><td><p><code>--consolidate</code></p></td><td><p>off</p></td><td><p>Ask GROBID to consolidate each bibliographic reference against CrossRef (more accurate titles/DOIs but ~2-5s extra per PDF)</p></td></tr>
+<tr><td><p><code>--grobid-workers</code></p></td><td><p><code>4</code></p></td><td><p>Number of concurrent GROBID parse requests per BFS level</p></td></tr>
+<tr><td><p><code>--grobid-url</code></p></td><td><p><code>http://localhost:8070</code></p></td><td><p>GROBID service URL</p></td></tr>
+<tr><td><p><code>--s2-api-key</code></p></td><td><p>none</p></td><td><p>Semantic Scholar API key (see Installation for priority order)</p></td></tr>
+<tr><td><p><code>--reverse</code></p></td><td><p>off</p></td><td><p>Reverse trace: instead of walking down the source paper's bibliography, walk UP to papers that cite it. Filters citations by matching the keyword against <a href="https://api.semanticscholar.org/api-docs/graph">Semantic Scholar citation contexts</a> (the 1-2 sentences around each citation), so no PDFs are downloaded. Default <code>--depth</code> remains 1 in this mode</p></td></tr>
+<tr><td><p><code>--reverse-limit</code></p></td><td><p><code>500</code></p></td><td><p>Max number of citing papers to fetch per level in reverse mode. Protects against runaway expansion on papers with thousands of citations</p></td></tr>
+</tbody>
+</table>
+</div>
 
 ### Output
 
-| Flag | Default | Description |
-|---|---|---|
-| `--output` | `./output/graph.html` | Output HTML file |
-| `--export` | none | Export the graph to a file. Format is derived from the extension: `.json` for the citracer JSON format, `.graphml` for the standard GraphML (Gephi, networkx, yEd). Repeat to export multiple formats |
-| `--details` | off | Show passages directly in node tooltips |
-| `--cache-dir` | `./cache` | Local cache for PDFs and metadata (SQLite) |
-| `--no-open` | off | Do not open the result in a browser |
-| `-v, --verbose` | off | Verbose logging |
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th><p>Flag</p></th><th><p>Default</p></th><th><p>Description</p></th></tr>
+</thead>
+<tbody>
+<tr><td><p><code>--output</code></p></td><td><p><code>./output/graph.html</code></p></td><td><p>Output HTML file</p></td></tr>
+<tr><td><p><code>--export</code></p></td><td><p>none</p></td><td><p>Export the graph to a file. Format is derived from the extension: <code>.json</code> for the citracer JSON format, <code>.graphml</code> for the standard GraphML (Gephi, networkx, yEd). Repeat to export multiple formats</p></td></tr>
+<tr><td><p><code>--details</code></p></td><td><p>off</p></td><td><p>Show passages directly in node tooltips</p></td></tr>
+<tr><td><p><code>--cache-dir</code></p></td><td><p><code>./cache</code></p></td><td><p>Local cache for PDFs and metadata (SQLite)</p></td></tr>
+<tr><td><p><code>--no-open</code></p></td><td><p>off</p></td><td><p>Do not open the result in a browser</p></td></tr>
+<tr><td><p><code>-v, --verbose</code></p></td><td><p>off</p></td><td><p>Verbose logging</p></td></tr>
+</tbody>
+</table>
+</div>
 
 ## 🎨 Output
 
 Nodes are colored by status:
 
-| Color | Status | Meaning |
-|---|---|---|
-| blue | `root` | The source PDF |
-| green | `analyzed` | PDF retrieved and the keyword was found in its text |
-| gray | `analyzed (no match)` | PDF retrieved and parsed, but the keyword does not appear |
-| red | `unavailable` | PDF could not be retrieved |
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th><p>Color</p></th><th><p>Status</p></th><th><p>Meaning</p></th></tr>
+</thead>
+<tbody>
+<tr><td><p>blue</p></td><td><p><code>root</code></p></td><td><p>The source PDF</p></td></tr>
+<tr><td><p>green</p></td><td><p><code>analyzed</code></p></td><td><p>PDF retrieved and the keyword was found in its text</p></td></tr>
+<tr><td><p>gray</p></td><td><p><code>analyzed (no match)</code></p></td><td><p>PDF retrieved and parsed, but the keyword does not appear</p></td></tr>
+<tr><td><p>red</p></td><td><p><code>unavailable</code></p></td><td><p>PDF could not be retrieved</p></td></tr>
+</tbody>
+</table>
+</div>
 
 Edges come in two flavors:
 
-| Style | Type | Meaning |
-|---|---|---|
-| solid dark | keyword-associated | Paper A cites paper B in the same sentence (or the next) as a keyword occurrence |
-| dashed blue | bibliographic link | Paper A's bibliography also references paper B, independently of where the keyword appears. Hidden by default, toggle via the legend |
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th><p>Style</p></th><th><p>Type</p></th><th><p>Meaning</p></th></tr>
+</thead>
+<tbody>
+<tr><td><p>solid dark</p></td><td><p>keyword-associated</p></td><td><p>Paper A cites paper B in the same sentence (or the next) as a keyword occurrence</p></td></tr>
+<tr><td><p>dashed blue</p></td><td><p>bibliographic link</p></td><td><p>Paper A's bibliography also references paper B, independently of where the keyword appears. Hidden by default, toggle via the legend</p></td></tr>
+</tbody>
+</table>
+</div>
 
 ### Interactive controls
 
 A control panel in the top-left corner of the graph lets you tune the view on the fly:
 
-| Control | Options | Effect |
-|---|---|---|
-| **layout** | Sugiyama (by year) *(default)*<br>Sugiyama (by depth)<br>Force-directed (BarnesHut)<br>Fruchterman-Reingold (approx) | Switches the layout algorithm. Sugiyama-by-year places the oldest papers at the top, making it easy to spot which paper first introduced the concept |
-| **node size** | in-graph citations *(default)*<br>keyword hits | `in-graph citations` scales node size with the number of incoming edges visible in the graph (so nodes get bigger/smaller as you toggle bibliographic links). `keyword hits` scales by the count of keyword occurrences in the paper's body |
-| **spread** | slider (0.3× to 3.0×) | Rescales all node positions from the graph's centroid, stretching or compressing the layout without deforming it. Works with any layout mode |
-| **nodes (legend)** | click rows to toggle | Hide/show nodes by status |
-| **edges (legend)** | click rows to toggle | Hide/show edges by type (keyword-associated vs. bibliographic link) |
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th><p>Control</p></th><th><p>Options</p></th><th><p>Effect</p></th></tr>
+</thead>
+<tbody>
+<tr><td><p><strong>layout</strong></p></td><td><p>Sugiyama (by year) <em>(default)</em><br>Sugiyama (by depth)<br>Force-directed (BarnesHut)<br>Fruchterman-Reingold (approx)</p></td><td><p>Switches the layout algorithm. Sugiyama-by-year places the oldest papers at the top, making it easy to spot which paper first introduced the concept</p></td></tr>
+<tr><td><p><strong>node size</strong></p></td><td><p>in-graph citations <em>(default)</em><br>keyword hits</p></td><td><p><code>in-graph citations</code> scales node size with the number of incoming edges visible in the graph (so nodes get bigger/smaller as you toggle bibliographic links). <code>keyword hits</code> scales by the count of keyword occurrences in the paper's body</p></td></tr>
+<tr><td><p><strong>spread</strong></p></td><td><p>slider (0.3× to 3.0×)</p></td><td><p>Rescales all node positions from the graph's centroid, stretching or compressing the layout without deforming it. Works with any layout mode</p></td></tr>
+<tr><td><p><strong>nodes (legend)</strong></p></td><td><p>click rows to toggle</p></td><td><p>Hide/show nodes by status</p></td></tr>
+<tr><td><p><strong>edges (legend)</strong></p></td><td><p>click rows to toggle</p></td><td><p>Hide/show edges by type (keyword-associated vs. bibliographic link)</p></td></tr>
+</tbody>
+</table>
+</div>
 
 Other interactive features:
 
@@ -321,43 +370,80 @@ For a paper with 2000+ citations, this runs in ~10-30 seconds and typically surf
 Caveats: reverse trace depends entirely on S2 being reachable and having indexed the citation contexts (they come from S2's own PDF processing pipeline). Papers S2 doesn't know about won't appear. The resulting graph has no cross-graph bibliographic links because we never parse the citing papers' bibliographies.
 
 ## 📁 Project structure
-
 ```
 citracer/
-├── cli.py                  # argparse entry point + GROBID health check + .env loader
-├── pdf_parser.py           # GROBID + TEI walking + figure-noise filter + paragraph merge + narrative ref supplementation + pymupdf fallback
-├── keyword_matcher.py      # morphological regex + sentence-based ref association (pysbd)
-├── reference_resolver.py   # arXiv-first cascade resolver (arxiv → S2 → OpenReview) with SQLite cache
-├── source_resolver.py      # routes --pdf / --doi / --arxiv / --url inputs to a local PDF path
-├── metadata_cache.py       # SQLite-backed key/value store for resolver metadata, thread-safe
-├── cross_citation.py       # post-trace pass that adds dashed bibliographic-only edges between graph nodes
-├── tracer.py               # BFS recursion with parallel parsing, deduplication, year anchoring
-├── visualizer.py           # pyvis rendering pipeline
-├── exporter.py             # GraphML / JSON export
-├── models.py               # dataclasses
-├── api_types.py            # TypedDicts for arxiv / Semantic Scholar / OpenReview payloads
-├── constants.py            # every tunable threshold and timeout, in one place
-├── utils.py                # ID normalization, hashing, tqdm-safe logging setup
+├── cli.py
+
+# argparse entry point + GROBID health check + .env loader
+├── pdf_parser.py
+
+# GROBID + TEI walking + figure-noise filter + paragraph merge + narrative ref supplementation + pymupdf fallback
+├── keyword_matcher.py
+
+# morphological regex + sentence-based ref association (pysbd)
+├── reference_resolver.py
+
+# arXiv-first cascade resolver (arxiv → S2 → OpenReview) with SQLite cache
+├── source_resolver.py
+
+# routes --pdf / --doi / --arxiv / --url inputs to a local PDF path
+├── metadata_cache.py
+
+# SQLite-backed key/value store for resolver metadata, thread-safe
+├── cross_citation.py
+
+# post-trace pass that adds dashed bibliographic-only edges between graph nodes
+├── tracer.py
+
+# BFS recursion with parallel parsing, deduplication, year anchoring
+├── visualizer.py
+
+# pyvis rendering pipeline
+├── exporter.py
+
+# GraphML / JSON export
+├── models.py
+
+# dataclasses
+├── api_types.py
+
+# TypedDicts for arxiv / Semantic Scholar / OpenReview payloads
+├── constants.py
+
+# every tunable threshold and timeout, in one place
+├── utils.py
+
+# ID normalization, hashing, tqdm-safe logging setup
 └── templates/
-    └── overlay.html.tmpl   # the interactive control panel (HTML/CSS/JS) injected into the pyvis output
+    └── overlay.html.tmpl
+
+# the interactive control panel (HTML/CSS/JS) injected into the pyvis output
+
 ```
 
 ## 🧩 Dependencies
 
-| Package | Used for |
-|---|---|
-| [GROBID](https://github.com/kermitt2/grobid) | PDF structural parsing (external service) |
-| [lxml](https://lxml.de/) | TEI XML processing |
-| [pymupdf](https://pymupdf.readthedocs.io/) | PDF text extraction (parser fallback) |
-| [arxiv](https://github.com/lukasschwab/arxiv.py) | arXiv search and download |
-| [pysbd](https://github.com/nipunsadvilkar/pySBD) | Sentence boundary detection |
-| [pyvis](https://pyvis.readthedocs.io/) | Interactive HTML graph rendering |
-| [rapidfuzz](https://github.com/rapidfuzz/RapidFuzz) | Fuzzy title matching |
-| [requests](https://requests.readthedocs.io/) | HTTP client |
-| [tqdm](https://github.com/tqdm/tqdm) | Progress bar |
-| [python-dotenv](https://github.com/theskumar/python-dotenv) | Loading the Semantic Scholar key from a `.env` file |
-| [KaTeX](https://katex.org) | LaTeX math rendering in the HTML output (CDN) |
-| [vis-network](https://visjs.github.io/vis-network/docs/network/) | Interactive network rendering (via pyvis, CDN) |
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th><p>Package</p></th><th><p>Used for</p></th></tr>
+</thead>
+<tbody>
+<tr><td><p><a href="https://github.com/kermitt2/grobid">GROBID</a></p></td><td><p>PDF structural parsing (external service)</p></td></tr>
+<tr><td><p><a href="https://lxml.de/">lxml</a></p></td><td><p>TEI XML processing</p></td></tr>
+<tr><td><p><a href="https://pymupdf.readthedocs.io/">pymupdf</a></p></td><td><p>PDF text extraction (parser fallback)</p></td></tr>
+<tr><td><p><a href="https://github.com/lukasschwab/arxiv.py">arxiv</a></p></td><td><p>arXiv search and download</p></td></tr>
+<tr><td><p><a href="https://github.com/nipunsadvilkar/pySBD">pysbd</a></p></td><td><p>Sentence boundary detection</p></td></tr>
+<tr><td><p><a href="https://pyvis.readthedocs.io/">pyvis</a></p></td><td><p>Interactive HTML graph rendering</p></td></tr>
+<tr><td><p><a href="https://github.com/rapidfuzz/RapidFuzz">rapidfuzz</a></p></td><td><p>Fuzzy title matching</p></td></tr>
+<tr><td><p><a href="https://requests.readthedocs.io/">requests</a></p></td><td><p>HTTP client</p></td></tr>
+<tr><td><p><a href="https://github.com/tqdm/tqdm">tqdm</a></p></td><td><p>Progress bar</p></td></tr>
+<tr><td><p><a href="https://github.com/theskumar/python-dotenv">python-dotenv</a></p></td><td><p>Loading the Semantic Scholar key from a <code>.env</code> file</p></td></tr>
+<tr><td><p><a href="https://katex.org">KaTeX</a></p></td><td><p>LaTeX math rendering in the HTML output (CDN)</p></td></tr>
+<tr><td><p><a href="https://visjs.github.io/vis-network/docs/network/">vis-network</a></p></td><td><p>Interactive network rendering (via pyvis, CDN)</p></td></tr>
+</tbody>
+</table>
+</div>
 
 External APIs:
 
@@ -375,7 +461,6 @@ External APIs:
 - The "Fruchterman-Reingold" layout option is implemented via vis.js's `forceAtlas2Based` solver, which is the closest approximation available natively. A proper Kamada-Kawai implementation isn't offered because vis.js doesn't ship one.
 
 ## 🧪 Development
-
 ```bash
 pip install -r requirements-dev.txt
 pytest tests/ -v
