@@ -4,13 +4,13 @@
     <link>https://marcpinet.fr</link>
     <description>All updates from Marc Pinet - posts, projects, experiences, education, and certifications</description>
     <language>en-us</language>
-    <lastBuildDate>Fri, 10 Apr 2026 18:39:47 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 10 Apr 2026 19:50:54 GMT</lastBuildDate>
     <generator>Custom RSS Generator</generator>
     <atom:link href="https://marcpinet.fr/feeds/all.xml" rel="self" type="application/rss+xml"/>
     <item>
       <title>New Project: Citracer</title>
       <link>https://marcpinet.fr/</link>
-      <description>💬 Given a source PDF and a keyword, citracer parses the bibliography with GROBID, finds every occurrence of the keyword in the body, identifies the references cited near each occurrence, downloads those papers, and recursively walks the resulting citation graph. The output is an interactive HTML page.</description>
+      <description>💬 Given a research paper and a concept, citracer parses the bibliography, identifies the references accross papers (cited near each occurrence) and recursively walks the resulting citation graph. Supports 10+ sources (arXiv, OpenReview, Semantic Scholar, Sci-Hub, bioRxiv, SSRN, and more), plus optional semantic matching to catch conceptual links the regex misses.</description>
       <pubDate>Wed, 08 Apr 2026 00:00:00 GMT</pubDate>
       <guid isPermaLink="true">https://marcpinet.fr/</guid>
     </item>
