@@ -267,7 +267,10 @@ citracer --arxiv 2211.14730 --keyword "channel-independent" --reverse --reverse-
 citracer --pdf paper.pdf --keyword "attention" --enrich --email your@email.com
 
 # Supply a local PDF for a node that citracer couldn't download
+
+# Supply a local PDF or a URL for a node that citracer couldn't download
 citracer --pdf paper.pdf --keyword "attention" --supply-pdf "doi:10.1234/foo=~/papers/foo.pdf"
+citracer --pdf paper.pdf --keyword "attention" --supply-pdf "title:abc123=https://example.com/paper.pdf"
 
 # Export the graph for downstream analysis
 citracer --pdf paper.pdf --keyword "..." --export out/graph.json --export out/graph.graphml
@@ -321,7 +324,7 @@ citracer --pdf paper.pdf --keyword "attention" --semantic --semantic-threshold 0
 <tr><td><p><code>--reverse-limit</code></p></td><td><p><code>500</code></p></td><td><p>Max number of citing papers to fetch per level in reverse mode. Protects against runaway expansion on papers with thousands of citations</p></td></tr>
 <tr><td><p><code>--enrich</code></p></td><td><p>off</p></td><td><p>Enable metadata enrichment via <a href="https://openalex.org/">OpenAlex</a> for nodes missing abstract, citation count, or year. Anonymous mode (1 req/s); combine with <code>--email</code> for 10x faster lookups</p></td></tr>
 <tr><td><p><code>--email</code></p></td><td><p>none</p></td><td><p>Email for OpenAlex polite pool (10 req/s). Implies <code>--enrich</code>. Can also be set via <code>OPENALEX_EMAIL</code> env var or <code>citracer config set-email</code></p></td></tr>
-<tr><td><p><code>--supply-pdf</code></p></td><td><p>none</p></td><td><p>Supply a local PDF for a specific node. Format: <code>ID=PATH</code> where ID is the <code>paper_id</code> from a previous graph export (e.g. <code>doi:10.1234/foo=paper.pdf</code>). Repeat for multiple papers</p></td></tr>
+<tr><td><p><code>--supply-pdf</code></p></td><td><p>none</p></td><td><p>Supply a PDF for a specific node, as a local path or URL. Format: <code>ID=PATH</code> or <code>ID=URL</code> where ID is the <code>paper_id</code> from a previous graph export (e.g. <code>doi:10.1234/foo=paper.pdf</code> or <code>title:abc123=https://example.com/paper.pdf</code>). Repeat for multiple papers</p></td></tr>
 <tr><td><p><code>--diff</code></p></td><td><p>none</p></td><td><p>Compare against a previous citracer JSON export and highlight new nodes (papers not in the baseline) in orange. Useful for monitoring how a citation graph evolves over time</p></td></tr>
 <tr><td><p><code>--since</code></p></td><td><p>none</p></td><td><p>Highlight nodes published on or after this date (<code>YYYY</code> or <code>YYYY-MM</code>). Works alone (date filter) or with <code>--diff</code> (intersection: new AND recent). Uses S2 <code>publicationDate</code> for month precision when available, falls back to year</p></td></tr>
 <tr><td><p><code>--semantic</code></p></td><td><p>off</p></td><td><p>Enable semantic matching: after the regex pass, scan remaining sentences with a <a href="https://www.sbert.net/">sentence-transformer</a> embedding model to catch conceptual matches the regex missed (e.g. "univariate processing" for the keyword "channel-independent"). Requires <code>pip install citracer[semantic]</code></p></td></tr>
@@ -396,6 +399,8 @@ A control panel in the top-left corner of the graph lets you tune the view on th
 <tr><td><p><strong>node size</strong></p></td><td><p>in-graph citations <em>(default)</em><br>keyword hits<br>PageRank<br>betweenness</p></td><td><p><code>in-graph citations</code> scales node size with the number of incoming edges visible in the graph. <code>keyword hits</code> scales by the count of keyword matches (regex + semantic). <code>PageRank</code> and <code>betweenness</code> use the corresponding centrality metric computed on the citation graph</p></td></tr>
 <tr><td><p><strong>spread</strong></p></td><td><p>slider (0.3× to 3.0×)</p></td><td><p>Rescales all node positions from the graph's centroid, stretching or compressing the layout without deforming it. Works with any layout mode</p></td></tr>
 <tr><td><p><strong>curved edges</strong></p></td><td><p>checkbox <em>(on by default)</em></p></td><td><p>Toggle between curved (cubicBezier/curvedCW) and straight edge rendering</p></td></tr>
+<tr><td><p><strong>Export PNG</strong></p></td><td><p>button + scale selector (2x/3x/4x)</p></td><td><p>Export the current view as a high-resolution PNG. At 3x on a 1080p display, the output is 5760x3240</p></td></tr>
+<tr><td><p><strong>Export SVG</strong></p></td><td><p>button</p></td><td><p>Export as a vector SVG file (lossless zoom, ideal for LaTeX figures)</p></td></tr>
 <tr><td><p><strong>nodes (legend)</strong></p></td><td><p>click rows to toggle</p></td><td><p>Hide/show nodes by status. When <code>--diff</code> or <code>--since</code> is used, an orange <strong>new</strong> row appears to toggle new papers</p></td></tr>
 <tr><td><p><strong>edges (legend)</strong></p></td><td><p>click rows to toggle</p></td><td><p>Hide/show edges by type (keyword-associated vs. bibliographic link)</p></td></tr>
 </tbody>
@@ -407,11 +412,13 @@ Other interactive features:
 - **Hover** any node → side panel updates live with title, authors, year, citation count, status, centrality metrics (PageRank, betweenness, in/out degree), a **PIVOT** badge for pivot papers, keyword hits (regex matches are highlighted; semantic matches show a purple **SEM** badge with the note "conceptual match") and a collapsible **abstract** section when available
 - **Search** box in the control panel → fuzzy match by title or author, click a result to focus-and-pin the matching node
 - **Click** a node → pins the panel; a blue border is drawn around the node to show the pinned state. The pin survives clicks on the empty canvas, hover on other nodes, and pan/zoom. It's only released by clicking the same node again, pressing the × close button on the info panel, or picking **Unpin** from the right-click menu
-- **Right-click** any node → context menu with **Hide** (permanently hides the node until you click the "show N manually hidden" banner in the legend), **Pin/Unpin**, and **Open link** (opens the arxiv/OpenReview/DOI page in a new tab)
+- **Right-click** any node → context menu with **Hide**, **Pin/Unpin**, **Open link**, and **Supply PDF** (on unavailable nodes only, prompts for a local path or URL and generates the `--supply-pdf` command to copy for the next run)
 - **Drag** any node anywhere. After initial placement the layout is released, so nothing snaps back
+- **Undo / Redo** with `Ctrl+Z` / `Ctrl+Y` (or `Ctrl+Shift+Z`). Reverts node positions, filters, layout, and all control settings. History of up to 50 snapshots
+- **Resizable panel**: drag the right edge of the control panel to widen or narrow it
 - **`show N more`** in a panel with many hits → expands the full list
 - **LaTeX math** in passages is rendered with [KaTeX](https://katex.org) (`$...$`, `$$...$$`, `\(...\)`, `\[...\]`)
-- **Automatic state persistence**. Node positions, filters, pin state, dropdowns, spread slider and manually hidden nodes are all saved to `localStorage` keyed on a hash of the node-id set. A browser refresh restores the exact view you had. A new trace with a different paper set gets a fresh slate. The **reset saved state** link at the bottom of the legend clears everything and reloads. A 💾 icon appears next to the reset link while state is present
+- **Automatic state persistence**. Node positions, filters, pin state, dropdowns, spread slider and manually hidden nodes are all saved to `localStorage` keyed on a hash of the node-id set. A browser refresh restores the exact view you had. A new trace with a different paper set gets a fresh slate. The **reset** link at the bottom of the panel clears everything and reloads
 
 ### Bibliometric analytics
 
@@ -461,8 +468,8 @@ This allows anyone receiving a citracer graph to re-run the trace with identical
 
 4. **Reference resolution.** Each cited paper is resolved through the following cascade:
    1. If GROBID extracted a DOI or arXiv ID, use it directly.
-   2. Otherwise, search arXiv by title (phrase first, then keyword fallback, with rapidfuzz validation).
-   3. If arXiv has nothing, query Semantic Scholar with 429-aware backoff (also retrieves citation count and open-access PDF URL).
+   2. Otherwise, search arXiv by title (phrase first, then keyword fallback, with rapidfuzz validation). Search results are validated by fuzzy title match (threshold 85) and year cross-check (±3 years from the bibliography entry's year when known) to prevent false matches on similarly-titled papers from different eras.
+   3. If arXiv has nothing, query Semantic Scholar with the same title + year validation, plus 429-aware backoff (also retrieves citation count and open-access PDF URL).
    4. As a last resort, search OpenReview (covers ICLR/TMLR papers not on arXiv).
    5. If `--enrich` is set, query OpenAlex for missing metadata (abstract, citation count, OA URL).
 
@@ -662,7 +669,7 @@ External APIs:
 - The narrative-citation supplementation pass skips ambiguous `(surname, year)` signatures (e.g. two different Zhou 2022 papers in the bibliography). These missed cases are rare but do happen in survey-heavy papers.
 - pysbd handles most academic abbreviations but can occasionally split mid-sentence; falling back to `--context-window 300` is sometimes useful.
 - arXiv enforces ~3 seconds between requests, so the first run on a deep trace can take several minutes. The local cache makes subsequent runs fast.
-- Papers that cannot be resolved through any source in the download cascade (arXiv, OpenReview, Sci-Hub, S2 open-access, preprint servers) appear as `unavailable` red nodes. Books and some workshop proceedings are typically not retrievable. Use `--supply-pdf` to provide PDFs manually for these nodes.
+- Papers that cannot be resolved through any source in the download cascade (arXiv, OpenReview, Sci-Hub, S2 open-access, preprint servers) appear as `unavailable` red nodes. Books and some workshop proceedings are typically not retrievable. Use `--supply-pdf` to provide PDFs manually (local path or URL) for these nodes.
 - The "Fruchterman-Reingold" layout option is implemented via vis.js's `forceAtlas2Based` solver, which is the closest approximation available natively. A proper Kamada-Kawai implementation isn't offered because vis.js doesn't ship one.
 - `--semantic` matching depends on the quality of the sentence-transformer model. The default `all-mpnet-base-v2` was benchmarked at F1=0.93 on academic citation text (vs 0.86 for `all-MiniLM-L6-v2`). Domain-specific keywords may benefit from threshold tuning. Semantic matching is not available in reverse trace mode.
 
