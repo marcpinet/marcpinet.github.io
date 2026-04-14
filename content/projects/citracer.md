@@ -280,6 +280,9 @@ citracer --pdf paper.pdf --keyword "attention" --diff output/old_graph.json
 citracer --pdf paper.pdf --keyword "attention" --diff output/old_graph.json --since 2025
 citracer --pdf paper.pdf --keyword "attention" --since 2025-06
 
+# Re-run a trace without re-resolving papers already cached locally
+citracer --pdf paper.pdf --keyword "attention" --depth 7 --no-refetch
+
 # Semantic matching: catch conceptual matches the regex misses
 
 # (requires: pip install citracer[semantic])
@@ -314,7 +317,7 @@ citracer --pdf paper.pdf --keyword "attention" --semantic --semantic-threshold 0
 <tbody>
 <tr><td><p><code>--keyword</code></p></td><td><p><em>required</em></p></td><td><p>Term (or concept) to trace through citations. By default, matches morphological variants via regex (e.g. "independent" also matches "independence", "independently"). With <code>--semantic</code>, also matches passages that express the same concept in different words. <strong>Repeat</strong> to trace multiple keywords at once</p></td></tr>
 <tr><td><p><code>--match-mode</code></p></td><td><p><code>any</code></p></td><td><p>In multi-keyword mode, <code>any</code> marks a paper as matched if at least one keyword is found (regex or semantic); <code>all</code> requires every keyword to match at least once</p></td></tr>
-<tr><td><p><code>--depth</code></p></td><td><p><code>3</code></p></td><td><p>Maximum recursion depth</p></td></tr>
+<tr><td><p><code>--depth</code></p></td><td><p><code>3</code></p></td><td><p>Maximum recursion depth (default <code>1</code> in reverse mode)</p></td></tr>
 <tr><td><p><code>--context-window</code></p></td><td><p>sentence-based</p></td><td><p>If set, fall back to a ±N character window for ref association instead of sentence-based</p></td></tr>
 <tr><td><p><code>--consolidate</code></p></td><td><p>off</p></td><td><p>Ask GROBID to consolidate each bibliographic reference against CrossRef (more accurate titles/DOIs but ~2-5s extra per PDF)</p></td></tr>
 <tr><td><p><code>--grobid-workers</code></p></td><td><p><code>4</code></p></td><td><p>Number of concurrent GROBID parse requests per BFS level</p></td></tr>
@@ -327,6 +330,7 @@ citracer --pdf paper.pdf --keyword "attention" --semantic --semantic-threshold 0
 <tr><td><p><code>--supply-pdf</code></p></td><td><p>none</p></td><td><p>Supply a PDF for a specific node, as a local path or URL. Format: <code>ID=PATH</code> or <code>ID=URL</code> where ID is the <code>paper_id</code> from a previous graph export (e.g. <code>doi:10.1234/foo=paper.pdf</code> or <code>title:abc123=https://example.com/paper.pdf</code>). Repeat for multiple papers</p></td></tr>
 <tr><td><p><code>--diff</code></p></td><td><p>none</p></td><td><p>Compare against a previous citracer JSON export and highlight new nodes (papers not in the baseline) in orange. Useful for monitoring how a citation graph evolves over time</p></td></tr>
 <tr><td><p><code>--since</code></p></td><td><p>none</p></td><td><p>Highlight nodes published on or after this date (<code>YYYY</code> or <code>YYYY-MM</code>). Works alone (date filter) or with <code>--diff</code> (intersection: new AND recent). Uses S2 <code>publicationDate</code> for month precision when available, falls back to year</p></td></tr>
+<tr><td><p><code>--no-refetch</code></p></td><td><p>off</p></td><td><p>Skip network resolution for papers already resolved in a previous run (metadata + PDF cached locally). Dramatically speeds up re-runs and avoids API rate limits</p></td></tr>
 <tr><td><p><code>--semantic</code></p></td><td><p>off</p></td><td><p>Enable semantic matching: after the regex pass, scan remaining sentences with a <a href="https://www.sbert.net/">sentence-transformer</a> embedding model to catch conceptual matches the regex missed (e.g. "univariate processing" for the keyword "channel-independent"). Requires <code>pip install citracer[semantic]</code></p></td></tr>
 <tr><td><p><code>--semantic-model</code></p></td><td><p><code>all-mpnet-base-v2</code></p></td><td><p>Sentence-transformer model name for <code>--semantic</code>. Implies <code>--semantic</code></p></td></tr>
 <tr><td><p><code>--semantic-threshold</code></p></td><td><p><code>0.40</code></p></td><td><p>Cosine similarity threshold for semantic matching (0.0-1.0). Lower = more recall, higher = more precision. Implies <code>--semantic</code></p></td></tr>
@@ -683,7 +687,7 @@ pytest tests/ -v
 The test suite is hermetic, with no GROBID and no network. GROBID output is
 exercised via a pre-baked TEI fixture in `tests/fixtures/sample.tei.xml`,
 and every external API (arXiv, Semantic Scholar, OpenReview, PDF downloads)
-is mocked. Runs in under a second.
+is mocked. Runs in under 2 seconds.
 
 CI runs the suite on Python 3.10 / 3.11 / 3.12 via GitHub Actions on every
 push to `main`, every pull request, and on manual dispatch from the Actions
