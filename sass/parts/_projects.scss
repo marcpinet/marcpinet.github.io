@@ -42,11 +42,12 @@
 
 .project-year {
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   white-space: nowrap;
   padding-top: 5px;
   font-variant-numeric: tabular-nums;
+  letter-spacing: 0.05em;
 }
 
 .project-links {

@@ -51,6 +51,77 @@
   margin: 0 0 0.75rem;
 }
 
+.hero-bio > p:first-of-type::first-letter {
+  font-family: var(--font-serif);
+  font-size: 3.2em;
+  float: left;
+  line-height: 0.82;
+  padding: 0.08em 0.14em 0 0;
+  color: var(--accent);
+  font-weight: 500;
+  font-style: normal;
+  font-feature-settings: "onum" off;
+}
+
+/* Signature waveform */
+.hero-waveform-wrap {
+  position: relative;
+  width: 100%;
+  height: 54px;
+  margin: 2.5rem 0 2.75rem;
+  color: var(--accent);
+}
+
+.hero-waveform {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.65;
+}
+
+.anomaly-dot,
+.anomaly-ring {
+  position: absolute;
+  left: 35%;
+  top: 8.75%;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.anomaly-dot {
+  width: 6px;
+  height: 6px;
+  background: currentColor;
+  transform: translate(-50%, -50%);
+  animation: anomaly-pulse 2.6s ease-in-out infinite;
+}
+
+.anomaly-ring {
+  width: 6px;
+  height: 6px;
+  border: 1px solid currentColor;
+  transform: translate(-50%, -50%);
+  animation: anomaly-ping 2.6s ease-out infinite;
+  opacity: 0;
+}
+
+@keyframes anomaly-pulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+  50% { transform: translate(-50%, -50%) scale(1.6); opacity: 0.55; }
+}
+
+@keyframes anomaly-ping {
+  0% { transform: translate(-50%, -50%) scale(1); opacity: 0.7; }
+  80% { transform: translate(-50%, -50%) scale(5); opacity: 0; }
+  100% { transform: translate(-50%, -50%) scale(5); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anomaly-dot,
+  .anomaly-ring { animation: none; }
+  .anomaly-ring { display: none; }
+}
+
 .hero-contact {
   font-family: var(--font-sans);
   font-size: 0.82rem;

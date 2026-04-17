@@ -1,13 +1,17 @@
 .post-article {
   .post-meta {
     font-family: var(--font-sans);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: var(--text-muted);
     margin-bottom: 0.5rem;
   }
 
   .post-meta time {
     font-variant-numeric: tabular-nums;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.74rem;
+    font-weight: 500;
   }
 
   .post-title {

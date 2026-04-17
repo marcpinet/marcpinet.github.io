@@ -18,7 +18,7 @@ highlight_theme = "css"
 render_emoji = true
 
 [extra]
-favicon = "/favicon.ico"
+favicon = "/favicon.svg"
 
 menu = [
     { name = "Publications", url = "/publications", weight = 1 },

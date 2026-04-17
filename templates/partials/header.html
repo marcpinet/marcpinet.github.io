@@ -13,7 +13,8 @@
   {% endif %}
 
   {% if config.extra.favicon %}
-    <link rel="icon" type="image/png" href="{{ config.extra.favicon }}" />
+    <link rel="icon" type="image/svg+xml" href="{{ config.extra.favicon }}" />
+    <link rel="alternate icon" type="image/x-icon" href="/favicon.ico" />
   {% endif %}
 
   <link rel="stylesheet" type="text/css" media="screen" href="{{ get_url(path='main.css') }}" />
