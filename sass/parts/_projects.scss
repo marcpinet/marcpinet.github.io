@@ -1,40 +1,79 @@
-.project-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.project-year-header {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  margin: 2rem 0 0.4rem;
+}
+
+.project-year-header:first-of-type {
+  margin-top: 0.5rem;
+}
+
+a.project-entry {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: none;
+  cursor: pointer;
+}
+
+a.project-entry:hover {
+  border-bottom: none;
 }
 
 .project-entry {
-  padding: 0.9rem 0;
+  padding: 0.8rem 0.75rem;
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
   border-top: 1px solid var(--border);
+  border-left: 2px solid transparent;
+  display: block;
+  transition: background 0.18s ease, border-left-color 0.18s ease;
+}
+
+.project-entry-pinned {
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 1rem;
+  align-items: start;
 }
 
-.project-entry:last-child {
+.project-entry:last-of-type {
   border-bottom: 1px solid var(--border);
+}
+
+.project-entry:hover {
+  background: var(--accent-soft);
+}
+
+.project-entry:hover .project-title-text {
+  color: var(--accent);
+}
+
+.project-entry-pinned {
+  border-left-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.project-entry-pinned:hover {
+  background: color-mix(in srgb, var(--accent) 20%, transparent);
 }
 
 .project-title {
   font-family: var(--font-serif);
   font-size: 1.02rem;
   font-weight: 600;
-  margin: 0 0 0.2rem;
+  margin: 0 0 0.15rem;
 }
 
-.project-title a {
+.project-title-text {
   color: var(--text);
-  border-bottom: none;
-}
-
-.project-title a:hover {
-  color: var(--accent);
-  border-bottom: none;
+  transition: color 0.18s ease;
 }
 
 .project-desc {
-  font-size: 0.94rem;
+  font-size: 0.92rem;
   color: var(--text-muted);
   margin: 0;
   line-height: 1.5;
@@ -45,37 +84,9 @@
   font-size: 0.8rem;
   color: var(--text-muted);
   white-space: nowrap;
-  padding-top: 5px;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.05em;
-}
-
-.project-links {
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  margin-top: 0.4rem;
-  display: flex;
-  gap: 0.9rem;
-  flex-wrap: wrap;
-}
-
-.project-links a {
-  color: var(--text-muted);
-  border-bottom: 1px dotted var(--border-strong);
-  padding-bottom: 1px;
-}
-
-.project-links a:hover {
-  color: var(--accent);
-  border-bottom: 1px solid var(--accent);
-}
-
-.project-pinned {
-  color: var(--accent);
-  margin-right: 0.3rem;
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  opacity: 0.8;
+  padding-top: 2px;
 }
 
 /* Title tooltip with preview image */
@@ -103,7 +114,9 @@
 }
 
 .title-wrap:hover .title-preview,
-.title-wrap:focus-within .title-preview {
+.title-wrap:focus-within .title-preview,
+.project-entry:hover .title-preview,
+.project-entry:focus-within .title-preview {
   opacity: 1;
   transform: translateY(0);
 }

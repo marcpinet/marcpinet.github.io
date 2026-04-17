@@ -19,15 +19,16 @@
   {% endfor %}
   {% set pinned_sorted = pinned | sort(attribute="extra.pin_order") %}
   {% set regular_sorted = regular | sort(attribute="date") | reverse %}
-  {% set all_projects = pinned_sorted | concat(with=regular_sorted) %}
 
-  <ul class="project-list">
-    {% for p in all_projects %}
-      <li class="project-entry">
+  {% if pinned_sorted | length > 0 %}
+    <div class="project-year-header">Pinned</div>
+    {% for p in pinned_sorted %}
+      {% set link = p.extra.github_link | default(value=p.permalink) %}
+      <a class="project-entry project-entry-pinned" href="{{ link }}"{% if p.extra.github_link %} target="_blank" rel="noopener noreferrer"{% endif %}>
         <div>
           <div class="project-title">
             <span class="title-wrap">
-              <a href="{{ p.permalink }}">{% if p.extra.pinned %}<span class="project-pinned" aria-label="pinned">★</span>{% endif %}{{ p.title }}</a>
+              <span class="project-title-text">{{ p.title }}</span>
               {% if p.extra.local_image or p.extra.remote_image %}
                 <span class="title-preview">
                   {% if p.extra.local_image %}
@@ -42,16 +43,46 @@
           {% if p.description %}
             <p class="project-desc">{{ p.description | safe }}</p>
           {% endif %}
-          {% if p.extra.github_link %}
-            <div class="project-links">
-              <a href="{{ p.extra.github_link }}" target="_blank" rel="noopener noreferrer">GitHub</a>
-            </div>
-          {% endif %}
         </div>
         {% if p.date %}
           <div class="project-year">{{ p.date | date(format="%Y") }}</div>
         {% endif %}
-      </li>
+      </a>
     {% endfor %}
-  </ul>
+  {% endif %}
+
+  {% set current_year = "" %}
+  {% for p in regular_sorted %}
+    {% if p.date %}
+      {% set year = p.date | date(format="%Y") %}
+    {% else %}
+      {% set year = "Undated" %}
+    {% endif %}
+    {% if year != current_year %}
+      {% set_global current_year = year %}
+      <div class="project-year-header">{{ year }}</div>
+    {% endif %}
+    {% set link = p.extra.github_link | default(value=p.permalink) %}
+    <a class="project-entry" href="{{ link }}"{% if p.extra.github_link %} target="_blank" rel="noopener noreferrer"{% endif %}>
+      <div>
+        <div class="project-title">
+          <span class="title-wrap">
+            <span class="project-title-text">{{ p.title }}</span>
+            {% if p.extra.local_image or p.extra.remote_image %}
+              <span class="title-preview">
+                {% if p.extra.local_image %}
+                  <img src="{{ get_url(path=p.extra.local_image) }}" alt="" loading="lazy">
+                {% else %}
+                  <img src="{{ get_url(path=p.extra.remote_image) }}" alt="" loading="lazy">
+                {% endif %}
+              </span>
+            {% endif %}
+          </span>
+        </div>
+        {% if p.description %}
+          <p class="project-desc">{{ p.description | safe }}</p>
+        {% endif %}
+      </div>
+    </a>
+  {% endfor %}
 {% endblock main_content %}
