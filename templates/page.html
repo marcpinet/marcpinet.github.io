@@ -1,118 +1,46 @@
 {% extends "base.html" %}
 
 {% block main_content %}
-    <style>
-        h1 {
-            font-size: 3rem;
-            line-height: 1.5;
-        }
+<article class="post-article">
+  {% if page.date %}
+    <div class="post-meta">
+      <time datetime="{{ page.date }}">{{ page.date | date(format="%B %Y") }}</time>
+    </div>
+  {% endif %}
 
-        h2 {
-            font-size: 2.5rem;
-            line-height: 1.3;
-        }
+  <h1 class="post-title">{{ page.title }}</h1>
 
-        h3 {
-            font-size: 2rem;
-            line-height: 1.3;
-        }
+  {% if page.extra.authors %}
+    <p class="post-authors">{{ page.extra.authors | safe }}</p>
+  {% endif %}
 
-        h4 {
-            font-size: 1.5rem;
-            line-height: 1.3;
-        }
+  {% if page.extra.venue or page.extra.status %}
+    <p class="post-venue">
+      {% if page.extra.venue %}{{ page.extra.venue | safe }}{% endif %}
+      {% if page.extra.status %}<span class="pub-status {{ page.extra.status | replace(from=' ', to='-') | replace(from='_', to='-') }}">{{ page.extra.status | replace(from='_', to=' ') }}</span>{% endif %}
+    </p>
+  {% endif %}
 
-        h5 {
-            font-size: 1rem;
-            line-height: 0.5;
-        }
-        
-        span.keyword {
-            color: #ff6d00;
-        }
+  {% if page.extra.links %}
+    <div class="post-links">
+      {% for link in page.extra.links %}
+        <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.name }}</a>
+      {% endfor %}
+    </div>
+  {% endif %}
 
-        div.image {
-            text-align: center;
-        }
+  {% if page.extra.github_link and not page.extra.links %}
+    <div class="post-links">
+      <a href="{{ page.extra.github_link }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </div>
+  {% endif %}
 
-        .tooltip {
-            position: relative;
-        }
+  {% if page.extra.tldr %}
+    <div class="tldr"><strong>tl;dr:</strong> {{ page.extra.tldr }}</div>
+  {% endif %}
 
-        .tooltip-image {
-            display: none;
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 200px;
-            background-color: #171717;
-            border: 1px solid black;
-        }
-
-        .tooltip:hover .tooltip-image {
-            display: block;
-        }
-
-        h2::before {
-            content: "";
-            display: block;
-            height: 1px;
-            background-color: #35393b;
-            margin-top: 5vh;
-            margin-bottom: 5vh;
-        }
-
-    </style>
-    {{ post_macros::content(page=page)}}
+  <section class="post-body">
+    {{ page.content | safe }}
+  </section>
+</article>
 {% endblock main_content %}
-
-{% block giscus %}
-<noscript>Please enable JavaScript for accessing the comments</noscript>
-<script>
-(function() {
-    const currentTheme = localStorage.getItem('theme');
-    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const isDark = currentTheme ? currentTheme === 'dark' : systemPrefersDark;
-    const giscusTheme = isDark ? 'dark_dimmed' : 'light';
-    
-    const script = document.createElement('script');
-    script.src = 'https://giscus.app/client.js';
-    script.setAttribute('data-repo', 'marcpinet/marcpinet.github.io');
-    script.setAttribute('data-repo-id', 'R_kgDOJDP6MA');
-    script.setAttribute('data-category', 'Q&A');
-    script.setAttribute('data-category-id', 'DIC_kwDOJDP6MM4CUiRW');
-    script.setAttribute('data-mapping', 'title');
-    script.setAttribute('data-strict', '0');
-    script.setAttribute('data-reactions-enabled', '1');
-    script.setAttribute('data-emit-metadata', '0');
-    script.setAttribute('data-input-position', 'bottom');
-    script.setAttribute('data-theme', giscusTheme);
-    script.setAttribute('data-lang', 'en');
-    script.setAttribute('data-loading', 'lazy');
-    script.setAttribute('crossorigin', 'anonymous');
-    script.async = true;
-    
-    document.currentScript.parentNode.insertBefore(script, document.currentScript.nextSibling);
-})();
-
-function updateGiscusTheme() {
-    const currentTheme = localStorage.getItem('theme');
-    const islight = currentTheme === 'light';
-    const theme = islight ? 'light' : 'dark_dimmed';
-
-    const message = { setConfig: { theme: theme } };
-    const iframe = document.querySelector('.giscus-frame');
-    if (iframe) {
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-    }
-}
-
-window.addEventListener('load', function() {
-    const themeSwitchers = document.querySelectorAll('.theme-switcher input');
-    themeSwitchers.forEach(switcher => {
-        switcher.addEventListener('change', () => setTimeout(updateGiscusTheme, 100));
-    });
-});
-</script>
-{% endblock giscus %}

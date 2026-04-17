@@ -1,27 +1,46 @@
-{% import "macros/macros.html" as post_macros %}
-
 <!DOCTYPE html>
-<html lang = "en">
+<html lang="en" data-theme="light">
 {% include "partials/header.html" %}
-{% include "mathjax.html" %}
 <body>
-    {% include "partials/nav.html" %}
-    <div class="content">
-
-        {# Post page is the default #}
-        {% block main_content %}
-            Nothing here?!
-        {% endblock main_content %}
-        {% block giscus %}
-        {% endblock giscus %}
-    </div>
-    {% include "partials/footer.html" %}
-
-    <script type="text/javascript" src="{{ get_url(path="elasticlunr.min.js") }}"></script>
-    <script type="text/javascript" src="{{ get_url(path="search.js") }}"></script>
-    <script type="text/javascript" src="{{ get_url(path="js/fields-toggle.js") }}"></script>
-    <script type="text/javascript" src="{{ get_url(path="js/enhanced-ui.js") }}"></script>
-    <script type="text/javascript" src="{{ get_url(path="js/matrix-mode.js") }}"></script>
+  {% include "partials/nav.html" %}
+  <main>
+    {% block main_content %}{% endblock main_content %}
+  </main>
+  {% include "partials/footer.html" %}
+  <script>
+    (function() {
+      function updateLabel() {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        var t = document.documentElement.getAttribute('data-theme');
+        btn.textContent = t === 'dark' ? 'Light' : 'Dark';
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        updateLabel();
+        var btn = document.querySelector('.theme-toggle');
+        if (btn) {
+          btn.addEventListener('click', function() {
+            var t = document.documentElement.getAttribute('data-theme');
+            var next = t === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            try { localStorage.setItem('theme', next); } catch (e) {}
+            updateLabel();
+          });
+        }
+        document.querySelectorAll('.field-tag').forEach(function(tag) {
+          var text = tag.textContent.trim();
+          if (!text || tag.querySelector('a')) return;
+          var query = text.replace(/\s*\([^)]*\)\s*/g, '').trim().replace(/\s+/g, '_');
+          var link = document.createElement('a');
+          link.href = 'https://en.wikipedia.org/wiki/' + encodeURIComponent(query);
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = text;
+          tag.textContent = '';
+          tag.appendChild(link);
+        });
+      });
+    })();
+  </script>
 </body>
-
 </html>

@@ -1,6 +1,6 @@
 # ignore node/grunt dependency directories
 node_modules/
-
+.claude/
 # Ignore build directories.
 /build
 /dist

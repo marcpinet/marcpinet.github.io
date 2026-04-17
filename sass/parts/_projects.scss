@@ -1,0 +1,127 @@
+.project-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.project-entry {
+  padding: 0.9rem 0;
+  border-top: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+}
+
+.project-entry:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.project-title {
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+  margin: 0 0 0.2rem;
+}
+
+.project-title a {
+  color: var(--text);
+  border-bottom: none;
+}
+
+.project-title a:hover {
+  color: var(--accent);
+  border-bottom: none;
+}
+
+.project-desc {
+  font-size: 0.94rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.project-year {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  padding-top: 5px;
+  font-variant-numeric: tabular-nums;
+}
+
+.project-links {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  margin-top: 0.4rem;
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.project-links a {
+  color: var(--text-muted);
+  border-bottom: 1px dotted var(--border-strong);
+  padding-bottom: 1px;
+}
+
+.project-links a:hover {
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+
+.project-pinned {
+  color: var(--accent);
+  margin-right: 0.3rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  opacity: 0.8;
+}
+
+/* Title tooltip with preview image */
+.title-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.title-preview {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 200;
+  width: 280px;
+  max-width: calc(100vw - 3rem);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--surface);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18), 0 2px 6px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.title-wrap:hover .title-preview,
+.title-wrap:focus-within .title-preview {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.title-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 260px;
+  object-fit: contain;
+  background: var(--bg);
+}
+
+@media (max-width: 600px) {
+  .project-entry {
+    grid-template-columns: 1fr;
+  }
+  .project-year {
+    order: -1;
+    font-size: 0.76rem;
+  }
+}

@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+  <h1>{{ section.title }}</h1>
+  {% if section.description %}
+    <p class="page-intro">{{ section.description | safe }}</p>
+  {% endif %}
+
+  {% if section.pages | length > 0 %}
+    {% set sorted = section.pages | sort(attribute="date") | reverse %}
+    {% set current_year = "" %}
+    {% for p in sorted %}
+      {% set pub_year = p.date | date(format="%Y") %}
+      {% if pub_year != current_year %}
+        {% set_global current_year = pub_year %}
+        <div class="pub-year">{{ pub_year }}</div>
+      {% endif %}
+      <div class="pub-entry">
+        <div class="pub-title"><a href="{{ p.permalink }}">{{ p.title }}</a></div>
+        {% if p.extra.authors %}
+          <div class="pub-authors">{{ p.extra.authors | safe }}</div>
+        {% endif %}
+        {% if p.extra.venue or p.extra.status %}
+          <div class="pub-venue">
+            {% if p.extra.venue %}{{ p.extra.venue | safe }}{% endif %}
+            {% if p.extra.status %}<span class="pub-status {{ p.extra.status | replace(from=' ', to='-') | replace(from='_', to='-') }}">{{ p.extra.status | replace(from='_', to=' ') }}</span>{% endif %}
+          </div>
+        {% endif %}
+        {% if p.extra.links %}
+          <div class="pub-links">
+            {% for l in p.extra.links %}
+              <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer">{{ l.name }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="empty-note">No publications yet — coming soon.</p>
+  {% endif %}
+
+  {% set datasets = get_section(path="datasets/_index.md") %}
+  {% if datasets.pages | length > 0 %}
+    <h2>Datasets</h2>
+    {% for p in datasets.pages | sort(attribute="date") | reverse %}
+      <div class="pub-entry{% if loop.first %} no-top{% endif %}">
+        <div class="pub-title"><a href="{{ p.permalink }}">{{ p.title }}</a></div>
+        {% if p.extra.authors %}
+          <div class="pub-authors">{{ p.extra.authors | safe }}</div>
+        {% endif %}
+        {% if p.extra.venue %}
+          <div class="pub-venue">{{ p.extra.venue | safe }}</div>
+        {% endif %}
+        {% if p.extra.links %}
+          <div class="pub-links">
+            {% for l in p.extra.links %}
+              <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer">{{ l.name }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  {% set service = get_section(path="service/_index.md") %}
+  {% if service.extra.items and service.extra.items | length > 0 %}
+    <h2>Academic Service</h2>
+    <ul class="service-list">
+      {% for item in service.extra.items %}
+        <li class="service-item">
+          <span class="service-role">{{ item.role }}</span>
+          <span class="service-venues">{{ item.venues | safe }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% set patents = get_section(path="patents/_index.md") %}
+  {% if patents.extra.items and patents.extra.items | length > 0 %}
+    <h2>Patents</h2>
+    <ul class="service-list">
+      {% for item in patents.extra.items %}
+        <li class="service-item">
+          <span class="service-role">{{ item.date | default(value="Filed") }}</span>
+          <span class="service-venues"><strong>{{ item.title }}</strong>{% if item.details %}<br>{{ item.details | safe }}{% endif %}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endblock main_content %}

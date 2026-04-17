@@ -1,93 +1,64 @@
-{% import "macros/macros.html" as post_macros %}
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    {# Site title #}
-    {% set current_path = current_path | default(value="/") %}
-    {% if current_path == "/" %}
-    <title>
-        {{ config.title | default(value="Home") }}
-    </title>
-    {% else %}
-    <title>
-        {{ page.title | default(value=config.title) | default(value="Post") }}
-    </title>
-    {% endif %}
+  {% set current_path = current_path | default(value="/") %}
+  {% if page %}
+    <title>{{ page.title | default(value=config.title) }} · {{ config.title }}</title>
+  {% elif section and section.title and current_path != "/" %}
+    <title>{{ section.title }} · {{ config.title }}</title>
+  {% else %}
+    <title>{{ config.title }}</title>
+  {% endif %}
 
-    {# Favicon #}
-    {% if config.extra.favicon %}
-    <link rel="icon" type="image/png" href={{ config.extra.favicon }} />
-    {% endif %}
+  {% if config.extra.favicon %}
+    <link rel="icon" type="image/png" href="{{ config.extra.favicon }}" />
+  {% endif %}
 
+  <link rel="stylesheet" type="text/css" media="screen" href="{{ get_url(path='main.css') }}" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
-    {# RSS #}
-    <link rel="alternate" type="application/atom+xml" title="{{ config.title }}" href="{{ get_url(path=" atom.xml",
-        trailing_slash=false) }}">
-    <link rel="stylesheet" type="text/css" media="screen" href={{ get_url(path="main.css" ) }} />
-
-    {%- if config.extra.search_bar %}
-        <script type="text/javascript" src="{{ get_url(path="elasticlunr.min.js") }}"></script>
-        <script type="text/javascript" src="{{ get_url(path="search_index.en.js") }}"></script>
-        <script type="text/javascript" src="{{ get_url(path="search.js") }}"></script>
-    {% endif %}
-    
-    {% if config.extra.stylesheets %}
-    {% for stylesheet in config.extra.stylesheets %}
-    <link rel="stylesheet" href="{{ get_url(path=stylesheet) }}">
-    {% endfor %}
-    {% endif %}
-
-
-    <meta name="description" content="{{ config.description }}">
-
-    <meta name="description" content="{{ config.description }}">
-    {% if is_404 %}
+  <meta name="description" content="{{ config.description }}">
+  {% if is_404 %}
     <meta name="robots" content="noindex, follow">
-    {% else %}
+  {% else %}
     <meta name="robots" content="index, follow">
-    {% endif %}
+  {% endif %}
 
-    <meta property="og:title" content="{{ config.title }}">
-    <meta property="og:type" content="website" />
+  <meta property="og:title" content="{{ config.title }}">
+  <meta property="og:type" content="website" />
+  <meta property="og:description" content="{{ config.description }}">
+  <meta property="og:site_name" content="{{ config.title }}">
+  {% set current_url = current_url | default(value=config.base_url) %}
+  <meta property="og:url" content="{{ current_url }}">
+  <meta name="theme-color" content="#cb6441">
 
-    <!--
-    {% if config.extra.headerImage %}
-        <meta property="og:image" content="{{ get_url(path=config.extra.headerImage) }}">
-        <meta property="og:image:width" content="1200">
-        <meta property="og:image:height" content="630">
-        <meta property="og:image:alt" content="{{ config.title }}">
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:image" content="{{ get_url(path=config.extra.headerImage) }}">
-        <meta name="twitter:image:alt" content="{{ config.title }}">
-    {% endif %}
-    -->
-    <meta name="theme-color" content="#fa6b06">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "{{ config.title }}",
+    "url": "{{ config.base_url }}",
+    "description": "{{ config.description }}",
+    "sameAs": [
+      {% for social in config.extra.socials %}
+        {% if social.name != "Email" and social.name != "CV" and social.name != "RSS" %}
+          "{{ social.url }}"{% if not loop.last %},{% endif %}
+        {% endif %}
+      {% endfor %}
+    ]
+  }
+  </script>
 
-    {% set current_url = current_url | default(value="/") %}
-    <meta property="og:url" content="{{ current_url }}">
-    
-    <meta property="og:description" content="{{ config.description }}">
-    <meta property="og:site_name" content="{{ config.title }}">
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "{{ config.title }}",
-      "url": "{{ config.base_url }}",
-      "image": "{{ get_url(path=config.extra.headerImage) }}",
-      "description": "{{ config.description }}",
-      "sameAs": [
-        {% for social in config.extra.socials %}
-          {% if social.name != "Email" and social.name != "CV" and social.name != "RSS" %}
-            "{{ social.url }}"{% if not loop.last %},{% endif %}
-          {% endif %}
-        {% endfor %}
-      ]
-    }
-    </script>
+  <script>
+    (function() {
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
+    })();
+  </script>
 </head>

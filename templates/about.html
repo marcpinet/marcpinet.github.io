@@ -1,5 +1,8 @@
-{% extends "base_about.html" %}
+{% extends "base.html" %}
 
 {% block main_content %}
-    {{ post_macros::content(page=page)}}
+  <h1>{{ page.title | default(value="About") }}</h1>
+  <div class="about-body">
+    {{ page.content | safe }}
+  </div>
 {% endblock main_content %}

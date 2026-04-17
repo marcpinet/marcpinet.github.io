@@ -1,51 +1,57 @@
 {% extends "base.html" %}
 
 {% block main_content %}
-    {% if section.extra.section_path -%}
-        {% set section = get_section(path=section.extra.section_path) %}
-    {% endif -%}
+  <h1>{{ section.title }}</h1>
+  {% if section.description %}
+    <p class="page-intro">{{ section.description | safe }}</p>
+  {% elif section.extra.intro %}
+    <p class="page-intro">{{ section.extra.intro | safe }}</p>
+  {% endif %}
 
-    {{ post_macros::page_header(title=section.title) }}
-
-    <main>
-        {%- if paginator %}
-            {%- set show_pages = paginator.pages -%}
-        {% else %}
-            {%- set show_pages = section.pages -%}
-        {% endif -%}
-
-        {%- set pinned_pages = [] -%}
-        {%- set regular_pages = [] -%}
-        
-        {%- for page in show_pages -%}
-            {%- if page.extra.pinned -%}
-                {%- set_global pinned_pages = pinned_pages | concat(with=page) -%}
-            {%- else -%}
-                {%- set_global regular_pages = regular_pages | concat(with=page) -%}
-            {%- endif -%}
-        {%- endfor -%}
-        
-        {%- set sorted_pinned = pinned_pages | sort(attribute="extra.pin_order") -%}
-        {%- set sorted_regular = regular_pages | sort(attribute="date") | reverse -%}
-        
-        {%- set final_pages = sorted_pinned | concat(with=sorted_regular) -%}
-        
-        {{ post_macros::cards_posts(pages=final_pages) }}
-    </main>
-
-    {% if paginator %}
-        <ul class="pagination">
-            {% if paginator.previous %}
-                <span class="page-item page-prev">
-                    <a href={{ paginator.previous }} class="page-link" aria-label="Previous"><span aria-hidden="true">← Prev</span></a>
-                </span>
-            {% endif %}
-
-            {% if paginator.next %}
-                <span class="page-item page-next">
-                    <a href={{ paginator.next }} class="page-link" aria-label="Next"><span aria-hidden="true">Next →</span></a>
-                </span>
-            {% endif %}
-        </ul>
+  {% set pinned = [] %}
+  {% set regular = [] %}
+  {% for p in section.pages %}
+    {% if p.extra.pinned %}
+      {% set_global pinned = pinned | concat(with=p) %}
+    {% else %}
+      {% set_global regular = regular | concat(with=p) %}
     {% endif %}
+  {% endfor %}
+  {% set pinned_sorted = pinned | sort(attribute="extra.pin_order") %}
+  {% set regular_sorted = regular | sort(attribute="date") | reverse %}
+  {% set all_projects = pinned_sorted | concat(with=regular_sorted) %}
+
+  <ul class="project-list">
+    {% for p in all_projects %}
+      <li class="project-entry">
+        <div>
+          <div class="project-title">
+            <span class="title-wrap">
+              <a href="{{ p.permalink }}">{% if p.extra.pinned %}<span class="project-pinned" aria-label="pinned">★</span>{% endif %}{{ p.title }}</a>
+              {% if p.extra.local_image or p.extra.remote_image %}
+                <span class="title-preview">
+                  {% if p.extra.local_image %}
+                    <img src="{{ get_url(path=p.extra.local_image) }}" alt="" loading="lazy">
+                  {% else %}
+                    <img src="{{ get_url(path=p.extra.remote_image) }}" alt="" loading="lazy">
+                  {% endif %}
+                </span>
+              {% endif %}
+            </span>
+          </div>
+          {% if p.description %}
+            <p class="project-desc">{{ p.description | safe }}</p>
+          {% endif %}
+          {% if p.extra.github_link %}
+            <div class="project-links">
+              <a href="{{ p.extra.github_link }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+            </div>
+          {% endif %}
+        </div>
+        {% if p.date %}
+          <div class="project-year">{{ p.date | date(format="%Y") }}</div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
 {% endblock main_content %}

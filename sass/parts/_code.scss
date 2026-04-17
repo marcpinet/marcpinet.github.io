@@ -1,124 +1,37 @@
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.9rem 1rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  margin: 1rem 0;
+}
 
 code {
-  background-color: var(--bg-1);
-  padding: 0.1em 0.2em;
-  border-radius: 5px;
-  border: 1px solid var(--border-color);
-}
-
-[data-theme="dark"] code {
-  color: #f2f2f2;
-  background-color: var(--bg-1);
-}
-
-[data-theme="light"] code {
-  color: #262222;
-  background-color: #f8f8f8;
-  border-color: #e1e4e8;
-}
-
-pre {
-  /* Rounded border */
-  border-radius: 5px;
-  border: 1px solid var(--border-color);
-
-  line-height: 1.4;
-  overflow-x: auto;
-  padding: 1em;
+  font-family: var(--font-mono);
+  font-size: 0.88em;
+  background: var(--surface);
+  padding: 1px 5px;
+  border-radius: 2px;
+  border: 1px solid var(--border);
 }
 
 pre code {
-  background-color: transparent;
-  color: inherit;
-  font-size: 100%;
+  background: transparent;
+  border: none;
   padding: 0;
-
-  // We only want a border around `code` and not `pre code` blocks.
-  border: 0;
+  font-size: inherit;
 }
 
-pre {
-  font-family: var(--code-font);
-  position: relative;
-  -webkit-overflow-scrolling: touch;
-}
-
-pre code[class*="language-"] {
-  -webkit-overflow-scrolling: touch;
-}
-
-pre code[class*="language-"]::before {
-  background: black;
-  border-radius: 0 0 0.25rem 0.25rem;
-  color: white;
-  font-size: 12px;
-  letter-spacing: 0.025rem;
-  padding: 0.1rem 0.5rem;
-  position: absolute;
-  right: 0.1rem;
-  margin-top: 0.1rem;
-  text-align: right;
-  text-transform: uppercase;
-  top: 0;
-}
-
-pre code[class="language-javaScript"]::before,
-pre code[class="language-js"]::before {
-  content: "js";
-  background: #f7df1e;
-  color: black;
-}
-
-pre code[class*="language-yml"]::before,
-pre code[class*="language-yaml"]::before {
-  content: "yaml";
-  background: #f71e6a;
-  color: white;
-}
-
-pre code[class*="language-shell"]::before,
-pre code[class*="language-bash"]::before,
-pre code[class*="language-sh"]::before {
-  content: "shell";
-  background: green;
-  color: white;
-}
-
-pre code[class*="language-json"]::before {
-  content: "json";
-  background: dodgerblue;
-  color: #000000;
-}
-
-pre code[class*="language-python"]::before,
-pre code[class*="language-py"]::before {
-  content: "py";
-  background: blue;
-  color: yellow;
-}
-
-pre code[class*="language-css"]::before {
-  content: "css";
-  background: cyan;
-  color: black;
-}
-
-pre code[class*="language-go"]::before {
-  content: "Go";
-  background: cyan;
-  color: royalblue;
-}
-
-pre code[class*="language-md"]::before,
-pre code[class*="language-md"]::before {
-  content: "Markdown";
-  background: royalblue;
-  color: whitesmoke;
-}
-
-pre code[class*="language-rust"]::before,
-pre code[class*="language-rs"]::before {
-  content: "rust";
-  background: #fff8f6;
-  color: #ff4647;
+kbd {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  padding: 1px 5px;
 }

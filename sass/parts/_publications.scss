@@ -1,0 +1,178 @@
+.pub-year {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin: 2rem 0 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.pub-year:first-of-type {
+  margin-top: 0.5rem;
+}
+
+.pub-entry {
+  padding: 0.8rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.pub-entry.no-top {
+  border-top: none;
+  padding-top: 0;
+}
+
+.pub-entry:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.pub-title {
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 0.3rem;
+}
+
+.pub-title a {
+  color: var(--text);
+  border-bottom: none;
+}
+
+.pub-title a:hover {
+  color: var(--accent);
+  border-bottom: none;
+}
+
+.pub-authors {
+  font-size: 0.93rem;
+  color: var(--text-muted);
+  margin: 0 0 0.2rem;
+  line-height: 1.5;
+}
+
+.pub-authors .self {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.pub-venue {
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.pub-status {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-style: normal;
+  font-weight: 500;
+  padding: 1px 6px;
+  border-radius: 2px;
+  margin-left: 0.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: 2px;
+}
+
+.pub-status.preprint {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.pub-status.in-review,
+.pub-status.in_review {
+  color: var(--text-muted);
+  border: 1px solid var(--border-strong);
+}
+
+.pub-status.accepted {
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.pub-status.published {
+  color: var(--text);
+  border: 1px solid var(--text);
+}
+
+.pub-status.wip {
+  color: var(--text-muted);
+  border: 1px dashed var(--border-strong);
+}
+
+.pub-links {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  margin-top: 0.45rem;
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.pub-links a {
+  color: var(--text-muted);
+  border-bottom: 1px dotted var(--border-strong);
+  padding-bottom: 1px;
+}
+
+.pub-links a:hover {
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+
+.all-link {
+  margin-top: 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  text-align: right;
+}
+
+.empty-note {
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-style: italic;
+  padding: 0.5rem 0;
+}
+
+/* Service / Patents rows */
+.service-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.service-item {
+  padding: 0.55rem 0;
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.service-item:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.service-role {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding-top: 3px;
+}
+
+.service-venues {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .service-item {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}

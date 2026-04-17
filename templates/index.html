@@ -1,1 +1,48 @@
-{% extends "section.html" %}
+{% extends "base.html" %}
+
+{% block main_content %}
+  {% set home = section %}
+
+  <section class="hero">
+    {% if home.extra.photo %}
+      <img src="{{ home.extra.photo }}" alt="{{ home.extra.name | default(value=config.title) }}" class="hero-photo">
+    {% endif %}
+    <div>
+      <h1 class="hero-name">{{ home.extra.name | default(value=config.title) }}</h1>
+      <div class="hero-bio">{{ home.content | safe }}</div>
+    </div>
+  </section>
+
+  {% if home.extra.interests %}
+    <h2>Research Interests</h2>
+    <p class="interests">
+      {% for i in home.extra.interests %}{{ i }}{% if not loop.last %} <span class="bullet">·</span> {% endif %}{% endfor %}
+    </p>
+  {% endif %}
+
+  {% set pub_section = get_section(path="publications/_index.md", metadata_only=true) %}
+  {% if pub_section.pages | length > 0 %}
+    {% set featured = pub_section.pages | filter(attribute="extra.featured", value=true) %}
+    {% if featured | length == 0 %}
+      {% set featured = pub_section.pages | sort(attribute="date") | reverse | slice(end=3) %}
+    {% else %}
+      {% set featured = featured | slice(end=3) %}
+    {% endif %}
+    <h2>Selected Publications</h2>
+    {% for p in featured %}
+      <div class="pub-entry{% if loop.first %} no-top{% endif %}">
+        <div class="pub-title"><a href="{{ p.permalink }}">{{ p.title }}</a></div>
+        {% if p.extra.authors %}
+          <div class="pub-authors">{{ p.extra.authors | safe }}</div>
+        {% endif %}
+        {% if p.extra.venue or p.extra.status %}
+          <div class="pub-venue">
+            {% if p.extra.venue %}{{ p.extra.venue | safe }}{% endif %}
+            {% if p.extra.status %}<span class="pub-status {{ p.extra.status | replace(from=' ', to='-') | replace(from='_', to='-') }}">{{ p.extra.status | replace(from='_', to=' ') }}</span>{% endif %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+    <p class="all-link"><a href="{{ get_url(path='publications') }}">All publications →</a></p>
+  {% endif %}
+{% endblock main_content %}

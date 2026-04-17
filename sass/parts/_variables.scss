@@ -1,0 +1,30 @@
+:root {
+  --font-serif: 'Source Serif 4', Charter, 'Iowan Old Style', 'Palatino Linotype', Palatino, P052, Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --content-width: 680px;
+}
+
+[data-theme="light"] {
+  --bg: #f8f8f6;
+  --surface: #ede8d9;
+  --border: rgba(20, 20, 20, 0.12);
+  --border-strong: rgba(20, 20, 20, 0.24);
+  --text: #141414;
+  --text-muted: rgba(20, 20, 20, 0.58);
+  --accent: #cb6441;
+  --accent-hover: #a84f31;
+  --accent-soft: rgba(203, 100, 65, 0.12);
+}
+
+[data-theme="dark"] {
+  --bg: #1f1f1e;
+  --surface: #2a2a29;
+  --border: rgba(250, 248, 241, 0.12);
+  --border-strong: rgba(250, 248, 241, 0.24);
+  --text: #faf8f1;
+  --text-muted: rgba(250, 248, 241, 0.58);
+  --accent: #d87757;
+  --accent-hover: #f1926f;
+  --accent-soft: rgba(216, 119, 87, 0.14);
+}

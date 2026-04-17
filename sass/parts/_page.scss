@@ -1,0 +1,143 @@
+.post-article {
+  .post-meta {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .post-meta time {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .post-title {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0 0 0.75rem;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+
+  .post-authors {
+    font-family: var(--font-serif);
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    margin: 0 0 0.4rem;
+  }
+
+  .post-authors .self {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .post-venue {
+    font-family: var(--font-serif);
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin: 0 0 0.5rem;
+  }
+
+  .post-links {
+    font-family: var(--font-sans);
+    font-size: 0.82rem;
+    margin: 0.5rem 0 1.5rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .post-links a {
+    color: var(--text-muted);
+    border-bottom: 1px dotted var(--border-strong);
+    padding-bottom: 1px;
+  }
+
+  .post-links a:hover {
+    color: var(--accent);
+    border-bottom: 1px solid var(--accent);
+  }
+
+  .post-body {
+    /* Hide the first H1 inside the body (user markdown title duplicating the template title) */
+    > h1:first-of-type {
+      display: none;
+    }
+
+    h1 {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      margin: 2.5rem 0 0.75rem;
+      font-family: var(--font-sans);
+      padding-bottom: 0;
+      border-bottom: none;
+      letter-spacing: -0.01em;
+    }
+
+    h2 {
+      font-family: var(--font-sans);
+      font-size: 1.15rem;
+      font-weight: 600;
+      text-transform: none;
+      letter-spacing: -0.01em;
+      border-bottom: none;
+      color: var(--text);
+      margin: 2.5rem 0 0.75rem;
+      padding-bottom: 0;
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 1.75rem 0 0.4rem;
+      font-family: var(--font-serif);
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 3px;
+      margin: 1rem 0;
+    }
+
+    video {
+      max-width: 100%;
+      height: auto;
+      border-radius: 3px;
+      margin: 1rem 0;
+    }
+
+    ul, ol {
+      padding-left: 1.2rem;
+    }
+
+    li {
+      margin-bottom: 0.3rem;
+    }
+  }
+}
+
+.tldr {
+  padding: 0.75rem 1rem;
+  margin: 1.25rem 0 2rem;
+  background: var(--surface);
+  border-left: 3px solid var(--accent);
+  font-size: 0.95rem;
+  border-radius: 0 3px 3px 0;
+}
+
+.tldr strong {
+  color: var(--accent);
+  text-transform: uppercase;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  margin-right: 0.4rem;
+}

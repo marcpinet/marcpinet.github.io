@@ -1,23 +1,8 @@
-<footer>
-  <section>
-    <nav>
-      {%- if config.extra.socials %}
-      {% for social in config.extra.socials %}
-      <a rel="noopener noreferrer" target="_blank" class="nav-links social" href="{{ social.url }}">
-        <img alt="{{ social.name }}" title="{{ social.name }}" src="/social_icons/{{ social.icon }}.svg">
-      </a>
-      {% endfor %}
-      {% endif %}
-    </nav>
-    <nav>
-      <span className="desktop-only"
-        >Made by <a href="https://www.linkedin.com/in/marc-pinet/" rel="noopener noreferrer" target="_blank"
-          >Marc Pinet</a> and powered by
-        <a href="https://getzola.org/" rel="noopener noreferrer" target="_blank"
-          >Zola</a
-        ></span
-      >
-    </nav>
-  </section>
-  <script src="{{ get_url(path='js/main.js', trailing_slash=false) | safe }}"></script>
+<footer class="site-footer">
+  <div>© {{ now() | date(format="%Y") }} {{ config.title }}</div>
+  <div class="site-footer-socials">
+    {%- for social in config.extra.socials %}
+      <a href="{{ social.url }}"{% if social.url is starting_with("http") %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ social.name }}</a>
+    {%- endfor %}
+  </div>
 </footer>
