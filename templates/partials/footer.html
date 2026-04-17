@@ -1,5 +1,5 @@
 <footer class="site-footer">
-  <div>© {{ now() | date(format="%Y") }} · M. Pinet</div>
+  <div>© {{ now() | date(format="%Y") }} · Marc Pinet</div>
   <div class="site-footer-socials">
     {%- for social in config.extra.socials %}
       <a href="{{ social.url }}"{% if social.url is starting_with("http") %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ social.name }}</a>
