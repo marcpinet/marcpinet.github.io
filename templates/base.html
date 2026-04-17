@@ -39,6 +39,60 @@
           tag.textContent = '';
           tag.appendChild(link);
         });
+
+        /* Duration calculation on entry dates (format: "Oct 2025 - Present" or "Apr 2022 - Jul 2022") */
+        var MONTHS = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+        function parseMonthYear(s) {
+          var m = s.trim().match(/^([A-Za-z]{3,})\s+(\d{4})$/);
+          if (!m) return null;
+          var mi = MONTHS.indexOf(m[1].toLowerCase().slice(0,3));
+          if (mi < 0) return null;
+          return new Date(parseInt(m[2], 10), mi, 1);
+        }
+        function formatDuration(months) {
+          if (months < 1) return '< 1 MONTH';
+          var years = Math.floor(months / 12);
+          var rem = months % 12;
+          if (years === 0) return rem + ' MONTH' + (rem !== 1 ? 'S' : '');
+          var y = years + ' YEAR' + (years !== 1 ? 'S' : '');
+          if (rem === 0) return y;
+          return y + ', ' + rem + ' MONTH' + (rem !== 1 ? 'S' : '');
+        }
+        document.querySelectorAll('.entry-date').forEach(function(el) {
+          if (el.dataset.dur === '1') return;
+          var text = el.textContent.trim();
+          var parts = text.split(/\s[-–]\s/);
+          if (parts.length !== 2) return;
+          var start = parseMonthYear(parts[0]);
+          if (!start) return;
+          var isPresent = /present/i.test(parts[1]);
+          var end = isPresent ? new Date() : parseMonthYear(parts[1]);
+          if (!end) return;
+          var diff = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+          el.textContent = text + ' (' + formatDuration(diff) + ')';
+          el.dataset.dur = '1';
+        });
+
+        /* Tag truncation: show first N, reveal rest on click */
+        var MAX_TAGS = 5;
+        document.querySelectorAll('.fields').forEach(function(container) {
+          if (container.dataset.trunc === '1') return;
+          var tags = Array.prototype.slice.call(container.querySelectorAll('.field-tag'));
+          if (tags.length <= MAX_TAGS) return;
+          var hidden = tags.slice(MAX_TAGS);
+          hidden.forEach(function(t) { t.classList.add('fields-hidden'); });
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'fields-toggle';
+          btn.textContent = '+ ' + hidden.length + ' more';
+          btn.addEventListener('click', function() {
+            var expanded = container.classList.toggle('fields-expanded');
+            hidden.forEach(function(t) { t.classList.toggle('fields-hidden', !expanded); });
+            btn.textContent = expanded ? 'show less' : '+ ' + hidden.length + ' more';
+          });
+          container.appendChild(btn);
+          container.dataset.trunc = '1';
+        });
       });
     })();
   </script>

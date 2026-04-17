@@ -4,7 +4,25 @@ path = "experience"
 template = "about.html"
 +++
 
-<div class="experience-entry">
+<div class="experience-group">
+
+<div class="experience-group-header">
+<div class="entry-logo">
+<a href="https://hellofuture.orange.com/fr/" target="_blank">
+<img src="/about_img/exp/orange.png" alt="Orange Innovation">
+</a>
+</div>
+<div class="experience-group-name">Orange Innovation</div>
+<span class="group-name-sep">·</span>
+<div class="entry-logo">
+<a href="https://www.liglab.fr/fr" target="_blank">
+<img src="/about_img/exp/lig.svg" alt="Laboratoire d'Informatique de Grenoble (LIG/Inria/CNRS)">
+</a>
+</div>
+<div class="experience-group-name">LIG (CNRS / Inria)</div>
+</div>
+
+<div class="experience-entry experience-entry-grouped">
 
 <div class="entry-header">
 <h3>PhD Researcher in Machine Learning</h3>
@@ -12,7 +30,7 @@ template = "about.html"
 </div>
 
 <div class="entry-description">
-Self-supervised detection and explanation of anomalies in time series data for large-scale network security. Research focus on developing robust deep learning architectures for real-time anomaly characterization, and LLMs combined with RAG-based methods for automated interpretation using business knowledge bases, eliminating human expert intervention.
+Industrial PhD (CIFRE) on Self-supervised detection and explanation of anomalies in time series data for large-scale network security. Research focus on developing robust deep learning architectures for real-time anomaly characterization, and LLMs combined with RAG-based methods for automated interpretation using business knowledge bases, eliminating human expert intervention.
 </div>
 
 <div class="fields">
@@ -32,57 +50,26 @@ Self-supervised detection and explanation of anomalies in time series data for l
 <span class="field-tag">Probability</span>
 </div>
 
-<div class="entry-footer">
-<div class="entry-location">Orange Innovation</div>
+</div>
+
+</div>
+
+<div class="experience-group">
+
+<div class="experience-group-header">
 <div class="entry-logo">
-<a href="https://hellofuture.orange.com/fr/" target="_blank">
-<img src="/about_img/exp/orange.png" alt="Orange Innovation">
+<a href="https://www.sap.com/" target="_blank">
+<img src="/about_img/exp/sap.png" alt="SAP Labs France">
 </a>
 </div>
+<div class="experience-group-name">SAP Labs France</div>
 </div>
 
-</div>
-
-<div class="experience-entry">
-
-<div class="entry-header">
-<h3>Industrial PhD Candidate</h3>
-<div class="entry-date">Oct 2025 - Present</div>
-</div>
-
-<div class="entry-description">
-Research on self-supervised deep learning for time series anomaly detection and explanation in collaboration with Orange Innovation. Developing novel deep learning approaches for automated anomaly characterization and interpretation frameworks. Working towards publications in ML conferences.
-</div>
-
-<div class="fields">
-<span class="field-tag">Anomaly Detection</span>
-<span class="field-tag">Self-Supervised Learning</span>
-<span class="field-tag">Time Series Analysis</span>
-<span class="field-tag">Interpretability</span>
-<span class="field-tag">Deep Learning</span>
-<span class="field-tag">Large Language Models (LLMs)</span>
-<span class="field-tag">Research and Development</span>
-<span class="field-tag">Linear Algebra</span>
-<span class="field-tag">Statistics</span>
-<span class="field-tag">Probability</span>
-</div>
-
-<div class="entry-footer">
-<div class="entry-location">Laboratoire d'Informatique de Grenoble (LIG/Inria/CNRS)</div>
-<div class="entry-logo">
-<a href="https://www.liglab.fr/fr" target="_blank">
-<img src="/about_img/exp/lig.svg" alt="Laboratoire d'Informatique de Grenoble (LIG/Inria/CNRS)">
-</a>
-</div>
-</div>
-
-</div>
-
-<div class="experience-entry">
+<div class="experience-entry experience-entry-grouped">
 
 <div class="entry-header">
 <h3>AI/ML R&D Engineer Apprentice</h3>
-<div class="entry-date">Aug 2024 - Sep 2025</div>
+<div class="entry-date">Sep 2024 - Sep 2025</div>
 </div>
 
 <div class="entry-description">
@@ -105,11 +92,13 @@ Unsupervised anomaly detection system for heterogeneous data (logs, metrics, tra
 <span class="field-tag">Research and Development</span>
 </div>
 
-<hr>
+</div>
+
+<div class="experience-entry experience-entry-grouped">
 
 <div class="entry-header">
 <h3>Data Scientist Intern</h3>
-<div class="entry-date">Apr 2024 - Aug 2024</div>
+<div class="entry-date">Apr 2024 - Sep 2024</div>
 </div>
 
 <div class="entry-description">
@@ -127,18 +116,22 @@ Time series trends analysis using tools such as Prophet, SARIMA, STL, and DTW. I
 <span class="field-tag">Probability</span>
 </div>
 
-<div class="entry-footer">
-<div class="entry-location">SAP Labs France</div>
+</div>
+
+</div>
+
+<div class="experience-group">
+
+<div class="experience-group-header">
 <div class="entry-logo">
-<a href="https://www.sap.com/" target="_blank">
-<img src="/about_img/exp/sap.png" alt="SAP Labs France">
+<a href="https://dniit.edu.vn/" target="_blank">
+<img src="/about_img/exp/dniit.png" alt="Da Nang International Institute of Technology">
 </a>
 </div>
+<div class="experience-group-name">Da Nang International Institute of Technology (DNIIT)</div>
 </div>
 
-</div>
-
-<div class="experience-entry">
+<div class="experience-entry experience-entry-grouped">
 
 <div class="entry-header">
 <h3>IoT Developer Intern</h3>
@@ -157,18 +150,22 @@ Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensur
 <span class="field-tag">Database Management System (DBMS)</span>
 </div>
 
-<div class="entry-footer">
-<div class="entry-location">Da Nang International Institute of Technology (DNIIT)</div>
+</div>
+
+</div>
+
+<div class="experience-group">
+
+<div class="experience-group-header">
 <div class="entry-logo">
-<a href="https://dniit.edu.vn/" target="_blank">
-<img src="/about_img/exp/dniit.png" alt="Da Nang International Institute of Technology">
+<a href="https://wwws.airfrance.fr/" target="_blank">
+<img src="/about_img/exp/airfrance.svg" alt="Air France">
 </a>
 </div>
+<div class="experience-group-name">Air France</div>
 </div>
 
-</div>
-
-<div class="experience-entry">
+<div class="experience-entry experience-entry-grouped">
 
 <div class="entry-header">
 <h3>Software Developer Intern</h3>
@@ -185,18 +182,22 @@ Gained hands-on experience in full-stack development, alongside senior developer
 <span class="field-tag">Full-Stack Development</span>
 </div>
 
-<div class="entry-footer">
-<div class="entry-location">Air France</div>
+</div>
+
+</div>
+
+<div class="experience-group">
+
+<div class="experience-group-header">
 <div class="entry-logo">
-<a href="https://wwws.airfrance.fr/" target="_blank">
-<img src="/about_img/exp/airfrance.png" alt="Air France">
+<a href="https://intel.com/" target="_blank">
+<img src="/about_img/exp/intel.svg" alt="Intel Corporation">
 </a>
 </div>
+<div class="experience-group-name">Intel Corporation</div>
 </div>
 
-</div>
-
-<div class="experience-entry">
+<div class="experience-entry experience-entry-grouped">
 
 <div class="entry-header">
 <h3>Observer Intern</h3>
@@ -213,13 +214,6 @@ Introduced to processor architecture, with a Senior SoC (System-on-chip) Designe
 <span class="field-tag">System On a Chip (SoC)</span>
 </div>
 
-<div class="entry-footer">
-<div class="entry-location">Intel Corporation</div>
-<div class="entry-logo">
-<a href="https://intel.com/" target="_blank">
-<img src="/about_img/exp/intel.png" alt="Intel Corporation">
-</a>
-</div>
 </div>
 
 </div>

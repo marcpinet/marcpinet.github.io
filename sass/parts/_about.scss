@@ -26,6 +26,100 @@
   border-bottom: 1px solid var(--border);
 }
 
+/* Multi-role group at same company */
+.experience-group {
+  padding: 1rem 0 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.experience-group:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.experience-group + .experience-entry {
+  border-top: 1px solid var(--border);
+}
+
+.experience-group-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-bottom: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.experience-group-header .group-name-sep {
+  margin: 0 0.2rem;
+}
+
+.experience-group-header .experience-group-name + .group-name-sep + .entry-logo {
+  margin-left: 0.2rem;
+}
+
+.group-name-sep {
+  color: var(--accent);
+  margin: 0 0.2rem;
+  opacity: 0.6;
+}
+
+.experience-group-name {
+  font-family: var(--font-sans);
+  font-size: 0.98rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--text);
+}
+
+.experience-group .experience-entry-grouped {
+  border: none;
+  padding: 0.6rem 0 0.6rem 2.4rem;
+  position: relative;
+  margin-left: 0.35rem;
+}
+
+.experience-group .experience-entry-grouped::before {
+  content: '';
+  position: absolute;
+  left: 0.95rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--border-strong);
+  opacity: 0.7;
+}
+
+.experience-group .experience-entry-grouped:first-of-type::before {
+  top: 0.45rem;
+}
+
+.experience-group .experience-entry-grouped:last-of-type::before {
+  bottom: calc(100% - 1.15rem);
+}
+
+.experience-group .experience-entry-grouped::after {
+  content: '';
+  position: absolute;
+  left: 0.68rem;
+  top: 1rem;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1.5px solid var(--accent);
+}
+
+/* Solo group: no timeline, no indentation (using :has() to detect single-entry groups) */
+.experience-group:not(:has(.experience-entry-grouped + .experience-entry-grouped)) .experience-entry-grouped::before,
+.experience-group:not(:has(.experience-entry-grouped + .experience-entry-grouped)) .experience-entry-grouped::after {
+  display: none;
+}
+
+.experience-group:not(:has(.experience-entry-grouped + .experience-entry-grouped)) .experience-entry-grouped {
+  padding-left: 0;
+  margin-left: 0;
+  padding-top: 0.35rem;
+}
+
 .about-body h2 + .experience-entry,
 .about-body h2 + .education-entry,
 .about-body h2 + .certification-entry,
@@ -101,6 +195,25 @@
   border-bottom-color: var(--accent);
 }
 
+.fields-toggle {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  color: var(--accent);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+  transition: opacity 0.15s;
+}
+
+.fields-toggle:hover {
+  opacity: 0.75;
+}
+
+.fields-hidden { display: none; }
+
 .entry-footer {
   display: flex;
   justify-content: space-between;
@@ -113,6 +226,19 @@
   font-size: 0.92rem;
   color: var(--text-muted);
   font-style: italic;
+}
+
+.entry-location a {
+  color: inherit;
+  border-bottom: 1px dotted var(--border-strong);
+  padding-bottom: 1px;
+  text-decoration: none;
+  transition: color 0.15s, border-color 0.15s;
+}
+
+.entry-location a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
 }
 
 .entry-logo {
@@ -129,12 +255,18 @@
 }
 
 .entry-logo img {
-  height: 26px;
+  max-height: 34px;
+  max-width: 90px;
   width: auto;
-  max-width: 100px;
+  height: auto;
   object-fit: contain;
   transition: opacity 0.15s ease;
   opacity: 0.9;
+}
+
+.experience-group-header .entry-logo img {
+  max-height: 42px;
+  max-width: 150px;
 }
 
 .entry-logo a:hover img {

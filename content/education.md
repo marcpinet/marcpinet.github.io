@@ -4,7 +4,18 @@ path = "education"
 template = "about.html"
 +++
 
-<div class="education-entry">
+<div class="experience-group">
+
+<div class="experience-group-header">
+<div class="entry-logo">
+<a href="https://www.univ-grenoble-alpes.fr/" target="_blank">
+<img src="/about_img/edu/uga.png" alt="Université Grenoble Alpes">
+</a>
+</div>
+<div class="experience-group-name">Université Grenoble Alpes</div>
+</div>
+
+<div class="education-entry experience-entry-grouped">
 
 <div class="entry-header">
 <h3>Industrial PhD in Computer Science - Deep Learning</h3>
@@ -27,18 +38,22 @@ Thesis: Self-supervised deep learning detection and explanation of anomalies in 
 <span class="field-tag">Research and Development</span>
 </div>
 
-<div class="entry-footer">
-<div class="entry-location">Université Grenoble Alpes</div>
+</div>
+
+</div>
+
+<div class="experience-group">
+
+<div class="experience-group-header">
 <div class="entry-logo">
-<a href="https://www.univ-grenoble-alpes.fr/" target="_blank">
-<img src="/about_img/edu/uga.png" alt="Université Grenoble Alpes">
+<a href="https://polytech.univ-cotedazur.fr/" target="_blank">
+<img src="/about_img/edu/polytech.svg" alt="Polytech Nice Sophia">
 </a>
 </div>
+<div class="experience-group-name">Polytech Nice Sophia</div>
 </div>
 
-</div>
-
-<div class="education-entry">
+<div class="education-entry experience-entry-grouped">
 
 <div class="entry-header">
 <h3>Engineer's Degree (with MSc) in Computer Science</h3>
@@ -77,18 +92,22 @@ Ranked among the top 5 engineering schools in Computer Science in France, with a
 <span class="field-tag">Android</span>
 </div>
 
-<div class="entry-footer">
-<div class="entry-location">Polytech Nice Sophia</div>
+</div>
+
+</div>
+
+<div class="experience-group">
+
+<div class="experience-group-header">
 <div class="entry-logo">
-<a href="https://polytech.univ-cotedazur.fr/" target="_blank">
-<img src="/about_img/edu/polytech.svg" alt="Polytech Nice Sophia">
+<a href="https://uqac.ca/" target="_blank">
+<img src="/about_img/edu/uqac.png" alt="UQAC">
 </a>
 </div>
+<div class="experience-group-name">Université du Québec à Chicoutimi</div>
 </div>
 
-</div>
-
-<div class="education-entry">
+<div class="education-entry experience-entry-grouped">
 
 <div class="entry-header">
 <h3>Exchange Semester</h3>
@@ -120,22 +139,26 @@ Thanks to IUT Nice Côte d'Azur as a reward for my academic performance, I got t
 <span class="field-tag">Bash</span>
 </div>
 
-<div class="entry-footer">
-<div class="entry-location">Université du Québec à Chicoutimi</div>
+</div>
+
+</div>
+
+<div class="experience-group">
+
+<div class="experience-group-header">
 <div class="entry-logo">
-<a href="https://uqac.ca/" target="_blank">
-<img src="/about_img/edu/uqac.png" alt="UQAC">
+<a href="https://iut.univ-cotedazur.fr/" target="_blank">
+<img src="/about_img/edu/iut.png" alt="IUT Nice Côte d'Azur">
 </a>
 </div>
+<div class="experience-group-name">IUT Nice Côte d'Azur</div>
 </div>
 
-</div>
-
-<div class="education-entry">
+<div class="education-entry experience-entry-grouped">
 
 <div class="entry-header">
 <h3>Associate of Science in Computer Science</h3>
-<div class="entry-date">Sep 2020 - Jul 2022</div>
+<div class="entry-date">Sep 2020 - Sep 2022</div>
 </div>
 
 <div class="entry-description">
@@ -162,13 +185,6 @@ Equivalent of a DUT (Diplôme Universitaire de Technologie) in France, with 4 mo
 <span class="field-tag">Bash</span>
 </div>
 
-<div class="entry-footer">
-<div class="entry-location">IUT Nice Côte d'Azur</div>
-<div class="entry-logo">
-<a href="https://iut.univ-cotedazur.fr/" target="_blank">
-<img src="/about_img/edu/iut.png" alt="IUT Nice Côte d'Azur">
-</a>
-</div>
 </div>
 
 </div>
