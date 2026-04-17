@@ -1,6 +1,6 @@
 +++
 title = "Citracer"
-description = "💬 Given a research paper and a concept, citracer parses the bibliography, identifies the references accross papers (cited near each occurrence) and recursively walks the resulting citation graph. Supports 10+ sources (arXiv, OpenReview, Semantic Scholar, Sci-Hub, bioRxiv, SSRN, and more), plus optional semantic matching to catch conceptual links the regex misses."
+description = "💬 Given a research paper and a concept, citracer parses the bibliography, identifies the references accross papers (cited near each occurrence) and recursively walks the resulting citation graph. Supports 10+ sources (arXiv, OpenReview, Semantic Scholar, bioRxiv, SSRN, and more), plus optional semantic matching to catch conceptual links the regex misses."
 date = "2026-04-08"
 weight = 1
 

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 {% include "partials/header.html" %}
-<body>
+<body{% if page %} data-page="{{ page.path | trim_start_matches(pat='/') | trim_end_matches(pat='/') }}"{% elif section %} data-page="{{ section.path | trim_start_matches(pat='/') | trim_end_matches(pat='/') }}"{% endif %}>
   {% include "partials/nav.html" %}
   <main>
     {% block main_content %}{% endblock main_content %}

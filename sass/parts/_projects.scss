@@ -23,20 +23,38 @@ a.project-entry:hover {
 }
 
 .project-entry {
-  padding: 0.8rem 0.75rem;
+  padding: 0.8rem 0.75rem 1.75rem;
   margin-left: -0.75rem;
   margin-right: -0.75rem;
   border-top: 1px solid var(--border);
   border-left: 2px solid transparent;
   display: block;
+  position: relative;
   transition: background 0.18s ease, border-left-color 0.18s ease;
 }
 
-.project-entry-pinned {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 1rem;
-  align-items: start;
+.project-gh {
+  position: absolute;
+  right: 0.85rem;
+  bottom: 0.55rem;
+  width: 14px;
+  height: 14px;
+  color: var(--text-muted);
+  opacity: 0.45;
+  pointer-events: none;
+  transition: opacity 0.18s ease, color 0.18s ease;
+}
+
+.project-entry:hover .project-gh {
+  opacity: 1;
+  color: var(--accent);
+}
+
+.project-entry-pinned .project-year {
+  position: absolute;
+  top: 0.9rem;
+  right: 0.85rem;
+  font-size: 0.78rem;
 }
 
 .project-entry:last-of-type {
@@ -74,7 +92,7 @@ a.project-entry:hover {
 
 .project-desc {
   font-size: 0.92rem;
-  color: var(--text-muted);
+  color: var(--text);
   margin: 0;
   line-height: 1.5;
 }

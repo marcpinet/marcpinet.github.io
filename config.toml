@@ -22,9 +22,9 @@ favicon = "/favicon.svg"
 
 menu = [
     { name = "Publications", url = "/publications", weight = 1 },
-    { name = "Projects", url = "/projects", weight = 2 },
-    { name = "Experience", url = "/experience", weight = 3 },
-    { name = "Education", url = "/education", weight = 4 },
+    { name = "Experience", url = "/experience", weight = 2 },
+    { name = "Education", url = "/education", weight = 3 },
+    { name = "Projects", url = "/projects", weight = 4 },
     { name = "Misc.", url = "/misc", weight = 5 },
 ]
 
