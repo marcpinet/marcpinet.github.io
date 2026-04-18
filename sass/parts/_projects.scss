@@ -1,3 +1,7 @@
+body[data-page="projects"] main {
+  max-width: 900px;
+}
+
 .project-year-header {
   font-family: var(--font-sans);
   font-size: 0.82rem;
@@ -23,20 +27,45 @@ a.project-entry:hover {
 }
 
 .project-entry {
-  padding: 0.8rem 0.75rem 1.75rem;
+  padding: 0.9rem 0.75rem 1rem;
   margin-left: -0.75rem;
   margin-right: -0.75rem;
   border-top: 1px solid var(--border);
   border-left: 2px solid transparent;
-  display: block;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
   position: relative;
   transition: background 0.18s ease, border-left-color 0.18s ease;
+}
+
+.project-image {
+  flex-shrink: 0;
+  width: 160px;
+  aspect-ratio: 16 / 10;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.project-body {
+  flex: 1;
+  min-width: 0;
+  padding-right: 1.5rem;
 }
 
 .project-gh {
   position: absolute;
   right: 0.85rem;
-  bottom: 0.55rem;
+  bottom: 0.85rem;
   width: 14px;
   height: 14px;
   color: var(--text-muted);
@@ -82,7 +111,7 @@ a.project-entry:hover {
   font-family: var(--font-serif);
   font-size: 1.02rem;
   font-weight: 600;
-  margin: 0 0 0.15rem;
+  margin: 0 0 0.25rem;
 }
 
 .project-title-text {
@@ -107,53 +136,20 @@ a.project-entry:hover {
   padding-top: 2px;
 }
 
-/* Title tooltip with preview image */
-.title-wrap {
-  position: relative;
-  display: inline-block;
-}
-
-.title-preview {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 0;
-  z-index: 200;
-  width: 440px;
-  max-width: calc(100vw - 3rem);
-  border: 1px solid var(--border-strong);
-  border-radius: 4px;
-  overflow: hidden;
-  background: var(--surface);
-  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22), 0 2px 6px rgba(0, 0, 0, 0.08);
-  opacity: 0;
-  pointer-events: none;
-  transform: translateY(-4px);
-  transition: opacity 0.18s ease, transform 0.18s ease;
-}
-
-.title-wrap:hover .title-preview,
-.title-wrap:focus-within .title-preview,
-.project-entry:hover .title-preview,
-.project-entry:focus-within .title-preview {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.title-preview img {
-  display: block;
-  width: 100%;
-  height: auto;
-  max-height: 400px;
-  object-fit: contain;
-  background: var(--bg);
-}
-
-@media (max-width: 600px) {
-  .project-entry {
-    grid-template-columns: 1fr;
+@media (max-width: 700px) {
+  body[data-page="projects"] main {
+    max-width: 100%;
   }
-  .project-year {
-    order: -1;
-    font-size: 0.76rem;
+  .project-entry {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .project-image {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+  .project-body {
+    padding-right: 0;
   }
 }

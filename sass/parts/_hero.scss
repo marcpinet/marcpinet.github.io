@@ -55,13 +55,23 @@
   font-family: var(--font-serif);
   font-size: 4em;
   float: left;
-  line-height: 0.95;
-  margin: 0.04em 0.1em 0 0;
+  line-height: 0.82;
+  margin: -0.03em 0.1em 0 0;
   padding: 0;
   color: var(--accent);
   font-weight: 500;
   font-style: normal;
   font-feature-settings: "onum" off;
+}
+
+/* Firefox positions ::first-letter higher than Chromium. Restore the original
+   values there so the nice overshoot is preserved. Chromium/WebKit keep the
+   compensating values above. */
+@-moz-document url-prefix("") {
+  .hero-bio > p:first-of-type::first-letter {
+    line-height: 0.95;
+    margin-top: 0.04em;
+  }
 }
 
 @media (max-width: 600px) {

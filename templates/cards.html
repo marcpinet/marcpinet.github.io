@@ -25,20 +25,18 @@
     {% for p in pinned_sorted %}
       {% set link = p.extra.github_link | default(value=p.permalink) %}
       <a class="project-entry project-entry-pinned" href="{{ link }}"{% if p.extra.github_link %} target="_blank" rel="noopener noreferrer"{% endif %}>
-        <div>
+        {% if p.extra.local_image or p.extra.remote_image %}
+          <div class="project-image">
+            {% if p.extra.local_image %}
+              <img src="{{ get_url(path=p.extra.local_image) }}" alt="" loading="lazy">
+            {% else %}
+              <img src="{{ get_url(path=p.extra.remote_image) }}" alt="" loading="lazy">
+            {% endif %}
+          </div>
+        {% endif %}
+        <div class="project-body">
           <div class="project-title">
-            <span class="title-wrap">
-              <span class="project-title-text">{{ p.title }}</span>
-              {% if p.extra.local_image or p.extra.remote_image %}
-                <span class="title-preview">
-                  {% if p.extra.local_image %}
-                    <img src="{{ get_url(path=p.extra.local_image) }}" alt="" loading="lazy">
-                  {% else %}
-                    <img src="{{ get_url(path=p.extra.remote_image) }}" alt="" loading="lazy">
-                  {% endif %}
-                </span>
-              {% endif %}
-            </span>
+            <span class="project-title-text">{{ p.title }}</span>
           </div>
           {% if p.description %}
             <p class="project-desc">{{ p.description | safe }}</p>
@@ -67,20 +65,18 @@
     {% endif %}
     {% set link = p.extra.github_link | default(value=p.permalink) %}
     <a class="project-entry" href="{{ link }}"{% if p.extra.github_link %} target="_blank" rel="noopener noreferrer"{% endif %}>
-      <div>
+      {% if p.extra.local_image or p.extra.remote_image %}
+        <div class="project-image">
+          {% if p.extra.local_image %}
+            <img src="{{ get_url(path=p.extra.local_image) }}" alt="" loading="lazy">
+          {% else %}
+            <img src="{{ get_url(path=p.extra.remote_image) }}" alt="" loading="lazy">
+          {% endif %}
+        </div>
+      {% endif %}
+      <div class="project-body">
         <div class="project-title">
-          <span class="title-wrap">
-            <span class="project-title-text">{{ p.title }}</span>
-            {% if p.extra.local_image or p.extra.remote_image %}
-              <span class="title-preview">
-                {% if p.extra.local_image %}
-                  <img src="{{ get_url(path=p.extra.local_image) }}" alt="" loading="lazy">
-                {% else %}
-                  <img src="{{ get_url(path=p.extra.remote_image) }}" alt="" loading="lazy">
-                {% endif %}
-              </span>
-            {% endif %}
-          </span>
+          <span class="project-title-text">{{ p.title }}</span>
         </div>
         {% if p.description %}
           <p class="project-desc">{{ p.description | safe }}</p>
