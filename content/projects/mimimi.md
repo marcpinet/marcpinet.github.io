@@ -7,6 +7,7 @@ weight = 1
 [extra]
 remote_image = "/mimimi/img.png"
 github_link = "https://github.com/marcpinet/mimimi"
+category = "personal"
 pinned = true
 pin_order = 3
 +++

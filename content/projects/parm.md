@@ -7,6 +7,7 @@ weight = 1
 [extra]
 remote_image = "/parm/img.gif"
 github_link = "https://github.com/marcpinet/parm"
+category = "school"
 +++
 
 <style>

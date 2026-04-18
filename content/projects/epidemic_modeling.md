@@ -7,6 +7,9 @@ weight = 1
 [extra]
 remote_image = "/epidemic_modeling/img.gif"
 github_link = "https://github.com/marcpinet/epidemic-modeling"
+category = "school"
+pinned = true
+pin_order = 3
 +++
 
 <style>

@@ -7,6 +7,7 @@ weight = 1
 [extra]
 remote_image = "/nyaadownloader/img.png"
 github_link = "https://github.com/marcpinet/nyaadownloader"
+category = "personal"
 +++
 
 <style>

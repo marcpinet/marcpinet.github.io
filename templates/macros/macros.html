@@ -13,3 +13,89 @@
   </section>
 </article>
 {% endmacro content %}
+
+{% macro project_list(pages, title) %}
+  {% if pages | length > 0 %}
+    {% set pinned = [] %}
+    {% set regular = [] %}
+    {% for p in pages %}
+      {% if p.extra.pinned %}
+        {% set_global pinned = pinned | concat(with=p) %}
+      {% else %}
+        {% set_global regular = regular | concat(with=p) %}
+      {% endif %}
+    {% endfor %}
+    {% set pinned_sorted = pinned | sort(attribute="extra.pin_order") %}
+    {% set regular_sorted = regular | sort(attribute="date") | reverse %}
+
+    <h2 class="projects-category">{{ title }}</h2>
+
+    {% if pinned_sorted | length > 0 %}
+      <div class="project-year-header">Pinned</div>
+      {% for p in pinned_sorted %}
+        {% set link = p.extra.github_link | default(value=p.permalink) %}
+        <a class="project-entry project-entry-pinned" href="{{ link }}"{% if p.extra.github_link %} target="_blank" rel="noopener noreferrer"{% endif %}>
+          {% if p.extra.local_image or p.extra.remote_image %}
+            <div class="project-image">
+              {% if p.extra.local_image %}
+                <img src="{{ get_url(path=p.extra.local_image) }}" alt="" loading="lazy">
+              {% else %}
+                <img src="{{ get_url(path=p.extra.remote_image) }}" alt="" loading="lazy">
+              {% endif %}
+            </div>
+          {% endif %}
+          <div class="project-body">
+            <div class="project-title">
+              <span class="project-title-text">{{ p.title }}</span>
+            </div>
+            {% if p.description %}
+              <p class="project-desc">{{ p.description | safe }}</p>
+            {% endif %}
+          </div>
+          {% if p.date %}
+            <div class="project-year">{{ p.date | date(format="%Y") }}</div>
+          {% endif %}
+          {% if p.extra.github_link %}
+            <svg class="project-gh" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+          {% endif %}
+        </a>
+      {% endfor %}
+    {% endif %}
+
+    {% set_global current_year = "" %}
+    {% for p in regular_sorted %}
+      {% if p.date %}
+        {% set year = p.date | date(format="%Y") %}
+      {% else %}
+        {% set year = "Undated" %}
+      {% endif %}
+      {% if year != current_year %}
+        {% set_global current_year = year %}
+        <div class="project-year-header">{{ year }}</div>
+      {% endif %}
+      {% set link = p.extra.github_link | default(value=p.permalink) %}
+      <a class="project-entry" href="{{ link }}"{% if p.extra.github_link %} target="_blank" rel="noopener noreferrer"{% endif %}>
+        {% if p.extra.local_image or p.extra.remote_image %}
+          <div class="project-image">
+            {% if p.extra.local_image %}
+              <img src="{{ get_url(path=p.extra.local_image) }}" alt="" loading="lazy">
+            {% else %}
+              <img src="{{ get_url(path=p.extra.remote_image) }}" alt="" loading="lazy">
+            {% endif %}
+          </div>
+        {% endif %}
+        <div class="project-body">
+          <div class="project-title">
+            <span class="project-title-text">{{ p.title }}</span>
+          </div>
+          {% if p.description %}
+            <p class="project-desc">{{ p.description | safe }}</p>
+          {% endif %}
+        </div>
+        {% if p.extra.github_link %}
+          <svg class="project-gh" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+        {% endif %}
+      </a>
+    {% endfor %}
+  {% endif %}
+{% endmacro project_list %}

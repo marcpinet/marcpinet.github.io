@@ -7,6 +7,7 @@ weight = 1
 [extra]
 remote_image = "/quanridor/img.gif"
 github_link = "https://github.com/marcpinet/quanridor"
+category = "school"
 +++
 
 <style>

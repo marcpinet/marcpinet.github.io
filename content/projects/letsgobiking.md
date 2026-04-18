@@ -7,6 +7,7 @@ weight = 1
 [extra]
 remote_image = "/letsgobiking/img.gif"
 github_link = "https://github.com/marcpinet/letsgobiking"
+category = "school"
 +++
 
 <style>

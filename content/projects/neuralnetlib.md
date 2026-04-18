@@ -9,6 +9,7 @@ remote_image = "/neuralnetlib/img.gif"
 github_link = "https://github.com/marcpinet/neuralnetlib"
 pinned = true
 pin_order = 2
+category = "personal"
 +++
 
 <style>

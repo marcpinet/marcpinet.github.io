@@ -7,6 +7,7 @@ weight = 1
 [extra]
 remote_image = "/connect4ai/img.gif"
 github_link = "https://github.com/marcpinet/connect4-ai"
+category = "personal"
 +++
 
 <style>

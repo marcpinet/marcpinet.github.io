@@ -7,6 +7,7 @@ weight = 1
 [extra]
 remote_image = "/handigits/img.gif"
 github_link = "https://github.com/marcpinet/handigits"
+category = "personal"
 +++
 
 <style>

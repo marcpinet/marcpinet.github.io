@@ -9,6 +9,7 @@ remote_image = "/citracer-card/img.png"
 github_link = "https://github.com/marcpinet/citracer"
 pinned = true
 pin_order = 1
+category = "personal"
 +++
 
 <style>

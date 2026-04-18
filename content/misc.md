@@ -55,7 +55,7 @@ template = "about.html"
 <div class="cert-content">
 <h3>TOEIC</h3>
 <div class="cert-meta">
-<strong>Issued: Dec 2023</strong>
+<strong>Issued: Dec 2023, Grade: 950/990</strong>
 <div class="fields">
 <span class="field-tag">English</span>
 </div>
@@ -110,7 +110,7 @@ template = "about.html"
 <div class="cert-content">
 <h3>Certification Voltaire</h3>
 <div class="cert-meta">
-<strong>Issued: Jun 2021</strong>
+<strong>Issued: Jun 2021, Spelling: 975/1000, Writing: 8/9</strong>
 <div class="fields">
 <span class="field-tag">French</span>
 </div>

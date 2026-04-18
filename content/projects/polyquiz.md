@@ -7,6 +7,7 @@ weight = 1
 [extra]
 remote_image = "/polyquiz/img.gif"
 github_link = "https://github.com/marcpinet/polyquiz"
+category = "school"
 +++
 
 <style>

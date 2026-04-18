@@ -7,6 +7,9 @@ weight = 1
 [extra]
 remote_image = "/edgeai-bird/img.gif"
 github_link = "https://github.com/marcpinet/edgeai-bird"
+category = "school"
+pinned = true
+pin_order = 2
 +++
 
 <style>

@@ -7,6 +7,7 @@ weight = 1
 [extra]
 remote_image = "/poubelledroid/img.gif"
 github_link = "https://github.com/marcpinet/poubelledroid"
+category = "school"
 +++
 
 <style>

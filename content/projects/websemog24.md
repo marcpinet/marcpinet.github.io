@@ -7,6 +7,9 @@ weight = 1
 [extra]
 remote_image = "/websem-og24/img.gif"
 github_link = "https://github.com/marcpinet/websem-og24"
+category = "school"
+pinned = true
+pin_order = 1
 +++
 
 <style>
