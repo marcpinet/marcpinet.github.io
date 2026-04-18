@@ -99,7 +99,7 @@
 .experience-group .experience-entry-grouped::after {
   content: '';
   position: absolute;
-  left: 0.68rem;
+  left: calc(0.95rem - 3.6px);
   top: 1rem;
   width: 7px;
   height: 7px;
