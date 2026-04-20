@@ -24,6 +24,7 @@ template = "about.html"
 
 <div class="entry-description">
 Thesis: Self-supervised deep learning detection and explanation of anomalies in time series.
+
 CIFRE (Industrial Convention of Training through Research) in partnership with Orange, under the supervision of Prof. <a href="https://research.vaufreydaz.org/" target="_blank">Dominique Vaufreydaz</a>, Dr. <a href="https://jcumin.github.io/" target="_blank">Julien Cumin</a> and Dr. <a href="https://www.researchgate.net/profile/Samuel-Berlemont" target="_blank">Samuel Berlemont</a>.
 </div>
 
