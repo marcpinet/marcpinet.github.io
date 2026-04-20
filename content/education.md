@@ -18,12 +18,13 @@ template = "about.html"
 <div class="education-entry experience-entry-grouped">
 
 <div class="entry-header">
-<h3>Industrial PhD in Computer Science - Deep Learning</h3>
+<h3>PhD in Computer Science & Mathematics</h3>
 <div class="entry-date">Oct 2025 - Present</div>
 </div>
 
 <div class="entry-description">
 Thesis: Self-supervised deep learning detection and explanation of anomalies in time series.
+CIFRE (Industrial Convention of Training through Research) in partnership with Orange, under the supervision of Prof. <a href="https://research.vaufreydaz.org/" target="_blank">Dominique Vaufreydaz</a>, Dr. <a href="https://jcumin.github.io/" target="_blank">Julien Cumin</a> and Dr. <a href="https://www.researchgate.net/profile/Samuel-Berlemont" target="_blank">Samuel Berlemont</a>.
 </div>
 
 <div class="fields">
