@@ -7,11 +7,9 @@ name = "Marc Pinet"
 photo = "/homepage/me.jpg"
 
 interests = [
-    "Machine learning",
     "Deep learning",
     "Anomaly detection",
     "Time series analysis",
-    "XAI",
     "Self-supervised learning",
 ]
 +++
