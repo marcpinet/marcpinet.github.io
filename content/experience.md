@@ -68,7 +68,7 @@ Industrial PhD (CIFRE) on Self-supervised detection and explanation of anomalies
 <div class="experience-entry experience-entry-grouped">
 
 <div class="entry-header">
-<h3>AI/ML R&D Engineer Apprentice</h3>
+<h3>Machine Learning Engineer Apprentice</h3>
 <div class="entry-date">Sep 2024 - Sep 2025</div>
 </div>
 
