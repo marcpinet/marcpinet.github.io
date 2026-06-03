@@ -22,6 +22,10 @@ theme = "github-dark"
 [extra]
 favicon = "/favicon.svg"
 
+# Homepage "News" feed: items (custom + recent publications/projects) older than
+# this many days are hidden automatically. ~183 = 6 months. Bump to 365 if sparse.
+news_window_days = 183
+
 menu = [
     { name = "Publications", url = "/publications", weight = 1 },
     { name = "Experience", url = "/experience", weight = 2 },

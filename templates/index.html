@@ -29,29 +29,57 @@
     </p>
   {% endif %}
 
-  {% set pub_section = get_section(path="publications/_index.md", metadata_only=true) %}
-  {% if pub_section.pages | length > 0 %}
-    {% set featured = pub_section.pages | filter(attribute="extra.featured", value=true) %}
-    {% if featured | length == 0 %}
-      {% set featured = pub_section.pages | sort(attribute="date") | reverse | slice(end=3) %}
-    {% else %}
-      {% set featured = featured | slice(end=3) %}
+  {# ---- News: hand-written items merged with recent research outputs, last ~6 months ---- #}
+  {% set window_days = config.extra.news_window_days | default(value=183) %}
+  {% set cutoff = now(timestamp=true) - window_days * 86400 %}
+
+  {% set news_pubs = get_section(path="publications/_index.md") %}
+  {% set news_projects = get_section(path="projects/_index.md") %}
+  {% set news_datasets = get_section(path="datasets/_index.md") %}
+  {% set news_pages = news_pubs.pages | concat(with=news_projects.pages) | concat(with=news_datasets.pages) %}
+  {% set feed = home.extra.news | default(value=[]) | concat(with=news_pages) | sort(attribute="date") | reverse %}
+
+  {% set_global news_items = [] %}
+  {% for item in feed %}
+    {% if item.date %}
+      {% set ts = item.date | date(format="%s") | int %}
+      {% if ts >= cutoff %}
+        {% set_global news_items = news_items | concat(with=item) %}
+      {% endif %}
     {% endif %}
-    <h2>Selected Publications</h2>
-    {% for p in featured %}
-      <div class="pub-entry{% if loop.first %} no-top{% endif %}">
-        <div class="pub-title"><a href="{{ p.permalink }}">{{ p.title }}</a></div>
-        {% if p.extra.authors %}
-          <div class="pub-authors">{{ p.extra.authors | safe }}</div>
-        {% endif %}
-        {% if p.extra.venue or p.extra.status %}
-          <div class="pub-venue">
-            {% if p.extra.venue %}{{ p.extra.venue | safe }}{% endif %}
-            {% if p.extra.status %}<span class="pub-status {{ p.extra.status | replace(from=' ', to='-') | replace(from='_', to='-') }}">{{ p.extra.status | replace(from='_', to=' ') }}</span>{% endif %}
+  {% endfor %}
+
+  {% if news_items | length > 0 %}
+    <h2>News</h2>
+    <ul class="news-list">
+      {% for item in news_items %}
+        <li class="news-item">
+          <span class="news-date">{{ item.date | date(format="%b %Y") }}</span>
+          <div class="news-content">
+            {% if item.permalink %}
+              {% set kind = item.components | first %}
+              {% set link = '<a href="' ~ item.permalink ~ '">' ~ item.title ~ '</a>' %}
+              {% if kind == "publications" %}
+                {% set st = item.extra.status | default(value="") | replace(from="_", to=" ") | lower %}
+                {% set venue = item.extra.venue | default(value="") %}
+                {%- if st == "published" %}I published {{ link | safe }}{% if venue %} in {{ venue | safe }}{% endif %}.
+                {%- elif st == "accepted" %}I had {{ link | safe }} accepted{% if venue %} at {{ venue | safe }}{% endif %}.
+                {%- elif st == "in review" %}I submitted {{ link | safe }} for review{% if venue %} at {{ venue | safe }}{% endif %}.
+                {%- elif st == "preprint" %}I released a preprint of {{ link | safe }}.
+                {%- elif st == "wip" %}I started working on {{ link | safe }}.
+                {%- else %}I published {{ link | safe }}{% if venue %} in {{ venue | safe }}{% endif %}.
+                {%- endif %}
+              {% elif kind == "projects" %}
+                I released {{ link | safe }}.
+              {% elif kind == "datasets" %}
+                I released the {{ link | safe }} dataset.
+              {% endif %}
+            {% else %}
+              {{ item.text | markdown(inline=true) | safe }}{% if item.link %} <a class="news-more" href="{{ item.link }}" target="_blank" rel="noopener noreferrer">→</a>{% endif %}
+            {% endif %}
           </div>
-        {% endif %}
-      </div>
-    {% endfor %}
-    <p class="all-link"><a href="{{ get_url(path='publications') }}">All publications →</a></p>
+        </li>
+      {% endfor %}
+    </ul>
   {% endif %}
 {% endblock main_content %}
