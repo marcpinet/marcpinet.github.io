@@ -15,7 +15,7 @@ links = [
   { name = "DOI", url = "https://doi.org/10.48550/arXiv.2606.02670" },
   { name = "Code", url = "https://github.com/marcpinet/mtsad-benchmarks-are-mostly-univariate" },
 ]
-tldr = "The paper presents evidence that current multivariate time series anomaly detection benchmarks don't actually test cross-channel modeling. "
+tldr = "Evidence that current multivariate time series anomaly detection benchmarks don't actually test cross-channel modeling."
 +++
 
 ## Abstract
