@@ -1,6 +1,6 @@
 +++
 title = "Publications"
-description = "An up-to-date list of my publications, preprints and manuscripts in preparation."
+description = "An up-to-date list of my publications."
 template = "publications.html"
 sort_by = "date"
 +++

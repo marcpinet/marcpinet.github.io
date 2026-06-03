@@ -2,7 +2,7 @@
 base_url = "https://marcpinet.fr"
 title = "Marc Pinet"
 description = "Personal home page."
-generate_feed = false
+generate_feeds = false
 minify_html = true
 
 output_dir = "public"
@@ -13,9 +13,11 @@ compile_sass = true
 build_search_index = false
 
 [markdown]
-highlight_code = true
-highlight_theme = "css"
 render_emoji = true
+
+[markdown.highlighting]
+style = "class"
+theme = "github-dark"
 
 [extra]
 favicon = "/favicon.svg"
