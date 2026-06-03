@@ -7,10 +7,12 @@ name = "Marc Pinet"
 photo = "/homepage/me.jpg"
 
 interests = [
-    "Deep learning",
-    "Anomaly detection",
-    "Time series analysis",
-    "Self-supervised learning",
+    "Machine Learning",
+    "Deep Learning",
+    "Time Series Analysis",
+    "Anomaly Detection",
+    "Anomaly Explanation",
+    "Large Language Models (LLMs)",
 ]
 +++
 
