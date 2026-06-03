@@ -9,17 +9,17 @@ template = "about.html"
 <div class="experience-group-header">
 <div class="entry-logo">
 <a href="https://hellofuture.orange.com/fr/" target="_blank">
-<img src="/about_img/exp/orange.png" alt="Orange Innovation">
+<img src="/about_img/exp/orange.png" alt="Orange Research">
 </a>
 </div>
-<div class="experience-group-name">Orange Innovation</div>
+<div class="experience-group-name">Orange Research</div>
 <span class="group-name-sep">·</span>
 <div class="entry-logo">
 <a href="https://www.liglab.fr/fr" target="_blank">
 <img src="/about_img/exp/lig.svg" alt="Laboratoire d'Informatique de Grenoble (LIG/Inria/CNRS)">
 </a>
 </div>
-<div class="experience-group-name">LIG (CNRS / Inria)</div>
+<div class="experience-group-name">LIG, CNRS</div>
 </div>
 
 <div class="experience-entry experience-entry-grouped">
