@@ -4,9 +4,16 @@
     <link>https://marcpinet.fr</link>
     <description>All updates from Marc Pinet - posts, projects, experiences, education, and certifications</description>
     <language>en-us</language>
-    <lastBuildDate>Wed, 03 Jun 2026 20:46:57 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 03 Jun 2026 22:33:28 GMT</lastBuildDate>
     <generator>Custom RSS Generator</generator>
     <atom:link href="https://marcpinet.fr/feeds/all.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>New Project: Doublage</title>
+      <link>https://marcpinet.fr/</link>
+      <description>🎬 Dub your favorite scenes from any video in any language, online and with your friends! Everything works right in the browser, no installation required for your friends. Smart handling of every edge case. Includes tons of features and options for you to explore!</description>
+      <pubDate>Thu, 04 Jun 2026 00:00:00 GMT</pubDate>
+      <guid isPermaLink="true">https://marcpinet.fr/</guid>
+    </item>
     <item>
       <title>New Project: Citracer</title>
       <link>https://marcpinet.fr/</link>
