@@ -15,7 +15,7 @@ links = [
   { name = "DOI", url = "https://doi.org/10.48550/arXiv.2606.02670" },
   { name = "Code", url = "https://github.com/marcpinet/mtsad-benchmarks-are-mostly-univariate" },
 ]
-tldr = "Anomalies in the eight standard MTSAD benchmarks are almost always detectable per-channel, so these datasets cannot validate cross-channel modeling."
+tldr = "The paper presents evidence that current multivariate time series anomaly detection benchmarks don't actually test cross-channel modeling. "
 +++
 
 ## Abstract
@@ -25,7 +25,7 @@ Many recent multivariate time series anomaly detection (MTSAD) models incorporat
 ## BibTeX
 
 ```bibtex
-@inproceedings{Pinet2026AnomaliesIM,
+@article{Pinet2026AnomaliesIM,
   title={Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate},
   author={Marc Pinet and Julien Cumin and Samuel Berlemont and Dominique Vaufreydaz},
   year={2026},
