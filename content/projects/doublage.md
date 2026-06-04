@@ -120,7 +120,7 @@ pre code {
 # 🎬 Doublage
 
 <p align="center">
-  <img src="readme_assets/dubbling_example.png" alt="Dubbing a scene live in the browser — the video plays while a rhythmo band scrolls the line word by word" width="100%">
+  <img src="https://raw.githubusercontent.com/marcpinet/doublage/main/readme_assets/dubbling_example.png" alt="Dubbing a scene live in the browser — the video plays while a rhythmo band scrolls the line word by word" width="100%">
 </p>
 
 > 🌍 **Works in any language.** The screenshots here show French dubs, but nothing is French-specific — Doublage works with content in **any language**: use the video's existing subtitles (any language), or auto-generate them with Whisper (multilingual, ~100 languages). Voice/background separation, speaker diarization, recording and assembly are all language-independent.
@@ -149,7 +149,7 @@ The host app runs locally. The relay can run on any always-on server (a Raspberr
 3. Headphones recommended, otherwise the scene's sound leaks back into the mic. On Bluetooth, calibrate your mic delay (popup at the start, ~15 s) so your voice lands on beat.
 4. Play: the video rolls and a **rhythmo band** (dubbing-studio style) scrolls your lines word by word; your text is highlighted when it's your turn.
 
-![The lobby — share the invite link, pick a character (or let the host randomize), calibrate your audio delay, and the host picks the mode and starts the game](readme_assets/lobby.png)
+![The lobby — share the invite link, pick a character (or let the host randomize), calibrate your audio delay, and the host picks the mode and starts the game](https://raw.githubusercontent.com/marcpinet/doublage/main/readme_assets/lobby.png)
 
 ## For you (the host)
 
@@ -157,7 +157,9 @@ The host app runs locally. The relay can run on any always-on server (a Raspberr
 
 - `ffmpeg` on the PATH (an NVIDIA GPU is used automatically for encoding when `h264_nvenc` is available, otherwise it falls back to CPU `libx264`).
 - Python 3.10+ then:
-  ```
+  
+
+```
   python -m venv .venv
   .venv\Scripts\activate            # Windows, or: source .venv/bin/activate
   pip install torch torchaudio --index-url https://download.pytorch.org/whl/cu124   # GPU recommended
@@ -168,9 +170,11 @@ The host app runs locally. The relay can run on any always-on server (a Raspberr
   - `RELAY_URL`: the address of the relay the host targets (defaults to `http://127.0.0.1:21826`, i.e. a relay launched locally).
 
 ### 2. Launch the host app
-
 ```
-python -m dubbing.host        # http://127.0.0.1:8765
+python -m dubbing.host
+
+# http://127.0.0.1:8765
+
 ```
 
 ### 3. Prepare the scene (everything in the app)
@@ -183,17 +187,17 @@ Enter your nickname, then "New scene":
 - **Game**: choose the mode and the number of takes.
 - **Host**: the scene is transcoded (H.264 720p, browser-playable) and sent to the relay. You get a code and a link to share.
 
-![Source screen — set the crop, pick the audio/subtitle tracks (smart auto-pick prefers VFF and skips VFQ/forced/SDH), or auto-generate subtitles with Whisper (here: a French example, but the language is configurable)](readme_assets/preprocess_subtitles.png)
+![Source screen — set the crop, pick the audio/subtitle tracks (smart auto-pick prefers VFF and skips VFQ/forced/SDH), or auto-generate subtitles with Whisper (here: a French example, but the language is configurable)](https://raw.githubusercontent.com/marcpinet/doublage/main/readme_assets/preprocess_subtitles.png)
 
-![Editor — fix who speaks, the text and the per-line timestamps; rename or merge the detected voices and play samples (French example)](readme_assets/subtitles_editing_example.png)
+![Editor — fix who speaks, the text and the per-line timestamps; rename or merge the detected voices and play samples (French example)](https://raw.githubusercontent.com/marcpinet/doublage/main/readme_assets/subtitles_editing_example.png)
 
 Diarization tip: for 2-3 characters with similar voices, set "Num speakers" = the real count + 1, then merge the extra clusters in the editor. Setting this number enables embedding-based diarization (one embedding per line), far more robust than overlap for close voices.
 
 From the command line, without the UI:
-
 ```
 python -m dubbing.pipeline --input film.mkv --output output_bundles/out_film --start 37:06 --end 39:30 --num-speakers 3
 python -m dubbing.host --bundle output_bundles/out_film
+
 ```
 
 Useful pipeline options: `--list-tracks` (list the tracks and exit), `--auto-subs` (Whisper subtitles instead of the embedded track), `--resume` (resume by skipping stages already produced), `--skip-separation` / `--skip-diarization` / `--skip-alignment`, `--num-speakers` / `--min-speakers` / `--max-speakers`. `python -m dubbing.pipeline -h` lists everything.
@@ -206,12 +210,11 @@ Useful pipeline options: `--list-tracks` (list the tracks and exit), `--auto-sub
   - **OWS**: the original audio everywhere, except during dubbed lines (where it switches to background + the take).
 - Choose mp4/mkv (re-encode to H.264 ticked by default), then "Assemble" and download the final video.
 
-![Assembly screen — a per-take timeline (drag to retime, scissors to split), background/voice levels, container + re-encode, and per-character timing correction (French example)](readme_assets/timeline_editing_assembling_example.png)
+![Assembly screen — a per-take timeline (drag to retime, scissors to split), background/voice levels, container + re-encode, and per-character timing correction (French example)](https://raw.githubusercontent.com/marcpinet/doublage/main/readme_assets/timeline_editing_assembling_example.png)
 
 ## Hosting the relay
 
 The relay is standalone (`relay/server.py`, light dependencies, no ffmpeg and no ML). On the server:
-
 ```
 pip install -r relay/requirements.txt
 python relay/server.py
@@ -223,27 +226,34 @@ For a production setup: a reverse proxy (Caddy, nginx) for TLS, and a systemd se
 
 ## Structure
 
-| Path | Role |
-|---|---|
-| `dubbing/pipeline.py` | Preprocessing orchestration (CLI `python -m dubbing.pipeline`) |
-| `dubbing/extract.py` | ffmpeg extraction: muted video, WAV audio, SRT subtitles |
-| `dubbing/tracks.py` | ffprobe probing + track selection (prefers VFF, excludes VFQ/forced/SDH) |
-| `dubbing/subtitles.py` | Subtitle parsing + splitting of multi-speaker cues |
-| `dubbing/transcribe.py` | Auto subtitles (Whisper large-v3, local) for `--auto-subs` |
-| `dubbing/separate.py` | Voice/background separation (Demucs) |
-| `dubbing/diarize.py` | pyannote diarization (overlap, or per-line embedding when `--num-speakers`) |
-| `dubbing/align.py` | Assigning lines to characters, merging lines |
-| `dubbing/align_words.py` | Word-level forced alignment (torchaudio MMS_FA) for the rhythmo band |
-| `dubbing/models.py` + `dubbing/bundle.py` | Bundle dataclasses + reading/writing `project.json` |
-| `dubbing/gpu.py` + `dubbing/ffmpeg_gpu.py` | VRAM management + GPU-accelerated encoding (NVENC, CPU `libx264` fallback) |
-| `dubbing/preprocess_app.py` + `dubbing/web/preprocess.html` | Local preprocessing UI (file pick, crop, preview) |
-| `dubbing/host.py` | Local host app: editing, hosting, collection, final assembly |
-| `dubbing/distribute.py` | Lightweight distribution bundle (H.264 720p video, AAC audio) |
-| `dubbing/export.py` | Mix/mux helpers for the final export |
-| `dubbing/merge_archives.py` | Multi-player assembly (mix + mux, `separated`/`ows` modes) |
-| `dubbing/web/index.html` | Single web app (landing, lobby, game, rhythmo band, assembly) |
-| `relay/server.py` | Relay: code-based rooms, WebSocket, storage of bundles and takes |
-| `scripts/compare_diar.py` | Dev tool: compare several diarization settings |
+<div class="table-wrapper">
+<table>
+<thead>
+<tr><th><p>Path</p></th><th><p>Role</p></th></tr>
+</thead>
+<tbody>
+<tr><td><p><code>dubbing/pipeline.py</code></p></td><td><p>Preprocessing orchestration (CLI <code>python -m dubbing.pipeline</code>)</p></td></tr>
+<tr><td><p><code>dubbing/extract.py</code></p></td><td><p>ffmpeg extraction: muted video, WAV audio, SRT subtitles</p></td></tr>
+<tr><td><p><code>dubbing/tracks.py</code></p></td><td><p>ffprobe probing + track selection (prefers VFF, excludes VFQ/forced/SDH)</p></td></tr>
+<tr><td><p><code>dubbing/subtitles.py</code></p></td><td><p>Subtitle parsing + splitting of multi-speaker cues</p></td></tr>
+<tr><td><p><code>dubbing/transcribe.py</code></p></td><td><p>Auto subtitles (Whisper large-v3, local) for <code>--auto-subs</code></p></td></tr>
+<tr><td><p><code>dubbing/separate.py</code></p></td><td><p>Voice/background separation (Demucs)</p></td></tr>
+<tr><td><p><code>dubbing/diarize.py</code></p></td><td><p>pyannote diarization (overlap, or per-line embedding when <code>--num-speakers</code>)</p></td></tr>
+<tr><td><p><code>dubbing/align.py</code></p></td><td><p>Assigning lines to characters, merging lines</p></td></tr>
+<tr><td><p><code>dubbing/align_words.py</code></p></td><td><p>Word-level forced alignment (torchaudio MMS_FA) for the rhythmo band</p></td></tr>
+<tr><td><p><code>dubbing/models.py</code> + <code>dubbing/bundle.py</code></p></td><td><p>Bundle dataclasses + reading/writing <code>project.json</code></p></td></tr>
+<tr><td><p><code>dubbing/gpu.py</code> + <code>dubbing/ffmpeg_gpu.py</code></p></td><td><p>VRAM management + GPU-accelerated encoding (NVENC, CPU <code>libx264</code> fallback)</p></td></tr>
+<tr><td><p><code>dubbing/preprocess_app.py</code> + <code>dubbing/web/preprocess.html</code></p></td><td><p>Local preprocessing UI (file pick, crop, preview)</p></td></tr>
+<tr><td><p><code>dubbing/host.py</code></p></td><td><p>Local host app: editing, hosting, collection, final assembly</p></td></tr>
+<tr><td><p><code>dubbing/distribute.py</code></p></td><td><p>Lightweight distribution bundle (H.264 720p video, AAC audio)</p></td></tr>
+<tr><td><p><code>dubbing/export.py</code></p></td><td><p>Mix/mux helpers for the final export</p></td></tr>
+<tr><td><p><code>dubbing/merge_archives.py</code></p></td><td><p>Multi-player assembly (mix + mux, <code>separated</code>/<code>ows</code> modes)</p></td></tr>
+<tr><td><p><code>dubbing/web/index.html</code></p></td><td><p>Single web app (landing, lobby, game, rhythmo band, assembly)</p></td></tr>
+<tr><td><p><code>relay/server.py</code></p></td><td><p>Relay: code-based rooms, WebSocket, storage of bundles and takes</p></td></tr>
+<tr><td><p><code>scripts/compare_diar.py</code></p></td><td><p>Dev tool: compare several diarization settings</p></td></tr>
+</tbody>
+</table>
+</div>
 
 ## Notes
 
