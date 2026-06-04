@@ -58,7 +58,12 @@
           <div class="news-content">
             {% if item.permalink %}
               {% set kind = item.components | first %}
-              {% set link = '<a href="' ~ item.permalink ~ '">' ~ item.title ~ '</a>' %}
+              {% if kind == "publications" %}
+                {% set link = '<a href="' ~ item.permalink ~ '">' ~ item.title ~ '</a>' %}
+              {% else %}
+                {% set ghref = item.extra.github_link | default(value=item.permalink) %}
+                {% set link = '<a href="' ~ ghref ~ '" target="_blank" rel="noopener noreferrer">' ~ item.title ~ '</a>' %}
+              {% endif %}
               {% if kind == "publications" %}
                 {% set st = item.extra.status | default(value="") | replace(from="_", to=" ") | lower %}
                 {% set venue = item.extra.venue | default(value="") %}

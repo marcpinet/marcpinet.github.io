@@ -31,6 +31,7 @@ CIFRE (Industrial Convention of Training through Research) in partnership with O
 <div class="fields">
 <span class="field-tag">Deep Learning</span>
 <span class="field-tag">Anomaly Detection</span>
+<span class="field-tag">Anomaly Explanation</span>
 <span class="field-tag">Self-Supervised Learning</span>
 <span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Interpretability</span>

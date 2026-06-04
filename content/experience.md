@@ -35,7 +35,7 @@ Industrial PhD (CIFRE) on Self-supervised detection and explanation of anomalies
 
 <div class="fields">
 <span class="field-tag">Anomaly Detection</span>
-<span class="field-tag">Anomaly Characterization</span>
+<span class="field-tag">Anomaly Explanation</span>
 <span class="field-tag">Self-Supervised Learning</span>
 <span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Deep Learning</span>
