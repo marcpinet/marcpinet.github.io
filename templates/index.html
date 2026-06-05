@@ -29,62 +29,181 @@
     </p>
   {% endif %}
 
-  {# ---- News: hand-written items merged with recent research outputs, last ~6 months ---- #}
-  {% set window_days = config.extra.news_window_days | default(value=183) %}
-  {% set cutoff = now(timestamp=true) - window_days * 86400 %}
+  {# ---- News: reverse-chronological feed from `news_start` (no upper bound). Each event is rendered to a full
+         <li> string prefixed "<ISO date>SEP<R|O>SEP<li>" so a lexical sort = reverse-chronological (Tera has no
+         map literals). Items older than 1 year get flag "O": collapsed behind a "show more", images lazy
+         (data-src) so the initial page stays light. GIF thumbnails are frozen to frame 1 client-side. ---- #}
+  {% set news_start = config.extra.news_start | default(value="2025-11-01") %}
+  {% set start_ts = news_start | date(format="%s") | int %}
+  {% set year_cutoff = now(timestamp=true) - 365 * 86400 %}
+  {% set SEP = "~|NEWS|~" %}
+  {% set_global rows = [] %}
 
-  {% set news_pubs = get_section(path="publications/_index.md") %}
-  {% set news_projects = get_section(path="projects/_index.md") %}
-  {% set news_datasets = get_section(path="datasets/_index.md") %}
-  {% set news_pages = news_pubs.pages | concat(with=news_projects.pages) | concat(with=news_datasets.pages) %}
-  {% set feed = home.extra.news | default(value=[]) | concat(with=news_pages) | sort(attribute="date") | reverse %}
-
-  {% set_global news_items = [] %}
-  {% for item in feed %}
-    {% if item.date %}
-      {% set ts = item.date | date(format="%s") | int %}
-      {% if ts >= cutoff %}
-        {% set_global news_items = news_items | concat(with=item) %}
+  {# --- text items: each starts with a category chip. Hand-written news (_index.md) default to "misc"
+         (override with `type`); experience.md/education.md feed entries get "experience"/"education". --- #}
+  {% set exp_page = get_page(path="experience.md") %}
+  {% set edu_page = get_page(path="education.md") %}
+  {% for n in home.extra.news | default(value=[]) %}
+    {% if n.date %}
+      {% set ts = n.date | date(format="%s") | int %}
+      {% if ts >= start_ts %}
+        {% set flag = "R" %}{% set imgattr = "src" %}{% if ts < year_cutoff %}{% set flag = "O" %}{% set imgattr = "data-src" %}{% endif %}
+        {% set datelabel = n.date | date(format="%b %Y") %}
+        {% set lbl = n.type | default(value="misc") %}{% set lblclass = lbl | replace(from=" ", to="-") | lower %}
+        {% set txt = n.text | markdown(inline=true) %}
+        {% set body = '<span class="pub-status ' ~ lblclass ~ '">' ~ lbl ~ '</span> ' ~ txt %}
+        {% if n.link %}{% set body = body ~ ' <a class="news-more" href="' ~ n.link ~ '" target="_blank" rel="noopener noreferrer">→</a>' %}{% endif %}
+        {% set thumbcls = "news-thumb" %}{% if n.logo %}{% set thumbcls = "news-thumb news-thumb-logo" %}{% endif %}
+        {% set thumb = "" %}{% if n.image %}{% set thumb = '<span class="' ~ thumbcls ~ '"><img ' ~ imgattr ~ '="' ~ get_url(path=n.image) ~ '" alt="" loading="lazy"></span>' %}{% endif %}
+        {% set li = '<li class="news-item">' ~ thumb ~ '<div class="news-main"><span class="news-date">' ~ datelabel ~ '</span><div class="news-content">' ~ body ~ '</div></div></li>' %}
+        {% set_global rows = rows | concat(with=n.date ~ SEP ~ flag ~ SEP ~ li) %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  {% for n in exp_page.extra.feed | default(value=[]) %}
+    {% if n.date %}
+      {% set ts = n.date | date(format="%s") | int %}
+      {% if ts >= start_ts %}
+        {% set flag = "R" %}{% set imgattr = "src" %}{% if ts < year_cutoff %}{% set flag = "O" %}{% set imgattr = "data-src" %}{% endif %}
+        {% set datelabel = n.date | date(format="%b %Y") %}
+        {% set lbl = n.type | default(value="experience") %}{% set lblclass = lbl | replace(from=" ", to="-") | lower %}
+        {% set txt = n.text | markdown(inline=true) %}
+        {% set body = '<span class="pub-status ' ~ lblclass ~ '">' ~ lbl ~ '</span> ' ~ txt %}
+        {% if n.link %}{% set body = body ~ ' <a class="news-more" href="' ~ n.link ~ '" target="_blank" rel="noopener noreferrer">→</a>' %}{% endif %}
+        {% set thumb = "" %}{% if n.image %}{% set thumb = '<span class="news-thumb news-thumb-logo"><img ' ~ imgattr ~ '="' ~ get_url(path=n.image) ~ '" alt="" loading="lazy"></span>' %}{% endif %}
+        {% set li = '<li class="news-item">' ~ thumb ~ '<div class="news-main"><span class="news-date">' ~ datelabel ~ '</span><div class="news-content">' ~ body ~ '</div></div></li>' %}
+        {% set_global rows = rows | concat(with=n.date ~ SEP ~ flag ~ SEP ~ li) %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  {% for n in edu_page.extra.feed | default(value=[]) %}
+    {% if n.date %}
+      {% set ts = n.date | date(format="%s") | int %}
+      {% if ts >= start_ts %}
+        {% set flag = "R" %}{% set imgattr = "src" %}{% if ts < year_cutoff %}{% set flag = "O" %}{% set imgattr = "data-src" %}{% endif %}
+        {% set datelabel = n.date | date(format="%b %Y") %}
+        {% set lbl = n.type | default(value="education") %}{% set lblclass = lbl | replace(from=" ", to="-") | lower %}
+        {% set txt = n.text | markdown(inline=true) %}
+        {% set body = '<span class="pub-status ' ~ lblclass ~ '">' ~ lbl ~ '</span> ' ~ txt %}
+        {% if n.link %}{% set body = body ~ ' <a class="news-more" href="' ~ n.link ~ '" target="_blank" rel="noopener noreferrer">→</a>' %}{% endif %}
+        {% set thumb = "" %}{% if n.image %}{% set thumb = '<span class="news-thumb news-thumb-logo"><img ' ~ imgattr ~ '="' ~ get_url(path=n.image) ~ '" alt="" loading="lazy"></span>' %}{% endif %}
+        {% set li = '<li class="news-item">' ~ thumb ~ '<div class="news-main"><span class="news-date">' ~ datelabel ~ '</span><div class="news-content">' ~ body ~ '</div></div></li>' %}
+        {% set_global rows = rows | concat(with=n.date ~ SEP ~ flag ~ SEP ~ li) %}
       {% endif %}
     {% endif %}
   {% endfor %}
 
-  {% if news_items | length > 0 %}
-    <h2>News</h2>
-    <ul class="news-list">
-      {% for item in news_items %}
-        <li class="news-item">
-          <span class="news-date">{{ item.date | date(format="%b %Y") }}</span>
-          <div class="news-content">
-            {% if item.permalink %}
-              {% set kind = item.components | first %}
-              {% if kind == "publications" %}
-                {% set link = '<a href="' ~ item.permalink ~ '">' ~ item.title ~ '</a>' %}
-              {% else %}
-                {% set ghref = item.extra.github_link | default(value=item.permalink) %}
-                {% set link = '<a href="' ~ ghref ~ '" target="_blank" rel="noopener noreferrer">' ~ item.title ~ '</a>' %}
-              {% endif %}
-              {% if kind == "publications" %}
-                {% set st = item.extra.status | default(value="") | replace(from="_", to=" ") | lower %}
-                {% set venue = item.extra.venue | default(value="") %}
-                {%- if st == "published" %}I published {{ link | safe }}{% if venue %} in {{ venue | safe }}{% endif %}.
-                {%- elif st == "accepted" %}I had {{ link | safe }} accepted{% if venue %} at {{ venue | safe }}{% endif %}.
-                {%- elif st == "in review" %}I submitted {{ link | safe }} for review{% if venue %} at {{ venue | safe }}{% endif %}.
-                {%- elif st == "preprint" %}I released a preprint of {{ link | safe }}.
-                {%- elif st == "wip" %}I started working on {{ link | safe }}.
-                {%- else %}I published {{ link | safe }}{% if venue %} in {{ venue | safe }}{% endif %}.
-                {%- endif %}
-              {% elif kind == "projects" %}
-                I released {{ link | safe }}.
-              {% elif kind == "datasets" %}
-                I released the {{ link | safe }} dataset.
-              {% endif %}
-            {% else %}
-              {{ item.text | markdown(inline=true) | safe }}{% if item.link %} <a class="news-more" href="{{ item.link }}" target="_blank" rel="noopener noreferrer">→</a>{% endif %}
-            {% endif %}
-          </div>
-        </li>
+  {# --- projects (link to GitHub) --- #}
+  {% set proj_sec = get_section(path="projects/_index.md") %}
+  {% for p in proj_sec.pages %}
+    {% if p.date %}
+      {% set ts = p.date | date(format="%s") | int %}
+      {% if ts >= start_ts %}
+        {% set flag = "R" %}{% set imgattr = "src" %}{% if ts < year_cutoff %}{% set flag = "O" %}{% set imgattr = "data-src" %}{% endif %}
+        {% set datelabel = p.date | date(format="%b %Y") %}
+        {% set ghref = p.extra.github_link | default(value=p.permalink) %}
+        {% set body = 'I released <a href="' ~ ghref ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}
+        {% set needs_dot = true %}
+        {% if p.extra.shortdesc %}{% set body = body ~ ', ' ~ p.extra.shortdesc %}{% if p.extra.shortdesc is ending_with(".") or p.extra.shortdesc is ending_with("!") or p.extra.shortdesc is ending_with("?") %}{% set needs_dot = false %}{% endif %}{% endif %}
+        {% if needs_dot %}{% set body = body ~ '.' %}{% endif %}
+        {% set body = '<span class="pub-status project">project</span> ' ~ body %}
+        {% set img = p.extra.remote_image | default(value=p.extra.local_image) %}
+        {% set thumb = "" %}
+        {% if img %}{% set thumb = '<span class="news-thumb"><img ' ~ imgattr ~ '="' ~ get_url(path=img) ~ '" alt="" loading="lazy"></span>' %}{% endif %}
+        {% set li = '<li class="news-item">' ~ thumb ~ '<div class="news-main"><span class="news-date">' ~ datelabel ~ '</span><div class="news-content">' ~ body ~ '</div></div></li>' %}
+        {% set_global rows = rows | concat(with=p.date ~ SEP ~ flag ~ SEP ~ li) %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {# --- datasets (link to GitHub if present) --- #}
+  {% set ds_sec = get_section(path="datasets/_index.md") %}
+  {% for p in ds_sec.pages %}
+    {% if p.date %}
+      {% set ts = p.date | date(format="%s") | int %}
+      {% if ts >= start_ts %}
+        {% set flag = "R" %}{% set imgattr = "src" %}{% if ts < year_cutoff %}{% set flag = "O" %}{% set imgattr = "data-src" %}{% endif %}
+        {% set datelabel = p.date | date(format="%b %Y") %}
+        {% set dhref = p.extra.github_link | default(value=p.permalink) %}
+        {% set body = '<span class="pub-status dataset">dataset</span> I released the <a href="' ~ dhref ~ '">' ~ p.title ~ '</a> dataset.' %}
+        {% set img = p.extra.image | default(value=p.extra.remote_image) %}
+        {% set thumb = "" %}
+        {% if img %}{% set thumb = '<span class="news-thumb"><img ' ~ imgattr ~ '="' ~ get_url(path=img) ~ '" alt="" loading="lazy"></span>' %}{% endif %}
+        {% set li = '<li class="news-item">' ~ thumb ~ '<div class="news-main"><span class="news-date">' ~ datelabel ~ '</span><div class="news-content">' ~ body ~ '</div></div></li>' %}
+        {% set_global rows = rows | concat(with=p.date ~ SEP ~ flag ~ SEP ~ li) %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {# --- publications: one event per milestone (status/venue/date), else a single event from top-level fields --- #}
+  {% set pub_sec = get_section(path="publications/_index.md") %}
+  {% for p in pub_sec.pages %}
+    {% set titlelink = '<a href="' ~ p.permalink ~ '">' ~ p.title ~ '</a>' %}
+    {% if p.extra.milestones %}
+      {% for m in p.extra.milestones %}
+        {% if m.date %}
+          {% set ts = m.date | date(format="%s") | int %}
+          {% if ts >= start_ts %}
+            {% set flag = "R" %}{% set imgattr = "src" %}{% if ts < year_cutoff %}{% set flag = "O" %}{% set imgattr = "data-src" %}{% endif %}
+            {% set thumb = "" %}{% if p.extra.image %}{% set thumb = '<span class="news-thumb"><img ' ~ imgattr ~ '="' ~ get_url(path=p.extra.image) ~ '" alt="" loading="lazy"></span>' %}{% endif %}
+            {% set pstatus = m.status | default(value="") %}
+            {% set pvenue = m.venue | default(value="") %}
+            {% set st = pstatus | replace(from="_", to=" ") | lower %}
+            {% set atv = "" %}{% if pvenue %}{% set atv = ' at ' ~ pvenue %}{% endif %}
+            {% set inv = "" %}{% if pvenue %}{% set inv = ' in ' ~ pvenue %}{% endif %}
+            {% if st == "preprint" %}{% set body = 'I released a preprint of ' ~ titlelink ~ '.' %}
+            {% elif st == "accepted" %}{% set body = titlelink ~ ' was accepted' ~ atv ~ '.' %}
+            {% elif st == "poster" %}{% set body = titlelink ~ ' was accepted as a poster' ~ atv ~ '.' %}
+            {% elif st == "in review" %}{% set body = 'I submitted ' ~ titlelink ~ ' for review' ~ atv ~ '.' %}
+            {% elif st == "wip" %}{% set body = 'I started working on ' ~ titlelink ~ '.' %}
+            {% else %}{% set body = 'I published ' ~ titlelink ~ inv ~ '.' %}{% endif %}
+            {% set stclass = pstatus | replace(from=" ", to="-") | replace(from="_", to="-") | lower %}{% set stlabel = pstatus | replace(from="_", to=" ") %}{% if pstatus %}{% set body = '<span class="pub-status ' ~ stclass ~ '">' ~ stlabel ~ '</span> ' ~ body %}{% endif %}
+            {% set datelabel = m.date | date(format="%b %Y") %}
+            {% set li = '<li class="news-item">' ~ thumb ~ '<div class="news-main"><span class="news-date">' ~ datelabel ~ '</span><div class="news-content">' ~ body ~ '</div></div></li>' %}
+            {% set_global rows = rows | concat(with=m.date ~ SEP ~ flag ~ SEP ~ li) %}
+          {% endif %}
+        {% endif %}
       {% endfor %}
-    </ul>
+    {% else %}
+      {% if p.date %}
+        {% set ts = p.date | date(format="%s") | int %}
+        {% if ts >= start_ts %}
+          {% set flag = "R" %}{% set imgattr = "src" %}{% if ts < year_cutoff %}{% set flag = "O" %}{% set imgattr = "data-src" %}{% endif %}
+          {% set thumb = "" %}{% if p.extra.image %}{% set thumb = '<span class="news-thumb"><img ' ~ imgattr ~ '="' ~ get_url(path=p.extra.image) ~ '" alt="" loading="lazy"></span>' %}{% endif %}
+          {% set pstatus = p.extra.status | default(value="") %}
+          {% set pvenue = p.extra.venue | default(value="") %}
+          {% set st = pstatus | replace(from="_", to=" ") | lower %}
+          {% set atv = "" %}{% if pvenue %}{% set atv = ' at ' ~ pvenue %}{% endif %}
+          {% set inv = "" %}{% if pvenue %}{% set inv = ' in ' ~ pvenue %}{% endif %}
+          {% if st == "preprint" %}{% set body = 'I released a preprint of ' ~ titlelink ~ '.' %}
+          {% elif st == "accepted" %}{% set body = titlelink ~ ' was accepted' ~ atv ~ '.' %}
+          {% elif st == "poster" %}{% set body = titlelink ~ ' was accepted as a poster' ~ atv ~ '.' %}
+          {% elif st == "in review" %}{% set body = 'I submitted ' ~ titlelink ~ ' for review' ~ atv ~ '.' %}
+          {% elif st == "wip" %}{% set body = 'I started working on ' ~ titlelink ~ '.' %}
+          {% else %}{% set body = 'I published ' ~ titlelink ~ inv ~ '.' %}{% endif %}
+          {% set stclass = pstatus | replace(from=" ", to="-") | replace(from="_", to="-") | lower %}{% set stlabel = pstatus | replace(from="_", to=" ") %}{% if pstatus %}{% set body = '<span class="pub-status ' ~ stclass ~ '">' ~ stlabel ~ '</span> ' ~ body %}{% endif %}
+          {% set datelabel = p.date | date(format="%b %Y") %}
+          {% set li = '<li class="news-item">' ~ thumb ~ '<div class="news-main"><span class="news-date">' ~ datelabel ~ '</span><div class="news-content">' ~ body ~ '</div></div></li>' %}
+          {% set_global rows = rows | concat(with=p.date ~ SEP ~ flag ~ SEP ~ li) %}
+        {% endif %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+
+  {% set rows = rows | sort | reverse %}
+  {% set_global recent_html = "" %}
+  {% set_global old_html = "" %}
+  {% for row in rows %}
+    {% set parts = row | split(pat=SEP) %}
+    {% set li = parts | last %}
+    {% if parts | nth(n=1) == "O" %}{% set_global old_html = old_html ~ li %}{% else %}{% set_global recent_html = recent_html ~ li %}{% endif %}
+  {% endfor %}
+  {% if recent_html or old_html %}
+    <h2>News</h2>
+    <ul class="news-list">{{ recent_html | safe }}</ul>
+    {% if old_html %}
+      <button type="button" class="news-show-more" aria-expanded="false">Show earlier news</button>
+      <ul class="news-list news-rest" hidden>{{ old_html | safe }}</ul>
+    {% endif %}
   {% endif %}
 {% endblock main_content %}

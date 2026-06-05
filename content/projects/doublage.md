@@ -9,4 +9,5 @@ remote_image = "/doublage/img.gif"
 github_link = "https://github.com/marcpinet/doublage"
 pinned = false
 category = "personal"
+shortdesc = "a browser game to dub video scenes with friends in any language, no install needed"
 +++

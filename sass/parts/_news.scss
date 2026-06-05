@@ -5,9 +5,9 @@
 }
 
 .news-item {
-  display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 1.25rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
   font-size: 0.97rem;
 }
 
@@ -17,13 +17,46 @@
   border-top: 1px dashed var(--border);
 }
 
+.news-thumb {
+  flex-shrink: 0;
+  width: 116px;
+  height: 72px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.news-thumb img,
+.news-thumb canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* auto-crop to fill, like the Projects cards (no empty space) */
+  display: block;
+}
+
+/* Logos (experience/education, or custom items with `logo = true`): show the whole
+   logo with breathing room instead of cropping it. */
+.news-thumb-logo img,
+.news-thumb-logo canvas {
+  object-fit: contain;
+  padding: 9px;
+  box-sizing: border-box;
+}
+
+.news-main {
+  flex: 1;
+  min-width: 0;
+}
+
 .news-date {
+  display: block;
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--text-muted);
   font-variant-numeric: tabular-nums;
-  padding-top: 4px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
+  margin-bottom: 0.2rem;
 }
 
 .news-content {
@@ -41,6 +74,12 @@
   border-bottom-color: var(--accent);
 }
 
+/* Category/status chip sits at the START of each news line */
+.news-content .pub-status {
+  margin-left: 0;
+  margin-right: 0.45rem;
+}
+
 .news-more {
   border-bottom: none;
   color: var(--text-muted);
@@ -51,9 +90,37 @@
   border-bottom: none;
 }
 
+.news-show-more {
+  display: inline-block;
+  margin-top: 1.15rem;
+  padding: 0.3rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  border-bottom: 1px dotted var(--border-strong);
+}
+
+.news-show-more:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.news-rest {
+  margin-top: 1.15rem;
+  padding-top: 1.15rem;
+  border-top: 1px dashed var(--border);
+}
+
 @media (max-width: 600px) {
   .news-item {
-    grid-template-columns: 1fr;
-    gap: 0.2rem;
+    gap: 0.8rem;
+  }
+  .news-thumb {
+    width: 92px;
+    height: 58px;
   }
 }

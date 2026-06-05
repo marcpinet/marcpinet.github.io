@@ -15,31 +15,33 @@ interests = [
     "Large Language Models (LLMs)",
 ]
 
-# Homepage "News" feed. Hand-written items shown here are merged chronologically
-# with your most recent publications/projects/datasets (which are turned into
-# sentences automatically — "I released X", "I published X in Y"). Everything older
-# than ~6 months disappears on its own (window = news_window_days in config.toml).
-# Use this for things that have no page of their own: papers accepted, reviewer/PC
-# roles, posters, talks, a new position, a certification…
+# Homepage "News" feed. These hand-written items are merged chronologically with your
+# recent publications/projects/datasets (auto-turned into sentences) and your
+# experience/education feed entries. Each line starts with a category chip. The feed
+# scans everything dated >= config.extra.news_start (no upper bound); items older than
+# 1 year collapse behind a "show more". Use this for things with no page of their own:
+# reviewer/PC roles, talks, awards, a new position, a certification…
 #
-# `date` is ISO (YYYY-MM-DD) and drives both ordering and the 6-month cutoff.
-# `text` is the sentence to show, as inline Markdown — write it first person to
-#   match the auto items, e.g. "I'm now a **reviewer** for [NeurIPS 2026](https://…)".
-# `link` is optional and adds a trailing "→".
+# `date`  ISO (YYYY-MM-DD); drives ordering and the show-more cutoff.
+# `text`  the sentence, inline Markdown — write it first person, e.g.
+#         "I'm now a **reviewer** for [NeurIPS 2026](https://…)".
+# `type`  the chip label (default "misc"), e.g. "award", "service", "talk".
+# `link`  optional; adds a trailing "→".
+# `image` optional path under static/ (e.g. "/pub_img/foo.jpg") — shows a thumbnail.
 #
-# PAPER LIFECYCLE: a publication shows ONE auto line, built from its CURRENT `status`
-# + `date`. When a paper moves on (preprint → accepted → published), bump its `date`
-# (in the publication's own .md) to the new milestone's date so the line shows on the
-# right date. To ALSO keep the earlier step visible, add it here as a custom item with
-# its own date — both coexist in the feed until each ages past the 6-month window.
+# PAPER LIFECYCLE is handled on the publication itself via [[extra.milestones]] (see a
+# publication .md) — each milestone is its own dated News line, so you don't need custom
+# items for that. Use custom items only for things that aren't a paper/project/etc.
 #
 # [[extra.news]]
 # date = "2026-06-02"
+# type = "service"
 # text = "I joined the program committee of the **NeurIPS 2026** Workshop on Time Series."
 #
 # [[extra.news]]
 # date = "2026-05-15"
-# text = "Our paper was accepted as a **poster** at SomeConf 2026."
+# type = "award"
+# text = "I won a **best poster** award at SomeConf 2026."
 # link = "https://example.com"
 +++
 

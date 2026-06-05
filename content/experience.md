@@ -2,6 +2,16 @@
 title = "Experience"
 path = "experience"
 template = "about.html"
+
+[extra]
+# Optional: surface a recent experience in the homepage News feed (auto-shown for ~6 months
+# from `date`, then it drops off). The HTML body below is NOT touched — this is read only by
+# the feed. `text` is inline Markdown; `image` + `link` are optional.
+ [[extra.feed]]
+ date = "2025-11-01"
+ text = "I'm now a PhD Researcher at **Orange** in collaboration with the **LIG (Laboratoire d'Informatique de Grenoble)**."
+ image = "/about_img/exp/orange.png"
+ link = "/experience"
 +++
 
 <div class="experience-group">
@@ -26,7 +36,7 @@ template = "about.html"
 
 <div class="entry-header">
 <h3>PhD Researcher in Machine Learning</h3>
-<div class="entry-date">Oct 2025 - Present</div>
+<div class="entry-date">Nov 2025 - Present</div>
 </div>
 
 <div class="entry-description">

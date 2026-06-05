@@ -73,11 +73,26 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   vertical-align: 2px;
+  /* default chip look (used by any status without a dedicated variant below) */
+  color: var(--text-muted);
+  border: 1px solid var(--border-strong);
 }
 
 .pub-status.preprint {
   color: var(--accent);
   background: var(--accent-soft);
+  border-color: transparent;
+}
+
+.pub-status.poster {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.pub-status.article,
+.pub-status.journal {
+  color: var(--text);
+  border-color: var(--text);
 }
 
 .pub-status.in-review,

@@ -93,6 +93,44 @@
           container.appendChild(btn);
           container.dataset.trunc = '1';
         });
+
+        /* News feed: freeze GIF thumbnails to their first frame (animations stay on the
+           Projects section); reveal + lazy-load older items behind "show more". */
+        function freezeGif(img) {
+          try {
+            if (img.dataset.frozen) return;
+            if (!/\.gif(\?|$)/i.test(img.getAttribute('src') || '')) return;
+            if (!img.naturalWidth) return;
+            img.dataset.frozen = '1';
+            /* Draw frame 1 into a canvas and swap it in for the <img>. We only DISPLAY the
+               canvas (never read it back / toDataURL), so a cross-origin-tainted canvas is fine. */
+            var c = document.createElement('canvas');
+            c.width = img.naturalWidth;
+            c.height = img.naturalHeight;
+            c.getContext('2d').drawImage(img, 0, 0);
+            img.replaceWith(c);
+          } catch (e) {}
+        }
+        function watchFreeze(img) {
+          if (img.complete && img.naturalWidth) freezeGif(img);
+          else img.addEventListener('load', function() { freezeGif(img); }, { once: true });
+        }
+        document.querySelectorAll('.news-thumb img').forEach(watchFreeze);
+        var moreBtn = document.querySelector('.news-show-more');
+        if (moreBtn) {
+          moreBtn.addEventListener('click', function() {
+            var rest = document.querySelector('.news-rest');
+            if (rest) {
+              rest.querySelectorAll('img[data-src]').forEach(function(img) {
+                img.src = img.getAttribute('data-src');
+                img.removeAttribute('data-src');
+                watchFreeze(img);
+              });
+              rest.hidden = false;
+            }
+            moreBtn.remove();
+          });
+        }
       });
     })();
   </script>

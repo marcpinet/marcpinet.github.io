@@ -2,6 +2,9 @@
 
 {% block main_content %}
 <article class="post-article">
+  {% if page.extra.image %}
+    <img class="post-image" src="{{ get_url(path=page.extra.image) }}" alt="{{ page.title }}" loading="lazy">
+  {% endif %}
   {% if page.date %}
     <div class="post-meta">
       <time datetime="{{ page.date }}">{{ page.date | date(format="%B %Y") }}</time>
@@ -14,10 +17,18 @@
     <p class="post-authors">{{ page.extra.authors | safe }}</p>
   {% endif %}
 
-  {% if page.extra.venue or page.extra.status %}
+  {# Current status/venue = latest milestone if any, else top-level fields #}
+  {% set cur_status = page.extra.status | default(value="") %}
+  {% set cur_venue = page.extra.venue | default(value="") %}
+  {% if page.extra.milestones %}
+    {% set lastm = page.extra.milestones | last %}
+    {% if lastm.status %}{% set cur_status = lastm.status %}{% endif %}
+    {% if lastm.venue %}{% set cur_venue = lastm.venue %}{% endif %}
+  {% endif %}
+  {% if cur_venue or cur_status %}
     <p class="post-venue">
-      {% if page.extra.venue %}{{ page.extra.venue | safe }}{% endif %}
-      {% if page.extra.status %}<span class="pub-status {{ page.extra.status | replace(from=' ', to='-') | replace(from='_', to='-') }}">{{ page.extra.status | replace(from='_', to=' ') }}</span>{% endif %}
+      {% if cur_venue %}{{ cur_venue | safe }}{% endif %}
+      {% if cur_status %}<span class="pub-status {{ cur_status | replace(from=' ', to='-') | replace(from='_', to='-') }}">{{ cur_status | replace(from='_', to=' ') }}</span>{% endif %}
     </p>
   {% endif %}
 

@@ -5,9 +5,10 @@ date = "2026-04-08"
 weight = 1
 
 [extra]
-remote_image = "/citracer-card/img.png"
+remote_image = "/citracer/img.png"
 github_link = "https://github.com/marcpinet/citracer"
 pinned = true
 pin_order = 1
 category = "personal"
+shortdesc = "a tool that walks citations backward and renders an interactive reference graph"
 +++

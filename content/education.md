@@ -2,6 +2,15 @@
 title = "Education"
 path = "education"
 template = "about.html"
+
+[extra]
+# Optional: surface a recent degree/milestone in the homepage News feed (auto-shown for ~6
+# months from `date`). The HTML body below is NOT touched — this is read only by the feed.
+[[extra.feed]]
+date = "2025-11-01"
+text = "I started my PhD in Computer Science & Mathematics at **Université Grenoble Alpes**."
+image = "/about_img/edu/uga.png"
+link = "/education"
 +++
 
 <div class="experience-group">
@@ -19,7 +28,7 @@ template = "about.html"
 
 <div class="entry-header">
 <h3>PhD in Computer Science & Mathematics</h3>
-<div class="entry-date">Oct 2025 - Present</div>
+<div class="entry-date">Nov 2025 - Present</div>
 </div>
 
 <div class="entry-description">

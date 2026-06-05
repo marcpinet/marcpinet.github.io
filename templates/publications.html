@@ -20,10 +20,17 @@
         {% if p.extra.authors %}
           <div class="pub-authors">{{ p.extra.authors | safe }}</div>
         {% endif %}
-        {% if p.extra.venue or p.extra.status %}
+        {% set cur_status = p.extra.status | default(value="") %}
+        {% set cur_venue = p.extra.venue | default(value="") %}
+        {% if p.extra.milestones %}
+          {% set lastm = p.extra.milestones | last %}
+          {% if lastm.status %}{% set cur_status = lastm.status %}{% endif %}
+          {% if lastm.venue %}{% set cur_venue = lastm.venue %}{% endif %}
+        {% endif %}
+        {% if cur_venue or cur_status %}
           <div class="pub-venue">
-            {% if p.extra.venue %}{{ p.extra.venue | safe }}{% endif %}
-            {% if p.extra.status %}<span class="pub-status {{ p.extra.status | replace(from=' ', to='-') | replace(from='_', to='-') }}">{{ p.extra.status | replace(from='_', to=' ') }}</span>{% endif %}
+            {% if cur_venue %}{{ cur_venue | safe }}{% endif %}
+            {% if cur_status %}<span class="pub-status {{ cur_status | replace(from=' ', to='-') | replace(from='_', to='-') }}">{{ cur_status | replace(from='_', to=' ') }}</span>{% endif %}
           </div>
         {% endif %}
         {% if p.extra.links %}
