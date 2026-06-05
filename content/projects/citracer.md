@@ -5,7 +5,7 @@ date = "2026-04-08"
 weight = 1
 
 [extra]
-remote_image = "/citracer/img.png"
+remote_image = "/citracer-card/img.png"
 github_link = "https://github.com/marcpinet/citracer"
 pinned = true
 pin_order = 1

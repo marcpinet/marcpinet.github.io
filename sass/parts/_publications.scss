@@ -73,47 +73,66 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   vertical-align: 2px;
-  /* default chip look (used by any status without a dedicated variant below) */
-  color: var(--text-muted);
-  border: 1px solid var(--border-strong);
+  /* Default chip: soft tint of the hue, darker text (never a boring gray).
+     Specific labels recolor below; unknown ones fall back to this. */
+  color: var(--chip-rose);
+  background: var(--chip-rose-bg);
+  border: none;
 }
 
+/* preprint = the site accent (orange) */
 .pub-status.preprint {
   color: var(--accent);
   background: var(--accent-soft);
-  border-color: transparent;
 }
 
-.pub-status.poster {
-  color: var(--accent);
-  border-color: var(--accent);
+/* green — accepted / grant */
+.pub-status.accepted,
+.pub-status.grant {
+  color: var(--chip-green);
+  background: var(--chip-green-bg);
 }
 
-.pub-status.article,
-.pub-status.journal {
-  color: var(--text);
-  border-color: var(--text);
-}
-
+/* amber — pending / in progress / award */
 .pub-status.in-review,
-.pub-status.in_review {
-  color: var(--text-muted);
-  border: 1px solid var(--border-strong);
+.pub-status.in_review,
+.pub-status.wip,
+.pub-status.award {
+  color: var(--chip-amber);
+  background: var(--chip-amber-bg);
 }
 
-.pub-status.accepted {
-  color: var(--accent);
-  border: 1px solid var(--accent);
+/* blue — published outputs, education, service */
+.pub-status.published,
+.pub-status.article,
+.pub-status.journal,
+.pub-status.education,
+.pub-status.service,
+.pub-status.reviewer {
+  color: var(--chip-blue);
+  background: var(--chip-blue-bg);
 }
 
-.pub-status.published {
-  color: var(--text);
-  border: 1px solid var(--text);
+/* purple — talks / posters / experience */
+.pub-status.poster,
+.pub-status.talk,
+.pub-status.experience {
+  color: var(--chip-purple);
+  background: var(--chip-purple-bg);
 }
 
-.pub-status.wip {
-  color: var(--text-muted);
-  border: 1px dashed var(--border-strong);
+/* teal — code outputs */
+.pub-status.project,
+.pub-status.dataset {
+  color: var(--chip-teal);
+  background: var(--chip-teal-bg);
+}
+
+/* rose — misc / media (and the default above) */
+.pub-status.misc,
+.pub-status.media {
+  color: var(--chip-rose);
+  background: var(--chip-rose-bg);
 }
 
 .pub-links {

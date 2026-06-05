@@ -152,7 +152,7 @@
             {% set atv = "" %}{% if pvenue %}{% set atv = ' at ' ~ pvenue %}{% endif %}
             {% set inv = "" %}{% if pvenue %}{% set inv = ' in ' ~ pvenue %}{% endif %}
             {% if st == "preprint" %}{% set body = 'I released a preprint of ' ~ titlelink ~ '.' %}
-            {% elif st == "accepted" %}{% set body = titlelink ~ ' was accepted' ~ atv ~ '.' %}
+            {% elif st == "accepted" %}{% set body = 'My paper "' ~ titlelink ~ '" has been accepted' %}{% if pvenue %}{% set body = body ~ ' to ' ~ pvenue %}{% endif %}{% set body = body ~ '.' %}
             {% elif st == "poster" %}{% set body = titlelink ~ ' was accepted as a poster' ~ atv ~ '.' %}
             {% elif st == "in review" %}{% set body = 'I submitted ' ~ titlelink ~ ' for review' ~ atv ~ '.' %}
             {% elif st == "wip" %}{% set body = 'I started working on ' ~ titlelink ~ '.' %}
@@ -176,7 +176,7 @@
           {% set atv = "" %}{% if pvenue %}{% set atv = ' at ' ~ pvenue %}{% endif %}
           {% set inv = "" %}{% if pvenue %}{% set inv = ' in ' ~ pvenue %}{% endif %}
           {% if st == "preprint" %}{% set body = 'I released a preprint of ' ~ titlelink ~ '.' %}
-          {% elif st == "accepted" %}{% set body = titlelink ~ ' was accepted' ~ atv ~ '.' %}
+          {% elif st == "accepted" %}{% set body = 'My paper "' ~ titlelink ~ '" has been accepted' %}{% if pvenue %}{% set body = body ~ ' to ' ~ pvenue %}{% endif %}{% set body = body ~ '.' %}
           {% elif st == "poster" %}{% set body = titlelink ~ ' was accepted as a poster' ~ atv ~ '.' %}
           {% elif st == "in review" %}{% set body = 'I submitted ' ~ titlelink ~ ' for review' ~ atv ~ '.' %}
           {% elif st == "wip" %}{% set body = 'I started working on ' ~ titlelink ~ '.' %}
