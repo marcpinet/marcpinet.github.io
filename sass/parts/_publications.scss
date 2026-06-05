@@ -73,66 +73,46 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   vertical-align: 2px;
-  /* Default chip: soft tint of the hue, darker text (never a boring gray).
-     Specific labels recolor below; unknown ones fall back to this. */
-  color: var(--chip-rose);
-  background: var(--chip-rose-bg);
-  border: none;
+  /* Default chip — used by the news CATEGORIES (project / dataset / experience /
+     education / misc / any custom type): neutral, no fill. Only publication statuses
+     get color (below). */
+  color: var(--text-muted);
+  border: 1px solid var(--border-strong);
 }
 
-/* preprint = the site accent (orange) */
+/* ---- Publication statuses only: soft tint of the hue + darker text of the same hue ---- */
 .pub-status.preprint {
   color: var(--accent);
   background: var(--accent-soft);
+  border: none;
 }
 
-/* green — accepted / grant */
-.pub-status.accepted,
-.pub-status.grant {
+.pub-status.accepted {
   color: var(--chip-green);
   background: var(--chip-green-bg);
+  border: none;
 }
 
-/* amber — pending / in progress / award */
 .pub-status.in-review,
 .pub-status.in_review,
-.pub-status.wip,
-.pub-status.award {
+.pub-status.wip {
   color: var(--chip-amber);
   background: var(--chip-amber-bg);
+  border: none;
 }
 
-/* blue — published outputs, education, service */
 .pub-status.published,
 .pub-status.article,
-.pub-status.journal,
-.pub-status.education,
-.pub-status.service,
-.pub-status.reviewer {
+.pub-status.journal {
   color: var(--chip-blue);
   background: var(--chip-blue-bg);
+  border: none;
 }
 
-/* purple — talks / posters / experience */
-.pub-status.poster,
-.pub-status.talk,
-.pub-status.experience {
+.pub-status.poster {
   color: var(--chip-purple);
   background: var(--chip-purple-bg);
-}
-
-/* teal — code outputs */
-.pub-status.project,
-.pub-status.dataset {
-  color: var(--chip-teal);
-  background: var(--chip-teal-bg);
-}
-
-/* rose — misc / media (and the default above) */
-.pub-status.misc,
-.pub-status.media {
-  color: var(--chip-rose);
-  background: var(--chip-rose-bg);
+  border: none;
 }
 
 .pub-links {
