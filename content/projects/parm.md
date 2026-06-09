@@ -5,7 +5,7 @@ date = "2023-01-30"
 weight = 1
 
 [extra]
-remote_image = "/parm/img.gif"
+remote_image = "/parm/img.webp"
 github_link = "https://github.com/marcpinet/parm"
 category = "school"
 +++

@@ -5,7 +5,7 @@ date = "2023-05-24"
 weight = 1
 
 [extra]
-remote_image = "/poubelledroid/img.gif"
+remote_image = "/poubelledroid/img.webp"
 github_link = "https://github.com/marcpinet/poubelledroid"
 category = "school"
 +++

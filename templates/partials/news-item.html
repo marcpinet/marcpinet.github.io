@@ -1,0 +1,84 @@
+{# Renders ONE News <li> from a pointer row "<ISO date>SEP<kind>SEP<i>[SEP<j>]" built in
+   index.html. Reads the parent context: SEP, lazy_imgs, home, exp_page, edu_page,
+   proj_sec, ds_sec, pub_sec. Kinds: news / exp / edu (hand-written feed entries),
+   proj, ds (auto-sentences), pub (one event per milestone, j = milestone index or -1
+   for the top-level status/venue/date fields). #}
+{% set parts = row | split(pat=SEP) %}
+{% set kind = parts | nth(n=1) %}
+{% set i = parts | nth(n=2) | int %}
+{% set link = "" %}
+{% set img_path = "" %}
+{% set thumb_logo = false %}
+
+{% if kind == "news" or kind == "exp" or kind == "edu" %}
+  {% if kind == "news" %}
+    {% set n = home.extra.news | nth(n=i) %}
+    {% set deftype = "misc" %}
+    {% set thumb_logo = n.logo | default(value=false) %}
+  {% elif kind == "exp" %}
+    {% set n = exp_page.extra.feed | nth(n=i) %}
+    {% set deftype = "experience" %}
+    {% set thumb_logo = true %}
+  {% else %}
+    {% set n = edu_page.extra.feed | nth(n=i) %}
+    {% set deftype = "education" %}
+    {% set thumb_logo = true %}
+  {% endif %}
+  {% set date_str = n.date %}
+  {% set lbl = n.type | default(value=deftype) %}
+  {% set body = n.text | markdown(inline=true) %}
+  {% set link = n.link | default(value="") %}
+  {% set img_path = n.image | default(value="") %}
+
+{% elif kind == "proj" %}
+  {% set p = proj_sec.pages | nth(n=i) %}
+  {% set date_str = p.date %}
+  {% set lbl = "project" %}
+  {% set ghref = p.extra.github_link | default(value=p.permalink) %}
+  {% set body = 'I released <a href="' ~ ghref ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}
+  {% if p.extra.shortdesc %}{% set body = body ~ ', ' ~ p.extra.shortdesc %}{% endif %}
+  {% if body is not ending_with(".") and body is not ending_with("!") and body is not ending_with("?") %}{% set body = body ~ '.' %}{% endif %}
+  {% set img_path = p.extra.remote_image | default(value=p.extra.local_image) | default(value="") %}
+
+{% elif kind == "ds" %}
+  {% set p = ds_sec.pages | nth(n=i) %}
+  {% set date_str = p.date %}
+  {% set lbl = "dataset" %}
+  {% set dhref = p.extra.github_link | default(value=p.permalink) %}
+  {% set body = 'I released the <a href="' ~ dhref ~ '">' ~ p.title ~ '</a> dataset.' %}
+  {% set img_path = p.extra.image | default(value=p.extra.remote_image) | default(value="") %}
+
+{% else %}
+  {% set p = pub_sec.pages | nth(n=i) %}
+  {% set j = parts | nth(n=3) | int %}
+  {% if j >= 0 %}
+    {% set m = p.extra.milestones | nth(n=j) %}
+    {% set date_str = m.date %}
+    {% set pstatus = m.status | default(value="") %}
+    {% set pvenue = m.venue | default(value="") %}
+  {% else %}
+    {% set date_str = p.date %}
+    {% set pstatus = p.extra.status | default(value="") %}
+    {% set pvenue = p.extra.venue | default(value="") %}
+  {% endif %}
+  {% set titlelink = '<a href="' ~ p.permalink ~ '">' ~ p.title ~ '</a>' %}
+  {% set st = pstatus | replace(from="_", to=" ") | lower %}
+  {% set atv = "" %}{% if pvenue %}{% set atv = ' at ' ~ pvenue %}{% endif %}
+  {% if st == "preprint" %}{% set body = 'I released a preprint of ' ~ titlelink ~ '.' %}
+  {% elif st == "accepted" %}{% set body = 'My paper "' ~ titlelink ~ '" has been accepted' %}{% if pvenue %}{% set body = body ~ ' to ' ~ pvenue %}{% endif %}{% set body = body ~ '.' %}
+  {% elif st == "poster" %}{% set body = titlelink ~ ' was accepted as a poster' ~ atv ~ '.' %}
+  {% elif st == "in review" %}{% set body = 'I submitted ' ~ titlelink ~ ' for review' ~ atv ~ '.' %}
+  {% elif st == "wip" %}{% set body = 'I started working on ' ~ titlelink ~ '.' %}
+  {% else %}{% set body = 'I published ' ~ titlelink %}{% if pvenue %}{% set body = body ~ ' in ' ~ pvenue %}{% endif %}{% set body = body ~ '.' %}{% endif %}
+  {% set lbl = pstatus | replace(from="_", to=" ") %}
+  {% set img_path = p.extra.image | default(value="") %}
+{% endif %}
+
+{% set imgattr = "src" %}{% if lazy_imgs %}{% set imgattr = "data-src" %}{% endif %}
+<li class="news-item">
+  {%- if img_path %}<span class="news-thumb{% if thumb_logo %} news-thumb-logo{% endif %}"><img {{ imgattr }}="{{ get_url(path=img_path) }}" alt="" loading="lazy"></span>{% endif %}
+  <div class="news-main">
+    <span class="news-date">{{ date_str | date(format="%b %Y") }}</span>
+    <div class="news-content">{% if lbl %}<span class="pub-status {{ lbl | replace(from=" ", to="-") | lower }}">{{ lbl }}</span> {% endif %}{{ body | safe }}{% if link %} <a class="news-more" href="{{ link }}" target="_blank" rel="noopener noreferrer">→</a>{% endif %}</div>
+  </div>
+</li>

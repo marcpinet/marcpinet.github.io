@@ -5,7 +5,7 @@ date = "2025-01-31"
 weight = 1
 
 [extra]
-remote_image = "/websem-og24/img.gif"
+remote_image = "/websem-og24/img.webp"
 github_link = "https://github.com/marcpinet/websem-og24"
 category = "school"
 pinned = true

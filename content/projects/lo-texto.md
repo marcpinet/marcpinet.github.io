@@ -5,7 +5,7 @@ date = "2022-07-01"
 weight = 1
 
 [extra]
-remote_image = "/lo-texto/img.gif"
+remote_image = "/lo-texto/img.webp"
 github_link = "https://github.com/marcpinet/lo-texto"
 category = "school"
 +++

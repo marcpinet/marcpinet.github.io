@@ -5,7 +5,7 @@ date = "2022-03-18"
 weight = 1
 
 [extra]
-remote_image = "/sort_visualizer/img.gif"
+remote_image = "/sort_visualizer/img.webp"
 github_link = "https://github.com/marcpinet/sort-visualizer"
 category = "personal"
 +++

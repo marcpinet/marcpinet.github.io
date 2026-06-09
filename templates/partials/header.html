@@ -1,16 +1,30 @@
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   {% set current_path = current_path | default(value="/") %}
-  {% if page %}
-    <title>{{ page.title | default(value=config.title) }} · {{ config.title }}</title>
+
+  {# Title and description cascade from the content being rendered, so they are written
+     exactly once (in the page/section front-matter) and inherited everywhere they appear
+     (<title>, meta description, og:*). Publications fall back to their tl;dr. #}
+  {% if page and page.title %}
+    {% set head_title = page.title ~ " · " ~ config.title %}
   {% elif section and section.title and current_path != "/" %}
-    <title>{{ section.title }} · {{ config.title }}</title>
+    {% set head_title = section.title ~ " · " ~ config.title %}
   {% else %}
-    <title>{{ config.title }}</title>
+    {% set head_title = config.title %}
   {% endif %}
+  {% if page and page.description %}
+    {% set head_desc = page.description %}
+  {% elif page and page.extra.tldr %}
+    {% set head_desc = page.extra.tldr %}
+  {% elif section and section.description %}
+    {% set head_desc = section.description %}
+  {% else %}
+    {% set head_desc = config.description %}
+  {% endif %}
+
+  <title>{{ head_title }}</title>
 
   {% if config.extra.favicon %}
     <link rel="icon" type="image/svg+xml" href="{{ config.extra.favicon }}" />
@@ -23,19 +37,26 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 
-  <meta name="description" content="{{ config.description }}">
+  <meta name="description" content="{{ head_desc }}">
   {% if is_404 %}
     <meta name="robots" content="noindex, follow">
   {% else %}
     <meta name="robots" content="index, follow">
   {% endif %}
 
-  <meta property="og:title" content="{{ config.title }}">
+  <meta property="og:title" content="{{ head_title }}">
   <meta property="og:type" content="website" />
-  <meta property="og:description" content="{{ config.description }}">
+  <meta property="og:description" content="{{ head_desc }}">
   <meta property="og:site_name" content="{{ config.title }}">
   {% set current_url = current_url | default(value=config.base_url) %}
   <meta property="og:url" content="{{ current_url }}">
+  {# Small square photo → link previews render as a compact thumbnail-beside-text card
+     (twitter:card "summary"), not a huge banner. #}
+  {% set og_image = resize_image(path="static/homepage/me.jpg", width=400, height=400, op="fill", quality=85) %}
+  <meta property="og:image" content="{{ og_image.url }}">
+  <meta property="og:image:width" content="400">
+  <meta property="og:image:height" content="400">
+  <meta name="twitter:card" content="summary">
   <meta name="theme-color" content="#cb6441">
 
   <script type="application/ld+json">

@@ -5,7 +5,7 @@ date = "2023-03-03"
 weight = 1
 
 [extra]
-remote_image = "/neat-cars/img.gif"
+remote_image = "/neat-cars/img.webp"
 github_link = "https://github.com/marcpinet/neat-cars"
 category = "personal"
 +++

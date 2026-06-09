@@ -6,6 +6,9 @@ node_modules/
 /dist
 /public
 
+# Zola image-processing cache (regenerated at build time, incl. CI)
+/static/processed_images/
+
 # ignore composer vendor directory
 /vendor
 

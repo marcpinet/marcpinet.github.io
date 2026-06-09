@@ -1,7 +1,9 @@
 # The URL the site will be built for
 base_url = "https://marcpinet.fr"
 title = "Marc Pinet"
-description = "Personal home page."
+# Site-wide default description: used on the homepage and as the fallback for any
+# page/section that doesn't define its own `description` in front-matter.
+description = "Marc Pinet — PhD student in machine learning at Orange & LIG (Université Grenoble Alpes), working on detection and explanation of anomalies in time series."
 generate_feeds = false
 minify_html = true
 

@@ -5,7 +5,7 @@ date = "2024-04-06"
 weight = 1
 
 [extra]
-remote_image = "/quanridor/img.gif"
+remote_image = "/quanridor/img.webp"
 github_link = "https://github.com/marcpinet/quanridor"
 category = "school"
 +++

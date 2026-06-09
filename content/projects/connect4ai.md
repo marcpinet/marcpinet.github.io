@@ -5,7 +5,7 @@ date = "2023-02-18"
 weight = 1
 
 [extra]
-remote_image = "/connect4ai/img.gif"
+remote_image = "/connect4ai/img.webp"
 github_link = "https://github.com/marcpinet/connect4-ai"
 category = "personal"
 +++

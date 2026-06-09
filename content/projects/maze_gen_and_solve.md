@@ -5,7 +5,7 @@ date = "2022-03-01"
 weight = 1
 
 [extra]
-remote_image = "/maze_gen_and_solve/img.gif"
+remote_image = "/maze_gen_and_solve/img.webp"
 github_link = "https://github.com/marcpinet/maze-generator-and-solver"
 category = "personal"
 +++
