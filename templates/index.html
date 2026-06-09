@@ -257,7 +257,7 @@
          pointer row "<ISO date>SEP<kind>SEP<index>" so a lexical sort = reverse-chronological (Tera has
          no map literals); partials/news-item.html turns a row back into a <li>. Items older than 1 year
          go to a second list collapsed behind a "show more", with lazy images (data-src) so the initial
-         page stays light. GIF/WebP thumbnails are frozen to frame 1 client-side. ---- #}
+         page stays light. GIF thumbnails are frozen to frame 1 client-side. ---- #}
   {% set news_start = config.extra.news_start | default(value="2025-11-01") %}
   {% set start_ts = news_start | date(format="%s") | int %}
   {% set year_cutoff = now(timestamp=true) - 365 * 86400 %}

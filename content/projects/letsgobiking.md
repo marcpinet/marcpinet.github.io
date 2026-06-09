@@ -5,7 +5,7 @@ date = "2023-11-28"
 weight = 1
 
 [extra]
-remote_image = "/letsgobiking/img.webp"
+remote_image = "/letsgobiking/img.gif"
 github_link = "https://github.com/marcpinet/letsgobiking"
 category = "school"
 +++

@@ -5,7 +5,7 @@ date = "2024-11-30"
 weight = 1
 
 [extra]
-remote_image = "/neuralnetlib/img.webp"
+remote_image = "/neuralnetlib/img.gif"
 github_link = "https://github.com/marcpinet/neuralnetlib"
 pinned = true
 pin_order = 2

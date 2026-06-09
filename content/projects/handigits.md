@@ -5,7 +5,7 @@ date = "2024-05-27"
 weight = 1
 
 [extra]
-remote_image = "/handigits/img.webp"
+remote_image = "/handigits/img.gif"
 github_link = "https://github.com/marcpinet/handigits"
 category = "personal"
 +++

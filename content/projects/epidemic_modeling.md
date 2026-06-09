@@ -5,7 +5,7 @@ date = "2022-01-18"
 weight = 1
 
 [extra]
-remote_image = "/epidemic_modeling/img.webp"
+remote_image = "/epidemic_modeling/img.gif"
 github_link = "https://github.com/marcpinet/epidemic-modeling"
 category = "school"
 pinned = true

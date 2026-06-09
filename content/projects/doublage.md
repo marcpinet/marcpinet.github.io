@@ -5,7 +5,7 @@ date = "2026-06-04"
 weight = 1
 
 [extra]
-remote_image = "/doublage/img.webp"
+remote_image = "/doublage/img.gif"
 github_link = "https://github.com/marcpinet/doublage"
 pinned = false
 category = "personal"

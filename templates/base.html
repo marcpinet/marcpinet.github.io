@@ -94,12 +94,12 @@
           container.dataset.trunc = '1';
         });
 
-        /* News feed: freeze GIF/animated-WebP thumbnails to their first frame (animations
-           stay on the Projects section); reveal + lazy-load older items behind "show more". */
+        /* News feed: freeze GIF thumbnails to their first frame (animations stay on the
+           Projects section); reveal + lazy-load older items behind "show more". */
         function freezeGif(img) {
           try {
             if (img.dataset.frozen) return;
-            if (!/\.(gif|webp)(\?|$)/i.test(img.getAttribute('src') || '')) return;
+            if (!/\.gif(\?|$)/i.test(img.getAttribute('src') || '')) return;
             if (!img.naturalWidth) return;
             img.dataset.frozen = '1';
             /* Draw frame 1 into a canvas and swap it in for the <img>. We only DISPLAY the
