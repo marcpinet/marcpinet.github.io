@@ -16,15 +16,20 @@
   <div class="hero-tsad" aria-hidden="true">
     <canvas class="hero-tsad-canvas"></canvas>
   </div>
+  <p class="hero-tsad-caption" aria-hidden="true">
+    <span class="tsad-key"><span class="tsad-swatch tsad-swatch-fill"></span>univariate anomaly — caught per channel</span>
+    <span class="tsad-key"><span class="tsad-swatch tsad-swatch-dash"></span>correlation break — caught cross-channel only</span>
+  </p>
 
   <script>
   /* Hero — a multivariate time-series anomaly-detection vignette. Three correlated
-     channels stream left through a shared "normal range" band. The detector combines
-     (a) per-channel band exceedance (the z-score) for univariate spikes in 1..C channels,
-     and (b) inter-channel dispersion, which catches *correlation breaks* where the bundle
-     fans apart while every channel stays inside its band (marginals preserved — a z-score
-     misses these). Windows the detector fires on are highlighted over their full extent.
-     Canvas; a single static frame for reduced-motion. */
+     channels stream left through a shared "normal range" band. Two detector families
+     score each window: (a) per-channel band exceedance (the z-score), which fires on
+     univariate spikes in 1..C channels, and (b) inter-channel dispersion, which catches
+     *correlation breaks* where the bundle fans apart while every channel stays inside
+     its band (marginals preserved — a z-score misses these). Windows the per-channel
+     score catches are filled; windows only the cross-channel score sees are dashed —
+     the distinction the MTSAD paper is about. Canvas; a static frame for reduced-motion. */
   (function () {
     var wrap = document.querySelector('.hero-tsad');
     var canvas = wrap && wrap.querySelector('.hero-tsad-canvas');
@@ -82,18 +87,23 @@
     // stretch stays lively/noisy instead of too stable
     function common(wx) {
       return ( vnoise(wx * 0.018) * 0.44 + vnoise(wx * 0.050) * 0.30
-             + vnoise(wx * 0.120) * 0.20 + vnoise(wx * 0.300) * 0.12 ) * bandHalf * 0.78;
+             + vnoise(wx * 0.120) * 0.20 + vnoise(wx * 0.300) * 0.12 ) * bandHalf * 0.70;
     }
-    // per-channel idiosyncratic noise → visible per-line jitter within the bundle
+    // per-channel response to the shared trend: each channel has its own gain and a small
+    // lag, so they track the same latent cause without tracing the same curve — lines
+    // cross and amplitudes differ, but the bundle stays visibly correlated
+    var GAIN = [1.0, 0.86, 1.13], LAG = [0, 4.5, -3.8];
+    // per-channel idiosyncratic noise → visible per-line jitter, with per-channel
+    // frequencies so one channel reads calmer / another jitterier
     function idio(i, wx) {
-      return ( vnoise(wx * 0.10 + i * 53.3 + 11) * 0.55
-             + vnoise(wx * 0.34 + i * 17.7 + 3) * 0.45 ) * bandHalf * 0.16;
+      return ( vnoise(wx * (0.085 + i * 0.025) + i * 53.3 + 11) * 0.55
+             + vnoise(wx * (0.28 + i * 0.05) + i * 17.7 + 3) * 0.45 ) * bandHalf * 0.21;
     }
 
     // the C channel values at world x, with anomalies applied
     function channelsAt(wx) {
       var c = common(wx), v = [], i, k;
-      for (i = 0; i < C; i++) v.push(midC + c + idio(i, wx));
+      for (i = 0; i < C; i++) v.push(midC + common(wx + LAG[i]) * GAIN[i] + idio(i, wx));
       for (k = 0; k < anomalies.length; k++) {
         var a = anomalies[k], d = wx - a.wx0;
         if (a.kind === 0) {                       // univariate spike on a subset of channels
@@ -107,14 +117,15 @@
       }
       return v;
     }
-    // detector: max of (per-channel band exceedance / z-score) and (inter-channel dispersion)
-    function scoreOf(v) {
+    // the two detector families, scored separately: `exc` is the per-channel band
+    // exceedance (univariate z-score), `disp` the inter-channel dispersion (cross-channel)
+    function scoresOf(v) {
       var mean = 0, i, dd, sq = 0, exc = 0;
       for (i = 0; i < C; i++) mean += v[i]; mean /= C;
       for (i = 0; i < C; i++) { dd = v[i] - mean; sq += dd * dd; }
       var disp = Math.sqrt(sq / C);
       for (i = 0; i < C; i++) { var e = Math.abs(v[i] - midC) - bandHalf; if (e > exc) exc = e; }
-      return Math.max(exc / (bandHalf * 0.5), disp / (bandHalf * 0.40));
+      return { exc: exc / (bandHalf * 0.5), disp: disp / (bandHalf * 0.40) };
     }
 
     function spawn(atX, forceKind) {
@@ -160,14 +171,23 @@
       var xs = [], vAll = [];
       for (x = 0; x <= W; x += 2) { xs.push(x); vAll.push(channelsAt(x + scroll)); }
 
-      // flagged windows: each anomaly the detector fires on, highlighted over its full extent
-      ctx.fillStyle = acc(0.07);
+      // flagged windows, styled by which detector family fires: filled when the
+      // per-channel score catches it, dashed when only the cross-channel score does
+      // (a correlation break — invisible to univariate detectors)
       for (j = 0; j < anomalies.length; j++) {
         a = anomalies[j]; sx = a.wx0 - scroll;
         if (sx < -220 || sx > W + 220) continue;
-        if (scoreOf(channelsAt(a.wx0)) < THR) continue;
+        var s = scoresOf(channelsAt(a.wx0));
+        if (s.exc < THR && s.disp < THR) continue;
         var ext = (a.kind === 0 ? Math.max(a.sigma * 3.2, 14) : a.win) + 7;
-        roundRect(sx - ext, H * 0.08, ext * 2, H * 0.84, 5); ctx.fill();
+        roundRect(sx - ext, H * 0.08, ext * 2, H * 0.84, 5);
+        if (s.exc >= THR) {
+          ctx.fillStyle = acc(0.07); ctx.fill();
+        } else {
+          ctx.fillStyle = acc(0.035); ctx.fill();
+          ctx.setLineDash([4, 3]); ctx.lineWidth = 1; ctx.strokeStyle = acc(0.45);
+          ctx.stroke(); ctx.setLineDash([]);
+        }
       }
 
       // the C channels: a tight, correlated bundle that fans apart on a correlation break
@@ -196,7 +216,8 @@
       readColors(); resize();
       scroll = Math.random() * 3000;
       anomalies = [];
-      spawn(scroll + W * 0.6, 1);        // showcase a correlation break on the first paint
+      spawn(scroll + W * 0.62, 1);       // showcase both styles on the first paint:
+      spawn(scroll + W * 0.24, 0);       // a correlation break (dashed) and a spike (filled)
       nextAnom = 3.5 + Math.random() * 3;
       last = 0;
       if (motionQuery.matches) { draw(); return; }   // static elegant frame, no animation
