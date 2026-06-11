@@ -1,0 +1,160 @@
+<!doctype html><html data-theme=light lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1.0" name=viewport><title>Sort Visualizer · Marc Pinet</title><link href=/favicon.svg rel=icon type=image/svg+xml><link rel="alternate icon" href=/favicon.ico type=image/x-icon><link href=https://marcpinet.fr/main.css media=screen rel=stylesheet><link href=https://fonts.googleapis.com rel=preconnect><link crossorigin href=https://fonts.gstatic.com rel=preconnect><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel=stylesheet><meta content="🧮 A simple sorting algorithm visualizer (with a lot of algorithms to observe). You can also adjust the size of the array to be sorted and much more!" name=description><meta content="index, follow" name=robots><meta content="Sort Visualizer · Marc Pinet" property=og:title><meta content=website property=og:type><meta content="🧮 A simple sorting algorithm visualizer (with a lot of algorithms to observe). You can also adjust the size of the array to be sorted and much more!" property=og:description><meta content="Marc Pinet" property=og:site_name><meta content=https://marcpinet.fr/projects/sorting-visualizer/ property=og:url><meta content=https://marcpinet.fr/processed_images/me.f411d9c5261174ef.jpg property=og:image><meta content=400 property=og:image:width><meta content=400 property=og:image:height><meta content=summary name=twitter:card><meta content=#cb6441 name=theme-color><script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Marc Pinet",
+    "url": "https:&#x2F;&#x2F;marcpinet.fr",
+    "description": "Marc Pinet — PhD student in machine learning at Orange &amp; LIG (Université Grenoble Alpes), working on detection and explanation of anomalies in time series.",
+    "sameAs": [
+      
+        
+      
+        
+          "https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=NsXT970AAAAJ",
+        
+      
+        
+          "https:&#x2F;&#x2F;github.com&#x2F;marcpinet&#x2F;",
+        
+      
+        
+          "https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;marc-pinet&#x2F;",
+        
+      
+        
+          "https:&#x2F;&#x2F;x.com&#x2F;marcpinet0&#x2F;",
+        
+      
+        
+      
+    ]
+  }
+  </script><script>(function() {
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
+    })();</script><body data-page=projects/sorting-visualizer><header class=site-header><div class=nav-container><a class=site-title href=https://marcpinet.fr>Marc Pinet</a><nav class=site-nav><a href=/publications>Publications</a><a href=/experience>Experience</a><a href=/education>Education</a><a class=active href=/projects>Projects</a><a href=/misc>Misc.</a></nav><button aria-label="Toggle theme" class=theme-toggle type=button>Light</button></div></header><main><article class=post-article><div class=post-meta><time datetime=2022-03-18>March 2022</time></div><h1 class=post-title>Sort Visualizer</h1><div class=post-links><a rel="noopener noreferrer" href=https://github.com/marcpinet/sort-visualizer target=_blank>GitHub</a></div><section class=post-body></section></article></main><footer class=site-footer><div>© 2026 · Marc Pinet</div><div class=site-footer-socials><a href=mailto:marc.pinet.06@gmail.com>Email</a><a href="https://scholar.google.com/citations?user=NsXT970AAAAJ" rel="noopener noreferrer" target=_blank>Scholar</a><a rel="noopener noreferrer" href=https://github.com/marcpinet/ target=_blank>GitHub</a><a rel="noopener noreferrer" href=https://www.linkedin.com/in/marc-pinet/ target=_blank>LinkedIn</a><a rel="noopener noreferrer" href=https://x.com/marcpinet0/ target=_blank>X</a><a rel="noopener noreferrer" href=https://raw.githubusercontent.com/marcpinet/marcpinet.github.io/cv/cv.pdf target=_blank>CV</a></div></footer><script>(function() {
+      function updateLabel() {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        var t = document.documentElement.getAttribute('data-theme');
+        btn.textContent = t === 'dark' ? 'Light' : 'Dark';
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        updateLabel();
+        var btn = document.querySelector('.theme-toggle');
+        if (btn) {
+          btn.addEventListener('click', function() {
+            var t = document.documentElement.getAttribute('data-theme');
+            var next = t === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            try { localStorage.setItem('theme', next); } catch (e) {}
+            updateLabel();
+          });
+        }
+        document.querySelectorAll('.field-tag').forEach(function(tag) {
+          var text = tag.textContent.trim();
+          if (!text || tag.querySelector('a')) return;
+          var query = text.replace(/\s*\([^)]*\)\s*/g, '').trim().replace(/\s+/g, '_');
+          var link = document.createElement('a');
+          link.href = 'https://en.wikipedia.org/wiki/' + encodeURIComponent(query);
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = text;
+          tag.textContent = '';
+          tag.appendChild(link);
+        });
+
+        /* Duration calculation on entry dates (format: "Oct 2025 - Present" or "Apr 2022 - Jul 2022") */
+        var MONTHS = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+        function parseMonthYear(s) {
+          var m = s.trim().match(/^([A-Za-z]{3,})\s+(\d{4})$/);
+          if (!m) return null;
+          var mi = MONTHS.indexOf(m[1].toLowerCase().slice(0,3));
+          if (mi < 0) return null;
+          return new Date(parseInt(m[2], 10), mi, 1);
+        }
+        function formatDuration(months) {
+          if (months < 1) return '< 1 MONTH';
+          var years = Math.floor(months / 12);
+          var rem = months % 12;
+          if (years === 0) return rem + ' MONTH' + (rem !== 1 ? 'S' : '');
+          var y = years + ' YEAR' + (years !== 1 ? 'S' : '');
+          if (rem === 0) return y;
+          return y + ', ' + rem + ' MONTH' + (rem !== 1 ? 'S' : '');
+        }
+        document.querySelectorAll('.entry-date').forEach(function(el) {
+          if (el.dataset.dur === '1') return;
+          var text = el.textContent.trim();
+          var parts = text.split(/\s[-–]\s/);
+          if (parts.length !== 2) return;
+          var start = parseMonthYear(parts[0]);
+          if (!start) return;
+          var isPresent = /present/i.test(parts[1]);
+          var end = isPresent ? new Date() : parseMonthYear(parts[1]);
+          if (!end) return;
+          var diff = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+          el.textContent = text + ' (' + formatDuration(diff) + ')';
+          el.dataset.dur = '1';
+        });
+
+        /* Tag truncation: show first N, reveal rest on click */
+        var MAX_TAGS = 5;
+        document.querySelectorAll('.fields').forEach(function(container) {
+          if (container.dataset.trunc === '1') return;
+          var tags = Array.prototype.slice.call(container.querySelectorAll('.field-tag'));
+          if (tags.length <= MAX_TAGS) return;
+          var hidden = tags.slice(MAX_TAGS);
+          hidden.forEach(function(t) { t.classList.add('fields-hidden'); });
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'fields-toggle';
+          btn.textContent = '+ ' + hidden.length + ' more';
+          btn.addEventListener('click', function() {
+            var expanded = container.classList.toggle('fields-expanded');
+            hidden.forEach(function(t) { t.classList.toggle('fields-hidden', !expanded); });
+            btn.textContent = expanded ? 'show less' : '+ ' + hidden.length + ' more';
+          });
+          container.appendChild(btn);
+          container.dataset.trunc = '1';
+        });
+
+        /* News feed: freeze GIF thumbnails to their first frame (animations stay on the
+           Projects section); reveal + lazy-load older items behind "show more". */
+        function freezeGif(img) {
+          try {
+            if (img.dataset.frozen) return;
+            if (!/\.gif(\?|$)/i.test(img.getAttribute('src') || '')) return;
+            if (!img.naturalWidth) return;
+            img.dataset.frozen = '1';
+            /* Draw frame 1 into a canvas and swap it in for the <img>. We only DISPLAY the
+               canvas (never read it back / toDataURL), so a cross-origin-tainted canvas is fine. */
+            var c = document.createElement('canvas');
+            c.width = img.naturalWidth;
+            c.height = img.naturalHeight;
+            c.getContext('2d').drawImage(img, 0, 0);
+            img.replaceWith(c);
+          } catch (e) {}
+        }
+        function watchFreeze(img) {
+          if (img.complete && img.naturalWidth) freezeGif(img);
+          else img.addEventListener('load', function() { freezeGif(img); }, { once: true });
+        }
+        document.querySelectorAll('.news-thumb img').forEach(watchFreeze);
+        var moreBtn = document.querySelector('.news-show-more');
+        if (moreBtn) {
+          moreBtn.addEventListener('click', function() {
+            var rest = document.querySelector('.news-rest');
+            if (rest) {
+              rest.querySelectorAll('img[data-src]').forEach(function(img) {
+                img.src = img.getAttribute('data-src');
+                img.removeAttribute('data-src');
+                watchFreeze(img);
+              });
+              rest.hidden = false;
+            }
+            moreBtn.remove();
+          });
+        }
+      });
+    })();</script>
