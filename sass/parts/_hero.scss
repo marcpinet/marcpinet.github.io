@@ -87,7 +87,7 @@
   position: relative;
   width: 100%;
   height: 120px;
-  margin: 1.75rem 0 0.5rem;
+  margin: 1.75rem 0 2rem;
 }
 
 .hero-tsad-canvas {
@@ -96,47 +96,6 @@
   height: 100%;
   -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
           mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent);
-}
-
-/* figure-style caption keying the two highlight styles to the two detector families */
-.hero-tsad-caption {
-  font-family: var(--font-sans);
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  margin: 0 0 2rem;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.25rem 1.6rem;
-}
-
-.tsad-key {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  white-space: nowrap;
-}
-
-.tsad-swatch {
-  display: inline-block;
-  width: 17px;
-  height: 10px;
-  border-radius: 3px;
-}
-
-.tsad-swatch-fill {
-  background: color-mix(in srgb, var(--accent) 18%, transparent);
-}
-
-.tsad-swatch-dash {
-  background: color-mix(in srgb, var(--accent) 8%, transparent);
-  border: 1px dashed color-mix(in srgb, var(--accent) 55%, transparent);
-}
-
-@media (max-width: 600px) {
-  .tsad-key {
-    white-space: normal;
-  }
 }
 
 .hero-contact {
