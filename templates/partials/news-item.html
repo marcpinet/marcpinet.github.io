@@ -75,8 +75,11 @@
 {% endif %}
 
 {% set imgattr = "src" %}{% if lazy_imgs %}{% set imgattr = "data-src" %}{% endif %}
+{# First link inside the rendered news-content: the first href in the body, else the trailing "→" link. Makes the thumbnail clickable to that same destination. #}
+{% set first_link = "" %}
+{% if body is containing('href="') %}{% set first_link = body | split(pat='href="') | nth(n=1) | split(pat='"') | nth(n=0) %}{% elif link %}{% set first_link = link %}{% endif %}
 <li class="news-item">
-  {%- if img_path %}<span class="news-thumb{% if thumb_logo %} news-thumb-logo{% endif %}"><img {{ imgattr }}="{{ get_url(path=img_path) }}" alt="" loading="lazy"></span>{% endif %}
+  {%- if img_path %}<span class="news-thumb{% if thumb_logo %} news-thumb-logo{% endif %}">{% if first_link %}<a class="news-thumb-link" href="{{ first_link }}"{% if first_link is starting_with("http") %} target="_blank" rel="noopener noreferrer"{% endif %}>{% endif %}<img {{ imgattr }}="{{ get_url(path=img_path) }}" alt="" loading="lazy">{% if first_link %}</a>{% endif %}</span>{% endif %}
   <div class="news-main">
     <span class="news-date">{{ date_str | date(format="%b %Y") }}</span>
     <div class="news-content">{% if lbl %}<span class="pub-status {{ lbl | replace(from=" ", to="-") | lower }}">{{ lbl }}</span> {% endif %}{{ body | safe }}{% if link %} <a class="news-more" href="{{ link }}" target="_blank" rel="noopener noreferrer">→</a>{% endif %}</div>

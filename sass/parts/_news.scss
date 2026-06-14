@@ -35,6 +35,24 @@
   display: block;
 }
 
+/* Clickable thumbnail: links to the first link inside the news content. */
+.news-thumb-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-bottom: none;
+}
+
+.news-thumb-link img,
+.news-thumb-link canvas {
+  transition: opacity 0.15s ease;
+}
+
+.news-thumb-link:hover img,
+.news-thumb-link:hover canvas {
+  opacity: 0.85;
+}
+
 /* Logos (experience/education, or custom items with `logo = true`): show the whole
    logo with breathing room instead of cropping it. */
 .news-thumb-logo img,
