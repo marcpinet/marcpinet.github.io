@@ -5,23 +5,10 @@ date = "2026-06-01"
 [extra]
 authors = "<strong>Marc Pinet</strong>, Julien Cumin, Samuel Berlemont, Dominique Vaufreydaz"
 short_author = "Pinet et al."
-venue = "Preprint, arXiv:2606.02670"
-status = "preprint"
+venue = "12th MILETS Workshop @ KDD 2026"
+status = "accepted"
 image = "/pub_img/mostly_univariate.jpg"
 featured = true
-# Lifecycle: when this paper advances, add milestones below. Each becomes its OWN dated News
-# line (visible ~6 months from its date), so earlier steps don't vanish; the page/list then show
-# the LATEST milestone. List them oldest→newest. Statuses: preprint / accepted / poster /
-# published / article / journal / in_review / wip. When you use milestones, the top-level
-# `status`/`venue`/`date` above are ignored for display (kept only as a fallback).
-# [[extra.milestones]]
-# date = "2026-06-01"
-# status = "preprint"
-# venue = "Preprint, arXiv:2606.02670"
-# [[extra.milestones]]
-# date = "2026-09-15"
-# status = "accepted"
-# venue = "NeurIPS 2026"
 links = [
   { name = "arXiv", url = "https://arxiv.org/abs/2606.02670" },
   { name = "PDF", url = "https://arxiv.org/pdf/2606.02670" },
@@ -30,6 +17,18 @@ links = [
   { name = "Code", url = "https://github.com/marcpinet/mtsad-benchmarks-are-mostly-univariate" },
 ]
 tldr = "Evidence that current multivariate time series anomaly detection benchmarks don't actually test cross-channel modeling."
+
+# Lifecycle milestones (oldest→newest): each is its own dated News line; the page/list show the
+# LATEST. With milestones set, the top-level status/venue/date above are display fallbacks only.
+[[extra.milestones]]
+date = "2026-06-01"
+status = "preprint"
+venue = "Preprint, arXiv:2606.02670"
+
+[[extra.milestones]]
+date = "2026-06-15"
+status = "accepted"
+venue = "12th MILETS Workshop @ KDD 2026"
 +++
 
 ## Abstract
