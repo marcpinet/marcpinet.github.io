@@ -1,3 +1,9 @@
+/* A bit more air between each Research section heading (Publications, Talks, Datasets,
+   Patents) and the dated content beneath it. */
+body[data-page="research"] h2 {
+  margin-bottom: 1.8rem;
+}
+
 .pub-year {
   font-family: var(--font-sans);
   font-size: 0.82rem;

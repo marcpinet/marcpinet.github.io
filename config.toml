@@ -29,7 +29,7 @@ favicon = "/favicon.svg"
 news_start = "2025-11-01"
 
 menu = [
-    { name = "Publications", url = "/publications", weight = 1 },
+    { name = "Research", url = "/research", weight = 1 },
     { name = "Experience", url = "/experience", weight = 2 },
     { name = "Education", url = "/education", weight = 3 },
     { name = "Projects", url = "/projects", weight = 4 },

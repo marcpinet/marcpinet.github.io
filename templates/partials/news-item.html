@@ -1,8 +1,10 @@
 {# Renders ONE News <li> from a pointer row "<ISO date>SEP<kind>SEP<i>[SEP<j>]" built in
-   index.html. Reads the parent context: SEP, lazy_imgs, home, exp_page, edu_page,
-   proj_sec, ds_sec, pub_sec. Kinds: news / exp / edu (hand-written feed entries),
-   proj, ds (auto-sentences), pub (one event per milestone, j = milestone index or -1
-   for the top-level status/venue/date fields). #}
+   index.html. Reads the parent context: SEP, lazy_imgs, home, exp_page, edu_page, proj_sec,
+   ds_sec, pub_sec, talks_sec, teach_sec, sup_sec. Kinds:
+   - news / exp / edu : hand-written feed entries (chip from `type`; default misc/experience/education)
+   - proj             : project release (auto-sentence, chip "project")
+   - teach / sup      : teaching / supervision entries (chips "teaching" / "supervision")
+   - pub / talk / ds  : milestone-capable (j = milestone index, or -1 for the top-level fields) #}
 {% set parts = row | split(pat=SEP) %}
 {% set kind = parts | nth(n=1) %}
 {% set i = parts | nth(n=2) | int %}
@@ -40,38 +42,65 @@
   {% if body is not ending_with(".") and body is not ending_with("!") and body is not ending_with("?") %}{% set body = body ~ '.' %}{% endif %}
   {% set img_path = p.extra.remote_image | default(value=p.extra.local_image) | default(value="") %}
 
-{% elif kind == "ds" %}
-  {% set p = ds_sec.pages | nth(n=i) %}
+{% elif kind == "teach" %}
+  {% set p = teach_sec.pages | nth(n=i) %}
   {% set date_str = p.date %}
-  {% set lbl = "dataset" %}
-  {% set dhref = p.extra.github_link | default(value=p.permalink) %}
-  {% set body = 'I released the <a href="' ~ dhref ~ '">' ~ p.title ~ '</a> dataset.' %}
-  {% set img_path = p.extra.image | default(value=p.extra.remote_image) | default(value="") %}
+  {% set lbl = "teaching" %}
+  {% set thumb_logo = true %}
+  {% set tl = p.extra.link | default(value="") %}
+  {% if tl %}{% set titlelink = '<a href="' ~ tl ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}{% else %}{% set titlelink = '<strong>' ~ p.title ~ '</strong>' %}{% endif %}
+  {% set body = 'I taught ' ~ titlelink %}{% if p.extra.where %}{% set body = body ~ ' at ' ~ p.extra.where %}{% endif %}{% set body = body ~ '.' %}
+  {% set img_path = p.extra.image | default(value="") %}
+
+{% elif kind == "sup" %}
+  {% set p = sup_sec.pages | nth(n=i) %}
+  {% set date_str = p.date %}
+  {% set lbl = "supervision" %}
+  {% set thumb_logo = true %}
+  {% set tl = p.extra.link | default(value="") %}
+  {% if tl %}{% set titlelink = '<a href="' ~ tl ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}{% else %}{% set titlelink = '<strong>' ~ p.title ~ '</strong>' %}{% endif %}
+  {% set body = 'I started supervising ' ~ titlelink %}{% if p.extra.level %}{% set body = body ~ ' (' ~ p.extra.level ~ ')' %}{% endif %}{% if p.extra.topic %}{% set body = body ~ ' on ' ~ p.extra.topic %}{% endif %}{% set body = body ~ '.' %}
+  {% set img_path = p.extra.image | default(value="") %}
 
 {% else %}
-  {% set p = pub_sec.pages | nth(n=i) %}
+  {# milestone-capable: pub / talk / ds #}
+  {% if kind == "talk" %}{% set sec = talks_sec %}{% elif kind == "ds" %}{% set sec = ds_sec %}{% else %}{% set sec = pub_sec %}{% endif %}
+  {% set p = sec.pages | nth(n=i) %}
   {% set j = parts | nth(n=3) | int %}
   {% if j >= 0 %}
     {% set m = p.extra.milestones | nth(n=j) %}
-    {% set date_str = m.date %}
-    {% set pstatus = m.status | default(value="") %}
-    {% set pvenue = m.venue | default(value="") %}
+    {% set date_str = m.date %}{% set pstatus = m.status | default(value="") %}{% set pvenue = m.venue | default(value="") %}
   {% else %}
-    {% set date_str = p.date %}
-    {% set pstatus = p.extra.status | default(value="") %}
-    {% set pvenue = p.extra.venue | default(value="") %}
+    {% set date_str = p.date %}{% set pstatus = p.extra.status | default(value="") %}{% set pvenue = p.extra.venue | default(value="") %}
   {% endif %}
-  {% set titlelink = '<a href="' ~ p.permalink ~ '">' ~ p.title ~ '</a>' %}
   {% set st = pstatus | replace(from="_", to=" ") | lower %}
   {% set atv = "" %}{% if pvenue %}{% set atv = ' at ' ~ pvenue %}{% endif %}
-  {% if st == "preprint" %}{% set body = 'I released a preprint of ' ~ titlelink ~ '.' %}
-  {% elif st == "accepted" %}{% set body = 'My paper "' ~ titlelink ~ '" has been accepted' %}{% if pvenue %}{% set body = body ~ ' to ' ~ pvenue %}{% endif %}{% set body = body ~ '.' %}
-  {% elif st == "poster" %}{% set body = titlelink ~ ' was accepted as a poster' ~ atv ~ '.' %}
-  {% elif st == "in review" %}{% set body = 'I submitted ' ~ titlelink ~ ' for review' ~ atv ~ '.' %}
-  {% elif st == "wip" %}{% set body = 'I started working on ' ~ titlelink ~ '.' %}
-  {% else %}{% set body = 'I published ' ~ titlelink %}{% if pvenue %}{% set body = body ~ ' in ' ~ pvenue %}{% endif %}{% set body = body ~ '.' %}{% endif %}
-  {% set lbl = pstatus | replace(from="_", to=" ") %}
-  {% set img_path = p.extra.image | default(value="") %}
+  {% if kind == "pub" %}
+    {% set titlelink = '<a href="' ~ p.permalink ~ '">' ~ p.title ~ '</a>' %}
+    {% if st == "preprint" %}{% set body = 'I released a preprint of ' ~ titlelink ~ '.' %}
+    {% elif st == "accepted" %}{% set body = 'My paper "' ~ titlelink ~ '" has been accepted' %}{% if pvenue %}{% set body = body ~ ' to ' ~ pvenue %}{% endif %}{% set body = body ~ '.' %}
+    {% elif st == "poster" %}{% set body = titlelink ~ ' was accepted as a poster' ~ atv ~ '.' %}
+    {% elif st == "in review" %}{% set body = 'I submitted ' ~ titlelink ~ ' for review' ~ atv ~ '.' %}
+    {% elif st == "wip" %}{% set body = 'I started working on ' ~ titlelink ~ '.' %}
+    {% else %}{% set body = 'I published ' ~ titlelink %}{% if pvenue %}{% set body = body ~ ' in ' ~ pvenue %}{% endif %}{% set body = body ~ '.' %}{% endif %}
+    {% set lbl = pstatus | replace(from="_", to=" ") %}
+    {% set img_path = p.extra.image | default(value="") %}
+  {% elif kind == "talk" %}
+    {% set tl = p.extra.link | default(value="") %}
+    {% if tl %}{% set titlelink = '<a href="' ~ tl ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}{% else %}{% set titlelink = p.title %}{% endif %}
+    {% if st == "accepted" %}{% set body = 'My talk "' ~ titlelink ~ '" was accepted' ~ atv ~ '.' %}
+    {% elif st == "invited" %}{% set body = 'I was invited to speak' ~ atv ~ ': "' ~ titlelink ~ '".' %}
+    {% elif st == "upcoming" %}{% set body = 'Upcoming talk, "' ~ titlelink ~ '"' ~ atv ~ '.' %}
+    {% else %}{% set body = 'I gave a talk, "' ~ titlelink ~ '"' ~ atv ~ '.' %}{% endif %}
+    {% set lbl = "talk" %}
+    {% set img_path = p.extra.image | default(value="") %}
+  {% else %}
+    {% set dl = p.extra.github_link | default(value=p.extra.link) | default(value="") %}
+    {% if dl %}{% set titlelink = '<a href="' ~ dl ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}{% else %}{% set titlelink = p.title %}{% endif %}
+    {% set body = 'I released the ' ~ titlelink ~ ' dataset' %}{% if pvenue %}{% set body = body ~ ' (' ~ pvenue ~ ')' %}{% endif %}{% set body = body ~ '.' %}
+    {% set lbl = "dataset" %}
+    {% set img_path = p.extra.image | default(value=p.extra.remote_image) | default(value="") %}
+  {% endif %}
 {% endif %}
 
 {% set imgattr = "src" %}{% if lazy_imgs %}{% set imgattr = "data-src" %}{% endif %}

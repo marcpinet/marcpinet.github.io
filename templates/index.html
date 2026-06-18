@@ -262,19 +262,23 @@
   {% set edu_page = get_page(path="education.md") %}
   {% set proj_sec = get_section(path="projects/_index.md") %}
   {% set ds_sec = get_section(path="datasets/_index.md") %}
-  {% set pub_sec = get_section(path="publications/_index.md") %}
+  {% set pub_sec = get_section(path="research/_index.md") %}
+  {% set talks_sec = get_section(path="talks/_index.md") %}
+  {% set teach_sec = get_section(path="teaching/_index.md") %}
+  {% set sup_sec = get_section(path="supervision/_index.md") %}
   {% set_global recent_rows = [] %}
   {% set_global old_rows = [] %}
 
   {# Hand-written news (_index.md, chip defaults to "misc"), experience/education feed entries
      (chips "experience"/"education"), and projects/datasets (auto-sentences) all share the same
      date-window logic — only the source array differs. #}
-  {% for kind in ["news", "exp", "edu", "proj", "ds"] %}
+  {% for kind in ["news", "exp", "edu", "proj", "teach", "sup"] %}
     {% if kind == "news" %}{% set items = home.extra.news | default(value=[]) %}
     {% elif kind == "exp" %}{% set items = exp_page.extra.feed | default(value=[]) %}
     {% elif kind == "edu" %}{% set items = edu_page.extra.feed | default(value=[]) %}
     {% elif kind == "proj" %}{% set items = proj_sec.pages %}
-    {% else %}{% set items = ds_sec.pages %}{% endif %}
+    {% elif kind == "teach" %}{% set items = teach_sec.pages %}
+    {% else %}{% set items = sup_sec.pages %}{% endif %}
     {% for n in items %}
       {% if n.date %}
         {% set ts = n.date | date(format="%s") | int %}
@@ -286,27 +290,30 @@
     {% endfor %}
   {% endfor %}
 
-  {# Publications: one event per milestone (status/venue/date), else a single event (j = -1) from
-     the top-level fields. #}
-  {% for p in pub_sec.pages %}
-    {% set pi = loop.index0 %}
-    {% if p.extra.milestones %}
-      {% for m in p.extra.milestones %}
-        {% if m.date %}
-          {% set ts = m.date | date(format="%s") | int %}
-          {% if ts >= start_ts %}
-            {% set row = m.date ~ SEP ~ "pub" ~ SEP ~ pi ~ SEP ~ loop.index0 %}
-            {% if ts < year_cutoff %}{% set_global old_rows = old_rows | concat(with=row) %}{% else %}{% set_global recent_rows = recent_rows | concat(with=row) %}{% endif %}
+  {# Milestone-capable sources (pub / talk / ds): one event per milestone (status/venue/date),
+     else a single event (j = -1) from the top-level fields. #}
+  {% for mkind in ["pub", "talk", "ds"] %}
+    {% if mkind == "pub" %}{% set msec = pub_sec %}{% elif mkind == "talk" %}{% set msec = talks_sec %}{% else %}{% set msec = ds_sec %}{% endif %}
+    {% for p in msec.pages %}
+      {% set pi = loop.index0 %}
+      {% if p.extra.milestones %}
+        {% for m in p.extra.milestones %}
+          {% if m.date %}
+            {% set ts = m.date | date(format="%s") | int %}
+            {% if ts >= start_ts %}
+              {% set row = m.date ~ SEP ~ mkind ~ SEP ~ pi ~ SEP ~ loop.index0 %}
+              {% if ts < year_cutoff %}{% set_global old_rows = old_rows | concat(with=row) %}{% else %}{% set_global recent_rows = recent_rows | concat(with=row) %}{% endif %}
+            {% endif %}
           {% endif %}
+        {% endfor %}
+      {% elif p.date %}
+        {% set ts = p.date | date(format="%s") | int %}
+        {% if ts >= start_ts %}
+          {% set row = p.date ~ SEP ~ mkind ~ SEP ~ pi ~ SEP ~ "-1" %}
+          {% if ts < year_cutoff %}{% set_global old_rows = old_rows | concat(with=row) %}{% else %}{% set_global recent_rows = recent_rows | concat(with=row) %}{% endif %}
         {% endif %}
-      {% endfor %}
-    {% elif p.date %}
-      {% set ts = p.date | date(format="%s") | int %}
-      {% if ts >= start_ts %}
-        {% set row = p.date ~ SEP ~ "pub" ~ SEP ~ pi ~ SEP ~ "-1" %}
-        {% if ts < year_cutoff %}{% set_global old_rows = old_rows | concat(with=row) %}{% else %}{% set_global recent_rows = recent_rows | concat(with=row) %}{% endif %}
       {% endif %}
-    {% endif %}
+    {% endfor %}
   {% endfor %}
 
   {% if recent_rows or old_rows %}

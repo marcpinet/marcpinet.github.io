@@ -7,6 +7,7 @@
   {% endif %}
 
   {% if section.pages | length > 0 %}
+    <h2>Publications</h2>
     {% set sorted = section.pages | sort(attribute="date") | reverse %}
     {% set current_year = "" %}
     {% for p in sorted %}
@@ -46,6 +47,19 @@
     <p class="empty-note">No publications yet — coming soon.</p>
   {% endif %}
 
+  {% set talks = get_section(path="talks/_index.md") %}
+  {% if talks.pages | length > 0 %}
+    <h2>Talks</h2>
+    {% for p in talks.pages | sort(attribute="date") | reverse %}
+      {% set cur_venue = p.extra.venue | default(value="") %}
+      {% if p.extra.milestones %}{% set lastm = p.extra.milestones | last %}{% if lastm.venue %}{% set cur_venue = lastm.venue %}{% endif %}{% endif %}
+      <div class="pub-entry{% if loop.first %} no-top{% endif %}">
+        <div class="pub-title">{% if p.extra.link %}<a href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}</div>
+        {% if cur_venue %}<div class="pub-venue">{{ cur_venue | safe }}</div>{% endif %}
+      </div>
+    {% endfor %}
+  {% endif %}
+
   {% set datasets = get_section(path="datasets/_index.md") %}
   {% if datasets.pages | length > 0 %}
     <h2>Datasets</h2>
@@ -67,19 +81,6 @@
         {% endif %}
       </div>
     {% endfor %}
-  {% endif %}
-
-  {% set service = get_section(path="service/_index.md") %}
-  {% if service.extra.items and service.extra.items | length > 0 %}
-    <h2>Academic Service</h2>
-    <ul class="service-list">
-      {% for item in service.extra.items %}
-        <li class="service-item">
-          <span class="service-role">{{ item.role }}</span>
-          <span class="service-venues">{{ item.venues | safe }}</span>
-        </li>
-      {% endfor %}
-    </ul>
   {% endif %}
 
   {% set patents = get_section(path="patents/_index.md") %}

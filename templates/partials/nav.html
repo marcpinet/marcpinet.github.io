@@ -5,8 +5,8 @@
       {%- for item in config.extra.menu %}
         {% set cpath = current_path | default(value="/") %}
         {% set active = cpath is starting_with(item.url) %}
-        {% if item.url == "/publications" %}
-          {% set pubs = get_section(path="publications/_index.md") %}
+        {% if item.url == "/research" %}
+          {% set pubs = get_section(path="research/_index.md") %}
           {% if pubs.pages | length > 0 %}
             <a href="{{ item.url }}"{% if active %} class="active"{% endif %}>{{ item.name }}</a>
           {% endif %}
