@@ -266,19 +266,21 @@
   {% set talks_sec = get_section(path="talks/_index.md") %}
   {% set teach_sec = get_section(path="teaching/_index.md") %}
   {% set sup_sec = get_section(path="supervision/_index.md") %}
+  {% set serv_sec = get_section(path="service/_index.md") %}
   {% set_global recent_rows = [] %}
   {% set_global old_rows = [] %}
 
   {# Hand-written news (_index.md, chip defaults to "misc"), experience/education feed entries
      (chips "experience"/"education"), and projects/datasets (auto-sentences) all share the same
      date-window logic — only the source array differs. #}
-  {% for kind in ["news", "exp", "edu", "proj", "teach", "sup"] %}
+  {% for kind in ["news", "exp", "edu", "proj", "teach", "sup", "serv"] %}
     {% if kind == "news" %}{% set items = home.extra.news | default(value=[]) %}
     {% elif kind == "exp" %}{% set items = exp_page.extra.feed | default(value=[]) %}
     {% elif kind == "edu" %}{% set items = edu_page.extra.feed | default(value=[]) %}
     {% elif kind == "proj" %}{% set items = proj_sec.pages %}
     {% elif kind == "teach" %}{% set items = teach_sec.pages %}
-    {% else %}{% set items = sup_sec.pages %}{% endif %}
+    {% elif kind == "sup" %}{% set items = sup_sec.pages %}
+    {% else %}{% set items = serv_sec.pages %}{% endif %}
     {% for n in items %}
       {% if n.date %}
         {% set ts = n.date | date(format="%s") | int %}

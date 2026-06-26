@@ -5,32 +5,4 @@
   <div class="about-body">
     {{ page.content | safe }}
   </div>
-
-  {# Misc page also surfaces Teaching + Supervision (conditional, hidden until non-empty) #}
-  {% if page.path == "/misc/" %}
-    {% set teaching = get_section(path="teaching/_index.md") %}
-    {% if teaching.pages | length > 0 %}
-      <h2>Teaching</h2>
-      <ul class="service-list">
-        {% for p in teaching.pages | sort(attribute="date") | reverse %}
-          <li class="service-item">
-            <span class="service-role">{{ p.date | date(format="%Y") }}</span>
-            <span class="service-venues">{% if p.extra.link %}<a href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{{ p.title }}</a>{% else %}<strong>{{ p.title }}</strong>{% endif %}{% if p.extra.where %} — {{ p.extra.where | safe }}{% endif %}</span>
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-    {% set supervision = get_section(path="supervision/_index.md") %}
-    {% if supervision.pages | length > 0 %}
-      <h2>Supervision</h2>
-      <ul class="service-list">
-        {% for p in supervision.pages | sort(attribute="date") | reverse %}
-          <li class="service-item">
-            <span class="service-role">{{ p.date | date(format="%Y") }}</span>
-            <span class="service-venues">{% if p.extra.link %}<a href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{{ p.title }}</a>{% else %}<strong>{{ p.title }}</strong>{% endif %}{% if p.extra.level %} ({{ p.extra.level }}){% endif %}{% if p.extra.topic %} — {{ p.extra.topic | safe }}{% endif %}</span>
-          </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  {% endif %}
 {% endblock main_content %}

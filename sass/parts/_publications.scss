@@ -1,6 +1,7 @@
 /* A bit more air between each Research section heading (Publications, Talks, Datasets,
    Patents) and the dated content beneath it. */
-body[data-page="research"] h2 {
+body[data-page="research"] h2,
+body[data-page="service"] h2 {
   margin-bottom: 1.8rem;
 }
 
@@ -164,9 +165,9 @@ body[data-page="research"] h2 {
 }
 
 .service-item {
-  padding: 0.55rem 0;
-  display: grid;
-  grid-template-columns: 150px 1fr;
+  padding: 0.7rem 0;
+  display: flex;
+  align-items: flex-start;
   gap: 1rem;
   border-top: 1px solid var(--border);
 }
@@ -176,23 +177,118 @@ body[data-page="research"] h2 {
 }
 
 .service-role {
+  flex: 0 0 60px;
   font-family: var(--font-sans);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   color: var(--text-muted);
   font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  padding-top: 3px;
+  letter-spacing: 0.04em;
+  padding-top: 2px;
+  font-variant-numeric: tabular-nums;
 }
 
 .service-venues {
+  flex: 1;
+  min-width: 0;
   font-size: 0.95rem;
   line-height: 1.5;
 }
 
+/* Service page entries (Reviewing / Talks / Teaching / Supervision): image on the left,
+   vertically centred with the text — same feel as the Misc certifications list. */
+.svc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.svc-entry {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.svc-entry:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.svc-thumb {
+  flex: 0 0 auto;
+  width: 80px;
+  height: 52px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.svc-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* fill the box (image need not be square) */
+  display: block;
+}
+
+/* Clickable thumbnail wrapper — fills the box so the image still covers it. */
+.svc-thumb-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-bottom: none;
+}
+
+.svc-thumb-link img {
+  transition: opacity 0.15s ease;
+}
+
+.svc-thumb-link:hover img {
+  opacity: 0.85;
+}
+
+/* Opt-in logo treatment: show the whole logo, padded, instead of cropping. */
+.svc-thumb-logo img {
+  object-fit: contain;
+  padding: 7px;
+  box-sizing: border-box;
+}
+
+.svc-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.svc-title {
+  font-family: var(--font-serif);
+  font-size: 0.96rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.svc-title a {
+  color: var(--text);
+  border-bottom: none;
+}
+
+.svc-title a:hover {
+  color: var(--accent);
+  border-bottom: none;
+}
+
+.svc-meta {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 0.15rem;
+}
+
 @media (max-width: 600px) {
   .service-item {
-    grid-template-columns: 1fr;
-    gap: 0.2rem;
+    gap: 0.75rem;
+  }
+  .svc-thumb {
+    width: 64px;
+    height: 42px;
   }
 }

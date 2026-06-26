@@ -3,7 +3,7 @@
    ds_sec, pub_sec, talks_sec, teach_sec, sup_sec. Kinds:
    - news / exp / edu : hand-written feed entries (chip from `type`; default misc/experience/education)
    - proj             : project release (auto-sentence, chip "project")
-   - teach / sup      : teaching / supervision entries (chips "teaching" / "supervision")
+   - teach / sup / serv : teaching / supervision / service entries (chips "teaching"/"supervision"/"service")
    - pub / talk / ds  : milestone-capable (j = milestone index, or -1 for the top-level fields) #}
 {% set parts = row | split(pat=SEP) %}
 {% set kind = parts | nth(n=1) %}
@@ -20,11 +20,11 @@
   {% elif kind == "exp" %}
     {% set n = exp_page.extra.feed | nth(n=i) %}
     {% set deftype = "experience" %}
-    {% set thumb_logo = true %}
+    {% set thumb_logo = n.logo | default(value=false) %}
   {% else %}
     {% set n = edu_page.extra.feed | nth(n=i) %}
     {% set deftype = "education" %}
-    {% set thumb_logo = true %}
+    {% set thumb_logo = n.logo | default(value=false) %}
   {% endif %}
   {% set date_str = n.date %}
   {% set lbl = n.type | default(value=deftype) %}
@@ -46,7 +46,7 @@
   {% set p = teach_sec.pages | nth(n=i) %}
   {% set date_str = p.date %}
   {% set lbl = "teaching" %}
-  {% set thumb_logo = true %}
+  {% set thumb_logo = p.extra.logo | default(value=false) %}
   {% set tl = p.extra.link | default(value="") %}
   {% if tl %}{% set titlelink = '<a href="' ~ tl ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}{% else %}{% set titlelink = '<strong>' ~ p.title ~ '</strong>' %}{% endif %}
   {% set body = 'I taught ' ~ titlelink %}{% if p.extra.where %}{% set body = body ~ ' at ' ~ p.extra.where %}{% endif %}{% set body = body ~ '.' %}
@@ -56,10 +56,20 @@
   {% set p = sup_sec.pages | nth(n=i) %}
   {% set date_str = p.date %}
   {% set lbl = "supervision" %}
-  {% set thumb_logo = true %}
+  {% set thumb_logo = p.extra.logo | default(value=false) %}
   {% set tl = p.extra.link | default(value="") %}
   {% if tl %}{% set titlelink = '<a href="' ~ tl ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}{% else %}{% set titlelink = '<strong>' ~ p.title ~ '</strong>' %}{% endif %}
   {% set body = 'I started supervising ' ~ titlelink %}{% if p.extra.level %}{% set body = body ~ ' (' ~ p.extra.level ~ ')' %}{% endif %}{% if p.extra.topic %}{% set body = body ~ ' on ' ~ p.extra.topic %}{% endif %}{% set body = body ~ '.' %}
+  {% set img_path = p.extra.image | default(value="") %}
+
+{% elif kind == "serv" %}
+  {% set p = serv_sec.pages | nth(n=i) %}
+  {% set date_str = p.date %}
+  {% set lbl = "service" %}
+  {% set thumb_logo = p.extra.logo | default(value=false) %}
+  {% set tl = p.extra.link | default(value="") %}
+  {% if tl %}{% set titlelink = '<a href="' ~ tl ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}{% else %}{% set titlelink = '<strong>' ~ p.title ~ '</strong>' %}{% endif %}
+  {% set body = "I'm serving as " ~ titlelink %}{% if p.extra.venue %}{% set body = body ~ ' for ' ~ p.extra.venue %}{% endif %}{% set body = body ~ '.' %}
   {% set img_path = p.extra.image | default(value="") %}
 
 {% else %}

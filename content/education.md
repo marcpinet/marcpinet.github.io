@@ -10,6 +10,7 @@ template = "about.html"
 date = "2025-11-01"
 text = "I started my PhD in Computer Science & Mathematics at **Université Grenoble Alpes**."
 image = "/about_img/edu/uga.png"
+logo = true
 link = "/education"
 +++
 

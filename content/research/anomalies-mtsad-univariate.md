@@ -5,7 +5,7 @@ date = "2026-06-01"
 [extra]
 authors = "<strong>Marc Pinet</strong>, Julien Cumin, Samuel Berlemont, Dominique Vaufreydaz"
 short_author = "Pinet et al."
-venue = "12th MILETS Workshop @ KDD 2026"
+venue = "KDD 2026, Mining and Learning from Time Series Workshop (MILETS)"
 status = "accepted"
 image = "/pub_img/mostly_univariate.jpg"
 featured = true
@@ -28,7 +28,7 @@ venue = "Preprint, arXiv:2606.02670"
 [[extra.milestones]]
 date = "2026-06-15"
 status = "accepted"
-venue = "12th MILETS Workshop @ KDD 2026"
+venue = "KDD 2026, Mining and Learning from Time Series Workshop (MILETS)"
 +++
 
 ## Abstract

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+  <h1>{{ section.title }}</h1>
+  {% if section.description %}
+    <p class="page-intro">{{ section.description | safe }}</p>
+  {% endif %}
+
+  {# ---- Reviewing: this section's own pages (content/service/*.md) ---- #}
+  {% if section.pages | length > 0 %}
+    <h2>Reviewing</h2>
+    <ul class="svc-list">
+      {% for p in section.pages | sort(attribute="date") | reverse %}
+        {% set meta = p.extra.period | default(value="") %}{% if not meta %}{% set meta = p.date | date(format="%Y") %}{% endif %}
+        <li class="svc-entry">
+          {% if p.extra.image %}<span class="svc-thumb{% if p.extra.logo %} svc-thumb-logo{% endif %}">{% if p.extra.link %}<a class="svc-thumb-link" href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{% endif %}<img src="{{ get_url(path=p.extra.image) }}" alt="" loading="lazy">{% if p.extra.link %}</a>{% endif %}</span>{% endif %}
+          <div class="svc-body">
+            <div class="svc-title">{{ p.title }}{% if p.extra.venue %}, {% if p.extra.link %}<a href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{{ p.extra.venue | safe }}</a>{% else %}{{ p.extra.venue | safe }}{% endif %}{% endif %}</div>
+            <div class="svc-meta">{{ meta }}</div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {# ---- Talks ---- #}
+  {% set talks = get_section(path="talks/_index.md") %}
+  {% if talks.pages | length > 0 %}
+    <h2>Talks</h2>
+    <ul class="svc-list">
+      {% for p in talks.pages | sort(attribute="date") | reverse %}
+        {% set venue = p.extra.venue | default(value="") %}
+        {% if p.extra.milestones %}{% set lastm = p.extra.milestones | last %}{% if lastm.venue %}{% set venue = lastm.venue %}{% endif %}{% endif %}
+        {% set meta = p.extra.period | default(value="") %}{% if not meta %}{% set meta = p.date | date(format="%Y") %}{% endif %}
+        <li class="svc-entry">
+          {% if p.extra.image %}<span class="svc-thumb{% if p.extra.logo %} svc-thumb-logo{% endif %}">{% if p.extra.link %}<a class="svc-thumb-link" href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{% endif %}<img src="{{ get_url(path=p.extra.image) }}" alt="" loading="lazy">{% if p.extra.link %}</a>{% endif %}</span>{% endif %}
+          <div class="svc-body">
+            <div class="svc-title">{% if p.extra.link %}<a href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}{% if venue %}, {{ venue | safe }}{% endif %}</div>
+            <div class="svc-meta">{{ meta }}</div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {# ---- Teaching ---- #}
+  {% set teaching = get_section(path="teaching/_index.md") %}
+  {% if teaching.pages | length > 0 %}
+    <h2>Teaching</h2>
+    <ul class="svc-list">
+      {% for p in teaching.pages | sort(attribute="date") | reverse %}
+        {% set meta = p.extra.period | default(value="") %}{% if not meta %}{% set meta = p.date | date(format="%Y") %}{% endif %}
+        <li class="svc-entry">
+          {% if p.extra.image %}<span class="svc-thumb{% if p.extra.logo %} svc-thumb-logo{% endif %}">{% if p.extra.link %}<a class="svc-thumb-link" href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{% endif %}<img src="{{ get_url(path=p.extra.image) }}" alt="" loading="lazy">{% if p.extra.link %}</a>{% endif %}</span>{% endif %}
+          <div class="svc-body">
+            <div class="svc-title">{% if p.extra.link %}<a href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}{% if p.extra.where %}, {{ p.extra.where | safe }}{% endif %}</div>
+            <div class="svc-meta">{{ meta }}</div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {# ---- Supervision ---- #}
+  {% set supervision = get_section(path="supervision/_index.md") %}
+  {% if supervision.pages | length > 0 %}
+    <h2>Supervision</h2>
+    <ul class="svc-list">
+      {% for p in supervision.pages | sort(attribute="date") | reverse %}
+        {% set meta = p.extra.period | default(value="") %}{% if not meta %}{% set meta = p.date | date(format="%Y") %}{% endif %}
+        <li class="svc-entry">
+          {% if p.extra.image %}<span class="svc-thumb{% if p.extra.logo %} svc-thumb-logo{% endif %}">{% if p.extra.link %}<a class="svc-thumb-link" href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{% endif %}<img src="{{ get_url(path=p.extra.image) }}" alt="" loading="lazy">{% if p.extra.link %}</a>{% endif %}</span>{% endif %}
+          <div class="svc-body">
+            <div class="svc-title">{% if p.extra.link %}<a href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}{% if p.extra.level %} ({{ p.extra.level }}){% endif %}{% if p.extra.topic %}, {{ p.extra.topic | safe }}{% endif %}</div>
+            <div class="svc-meta">{{ meta }}</div>
+          </div>
+        </li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if section.pages | length == 0 and talks.pages | length == 0 and teaching.pages | length == 0 and supervision.pages | length == 0 %}
+    <p class="empty-note">Nothing here yet — coming soon.</p>
+  {% endif %}
+{% endblock main_content %}

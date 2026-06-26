@@ -11,6 +11,7 @@ template = "about.html"
  date = "2025-11-01"
  text = "I'm now a PhD Researcher at **Orange** in collaboration with the **LIG (Laboratoire d'Informatique de Grenoble)**."
  image = "/about_img/exp/orange.png"
+ logo = true
  link = "/experience"
 +++
 
