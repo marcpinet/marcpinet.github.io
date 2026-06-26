@@ -10,6 +10,24 @@ template = "about.html"
 
 <div class="certification-entry">
 <div class="cert-logo">
+<a href="https://www.u-bordeaux.fr/" target="_blank">
+<img src="/about_img/certifs/universite_de_bordeaux.png" alt="University of Bordeaux" width="90" height="90">
+</a>
+</div>
+<div class="cert-content">
+<h3>Research Integrity and Ethics</h3>
+<div class="cert-meta">
+<strong>Issued: Jun 22, 2026</strong>
+<div class="fields">
+<span class="field-tag">Research Ethics</span>
+<span class="field-tag">Integrity</span>
+</div>
+</div>
+</div>
+</div>
+
+<div class="certification-entry">
+<div class="cert-logo">
 <a href="https://coursera.org/verify/professional-cert/MFCTKJRLEZER" target="_blank">
 <img src="/about_img/certifs/mldl.webp" alt="DeepLearning.AI" width="100" height="100">
 </a>
