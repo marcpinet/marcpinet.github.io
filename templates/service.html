@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros/macros.html" as macros %}
 
 {% block main_content %}
   <h1>{{ section.title }}</h1>
@@ -35,7 +36,7 @@
         <li class="svc-entry">
           {% if p.extra.image %}<span class="svc-thumb{% if p.extra.logo %} svc-thumb-logo{% endif %}">{% if p.extra.link %}<a class="svc-thumb-link" href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{% endif %}<img src="{{ get_url(path=p.extra.image) }}" alt="" loading="lazy">{% if p.extra.link %}</a>{% endif %}</span>{% endif %}
           <div class="svc-body">
-            <div class="svc-title">{% if p.extra.link %}<a href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}{% if venue %}, {{ venue | safe }}{% endif %}</div>
+            <div class="svc-title">{% if p.extra.link %}<a href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}{% if venue or p.extra.location %}<span class="svc-sub">{% if venue %}, {{ venue | safe }}{% endif %}{% if p.extra.location %} in {{ p.extra.location | safe }}{{ macros::country_flag(place=p.extra.location) }}{% endif %}</span>{% endif %}</div>
             <div class="svc-meta">{{ meta }}</div>
           </div>
         </li>

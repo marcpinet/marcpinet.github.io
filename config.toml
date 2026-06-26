@@ -22,7 +22,7 @@ style = "class"
 theme = "github-dark"
 
 [extra]
-favicon = "/favicon.svg"
+favicon = "/favicon.ico"
 
 # Homepage "News" feed: only scan items dated on/after this (ISO). No upper bound —
 # everything newer shows; items older than 1 year collapse behind a "show more".

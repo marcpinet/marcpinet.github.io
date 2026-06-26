@@ -23,14 +23,14 @@ template = "about.html"
 <img src="/about_img/exp/orange.png" alt="Orange Research">
 </a>
 </div>
-<div class="experience-group-name">Orange Research</div>
+<div class="experience-group-name">Orange Research{{ flag(country="France") }}</div>
 <span class="group-name-sep">·</span>
 <div class="entry-logo">
 <a href="https://www.liglab.fr/fr" target="_blank">
 <img src="/about_img/exp/lig.svg" alt="Laboratoire d'Informatique de Grenoble (LIG/Inria/CNRS)">
 </a>
 </div>
-<div class="experience-group-name">LIG, CNRS</div>
+<div class="experience-group-name">LIG, CNRS{{ flag(country="France") }}</div>
 </div>
 
 <div class="experience-entry experience-entry-grouped">
@@ -73,7 +73,7 @@ Industrial PhD (CIFRE) on Self-supervised detection and explanation of anomalies
 <img src="/about_img/exp/sap.png" alt="SAP Labs France">
 </a>
 </div>
-<div class="experience-group-name">SAP Labs France</div>
+<div class="experience-group-name">SAP Labs France{{ flag(country="France") }}</div>
 </div>
 
 <div class="experience-entry experience-entry-grouped">
@@ -139,7 +139,7 @@ Time series trends analysis using tools such as Prophet, SARIMA, STL, and DTW. I
 <img src="/about_img/exp/dniit.png" alt="Da Nang International Institute of Technology">
 </a>
 </div>
-<div class="experience-group-name">Da Nang International Institute of Technology (DNIIT)</div>
+<div class="experience-group-name">Da Nang International Institute of Technology (DNIIT){{ flag(country="Vietnam") }}</div>
 </div>
 
 <div class="experience-entry experience-entry-grouped">
@@ -173,7 +173,7 @@ Developed a LoRaWAN-based emergency messaging system, covering 25km range, ensur
 <img src="/about_img/exp/airfrance.svg" alt="Air France">
 </a>
 </div>
-<div class="experience-group-name">Air France</div>
+<div class="experience-group-name">Air France{{ flag(country="France") }}</div>
 </div>
 
 <div class="experience-entry experience-entry-grouped">
@@ -205,7 +205,7 @@ Gained hands-on experience in full-stack development, alongside senior developer
 <img src="/about_img/exp/intel.svg" alt="Intel Corporation">
 </a>
 </div>
-<div class="experience-group-name">Intel Corporation</div>
+<div class="experience-group-name">Intel Corporation{{ flag(country="France") }}</div>
 </div>
 
 <div class="experience-entry experience-entry-grouped">

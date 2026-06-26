@@ -138,3 +138,14 @@ th {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent);
 }
+
+/* Inline country flag (vectorized SVG from flagcdn). The hairline ring keeps
+   white-heavy flags (e.g. South Korea) from blending into the background. */
+.flag {
+  height: 0.78em;
+  width: auto;
+  margin-left: 0.35em;
+  vertical-align: baseline;
+  border-radius: 2px;
+  box-shadow: 0 0 0 0.5px rgba(0, 0, 0, 0.18);
+}

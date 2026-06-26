@@ -22,7 +22,7 @@ link = "/education"
 <img src="/about_img/edu/uga.png" alt="Université Grenoble Alpes">
 </a>
 </div>
-<div class="experience-group-name">Université Grenoble Alpes</div>
+<div class="experience-group-name">Université Grenoble Alpes{{ flag(country="France") }}</div>
 </div>
 
 <div class="education-entry experience-entry-grouped">
@@ -63,7 +63,7 @@ CIFRE (Industrial Convention of Training through Research) in partnership with O
 <img src="/about_img/edu/polytech.svg" alt="Polytech Nice Sophia">
 </a>
 </div>
-<div class="experience-group-name">Polytech Nice Sophia</div>
+<div class="experience-group-name">Polytech Nice Sophia{{ flag(country="France") }}</div>
 </div>
 
 <div class="education-entry experience-entry-grouped">
@@ -117,7 +117,7 @@ Ranked among the top 5 engineering schools in Computer Science in France, with a
 <img src="/about_img/edu/uqac.png" alt="UQAC">
 </a>
 </div>
-<div class="experience-group-name">Université du Québec à Chicoutimi</div>
+<div class="experience-group-name">Université du Québec à Chicoutimi{{ flag(country="Canada") }}</div>
 </div>
 
 <div class="education-entry experience-entry-grouped">
@@ -164,7 +164,7 @@ Thanks to IUT Nice Côte d'Azur as a reward for my academic performance, I got t
 <img src="/about_img/edu/iut.png" alt="IUT Nice Côte d'Azur">
 </a>
 </div>
-<div class="experience-group-name">IUT Nice Côte d'Azur</div>
+<div class="experience-group-name">IUT Nice Côte d'Azur{{ flag(country="France") }}</div>
 </div>
 
 <div class="education-entry experience-entry-grouped">

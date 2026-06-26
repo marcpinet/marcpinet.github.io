@@ -5,6 +5,7 @@
    - proj             : project release (auto-sentence, chip "project")
    - teach / sup / serv : teaching / supervision / service entries (chips "teaching"/"supervision"/"service")
    - pub / talk / ds  : milestone-capable (j = milestone index, or -1 for the top-level fields) #}
+{% import "macros/macros.html" as macros %}
 {% set parts = row | split(pat=SEP) %}
 {% set kind = parts | nth(n=1) %}
 {% set i = parts | nth(n=2) | int %}
@@ -96,7 +97,7 @@
     {% set date_str = p.date %}{% set pstatus = p.extra.status | default(value="") %}{% set pvenue = p.extra.venue | default(value="") %}
   {% endif %}
   {% set st = pstatus | replace(from="_", to=" ") | lower %}
-  {% set atv = "" %}{% if pvenue %}{% set atv = ' at ' ~ pvenue %}{% endif %}
+  {% set atv = "" %}{% if pvenue %}{% set atv = ' at ' ~ pvenue %}{% endif %}{% if p.extra.location %}{% set flaghtml = macros::country_flag(place=p.extra.location) %}{% set atv = atv ~ ' in ' ~ p.extra.location ~ flaghtml %}{% endif %}
   {% if kind == "pub" %}
     {% set titlelink = '<a href="' ~ p.permalink ~ '">' ~ p.title ~ '</a>' %}
     {% if st == "preprint" %}{% set body = 'I released a preprint of ' ~ titlelink ~ '.' %}
@@ -114,6 +115,7 @@
     {% elif st == "invited" %}{% set body = 'I was invited to speak' ~ atv ~ ': "' ~ titlelink ~ '".' %}
     {% elif st == "upcoming" %}{% set body = 'Upcoming talk, "' ~ titlelink ~ '"' ~ atv ~ '.' %}
     {% else %}{% set body = 'I gave a talk, "' ~ titlelink ~ '"' ~ atv ~ '.' %}{% endif %}
+    {% if p.extra.link_pending %}{% set body = body ~ ' <em>Presentation link coming soon.</em>' %}{% endif %}
     {% set lbl = "talk" %}
     {% set img_path = p.extra.image | default(value="") %}
   {% else %}

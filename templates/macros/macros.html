@@ -1,3 +1,11 @@
+{# Maps a country name (any case) to its ISO 3166-1 alpha-2 code. Extend by adding one line.
+   Unknown country → empty output. #}
+{% macro country_code(country) %}{% set c = country | lower | trim %}{% if c == "france" %}fr{% elif c == "canada" %}ca{% elif c == "vietnam" or c == "viet nam" %}vn{% elif c == "south korea" or c == "korea" or c == "republic of korea" %}kr{% elif c == "north korea" %}kp{% elif c == "united states" or c == "usa" or c == "us" or c == "united states of america" %}us{% elif c == "united kingdom" or c == "uk" or c == "england" or c == "great britain" %}gb{% elif c == "germany" %}de{% elif c == "spain" %}es{% elif c == "italy" %}it{% elif c == "portugal" %}pt{% elif c == "netherlands" %}nl{% elif c == "belgium" %}be{% elif c == "switzerland" %}ch{% elif c == "austria" %}at{% elif c == "ireland" %}ie{% elif c == "japan" %}jp{% elif c == "china" %}cn{% elif c == "india" %}in{% elif c == "singapore" %}sg{% elif c == "australia" %}au{% elif c == "brazil" %}br{% elif c == "mexico" %}mx{% elif c == "morocco" %}ma{% endif %}{% endmacro country_code %}
+
+{# Inline SVG flag (flagcdn.com) for the LAST comma-separated part of `place`
+   (e.g. "Jeju, South Korea" → South Korea). No flag if the country is unmapped. #}
+{% macro country_flag(place) %}{% set country = place | split(pat=",") | last | trim %}{% set code = self::country_code(country=country) | trim %}{% if code %}<img class="flag" src="https://flagcdn.com/{{ code }}.svg" alt="{{ country }} flag" width="20" height="15" loading="lazy">{% endif %}{% endmacro country_flag %}
+
 {% macro project_entry(p, pinned=false) %}
   {% set link = p.extra.github_link | default(value=p.permalink) %}
   <a class="project-entry{% if pinned %} project-entry-pinned{% endif %}" href="{{ link }}"{% if p.extra.github_link %} target="_blank" rel="noopener noreferrer"{% endif %}>

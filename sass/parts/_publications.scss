@@ -277,6 +277,11 @@ body[data-page="service"] h2 {
   line-height: 1.3;
 }
 
+/* Venue / location after the talk title — normal weight so the bold title stands out. */
+.svc-title .svc-sub {
+  font-weight: 400;
+}
+
 .svc-title a {
   color: var(--text);
   border-bottom: none;
