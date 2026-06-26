@@ -126,6 +126,12 @@ body[data-page="service"] h2 {
   border: none;
 }
 
+.pub-status.oral {
+  color: var(--chip-blue);
+  background: var(--chip-blue-bg);
+  border: none;
+}
+
 .pub-links {
   font-family: var(--font-sans);
   font-size: 0.78rem;

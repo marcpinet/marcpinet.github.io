@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros/macros.html" as macros %}
 
 {% block main_content %}
   <h1>{{ section.title }}</h1>
@@ -28,9 +29,11 @@
           {% if lastm.status %}{% set cur_status = lastm.status %}{% endif %}
           {% if lastm.venue %}{% set cur_venue = lastm.venue %}{% endif %}
         {% endif %}
-        {% if cur_venue or cur_status %}
+        {% if cur_venue or cur_status or p.extra.location %}
           <div class="pub-venue">
             {% if cur_venue %}{{ cur_venue | safe }}{% endif %}
+            {%- if p.extra.location %}, {{ p.extra.location | safe }}{{ macros::country_flag(place=p.extra.location) }}{% endif %}
+            {% if p.extra.oral %}<span class="pub-status oral">Oral</span>{% endif %}
             {% if cur_status %}<span class="pub-status {{ cur_status | replace(from=' ', to='-') | replace(from='_', to='-') }}">{{ cur_status | replace(from='_', to=' ') }}</span>{% endif %}
           </div>
         {% endif %}
