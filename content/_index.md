@@ -8,11 +8,12 @@ photo = "/homepage/me.jpg"
 
 interests = [
     "Machine Learning",
-    "Deep Learning",
+    "Representation Learning",
+    "Self-Supervised Learning",
     "Time Series Analysis",
     "Anomaly Detection",
-    "Anomaly Explanation",
     "Large Language Models (LLMs)",
+    "Anomaly Explanation",
 ]
 
 # Homepage "News" feed. These hand-written items are merged chronologically with your
