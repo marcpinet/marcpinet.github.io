@@ -1,8 +1,12 @@
 /* A bit more air between each Research section heading (Publications, Talks, Datasets,
    Patents) and the dated content beneath it. */
-body[data-page="research"] h2,
-body[data-page="service"] h2 {
+body[data-page="research"] h2 {
   margin-bottom: 1.8rem;
+}
+
+/* Service: tight heading→first-entry gap, like the Misc certifications list. */
+body[data-page="service"] h2 {
+  margin-bottom: 0.75rem;
 }
 
 .pub-year {
