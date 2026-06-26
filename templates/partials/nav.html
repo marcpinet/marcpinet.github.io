@@ -1,7 +1,7 @@
 <header class="site-header">
   <div class="nav-container">
     <a class="site-title" href="{{ config.base_url }}">{{ config.title }}</a>
-    <nav class="site-nav">
+    <nav class="site-nav" id="site-nav">
       {%- for item in config.extra.menu %}
         {% set cpath = current_path | default(value="/") %}
         {% set active = cpath is starting_with(item.url) %}
@@ -15,6 +15,13 @@
         {% endif %}
       {%- endfor %}
     </nav>
-    <button class="theme-toggle" aria-label="Toggle theme" type="button">Light</button>
+    <div class="nav-actions">
+      <button class="theme-toggle" aria-label="Toggle theme" type="button">Light</button>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="site-nav" type="button">
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+        <span class="nav-toggle-bar"></span>
+      </button>
+    </div>
   </div>
 </header>

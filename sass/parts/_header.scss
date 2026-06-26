@@ -14,6 +14,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 0.85rem;
+  position: relative; /* containing block for the mobile dropdown */
 }
 
 .site-title {
@@ -91,23 +92,97 @@
   color: var(--accent);
 }
 
+/* Right-hand action group (theme toggle + hamburger). */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+/* Hamburger — hidden on desktop, shown in the mobile breakpoint below. */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  background: none;
+  border: 1px solid var(--border-strong);
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.nav-toggle:hover {
+  border-color: var(--accent);
+}
+
+.nav-toggle-bar {
+  display: block;
+  width: 16px;
+  height: 1.5px;
+  background: var(--text-muted);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-toggle:hover .nav-toggle-bar {
+  background: var(--accent);
+}
+
+/* Open state: morph the three bars into an X. */
+.nav-container.nav-open .nav-toggle-bar:nth-child(1) {
+  transform: translateY(5.5px) rotate(45deg);
+}
+
+.nav-container.nav-open .nav-toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-container.nav-open .nav-toggle-bar:nth-child(3) {
+  transform: translateY(-5.5px) rotate(-45deg);
+}
+
+/* Mobile: the tab bar collapses into a dropdown toggled by the hamburger. */
 @media (max-width: 600px) {
   .nav-container {
     padding: 0.9rem 1.25rem;
     gap: 0.75rem;
   }
-  .site-nav { gap: 1rem; flex-wrap: wrap; } /* allow wrapping again on narrow screens */
-  .site-nav a { font-size: 0.82rem; }
-}
-
-@media (max-width: 420px) {
-  .nav-container {
-    flex-wrap: wrap;
-    row-gap: 0.5rem;
+  .nav-toggle {
+    display: flex;
   }
   .site-nav {
-    order: 3;
-    width: 100%;
-    justify-content: flex-start;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 0.15rem 1.25rem 0.7rem;
+    background: var(--bg);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+  }
+  .nav-container.nav-open .site-nav {
+    display: flex;
+  }
+  .site-nav a {
+    font-size: 0.95rem;
+    padding: 0.62rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .site-nav a:last-child {
+    border-bottom: none;
+  }
+  /* the desktop underline marker doesn't fit the stacked layout */
+  .site-nav a.active::after {
+    display: none;
+  }
+  .site-nav a.active {
+    color: var(--accent);
   }
 }

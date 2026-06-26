@@ -27,6 +27,26 @@
             updateLabel();
           });
         }
+
+        /* Mobile nav: hamburger toggles the dropdown; Escape / outside-click closes it. */
+        var navToggle = document.querySelector('.nav-toggle');
+        var navContainer = document.querySelector('.nav-container');
+        if (navToggle && navContainer) {
+          function closeNav() {
+            navContainer.classList.remove('nav-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+          }
+          navToggle.addEventListener('click', function() {
+            var open = navContainer.classList.toggle('nav-open');
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          });
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navContainer.classList.contains('nav-open')) closeNav();
+          });
+          document.addEventListener('click', function(e) {
+            if (navContainer.classList.contains('nav-open') && !navContainer.contains(e.target)) closeNav();
+          });
+        }
         document.querySelectorAll('.field-tag').forEach(function(tag) {
           var text = tag.textContent.trim();
           if (!text || tag.querySelector('a')) return;
