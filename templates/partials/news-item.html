@@ -69,7 +69,19 @@
   {% set thumb_logo = p.extra.logo | default(value=false) %}
   {% set tl = p.extra.link | default(value="") %}
   {% if tl %}{% set titlelink = '<a href="' ~ tl ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}{% else %}{% set titlelink = '<strong>' ~ p.title ~ '</strong>' %}{% endif %}
-  {% set body = "I'm serving as " ~ titlelink %}{% if p.extra.venue %}{% set body = body ~ ' for ' ~ p.extra.venue %}{% endif %}{% set body = body ~ '.' %}
+  {# Determiner before the role: `add_determiner_to_news_update` override
+     ("a" / "an" / "none" → « serving as Program Chair »), else auto by sound.
+     Vowel letter → "an", with the usual English exceptions (uni-/eu-/use-/one- sound like a
+     consonant → "a"; silent-h hon-/hour-/heir- → "an"). #}
+  {% set art = p.extra.add_determiner_to_news_update | default(value="auto") %}
+  {% if art == "auto" %}
+    {% set lt = p.title | lower %}{% set art = "a" %}
+    {% if lt is starting_with("a") or lt is starting_with("e") or lt is starting_with("i") or lt is starting_with("o") or lt is starting_with("u") %}{% set art = "an" %}{% endif %}
+    {% if lt is starting_with("uni") or lt is starting_with("eu") or lt is starting_with("use") or lt is starting_with("one") %}{% set art = "a" %}{% endif %}
+    {% if lt is starting_with("hon") or lt is starting_with("hour") or lt is starting_with("heir") %}{% set art = "an" %}{% endif %}
+  {% endif %}
+  {% set artp = "" %}{% if art != "none" %}{% set artp = art ~ " " %}{% endif %}
+  {% set body = "I'm serving as " ~ artp ~ titlelink %}{% if p.extra.venue %}{% set body = body ~ ' for ' ~ p.extra.venue %}{% endif %}{% set body = body ~ '.' %}
   {% set img_path = p.extra.image | default(value="") %}
 
 {% else %}
