@@ -214,6 +214,13 @@ body[data-page="service"] h2 {
   border-bottom: 1px solid var(--border);
 }
 
+/* First entry sits right under the section heading: drop its top rule so it isn't
+   doubled with the h2 underline (matches the Misc certifications list). */
+.svc-list .svc-entry:first-child {
+  border-top: none;
+  padding-top: 0.5rem;
+}
+
 .svc-thumb {
   flex: 0 0 auto;
   width: 80px;
