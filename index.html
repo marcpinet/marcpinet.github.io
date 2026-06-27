@@ -1,0 +1,401 @@
+<!doctype html><html data-theme=light lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1.0" name=viewport><title>Marc Pinet</title><link href=/favicon.ico rel=icon type=image/x-icon><link href=https://marcpinet.fr/main.css media=screen rel=stylesheet><link href=https://fonts.googleapis.com rel=preconnect><link crossorigin href=https://fonts.gstatic.com rel=preconnect><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel=stylesheet><meta content="Marc Pinet — PhD student in machine learning at Orange & LIG (Université Grenoble Alpes), working on detection and explanation of anomalies in time series." name=description><meta content="index, follow" name=robots><meta content="Marc Pinet" property=og:title><meta content=website property=og:type><meta content="Marc Pinet — PhD student in machine learning at Orange & LIG (Université Grenoble Alpes), working on detection and explanation of anomalies in time series." property=og:description><meta content="Marc Pinet" property=og:site_name><meta content=https://marcpinet.fr/ property=og:url><meta content=https://marcpinet.fr/processed_images/me.f411d9c5261174ef.jpg property=og:image><meta content=400 property=og:image:width><meta content=400 property=og:image:height><meta content=summary name=twitter:card><meta content=#cb6441 name=theme-color><script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Marc Pinet",
+    "url": "https:&#x2F;&#x2F;marcpinet.fr",
+    "description": "Marc Pinet — PhD student in machine learning at Orange &amp; LIG (Université Grenoble Alpes), working on detection and explanation of anomalies in time series.",
+    "sameAs": [
+      
+        
+      
+        
+          "https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=NsXT970AAAAJ",
+        
+      
+        
+          "https:&#x2F;&#x2F;github.com&#x2F;marcpinet&#x2F;",
+        
+      
+        
+          "https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;marc-pinet&#x2F;",
+        
+      
+        
+          "https:&#x2F;&#x2F;x.com&#x2F;marcpinet0&#x2F;",
+        
+      
+        
+      
+    ]
+  }
+  </script><script>(function() {
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
+    })();</script><body data-page><header class=site-header><div class=nav-container><a class=site-title href=https://marcpinet.fr>Marc Pinet</a><nav class=site-nav id=site-nav><a href=/research>Research</a><a href=/experience>Experience</a><a href=/education>Education</a><a href=/service>Service</a><a href=/projects>Projects</a><a href=/misc>Misc.</a></nav><div class=nav-actions><button aria-label="Toggle theme" class=theme-toggle type=button>Light</button><button aria-label="Toggle menu" aria-controls=site-nav aria-expanded=false class=nav-toggle type=button><span class=nav-toggle-bar></span> <span class=nav-toggle-bar></span> <span class=nav-toggle-bar></span></button></div></div></header><main><section class=hero><img alt="Marc Pinet" class=hero-photo src=/homepage/me.jpg><div><h1 class=hero-name>Marc Pinet</h1><div class=hero-bio><p>I am currently a PhD Student (from fall 2025) working at <a href=https://hellofuture.orange.com/fr/ rel=external>Orange</a> and a member of the <a href=https://www.liglab.fr/fr rel=external>LIG</a>, advised by Prof. <a href="https://scholar.google.com/citations?user=asjEKYYAAAAJ" rel=external>Dominique Vaufreydaz</a>, Dr. <a href="https://scholar.google.com/citations?user=byW2uYQAAAAJ" rel=external>Julien Cumin</a> and Dr. <a href=https://www.researchgate.net/profile/Samuel-Berlemont rel=external>Samuel Berlemont</a>.</div></div></section><div aria-hidden=true class=hero-tsad><canvas class=hero-tsad-canvas></canvas></div><script>/* Hero — a multivariate time-series anomaly-detection vignette. Three correlated
+     channels stream left through a shared "normal range" band. Two detector families
+     score each window: (a) per-channel band exceedance (the z-score), which fires on
+     univariate spikes in 1..C channels, and (b) inter-channel dispersion, which catches
+     *correlation breaks* where the bundle fans apart while every channel stays inside
+     its band (marginals preserved — a z-score misses these). Windows the per-channel
+     score catches are filled; windows only the cross-channel score sees are dashed —
+     the distinction the MTSAD paper is about. Canvas; a static frame for reduced-motion. */
+  (function () {
+    var wrap = document.querySelector('.hero-tsad');
+    var canvas = wrap && wrap.querySelector('.hero-tsad-canvas');
+    if (!canvas) return;
+
+    var C = 3;                  // channels (multivariate)
+    var THR = 1.0;              // detection threshold
+    var motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    var ctx = canvas.getContext('2d');
+    var dpr = Math.max(1, window.devicePixelRatio || 1);
+    var W = 0, H = 0, midC = 0, bandHalf = 0;
+    var last = 0, scroll = 0, nextAnom = 0;
+    var SCROLL = 54;            // px/s the stream flows left
+    var anomalies = [];
+    var accent = [203, 100, 65], ink = [20, 20, 20];
+    var rafId = null;
+
+    function parseColor(str) {
+      str = (str || '').trim();
+      if (str.charAt(0) === '#') {
+        var h = str.slice(1);
+        if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+        var n = parseInt(h, 16);
+        return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+      }
+      var m = str.match(/(\d+(?:\.\d+)?)/g);
+      return (m && m.length >= 3) ? [+m[0], +m[1], +m[2]] : null;
+    }
+    function readColors() {
+      var r = getComputedStyle(document.documentElement);
+      accent = parseColor(r.getPropertyValue('--accent')) || accent;
+      ink = parseColor(r.getPropertyValue('--text')) || ink;
+    }
+    function acc(a) { return 'rgba(' + accent[0] + ',' + accent[1] + ',' + accent[2] + ',' + a + ')'; }
+    function nk(a) { return 'rgba(' + ink[0] + ',' + ink[1] + ',' + ink[2] + ',' + a + ')'; }
+
+    // value noise → calm, organic-but-tidy signals (not flat sines, not noisy mess)
+    var NOISE = new Float32Array(512);
+    for (var i = 0; i < 512; i++) NOISE[i] = Math.random() * 2 - 1;
+    function vnoise(x) {
+      var xi = Math.floor(x), f = x - xi; f = f * f * (3 - 2 * f);
+      var a = NOISE[((xi % 512) + 512) % 512], b = NOISE[(((xi + 1) % 512) + 512) % 512];
+      return a + (b - a) * f;
+    }
+
+    function resize() {
+      var r = wrap.getBoundingClientRect();
+      W = Math.max(1, r.width); H = Math.max(1, r.height);
+      midC = H * 0.5; bandHalf = H * 0.15;       // centered channel band
+      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    // shared latent trend (correlates the channels) — finer octaves so even the normal
+    // stretch stays lively/noisy instead of too stable
+    function common(wx) {
+      return ( vnoise(wx * 0.018) * 0.44 + vnoise(wx * 0.050) * 0.30
+             + vnoise(wx * 0.120) * 0.20 + vnoise(wx * 0.300) * 0.12 ) * bandHalf * 0.70;
+    }
+    // per-channel response to the shared trend: each channel has its own gain and a small
+    // lag, so they track the same latent cause without tracing the same curve — lines
+    // cross and amplitudes differ, but the bundle stays visibly correlated
+    var GAIN = [1.0, 0.86, 1.13], LAG = [0, 4.5, -3.8];
+    // per-channel idiosyncratic noise → visible per-line jitter, with per-channel
+    // frequencies so one channel reads calmer / another jitterier
+    function idio(i, wx) {
+      return ( vnoise(wx * (0.085 + i * 0.025) + i * 53.3 + 11) * 0.55
+             + vnoise(wx * (0.28 + i * 0.05) + i * 17.7 + 3) * 0.45 ) * bandHalf * 0.21;
+    }
+
+    // the C channel values at world x, with anomalies applied
+    function channelsAt(wx) {
+      var c = common(wx), v = [], i, k;
+      for (i = 0; i < C; i++) v.push(midC + common(wx + LAG[i]) * GAIN[i] + idio(i, wx));
+      for (k = 0; k < anomalies.length; k++) {
+        var a = anomalies[k], d = wx - a.wx0;
+        if (a.kind === 0) {                       // univariate spike on a subset of channels
+          var g = a.amp * Math.exp(-(d * d) / (2 * a.sigma * a.sigma));
+          for (i = 0; i < C; i++) if (a.chan[i]) v[i] += g;
+        } else if (Math.abs(d) < a.win) {         // correlation break: fan out, marginals kept
+          var w = 0.5 + 0.5 * Math.cos(Math.PI * d / a.win);
+          var ctr = midC + c * 0.25;     // pull toward centre so the fan stays in-band
+          for (i = 0; i < C; i++) v[i] = v[i] * (1 - w) + (ctr + a.spread * a.mix[i]) * w;
+        }
+      }
+      return v;
+    }
+    // the two detector families, scored separately: `exc` is the per-channel band
+    // exceedance (univariate z-score), `disp` the inter-channel dispersion (cross-channel)
+    function scoresOf(v) {
+      var mean = 0, i, dd, sq = 0, exc = 0;
+      for (i = 0; i < C; i++) mean += v[i]; mean /= C;
+      for (i = 0; i < C; i++) { dd = v[i] - mean; sq += dd * dd; }
+      var disp = Math.sqrt(sq / C);
+      for (i = 0; i < C; i++) { var e = Math.abs(v[i] - midC) - bandHalf; if (e > exc) exc = e; }
+      return { exc: exc / (bandHalf * 0.5), disp: disp / (bandHalf * 0.40) };
+    }
+
+    function spawn(atX, forceKind) {
+      var x0 = atX != null ? atX : scroll + W + 50;
+      var kind = forceKind != null ? forceKind : (Math.random() < 0.5 ? 0 : 1);
+      if (kind === 0) {                            // univariate spike in 1..C channels
+        var idx = []; for (var i = 0; i < C; i++) idx.push(i);
+        for (var j = C - 1; j > 0; j--) { var r = (Math.random() * (j + 1)) | 0, t = idx[j]; idx[j] = idx[r]; idx[r] = t; }
+        var cnt = 1 + ((Math.random() * C) | 0), chan = [];
+        for (var c2 = 0; c2 < C; c2++) chan.push(false);
+        for (var s2 = 0; s2 < cnt; s2++) chan[idx[s2]] = true;
+        anomalies.push({ kind: 0, wx0: x0, chan: chan, amp: (Math.random() < 0.5 ? -1 : 1) * bandHalf * 1.9, sigma: 3.4 + Math.random() * 1.6 });
+      } else {                                     // correlation break (zero-sum spread)
+        var m = [], sum = 0, mx = 0, q;
+        for (q = 0; q < C; q++) { m[q] = Math.random() * 2 - 1; sum += m[q]; }
+        for (q = 0; q < C; q++) m[q] -= sum / C;          // zero-sum → common mean preserved
+        for (q = 0; q < C; q++) mx = Math.max(mx, Math.abs(m[q]));
+        if (mx > 0) for (q = 0; q < C; q++) m[q] /= mx;    // keep channels inside the band
+        anomalies.push({ kind: 1, wx0: x0, win: 28 + Math.random() * 16, spread: bandHalf * 0.72, mix: m });
+      }
+    }
+    function update(dt) {
+      nextAnom -= dt;
+      if (nextAnom <= 0) { spawn(); nextAnom = 4.5 + Math.random() * 3.5; }
+      for (var k = anomalies.length - 1; k >= 0; k--) {
+        if (anomalies[k].wx0 - scroll < -160) anomalies.splice(k, 1);
+      }
+    }
+
+    function roundRect(x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      var x, i, j, a, sx;
+
+      // sample the channels across the width
+      var xs = [], vAll = [];
+      for (x = 0; x <= W; x += 2) { xs.push(x); vAll.push(channelsAt(x + scroll)); }
+
+      // flagged windows, styled by which detector family fires: filled when the
+      // per-channel score catches it, dashed when only the cross-channel score does
+      // (a correlation break — invisible to univariate detectors)
+      for (j = 0; j < anomalies.length; j++) {
+        a = anomalies[j]; sx = a.wx0 - scroll;
+        if (sx < -220 || sx > W + 220) continue;
+        var s = scoresOf(channelsAt(a.wx0));
+        if (s.exc < THR && s.disp < THR) continue;
+        var ext = (a.kind === 0 ? Math.max(a.sigma * 3.2, 14) : a.win) + 7;
+        roundRect(sx - ext, H * 0.08, ext * 2, H * 0.84, 5);
+        if (s.exc >= THR) {
+          ctx.fillStyle = acc(0.07); ctx.fill();
+        } else {
+          ctx.fillStyle = acc(0.035); ctx.fill();
+          ctx.setLineDash([4, 3]); ctx.lineWidth = 1; ctx.strokeStyle = acc(0.45);
+          ctx.stroke(); ctx.setLineDash([]);
+        }
+      }
+
+      // the C channels: a tight, correlated bundle that fans apart on a correlation break
+      ctx.lineJoin = 'round'; ctx.lineCap = 'round'; ctx.lineWidth = 1.4;
+      var alphas = [0.74, 0.58, 0.46];
+      for (j = 0; j < C; j++) {
+        ctx.strokeStyle = acc(alphas[j % alphas.length]);
+        ctx.beginPath();
+        for (i = 0; i < xs.length; i++) { var yy = vAll[i][j]; if (i === 0) ctx.moveTo(xs[i], yy); else ctx.lineTo(xs[i], yy); }
+        ctx.stroke();
+      }
+    }
+
+    function frame() {
+      rafId = requestAnimationFrame(frame);
+      var now = performance.now();
+      var dt = last ? Math.min(0.1, (now - last) / 1000) : 0;
+      last = now;
+      scroll += SCROLL * dt;
+      update(dt);
+      draw();
+    }
+
+    function start() {
+      if (rafId) return;
+      readColors(); resize();
+      scroll = Math.random() * 3000;
+      anomalies = [];
+      spawn(scroll + W * 0.62, 1);       // showcase both styles on the first paint:
+      spawn(scroll + W * 0.24, 0);       // a correlation break (dashed) and a spike (filled)
+      nextAnom = 3.5 + Math.random() * 3;
+      last = 0;
+      if (motionQuery.matches) { draw(); return; }   // static elegant frame, no animation
+      rafId = requestAnimationFrame(frame);
+    }
+    function stop() { if (rafId) { cancelAnimationFrame(rafId); rafId = null; } }
+    function apply() { stop(); start(); }
+
+    window.addEventListener('resize', function () {
+      dpr = Math.max(1, window.devicePixelRatio || 1);
+      readColors(); resize();
+      if (!rafId && motionQuery.matches) draw();
+    });
+    new MutationObserver(function () { readColors(); if (!rafId) draw(); })
+      .observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+    // re-measure when the element actually gets its size (e.g. first layout after the
+    // tab becomes visible, or any reflow) — avoids a 1px-wide canvas on a hidden load.
+    if (window.ResizeObserver) {
+      new ResizeObserver(function () { resize(); if (!rafId) draw(); }).observe(wrap);
+    }
+    if (motionQuery.addEventListener) motionQuery.addEventListener('change', apply);
+    else if (motionQuery.addListener) motionQuery.addListener(apply);
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+    else start();
+  })();</script><h2>Research Interests</h2><p class=interests>Machine Learning <span class=bullet>·</span> Representation Learning <span class=bullet>·</span> Self-Supervised Learning <span class=bullet>·</span> Time Series Analysis <span class=bullet>·</span> Anomaly Detection <span class=bullet>·</span> Large Language Models (LLMs) <span class=bullet>·</span> Anomaly Explanation<h2>News</h2><ul class=news-list><li class=news-item><span class=news-thumb><a rel="noopener noreferrer" class=news-thumb-link href=https://neurips.cc/ target=_blank><img alt loading=lazy src=https://marcpinet.fr/service_img/neurips.jpeg></a></span> <div class=news-main><span class=news-date>Jun 2026</span><div class=news-content><span class="pub-status service">service</span> I'm serving as an <a rel="noopener noreferrer" href=https://neurips.cc/ target=_blank>Ethics Reviewer</a> for NeurIPS.</div></div><li class=news-item><span class=news-thumb><a rel="noopener noreferrer" class=news-thumb-link href=https://marcpinet.fr/research/anomalies-mtsad-univariate/ target=_blank><img alt loading=lazy src=https://marcpinet.fr/pub_img/mostly_univariate.jpg></a></span> <div class=news-main><span class=news-date>Jun 2026</span><div class=news-content><span class="pub-status accepted">accepted</span> My paper "<a href=https://marcpinet.fr/research/anomalies-mtsad-univariate/>Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate</a>" has been accepted to KDD 2026, Mining and Learning from Time Series Workshop (MILETS).</div></div><li class=news-item><span class=news-thumb><a rel="noopener noreferrer" class=news-thumb-link href=https://github.com/marcpinet/doublage target=_blank><img alt loading=lazy src=https://marcpinet.fr/doublage/img.gif></a></span> <div class=news-main><span class=news-date>Jun 2026</span><div class=news-content><span class="pub-status project">project</span> I released <a rel="noopener noreferrer" href=https://github.com/marcpinet/doublage target=_blank>Doublage</a>, a browser game to dub video scenes with friends in any language, no install needed.</div></div><li class=news-item><span class=news-thumb><a rel="noopener noreferrer" class=news-thumb-link href=https://marcpinet.fr/research/anomalies-mtsad-univariate/ target=_blank><img alt loading=lazy src=https://marcpinet.fr/pub_img/mostly_univariate.jpg></a></span> <div class=news-main><span class=news-date>Jun 2026</span><div class=news-content><span class="pub-status preprint">preprint</span> I released a preprint of <a href=https://marcpinet.fr/research/anomalies-mtsad-univariate/>Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate</a>.</div></div><li class=news-item><span class=news-thumb><a rel="noopener noreferrer" class=news-thumb-link href=https://github.com/marcpinet/citracer target=_blank><img alt loading=lazy src=https://marcpinet.fr/citracer-card/img.png></a></span> <div class=news-main><span class=news-date>Apr 2026</span><div class=news-content><span class="pub-status project">project</span> I released <a rel="noopener noreferrer" href=https://github.com/marcpinet/citracer target=_blank>Citracer</a>, a tool that walks citations backward and renders an interactive reference graph.</div></div><li class=news-item><span class="news-thumb news-thumb-logo"><a class=news-thumb-link href=/experience><img alt loading=lazy src=https://marcpinet.fr/about_img/exp/orange.png></a></span> <div class=news-main><span class=news-date>Nov 2025</span><div class=news-content><span class="pub-status experience">experience</span> I'm now a PhD Researcher at <strong>Orange</strong> in collaboration with the <strong>LIG (Laboratoire d'Informatique de Grenoble)</strong>. <a rel="noopener noreferrer" class=news-more href=/experience target=_blank>→</a></div></div><li class=news-item><span class="news-thumb news-thumb-logo"><a class=news-thumb-link href=/education><img alt loading=lazy src=https://marcpinet.fr/about_img/edu/uga.png></a></span> <div class=news-main><span class=news-date>Nov 2025</span><div class=news-content><span class="pub-status education">education</span> I started my PhD in Computer Science & Mathematics at <strong>Université Grenoble Alpes</strong>. <a rel="noopener noreferrer" class=news-more href=/education target=_blank>→</a></div></div></ul></main><footer class=site-footer><div>© 2026 · Marc Pinet</div><div class=site-footer-socials><a href=mailto:marc.pinet.06@gmail.com>Email</a><a href="https://scholar.google.com/citations?user=NsXT970AAAAJ" rel="noopener noreferrer" target=_blank>Scholar</a><a rel="noopener noreferrer" href=https://github.com/marcpinet/ target=_blank>GitHub</a><a rel="noopener noreferrer" href=https://www.linkedin.com/in/marc-pinet/ target=_blank>LinkedIn</a><a rel="noopener noreferrer" href=https://x.com/marcpinet0/ target=_blank>X</a><a rel="noopener noreferrer" href=https://raw.githubusercontent.com/marcpinet/marcpinet.github.io/cv/cv.pdf target=_blank>CV</a></div></footer><script>(function() {
+      function updateLabel() {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        var t = document.documentElement.getAttribute('data-theme');
+        btn.textContent = t === 'dark' ? 'Light' : 'Dark';
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        updateLabel();
+        var btn = document.querySelector('.theme-toggle');
+        if (btn) {
+          btn.addEventListener('click', function() {
+            var t = document.documentElement.getAttribute('data-theme');
+            var next = t === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            try { localStorage.setItem('theme', next); } catch (e) {}
+            updateLabel();
+          });
+        }
+
+        /* Mobile nav: hamburger toggles the dropdown; Escape / outside-click closes it. */
+        var navToggle = document.querySelector('.nav-toggle');
+        var navContainer = document.querySelector('.nav-container');
+        if (navToggle && navContainer) {
+          function closeNav() {
+            navContainer.classList.remove('nav-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+          }
+          navToggle.addEventListener('click', function() {
+            var open = navContainer.classList.toggle('nav-open');
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          });
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navContainer.classList.contains('nav-open')) closeNav();
+          });
+          document.addEventListener('click', function(e) {
+            if (navContainer.classList.contains('nav-open') && !navContainer.contains(e.target)) closeNav();
+          });
+        }
+        document.querySelectorAll('.field-tag').forEach(function(tag) {
+          var text = tag.textContent.trim();
+          if (!text || tag.querySelector('a')) return;
+          var query = text.replace(/\s*\([^)]*\)\s*/g, '').trim().replace(/\s+/g, '_');
+          var link = document.createElement('a');
+          link.href = 'https://en.wikipedia.org/wiki/' + encodeURIComponent(query);
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = text;
+          tag.textContent = '';
+          tag.appendChild(link);
+        });
+
+        /* Duration calculation on entry dates (format: "Oct 2025 - Present" or "Apr 2022 - Jul 2022") */
+        var MONTHS = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+        function parseMonthYear(s) {
+          var m = s.trim().match(/^([A-Za-z]{3,})\s+(\d{4})$/);
+          if (!m) return null;
+          var mi = MONTHS.indexOf(m[1].toLowerCase().slice(0,3));
+          if (mi < 0) return null;
+          return new Date(parseInt(m[2], 10), mi, 1);
+        }
+        function formatDuration(months) {
+          if (months < 1) return '< 1 MONTH';
+          var years = Math.floor(months / 12);
+          var rem = months % 12;
+          if (years === 0) return rem + ' MONTH' + (rem !== 1 ? 'S' : '');
+          var y = years + ' YEAR' + (years !== 1 ? 'S' : '');
+          if (rem === 0) return y;
+          return y + ', ' + rem + ' MONTH' + (rem !== 1 ? 'S' : '');
+        }
+        document.querySelectorAll('.entry-date').forEach(function(el) {
+          if (el.dataset.dur === '1') return;
+          var text = el.textContent.trim();
+          var parts = text.split(/\s[-–]\s/);
+          if (parts.length !== 2) return;
+          var start = parseMonthYear(parts[0]);
+          if (!start) return;
+          var isPresent = /present/i.test(parts[1]);
+          var end = isPresent ? new Date() : parseMonthYear(parts[1]);
+          if (!end) return;
+          var diff = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+          el.textContent = text + ' (' + formatDuration(diff) + ')';
+          el.dataset.dur = '1';
+        });
+
+        /* Tag truncation: show first N, reveal rest on click */
+        var MAX_TAGS = 5;
+        document.querySelectorAll('.fields').forEach(function(container) {
+          if (container.dataset.trunc === '1') return;
+          var tags = Array.prototype.slice.call(container.querySelectorAll('.field-tag'));
+          if (tags.length <= MAX_TAGS) return;
+          var hidden = tags.slice(MAX_TAGS);
+          hidden.forEach(function(t) { t.classList.add('fields-hidden'); });
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'fields-toggle';
+          btn.textContent = '+ ' + hidden.length + ' more';
+          btn.addEventListener('click', function() {
+            var expanded = container.classList.toggle('fields-expanded');
+            hidden.forEach(function(t) { t.classList.toggle('fields-hidden', !expanded); });
+            btn.textContent = expanded ? 'show less' : '+ ' + hidden.length + ' more';
+          });
+          container.appendChild(btn);
+          container.dataset.trunc = '1';
+        });
+
+        /* News feed: freeze GIF thumbnails to their first frame (animations stay on the
+           Projects section); reveal + lazy-load older items behind "show more". */
+        function freezeGif(img) {
+          try {
+            if (img.dataset.frozen) return;
+            if (!/\.gif(\?|$)/i.test(img.getAttribute('src') || '')) return;
+            if (!img.naturalWidth) return;
+            img.dataset.frozen = '1';
+            /* Draw frame 1 into a canvas and swap it in for the <img>. We only DISPLAY the
+               canvas (never read it back / toDataURL), so a cross-origin-tainted canvas is fine. */
+            var c = document.createElement('canvas');
+            c.width = img.naturalWidth;
+            c.height = img.naturalHeight;
+            c.getContext('2d').drawImage(img, 0, 0);
+            img.replaceWith(c);
+          } catch (e) {}
+        }
+        function watchFreeze(img) {
+          if (img.complete && img.naturalWidth) freezeGif(img);
+          else img.addEventListener('load', function() { freezeGif(img); }, { once: true });
+        }
+        document.querySelectorAll('.news-thumb img').forEach(watchFreeze);
+        var moreBtn = document.querySelector('.news-show-more');
+        if (moreBtn) {
+          moreBtn.addEventListener('click', function() {
+            var rest = document.querySelector('.news-rest');
+            if (rest) {
+              rest.querySelectorAll('img[data-src]').forEach(function(img) {
+                img.src = img.getAttribute('data-src');
+                img.removeAttribute('data-src');
+                watchFreeze(img);
+              });
+              rest.hidden = false;
+            }
+            moreBtn.remove();
+          });
+        }
+      });
+    })();</script>
