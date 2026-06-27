@@ -72,6 +72,18 @@ body[data-page="service"] h2 {
   color: var(--text-muted);
 }
 
+/* Status / format chips placed on their own line under the venue. */
+.pub-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.3rem;
+}
+
+.pub-tags .pub-status {
+  margin-left: 0;
+}
+
 .pub-status {
   display: inline-block;
   font-family: var(--font-sans);

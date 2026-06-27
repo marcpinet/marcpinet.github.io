@@ -2,9 +2,24 @@
    Unknown country → empty output. #}
 {% macro country_code(country) %}{% set c = country | lower | trim %}{% if c == "france" %}fr{% elif c == "canada" %}ca{% elif c == "vietnam" or c == "viet nam" %}vn{% elif c == "south korea" or c == "korea" or c == "republic of korea" %}kr{% elif c == "north korea" %}kp{% elif c == "united states" or c == "usa" or c == "us" or c == "united states of america" %}us{% elif c == "united kingdom" or c == "uk" or c == "england" or c == "great britain" %}gb{% elif c == "germany" %}de{% elif c == "spain" %}es{% elif c == "italy" %}it{% elif c == "portugal" %}pt{% elif c == "netherlands" %}nl{% elif c == "belgium" %}be{% elif c == "switzerland" %}ch{% elif c == "austria" %}at{% elif c == "ireland" %}ie{% elif c == "japan" %}jp{% elif c == "china" %}cn{% elif c == "india" %}in{% elif c == "singapore" %}sg{% elif c == "australia" %}au{% elif c == "brazil" %}br{% elif c == "mexico" %}mx{% elif c == "morocco" %}ma{% endif %}{% endmacro country_code %}
 
-{# Inline SVG flag (flagcdn.com) for the LAST comma-separated part of `place`
-   (e.g. "Jeju, South Korea" → South Korea). No flag if the country is unmapped. #}
-{% macro country_flag(place) %}{% set country = place | split(pat=",") | last | trim %}{% set code = self::country_code(country=country) | trim %}{% if code %}<img class="flag" src="https://flagcdn.com/{{ code }}.svg" alt="{{ country }} flag" width="20" height="15" loading="lazy">{% endif %}{% endmacro country_flag %}
+{# Inline SVG flag (self-hosted in static/flags/) for the LAST comma-separated part of
+   `place` (e.g. "Jeju, South Korea" → South Korea). No flag if the country is unmapped.
+   Self-hosted (not a CDN) so it always loads; alt="" because flags are decorative and an
+   alt would otherwise show as fallback TEXT next to the country name if the image failed.
+   When adding a country to country_code, drop its `<code>.svg` into static/flags/ too. #}
+{% macro country_flag(place) %}{% set country = place | split(pat=",") | last | trim %}{% set code = self::country_code(country=country) | trim %}{% if code %}<img class="flag" src="{{ get_url(path='/flags/' ~ code ~ '.svg') }}" alt="" width="20" height="15" loading="lazy">{% endif %}{% endmacro country_flag %}
+
+{# Shared publication meta: venue, location + flag, then the status/format chips on their own
+   line. Used by BOTH the research list (research.html) and the detail page (page.html) so a
+   new label shows up in every view at once. #}
+{% macro pub_meta(venue="", location="", status="", oral=false) %}
+  {%- if venue %}{{ venue | safe }}{% endif %}
+  {%- if location %}, {{ location | safe }}{{ self::country_flag(place=location) }}{% endif %}
+  {%- if oral or status %}<span class="pub-tags">
+    {%- if oral %}<span class="pub-status oral">Oral</span>{% endif %}
+    {%- if status %}<span class="pub-status {{ status | replace(from=' ', to='-') | replace(from='_', to='-') }}">{{ status | replace(from='_', to=' ') }}</span>{% endif %}
+  </span>{% endif %}
+{%- endmacro pub_meta %}
 
 {% macro project_entry(p, pinned=false) %}
   {% set link = p.extra.github_link | default(value=p.permalink) %}

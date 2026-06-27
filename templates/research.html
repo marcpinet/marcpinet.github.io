@@ -30,12 +30,7 @@
           {% if lastm.venue %}{% set cur_venue = lastm.venue %}{% endif %}
         {% endif %}
         {% if cur_venue or cur_status or p.extra.location %}
-          <div class="pub-venue">
-            {% if cur_venue %}{{ cur_venue | safe }}{% endif %}
-            {%- if p.extra.location %}, {{ p.extra.location | safe }}{{ macros::country_flag(place=p.extra.location) }}{% endif %}
-            {% if p.extra.oral %}<span class="pub-status oral">Oral</span>{% endif %}
-            {% if cur_status %}<span class="pub-status {{ cur_status | replace(from=' ', to='-') | replace(from='_', to='-') }}">{{ cur_status | replace(from='_', to=' ') }}</span>{% endif %}
-          </div>
+          <div class="pub-venue">{{ macros::pub_meta(venue=cur_venue, location=p.extra.location | default(value=""), status=cur_status, oral=p.extra.oral | default(value=false)) }}</div>
         {% endif %}
         {% if p.extra.links %}
           <div class="pub-links">

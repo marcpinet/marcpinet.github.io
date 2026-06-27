@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "macros/macros.html" as macros %}
 
 {% block main_content %}
 <article class="post-article">
@@ -25,11 +26,8 @@
     {% if lastm.status %}{% set cur_status = lastm.status %}{% endif %}
     {% if lastm.venue %}{% set cur_venue = lastm.venue %}{% endif %}
   {% endif %}
-  {% if cur_venue or cur_status %}
-    <p class="post-venue">
-      {% if cur_venue %}{{ cur_venue | safe }}{% endif %}
-      {% if cur_status %}<span class="pub-status {{ cur_status | replace(from=' ', to='-') | replace(from='_', to='-') }}">{{ cur_status | replace(from='_', to=' ') }}</span>{% endif %}
-    </p>
+  {% if cur_venue or cur_status or page.extra.location %}
+    <p class="post-venue">{{ macros::pub_meta(venue=cur_venue, location=page.extra.location | default(value=""), status=cur_status, oral=page.extra.oral | default(value=false)) }}</p>
   {% endif %}
 
   {% if page.extra.links %}
