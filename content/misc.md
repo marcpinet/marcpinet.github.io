@@ -17,7 +17,7 @@ template = "about.html"
 <div class="cert-content">
 <h3>Research Integrity and Ethics</h3>
 <div class="cert-meta">
-<strong>Issued: Jun 22, 2026</strong>
+<strong>Issued: Jun 2026</strong>
 <div class="fields">
 <span class="field-tag">Research Ethics</span>
 <span class="field-tag">Integrity</span>
