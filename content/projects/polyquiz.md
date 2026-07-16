@@ -1,6 +1,6 @@
 +++
 title = "Polyquiz"
-description = "🫳 Parkison-friendly website that tracks user's movements and gives feedbacks for nurses based on recorded statistics."
+description = "🫳 Parkinson-friendly website that tracks user's movements and gives feedbacks for nurses based on recorded statistics."
 date = "2023-06-18"
 weight = 1
 
