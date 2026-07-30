@@ -6,6 +6,10 @@ sort_by = "date"
 # Add a talk as content/talks/<slug>.md with frontmatter:
 #   title, date (ISO), [extra]: venue, status (accepted / given / invited / upcoming),
 #   link? (slides or recording), image? (thumbnail; `logo = true` to show it whole).
+# `kind` (default "contributed") decides whether the talk counts as SERVICE: only
+#   invited / keynote / panel show under Talks on the Service page. A contributed talk —
+#   presenting your own accepted paper — stays off that page; it still gets its own page,
+#   a News line, and a link from the publication.
 # Optional lifecycle [[extra.milestones]] { date, status, venue } — like publications,
 #   each milestone is its own dated News line (e.g. accepted → given); page/list show the latest.
 #

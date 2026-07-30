@@ -25,11 +25,21 @@
   {% endif %}
 
   {# ---- Talks ---- #}
+  {# A CONTRIBUTED talk (presenting one's own accepted paper) is not service — it belongs to
+     the publication, which links to it. Only invited talks / keynotes / panels show up here,
+     so a talk has to opt in with `kind` (default "contributed"). Contributed talks still get
+     their own page and a News line. #}
   {% set talks = get_section(path="talks/_index.md") %}
-  {% if talks.pages | length > 0 %}
+  {% set_global service_talks = [] %}
+  {% for p in talks.pages %}
+    {% if p.extra.kind | default(value="contributed") != "contributed" %}
+      {% set_global service_talks = service_talks | concat(with=p) %}
+    {% endif %}
+  {% endfor %}
+  {% if service_talks | length > 0 %}
     <h2>Talks</h2>
     <ul class="svc-list">
-      {% for p in talks.pages | sort(attribute="date") | reverse %}
+      {% for p in service_talks | sort(attribute="date") | reverse %}
         {% set venue = p.extra.venue | default(value="") %}
         {% if p.extra.milestones %}{% set lastm = p.extra.milestones | last %}{% if lastm.venue %}{% set venue = lastm.venue %}{% endif %}{% endif %}
         {% set meta = p.extra.period | default(value="") %}{% if not meta %}{% set meta = p.date | date(format="%Y") %}{% endif %}
@@ -82,7 +92,7 @@
     </ul>
   {% endif %}
 
-  {% if section.pages | length == 0 and talks.pages | length == 0 and teaching.pages | length == 0 and supervision.pages | length == 0 %}
+  {% if section.pages | length == 0 and service_talks | length == 0 and teaching.pages | length == 0 and supervision.pages | length == 0 %}
     <p class="empty-note">Nothing here yet — coming soon.</p>
   {% endif %}
 {% endblock main_content %}

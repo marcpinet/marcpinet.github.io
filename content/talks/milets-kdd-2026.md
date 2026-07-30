@@ -6,6 +6,7 @@ template = "talk.html"
 [extra]
 venue = "KDD 2026, Mining and Learning from Time Series Workshop (MILETS)"
 location = "Jeju, South Korea"
+kind = "contributed"
 status = "upcoming"
 period = "Aug 2026"
 image = "/pub_img/kdd.png"
