@@ -132,9 +132,18 @@ body[data-page="service"] h2 {
   border: none;
 }
 
-.pub-status.poster {
+.pub-status.poster,
+.pub-status.upcoming {
   color: var(--chip-purple);
   background: var(--chip-purple-bg);
+  border: none;
+}
+
+/* Talk statuses: a delivered/invited talk reads like an accepted paper. */
+.pub-status.given,
+.pub-status.invited {
+  color: var(--chip-green);
+  background: var(--chip-green-bg);
   border: none;
 }
 

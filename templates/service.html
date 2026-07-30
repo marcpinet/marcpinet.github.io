@@ -33,10 +33,12 @@
         {% set venue = p.extra.venue | default(value="") %}
         {% if p.extra.milestones %}{% set lastm = p.extra.milestones | last %}{% if lastm.venue %}{% set venue = lastm.venue %}{% endif %}{% endif %}
         {% set meta = p.extra.period | default(value="") %}{% if not meta %}{% set meta = p.date | date(format="%Y") %}{% endif %}
+        {# A talk with a slide deck gets its own page (talk.html) — link there; otherwise use the external link, if any. #}
+        {% if p.extra.slides %}{% set href = p.permalink %}{% set ext = false %}{% else %}{% set href = p.extra.link | default(value="") %}{% set ext = true %}{% endif %}
         <li class="svc-entry">
-          {% if p.extra.image %}<span class="svc-thumb{% if p.extra.logo %} svc-thumb-logo{% endif %}">{% if p.extra.link %}<a class="svc-thumb-link" href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{% endif %}<img src="{{ get_url(path=p.extra.image) }}" alt="" loading="lazy">{% if p.extra.link %}</a>{% endif %}</span>{% endif %}
+          {% if p.extra.image %}<span class="svc-thumb{% if p.extra.logo %} svc-thumb-logo{% endif %}">{% if href %}<a class="svc-thumb-link" href="{{ href }}"{% if ext %} target="_blank" rel="noopener noreferrer"{% endif %}>{% endif %}<img src="{{ get_url(path=p.extra.image) }}" alt="" loading="lazy">{% if href %}</a>{% endif %}</span>{% endif %}
           <div class="svc-body">
-            <div class="svc-title">{% if p.extra.link %}<a href="{{ p.extra.link }}" target="_blank" rel="noopener noreferrer">{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}{% if venue or p.extra.location %}<span class="svc-sub">{% if venue %}, {{ venue | safe }}{% endif %}{% if p.extra.location %} in {{ p.extra.location | safe }}{{ macros::country_flag(place=p.extra.location) }}{% endif %}</span>{% endif %}</div>
+            <div class="svc-title">{% if href %}<a href="{{ href }}"{% if ext %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ p.title }}</a>{% else %}{{ p.title }}{% endif %}{% if venue or p.extra.location %}<span class="svc-sub">{% if venue %}, {{ venue | safe }}{% endif %}{% if p.extra.location %} in {{ p.extra.location | safe }}{{ macros::country_flag(place=p.extra.location) }}{% endif %}</span>{% endif %}</div>
             <div class="svc-meta">{{ meta }}</div>
           </div>
         </li>

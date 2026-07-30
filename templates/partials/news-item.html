@@ -109,15 +109,19 @@
     {% set lbl = pstatus | replace(from="_", to=" ") %}
     {% set img_path = p.extra.image | default(value="") %}
   {% elif kind == "talk" %}
-    {% set tl = p.extra.link | default(value="") %}
-    {% if tl %}{% set titlelink = '<a href="' ~ tl ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}{% else %}{% set titlelink = p.title %}{% endif %}
+    {# A talk with a slide deck has its own page (talk.html) — link there; otherwise the external link, if any. #}
+    {% if p.extra.slides %}{% set titlelink = '<a href="' ~ p.permalink ~ '">' ~ p.title ~ '</a>' %}
+    {% else %}{% set tl = p.extra.link | default(value="") %}
+      {% if tl %}{% set titlelink = '<a href="' ~ tl ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}{% else %}{% set titlelink = p.title %}{% endif %}
+    {% endif %}
     {% if st == "accepted" %}{% set body = 'My talk "' ~ titlelink ~ '" was accepted' ~ atv ~ '.' %}
     {% elif st == "invited" %}{% set body = 'I was invited to speak' ~ atv ~ ': "' ~ titlelink ~ '".' %}
-    {% elif st == "upcoming" %}{% set body = 'Upcoming talk, "' ~ titlelink ~ '"' ~ atv ~ '.' %}
+    {% elif st == "upcoming" %}{% set body = `I'll be giving a talk, "` ~ titlelink ~ '"' ~ atv ~ '.' %}
     {% else %}{% set body = 'I gave a talk, "' ~ titlelink ~ '"' ~ atv ~ '.' %}{% endif %}
     {% if p.extra.link_pending %}{% set body = body ~ ' <em>Presentation link coming soon.</em>' %}{% endif %}
     {% set lbl = "talk" %}
     {% set img_path = p.extra.image | default(value="") %}
+    {% set thumb_logo = p.extra.logo | default(value=false) %}
   {% else %}
     {% set dl = p.extra.github_link | default(value=p.extra.link) | default(value="") %}
     {% if dl %}{% set titlelink = '<a href="' ~ dl ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}{% else %}{% set titlelink = p.title %}{% endif %}

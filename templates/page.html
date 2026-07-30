@@ -33,7 +33,8 @@
   {% if page.extra.links %}
     <div class="post-links">
       {% for link in page.extra.links %}
-        <a href="{{ link.url }}" target="_blank" rel="noopener noreferrer">{{ link.name }}</a>
+        {% set ext = link.url is starting_with("http") %}
+        <a href="{{ link.url }}"{% if ext %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.name }}</a>
       {% endfor %}
     </div>
   {% endif %}

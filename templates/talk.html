@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+{% import "macros/macros.html" as macros %}
+
+{# Talk page: the usual post header + an optional slide deck viewer driven by
+   [extra.slides] (dir / count / appendix_from / pdf / pptx). The deck is pre-rendered
+   WebP images, so it needs no PDF/Office runtime — the .pptx and .pdf stay downloadable. #}
+{% block main_content %}
+<article class="post-article talk-article">
+  {% if page.date %}
+    <div class="post-meta"><time datetime="{{ page.date }}">{{ page.date | date(format="%B %Y") }}</time></div>
+  {% endif %}
+
+  <h1 class="post-title">{{ page.title }}</h1>
+
+  {# Current status/venue = latest milestone if any, else top-level fields (same rule as page.html) #}
+  {% set cur_status = page.extra.status | default(value="") %}
+  {% set cur_venue = page.extra.venue | default(value="") %}
+  {% if page.extra.milestones %}
+    {% set lastm = page.extra.milestones | last %}
+    {% if lastm.status %}{% set cur_status = lastm.status %}{% endif %}
+    {% if lastm.venue %}{% set cur_venue = lastm.venue %}{% endif %}
+  {% endif %}
+  {% if cur_venue or cur_status or page.extra.location %}
+    <p class="post-venue">{{ macros::pub_meta(venue=cur_venue, location=page.extra.location | default(value=""), status=cur_status) }}</p>
+  {% endif %}
+
+  {% if page.extra.links %}
+    <div class="post-links">
+      {% for link in page.extra.links %}
+        {% set ext = link.url is starting_with("http") %}
+        <a href="{{ link.url }}"{% if ext %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ link.name }}</a>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  {% if page.extra.tldr %}
+    <div class="tldr"><strong>tl;dr:</strong> {{ page.extra.tldr }}</div>
+  {% endif %}
+
+  {% set sl = page.extra.slides | default(value=false) %}
+  {% if sl %}
+    {% set n = sl.count %}
+    {% set ap = sl.appendix_from | default(value=0) %}
+    <div class="deck" id="deck" data-count="{{ n }}" data-appendix-from="{{ ap }}">
+      <div class="deck-stage">
+        {# slide 1 is eager (it's the poster frame); every other slide is fetched on demand #}
+        <img class="deck-img" id="deck-img" src="{{ get_url(path=sl.dir ~ '/slide-01.webp') }}"
+             alt="Slide 1 of {{ n }}" width="1600" height="900" decoding="async">
+        <button class="deck-nav deck-prev" type="button" aria-label="Previous slide" aria-controls="deck-img">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="deck-nav deck-next" type="button" aria-label="Next slide" aria-controls="deck-img">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 4 8 8-8 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+
+      <div class="deck-bar">
+        <div class="deck-count" aria-live="polite"><span id="deck-cur">1</span><span class="deck-sep">/</span>{{ n }}{% if ap %}<span class="deck-tag" id="deck-tag" hidden>backup</span>{% endif %}</div>
+        <div class="deck-actions">
+          <button class="deck-btn" type="button" data-act="grid" aria-expanded="false" aria-controls="deck-grid">All slides</button>
+          <button class="deck-btn deck-btn-full" type="button" data-act="full">Fullscreen</button>
+          {% if sl.pdf %}<a class="deck-btn" href="{{ get_url(path=sl.pdf) }}" download>PDF</a>{% endif %}
+          {% if sl.pptx %}<a class="deck-btn" href="{{ get_url(path=sl.pptx) }}" download>.pptx</a>{% endif %}
+        </div>
+      </div>
+
+      <div class="deck-grid" id="deck-grid" hidden>
+        {% for i in range(start=1, end=n + 1) %}
+          {% set pad = "" %}{% if i < 10 %}{% set pad = "0" %}{% endif %}
+          {% if ap and i == ap %}<div class="deck-grid-sep">Backup slides</div>{% endif %}
+          <button class="deck-thumb" type="button" data-i="{{ i }}"
+                  data-full="{{ get_url(path=sl.dir ~ '/slide-' ~ pad ~ i ~ '.webp') }}" aria-label="Go to slide {{ i }}">
+            <img src="{{ get_url(path=sl.dir ~ '/thumbs/slide-' ~ pad ~ i ~ '.webp') }}" alt="" width="360" height="203" loading="lazy" decoding="async">
+            <span class="deck-thumb-n">{{ i }}</span>
+          </button>
+        {% endfor %}
+      </div>
+
+      <noscript>
+        <p class="deck-noscript">Slide navigation needs JavaScript
+          {%- if sl.pdf %} — <a href="{{ get_url(path=sl.pdf) }}">download the deck as PDF</a> instead{% endif %}.</p>
+      </noscript>
+    </div>
+
+    <script>
+    /* Slide deck: pre-rendered images, no PDF/Office runtime. Navigation via the arrows,
+       the thumbnail grid, ← → Home End (and g / f / Esc), or a horizontal swipe. The
+       current slide is mirrored into the URL hash (#slide-7) so a slide can be linked. */
+    (function () {
+      var deck = document.getElementById('deck');
+      if (!deck) return;
+      var img = document.getElementById('deck-img');
+      var grid = document.getElementById('deck-grid');
+      var curEl = document.getElementById('deck-cur');
+      var tagEl = document.getElementById('deck-tag');
+      var gridBtn = deck.querySelector('[data-act="grid"]');
+      var fullBtn = deck.querySelector('[data-act="full"]');
+      var thumbs = Array.prototype.slice.call(grid.querySelectorAll('.deck-thumb'));
+      var srcs = thumbs.map(function (t) { return t.dataset.full; });
+      var N = srcs.length;
+      var APPENDIX = parseInt(deck.dataset.appendixFrom, 10) || 0;
+      var cur = 1;
+
+      function preload(i) { if (i >= 1 && i <= N) { var p = new Image(); p.src = srcs[i - 1]; } }
+
+      function show(i, push) {
+        i = Math.min(N, Math.max(1, i));
+        cur = i;
+        img.src = srcs[i - 1];
+        img.alt = 'Slide ' + i + ' of ' + N;
+        curEl.textContent = i;
+        if (tagEl) tagEl.hidden = !(APPENDIX && i >= APPENDIX);
+        thumbs.forEach(function (t, k) { t.classList.toggle('is-current', k === i - 1); });
+        deck.querySelector('.deck-prev').disabled = i === 1;
+        deck.querySelector('.deck-next').disabled = i === N;
+        preload(i + 1); preload(i - 1);
+        if (push !== false) {
+          try { history.replaceState(null, '', '#slide-' + i); } catch (e) {}
+        }
+      }
+
+      deck.querySelector('.deck-prev').addEventListener('click', function () { show(cur - 1); });
+      deck.querySelector('.deck-next').addEventListener('click', function () { show(cur + 1); });
+      thumbs.forEach(function (t) {
+        t.addEventListener('click', function () { show(parseInt(t.dataset.i, 10)); toggleGrid(false); });
+      });
+
+      function toggleGrid(open) {
+        if (open === undefined) open = grid.hidden;
+        grid.hidden = !open;
+        gridBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        gridBtn.textContent = open ? 'Hide slides' : 'All slides';
+        if (open) {
+          var c = thumbs[cur - 1];
+          if (c && c.scrollIntoView) c.scrollIntoView({ block: 'nearest' });
+        }
+      }
+      gridBtn.addEventListener('click', function () { toggleGrid(); });
+
+      /* Fullscreen: the deck element itself, so the bar stays reachable. */
+      function fsElement() { return document.fullscreenElement || document.webkitFullscreenElement; }
+      fullBtn.addEventListener('click', function () {
+        if (fsElement()) {
+          (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+        } else {
+          var req = deck.requestFullscreen || deck.webkitRequestFullscreen;
+          if (req) req.call(deck);
+        }
+      });
+      document.addEventListener('fullscreenchange', function () {
+        fullBtn.textContent = fsElement() ? 'Exit fullscreen' : 'Fullscreen';
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        var t = e.target;
+        if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+        /* Only steal the arrows while the deck is on screen (or fullscreen). */
+        var r = deck.getBoundingClientRect();
+        var visible = fsElement() === deck || (r.bottom > 0 && r.top < window.innerHeight);
+        if (!visible) return;
+        switch (e.key) {
+          case 'ArrowLeft': case 'PageUp': show(cur - 1); e.preventDefault(); break;
+          case 'ArrowRight': case 'PageDown': case ' ': show(cur + 1); e.preventDefault(); break;
+          case 'Home': show(1); e.preventDefault(); break;
+          case 'End': show(N); e.preventDefault(); break;
+          case 'g': toggleGrid(); break;
+          case 'Escape': if (!grid.hidden) toggleGrid(false); break;
+        }
+      });
+
+      /* Horizontal swipe on touch, ignoring vertical scrolls. */
+      var tx = 0, ty = 0;
+      deck.addEventListener('touchstart', function (e) {
+        tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY;
+      }, { passive: true });
+      deck.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) show(cur + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+
+      function fromHash() { return /^#slide-(\d+)$/.exec(location.hash || ''); }
+      /* replaceState fires no hashchange, so this only reacts to a pasted/clicked #slide-N. */
+      window.addEventListener('hashchange', function () {
+        var h = fromHash();
+        if (h) show(parseInt(h[1], 10), false);
+      });
+      var m = fromHash();
+      show(m ? parseInt(m[1], 10) : 1, !!m);
+    })();
+    </script>
+  {% endif %}
+
+  <section class="post-body">
+    {{ page.content | safe }}
+  </section>
+</article>
+{% endblock main_content %}

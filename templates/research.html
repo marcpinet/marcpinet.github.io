@@ -35,7 +35,8 @@
         {% if p.extra.links %}
           <div class="pub-links">
             {% for l in p.extra.links %}
-              <a href="{{ l.url }}" target="_blank" rel="noopener noreferrer">{{ l.name }}</a>
+              {% set ext = l.url is starting_with("http") %}
+              <a href="{{ l.url }}"{% if ext %} target="_blank" rel="noopener noreferrer"{% endif %}>{{ l.name }}</a>
             {% endfor %}
           </div>
         {% endif %}

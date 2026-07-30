@@ -12,8 +12,10 @@ oral = true
 image = "/pub_img/mostly_univariate.jpg"
 featured = true
 links = [
+  { name = "Slides", url = "/talks/milets-kdd-2026/" },
   { name = "arXiv", url = "https://arxiv.org/abs/2606.02670" },
   { name = "PDF", url = "https://arxiv.org/pdf/2606.02670" },
+  { name = "Camera-ready", url = "https://kdd-milets.github.io/milets2026/accepted%20papers/1camera_ready_paper_anomalies_mostly_univariate.pdf" },
   { name = "HAL", url = "https://hal.science/hal-05639276" },
   { name = "DOI", url = "https://doi.org/10.48550/arXiv.2606.02670" },
   { name = "Code", url = "https://github.com/marcpinet/mtsad-benchmarks-are-mostly-univariate" },
