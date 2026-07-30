@@ -1,6 +1,6 @@
 +++
 title = "Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate"
-date = "2026-08-09"
+date = "2026-08-10"
 template = "talk.html"
 
 [extra]
@@ -8,6 +8,7 @@ venue = "KDD 2026, Mining and Learning from Time Series Workshop (MILETS)"
 location = "Jeju, South Korea"
 kind = "contributed"
 status = "upcoming"
+when = "10 August 2026 at 15:30 KST"
 period = "Aug 2026"
 image = "/pub_img/kdd.png"
 logo = true

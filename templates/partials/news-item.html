@@ -114,10 +114,14 @@
     {% else %}{% set tl = p.extra.link | default(value="") %}
       {% if tl %}{% set titlelink = '<a href="' ~ tl ~ '" target="_blank" rel="noopener noreferrer">' ~ p.title ~ '</a>' %}{% else %}{% set titlelink = p.title %}{% endif %}
     {% endif %}
+    {# Optional `when` — the session slot, free text (e.g. "10 August 2026 at 15:30 KST").
+       Only appended where the sentence is about the talk HAPPENING: on "accepted" it would
+       read as the acceptance date instead. #}
+    {% set onw = "" %}{% if p.extra.when %}{% set onw = ' on ' ~ p.extra.when %}{% endif %}
     {% if st == "accepted" %}{% set body = 'My talk "' ~ titlelink ~ '" was accepted' ~ atv ~ '.' %}
-    {% elif st == "invited" %}{% set body = 'I was invited to speak' ~ atv ~ ': "' ~ titlelink ~ '".' %}
-    {% elif st == "upcoming" %}{% set body = `I'll be giving a talk, "` ~ titlelink ~ '"' ~ atv ~ '.' %}
-    {% else %}{% set body = 'I gave a talk, "' ~ titlelink ~ '"' ~ atv ~ '.' %}{% endif %}
+    {% elif st == "invited" %}{% set body = 'I was invited to speak' ~ atv ~ onw ~ ': "' ~ titlelink ~ '".' %}
+    {% elif st == "upcoming" %}{% set body = `I'll be giving a talk, "` ~ titlelink ~ '"' ~ atv ~ onw ~ '.' %}
+    {% else %}{% set body = 'I gave a talk, "' ~ titlelink ~ '"' ~ atv ~ onw ~ '.' %}{% endif %}
     {% if p.extra.link_pending %}{% set body = body ~ ' <em>Presentation link coming soon.</em>' %}{% endif %}
     {% set lbl = "talk" %}
     {% set img_path = p.extra.image | default(value="") %}

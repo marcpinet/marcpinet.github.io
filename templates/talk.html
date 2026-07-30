@@ -20,8 +20,14 @@
     {% if lastm.status %}{% set cur_status = lastm.status %}{% endif %}
     {% if lastm.venue %}{% set cur_venue = lastm.venue %}{% endif %}
   {% endif %}
-  {% if cur_venue or cur_status or page.extra.location %}
-    <p class="post-venue">{{ macros::pub_meta(venue=cur_venue, location=page.extra.location | default(value=""), status=cur_status) }}</p>
+  {# "upcoming" is a claim about *now*, and a static build can't retract it once the date
+     passes — so it gets no chip here. The status still drives the News line, which is dated
+     and therefore reads as the announcement it was. Other statuses (given / invited) are
+     statements about the past and stay. #}
+  {% set chip_status = cur_status %}
+  {% if chip_status == "upcoming" %}{% set chip_status = "" %}{% endif %}
+  {% if cur_venue or chip_status or page.extra.location %}
+    <p class="post-venue">{{ macros::pub_meta(venue=cur_venue, location=page.extra.location | default(value=""), status=chip_status) }}</p>
   {% endif %}
 
   {% if page.extra.links %}

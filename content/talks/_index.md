@@ -6,6 +6,10 @@ sort_by = "date"
 # Add a talk as content/talks/<slug>.md with frontmatter:
 #   title, date (ISO), [extra]: venue, status (accepted / given / invited / upcoming),
 #   link? (slides or recording), image? (thumbnail; `logo = true` to show it whole).
+# `status = "upcoming"` shows NO chip on the talk page — a static build can't retract a
+#   present-tense claim once the date passes. It still drives the (dated) News line.
+# `when` (optional, free text, e.g. "10 August 2026 at 15:30 KST") = the session slot; it is
+#   appended to the News line as "… on <when>". Give the time in the venue's local zone.
 # `kind` (default "contributed") decides whether the talk counts as SERVICE: only
 #   invited / keynote / panel show under Talks on the Service page. A contributed talk —
 #   presenting your own accepted paper — stays off that page; it still gets its own page,
