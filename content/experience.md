@@ -49,6 +49,7 @@ Industrial PhD (CIFRE) on Self-supervised detection and explanation of anomalies
 <span class="field-tag">Anomaly Explanation</span>
 <span class="field-tag">Self-Supervised Learning</span>
 <span class="field-tag">Time Series Analysis</span>
+<span class="field-tag">Machine Learning</span>
 <span class="field-tag">Deep Learning</span>
 <span class="field-tag">Large Language Models (LLMs)</span>
 <span class="field-tag">Retrieval-Augmented Generation (RAG)</span>
@@ -92,6 +93,7 @@ Unsupervised anomaly detection system for heterogeneous data (logs, metrics, tra
 <span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Natural Language Processing (NLP)</span>
 <span class="field-tag">Machine Learning</span>
+<span class="field-tag">Deep Learning</span>
 <span class="field-tag">Retrieval-Augmented Generation (RAG)</span>
 <span class="field-tag">Chain of Thought (CoT)</span>
 <span class="field-tag">Agentic AI</span>
@@ -120,6 +122,7 @@ Time series trends analysis using tools such as Prophet, SARIMA, STL, and DTW. I
 <span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Natural Language Processing (NLP)</span>
 <span class="field-tag">Machine Learning</span>
+<span class="field-tag">Deep Learning</span>
 <span class="field-tag">Data Science</span>
 <span class="field-tag">Data Engineering</span>
 <span class="field-tag">MLOps</span>
