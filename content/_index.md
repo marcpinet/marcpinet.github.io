@@ -12,8 +12,8 @@ interests = [
     "Representation Learning",
     "Time Series Analysis",
     "Anomaly Detection",
-    "Large Language Models (LLMs)",
     "Anomaly Explanation",
+    "Large Language Models (LLMs)",
 ]
 
 # Homepage "News" feed. These hand-written items are merged chronologically with your
