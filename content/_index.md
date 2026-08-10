@@ -4,7 +4,7 @@ template = "index.html"
 
 [extra]
 name = "Marc Pinet"
-photo = "/homepage/me.jpg"
+photo = "/me.jpg"
 
 interests = [
     "Deep Learning",
