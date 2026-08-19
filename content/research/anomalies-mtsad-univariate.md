@@ -45,7 +45,7 @@ Many recent multivariate time series anomaly detection (MTSAD) models incorporat
 @inproceedings{Pinet2026AnomaliesIM,
   title={Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate},
   author={Marc Pinet and Julien Cumin and Samuel Berlemont and Dominique Vaufreydaz},
-  booktitle={The 12th International Workshop on Mining and Learning from Time Series (MiLeTS), KDD 2026},
+  booktitle={The 12th Mining and Learning from Time Series (MiLeTS), KDD 2026},
   year={2026},
   url={https://doi.org/10.48550/arXiv.2606.02670}
 }
