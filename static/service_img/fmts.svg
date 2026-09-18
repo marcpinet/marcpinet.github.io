@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="FMTS">
+  <rect width="32" height="32" rx="6" fill="#2d5fb2"/>
+  <!-- A short observed series resolving into a forecast fan: the workshop's
+       forecasting-to-world-modeling arc, at 32px. -->
+  <path d="M4 21 L8 15 L12 18 L16 11" fill="none" stroke="#ffffff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M16 11 L21 7 M16 11 L22 13 M16 11 L21 19" fill="none" stroke="#ffffff" stroke-width="1.7" stroke-linecap="round" opacity="0.62"/>
+  <circle cx="16" cy="11" r="2.5" fill="#ffffff"/>
+</svg>
