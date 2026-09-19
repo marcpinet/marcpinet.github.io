@@ -1,0 +1,62 @@
+# Robots.txt for marcpinet.fr
+# Optimized for SEO and LLM crawling
+
+User-agent: *
+Allow: /
+
+# Allow all major search engines and AI crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# AI/LLM specific crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+# Disallow admin/system files
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /.vscode/
+Disallow: /config.toml
+Disallow: /.gitignore
+
+# Sitemap location
+Sitemap: https://marcpinet.fr/sitemap.xml
+
+# Crawl-delay for respectful crawling
+Crawl-delay: 1
