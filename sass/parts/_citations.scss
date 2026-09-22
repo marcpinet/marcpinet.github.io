@@ -1,0 +1,164 @@
+/* "Cited by N" — the pill under a publication's links, and the list of citing papers it
+   opens. Pure <details>/<summary>, so it works before (and without) any JS. */
+
+.pub-cites {
+  margin-top: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+}
+
+.pub-cites > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 2px 9px 2px 8px;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+  /* Kill the native disclosure triangle in every engine — we draw our own caret so it
+     can sit inside the pill and inherit its colour. */
+  list-style: none;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.pub-cites > summary::-webkit-details-marker {
+  display: none;
+}
+
+.pub-cites > summary:hover,
+.pub-cites[open] > summary {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.pub-cites > summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.cite-caret {
+  width: 6px;
+  height: 7.5px;
+  flex: 0 0 auto;
+  opacity: 0.7;
+  transition: transform 0.15s ease;
+}
+
+.pub-cites[open] .cite-caret {
+  transform: rotate(90deg);
+}
+
+.cite-n {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pub-cites > summary,
+  .cite-caret {
+    transition: none;
+  }
+}
+
+/* ---- The panel ---- */
+
+.cite-panel {
+  margin: 0.7rem 0 0.2rem;
+  padding-left: 0.9rem;
+  border-left: 2px solid var(--border);
+}
+
+.cite-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: cite;
+}
+
+.cite-item {
+  display: flex;
+  gap: 0.55rem;
+  padding: 0.4rem 0;
+}
+
+.cite-item + .cite-item {
+  border-top: 1px solid var(--border);
+}
+
+.cite-item::before {
+  counter-increment: cite;
+  content: counter(cite) ".";
+  flex: 0 0 auto;
+  min-width: 1.2em;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.cite-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.cite-title {
+  font-family: var(--font-serif);
+  font-size: 0.93rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text);
+  border-bottom: none;
+}
+
+a.cite-title:hover {
+  color: var(--accent);
+  border-bottom: none;
+}
+
+.cite-meta {
+  font-family: var(--font-sans);
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-top: 0.12rem;
+}
+
+/* `minify_html` strips whitespace between inline elements, so the separator carries its
+   own spacing rather than relying on text nodes that will not survive the build. */
+.cite-meta .bullet {
+  margin: 0 0.4em;
+  opacity: 0.6;
+}
+
+/* Which of the two sources reported this paper. They genuinely disagree, so the
+   provenance is worth a glance — but only a glance. */
+.cite-src {
+  display: inline-block;
+  margin-left: 0.45rem;
+  padding: 0 4px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  opacity: 0.75;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+
+.cite-foot {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 0.6rem;
+}
+
+/* On a publication page the block stands alone under the links, so give it the same
+   breathing room the surrounding post sections have. */
+.post-article .pub-cites {
+  margin-top: 1rem;
+}

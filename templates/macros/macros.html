@@ -21,6 +21,54 @@
   </span>{% endif %}
 {%- endmacro pub_meta %}
 
+{# "Cited by N" for one publication, expanding on click to the papers that cite it. The
+   data is data/citations.json — the union of Google Scholar and Semantic Scholar, refreshed
+   daily by .github/workflows/citations.yml (see scripts/fetch_citations.py). Keyed on the
+   page slug, so a publication the sync hasn't matched (or one with no citations yet) simply
+   renders nothing. Plain <details>, so it costs no JS. #}
+{% macro cited_by(slug) %}
+  {% set cites = load_data(path="data/citations.json", required=false) %}
+  {% if cites %}
+    {% set hits = cites.papers | filter(attribute="slug", value=slug) %}
+    {% if hits | length > 0 and hits[0].count > 0 %}
+      {% set entry = hits[0] %}
+      <details class="pub-cites">
+        <summary>
+          <svg class="cite-caret" viewBox="0 0 8 10" aria-hidden="true"><path fill="currentColor" d="M0 0l8 5-8 5z"/></svg>
+          Cited by <span class="cite-n">{{ entry.count }}</span>
+        </summary>
+        <div class="cite-panel">
+          <ol class="cite-list">
+            {% for c in entry.citations %}
+              <li class="cite-item">
+                <div class="cite-body">
+                  {% if c.url %}
+                    <a class="cite-title" href="{{ c.url }}" target="_blank" rel="noopener noreferrer">{{ c.title }}</a>
+                  {% else %}
+                    <span class="cite-title">{{ c.title }}</span>
+                  {% endif %}
+                  {# Separators are spaced by CSS margins, not by literal spaces: `minify_html`
+                     collapses whitespace between inline elements and would glue "·" to its
+                     neighbours. #}
+                  <div class="cite-meta">
+                    {%- if c.authors %}<span class="cite-authors">{{ c.authors }}</span>{% endif -%}
+                    {%- if c.venue %}{% if c.authors %}<span class="bullet">·</span>{% endif %}<em>{{ c.venue }}</em>{% endif -%}
+                    {%- if c.year %}{% if c.authors or c.venue %}<span class="bullet">·</span>{% endif %}{{ c.year }}{% endif -%}
+                    <span class="cite-src">{% for s in c.sources %}{% if s == "scholar" %}Scholar{% else %}S2{% endif %}{% if not loop.last %}&nbsp;+&nbsp;{% endif %}{% endfor %}</span>
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ol>
+          <div class="cite-foot">
+            Google Scholar and Semantic Scholar combined, duplicates merged{% if cites.generated %} · updated {{ cites.generated | date(format="%d %b %Y") }}{% endif %}
+          </div>
+        </div>
+      </details>
+    {% endif %}
+  {% endif %}
+{% endmacro cited_by %}
+
 {% macro project_entry(p, pinned=false) %}
   {% set link = p.extra.github_link | default(value=p.permalink) %}
   <a class="project-entry{% if pinned %} project-entry-pinned{% endif %}" href="{{ link }}"{% if p.extra.github_link %} target="_blank" rel="noopener noreferrer"{% endif %}>

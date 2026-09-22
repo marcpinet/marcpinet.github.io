@@ -1,0 +1,69 @@
+{
+  "generated": "2026-09-22T08:10:42Z",
+  "papers": [
+    {
+      "slug": "anomalies-mtsad-univariate",
+      "title": "Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate",
+      "count": 4,
+      "by_source": {
+        "scholar": 2,
+        "semanticscholar": 2
+      },
+      "citations": [
+        {
+          "title": "Exploring Zero-Shot Foundation Models for Multivariate Time Series Anomaly Detection",
+          "authors": "M. Uray, S. Messineo, Roland Kwitt, Stefan Huber",
+          "year": 2026,
+          "date": "2026-07-14",
+          "venue": "arXiv.org",
+          "url": "https://arxiv.org/abs/2607.12454",
+          "doi": "10.48550/arxiv.2607.12454",
+          "arxiv": "2607.12454",
+          "sources": [
+            "semanticscholar"
+          ]
+        },
+        {
+          "title": "Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Cyber-Physical Systems",
+          "authors": "Alexander Apartsin, Y. Aperstein",
+          "year": 2026,
+          "date": "2026-07-07",
+          "venue": "arXiv.org",
+          "url": "https://arxiv.org/abs/2607.06094",
+          "doi": "10.48550/arxiv.2607.06094",
+          "arxiv": "2607.06094",
+          "sources": [
+            "semanticscholar"
+          ]
+        },
+        {
+          "title": "Evaluating univariate time series anomaly detection: Results and practical guidelines from the UCR Anomaly Archive",
+          "authors": "D Cacciagrano, F Corradini, A Mehmeti",
+          "year": 2026,
+          "date": "",
+          "venue": "Intelligent Systems with …",
+          "url": "https://www.sciencedirect.com/science/article/pii/S2667305326000918",
+          "doi": null,
+          "arxiv": null,
+          "sources": [
+            "scholar"
+          ]
+        },
+        {
+          "title": "Contaminated by Construction: Training Contamination and Sampling Granularity Decide Which Anomaly Detector Wins",
+          "authors": "H Tabasi, G Gupta",
+          "year": 2026,
+          "date": "",
+          "venue": "Available at SSRN 7415960",
+          "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7415960",
+          "doi": null,
+          "arxiv": null,
+          "sources": [
+            "scholar"
+          ]
+        }
+      ]
+    }
+  ],
+  "total": 4
+}

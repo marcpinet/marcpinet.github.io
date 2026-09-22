@@ -4,6 +4,7 @@ title = "Marc Pinet"
 # Site-wide default description: used on the homepage and as the fallback for any
 # page/section that doesn't define its own `description` in front-matter.
 description = "My personal website."
+# No RSS/Atom: nothing here is a stream anyone would subscribe to.
 generate_feeds = false
 minify_html = true
 

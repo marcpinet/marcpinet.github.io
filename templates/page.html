@@ -39,6 +39,8 @@
     </div>
   {% endif %}
 
+  {{ macros::cited_by(slug=page.slug) }}
+
   {% if page.extra.github_link and not page.extra.links %}
     <div class="post-links">
       <a href="{{ page.extra.github_link }}" target="_blank" rel="noopener noreferrer">GitHub</a>

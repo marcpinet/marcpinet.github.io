@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+  # Invoked by the citation refresh: its bot push cannot trigger `push` itself.
+  workflow_dispatch:
 
 jobs:
   build:

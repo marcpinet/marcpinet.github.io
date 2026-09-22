@@ -71,3 +71,7 @@ Thumbs.db
 .vscode/
 /**/.discontinued
 /graphify-out/
+
+# Python bytecode from scripts/
+__pycache__/
+*.pyc

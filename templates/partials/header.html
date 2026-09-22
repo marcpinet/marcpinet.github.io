@@ -67,7 +67,7 @@
     "description": "{{ config.description }}",
     "sameAs": [
       {% for social in config.extra.socials %}
-        {% if social.name != "Email" and social.name != "CV" and social.name != "RSS" %}
+        {% if social.name != "Email" and social.name != "CV" %}
           "{{ social.url }}"{% if not loop.last %},{% endif %}
         {% endif %}
       {% endfor %}
