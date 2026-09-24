@@ -1,12 +1,12 @@
 {
-  "generated": "2026-09-22T08:10:42Z",
+  "generated": "2026-09-24T12:58:50Z",
   "papers": [
     {
       "slug": "anomalies-mtsad-univariate",
       "title": "Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate",
-      "count": 4,
+      "count": 5,
       "by_source": {
-        "scholar": 2,
+        "scholar": 3,
         "semanticscholar": 2,
         "openalex": 0
       },
@@ -38,8 +38,21 @@
           ]
         },
         {
+          "title": "ST-CCGN: Spatiotemporal Co-Clustering Graph Network for Multivariate Time-Series Anomaly Detection in Industrial Control Systems",
+          "authors": "Y Xue, Z Yang, DKY Yau, R Deng",
+          "year": 2026,
+          "date": "",
+          "venue": "IEEE Transactions on …",
+          "url": "https://ieeexplore.ieee.org/abstract/document/11695677/",
+          "doi": null,
+          "arxiv": null,
+          "sources": [
+            "scholar"
+          ]
+        },
+        {
           "title": "Evaluating univariate time series anomaly detection: Results and practical guidelines from the UCR Anomaly Archive",
-          "authors": "D Cacciagrano, F Corradini, A Mehmeti",
+          "authors": "D Cacciagrano, F Corradini, A Mehmeti…",
           "year": 2026,
           "date": "",
           "venue": "Intelligent Systems with …",
@@ -67,5 +80,5 @@
       "scholar_cites_id": "10741312500140774016"
     }
   ],
-  "total": 4
+  "total": 5
 }
