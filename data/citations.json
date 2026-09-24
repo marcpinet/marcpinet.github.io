@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-24T12:58:50Z",
+  "generated": "2026-09-24T13:04:09Z",
   "papers": [
     {
       "slug": "anomalies-mtsad-univariate",
@@ -11,6 +11,33 @@
         "openalex": 0
       },
       "citations": [
+        {
+          "title": "ST-CCGN: Spatiotemporal Co-Clustering Graph Network for Multivariate Time-Series Anomaly Detection in Industrial Control Systems",
+          "authors": "Y Xue, Z Yang, DKY Yau, R Deng",
+          "year": 2026,
+          "date": "",
+          "venue": "IEEE Transactions on …",
+          "url": "https://ieeexplore.ieee.org/abstract/document/11695677/",
+          "doi": null,
+          "arxiv": null,
+          "sources": [
+            "scholar"
+          ],
+          "first_seen": "2026-09-24"
+        },
+        {
+          "title": "Evaluating univariate time series anomaly detection: Results and practical guidelines from the UCR Anomaly Archive",
+          "authors": "D Cacciagrano, F Corradini, A Mehmeti…",
+          "year": 2026,
+          "date": "2026-08-08",
+          "venue": "Intelligent Systems with …",
+          "url": "https://www.sciencedirect.com/science/article/pii/S2667305326000918",
+          "doi": "10.1016/j.iswa.2026.200717",
+          "arxiv": null,
+          "sources": [
+            "scholar"
+          ]
+        },
         {
           "title": "Exploring Zero-Shot Foundation Models for Multivariate Time Series Anomaly Detection",
           "authors": "M. Uray, S. Messineo, Roland Kwitt, Stefan Huber",
@@ -38,39 +65,13 @@
           ]
         },
         {
-          "title": "ST-CCGN: Spatiotemporal Co-Clustering Graph Network for Multivariate Time-Series Anomaly Detection in Industrial Control Systems",
-          "authors": "Y Xue, Z Yang, DKY Yau, R Deng",
-          "year": 2026,
-          "date": "",
-          "venue": "IEEE Transactions on …",
-          "url": "https://ieeexplore.ieee.org/abstract/document/11695677/",
-          "doi": null,
-          "arxiv": null,
-          "sources": [
-            "scholar"
-          ]
-        },
-        {
-          "title": "Evaluating univariate time series anomaly detection: Results and practical guidelines from the UCR Anomaly Archive",
-          "authors": "D Cacciagrano, F Corradini, A Mehmeti…",
-          "year": 2026,
-          "date": "",
-          "venue": "Intelligent Systems with …",
-          "url": "https://www.sciencedirect.com/science/article/pii/S2667305326000918",
-          "doi": null,
-          "arxiv": null,
-          "sources": [
-            "scholar"
-          ]
-        },
-        {
           "title": "Contaminated by Construction: Training Contamination and Sampling Granularity Decide Which Anomaly Detector Wins",
           "authors": "H Tabasi, G Gupta",
           "year": 2026,
           "date": "",
           "venue": "Available at SSRN 7415960",
           "url": "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7415960",
-          "doi": null,
+          "doi": "10.2139/ssrn.7415960",
           "arxiv": null,
           "sources": [
             "scholar"

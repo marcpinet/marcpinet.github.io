@@ -130,6 +130,27 @@ def date_key(entry: dict) -> str:
     return "0000-00-00"
 
 
+def display_order_key(entry: dict) -> str:
+    """date_key, except that an undated paper stands in with the day this script first saw
+    it, when that falls in its own year: a citation that only Scholar knows about yet is
+    by definition brand new, and should top the list rather than trail every dated paper
+    of the year. Never used to pick between versions, only to order the list."""
+    seen = entry.get("first_seen") or ""
+    if not entry.get("date") and entry.get("year") and seen[:4] == str(entry["year"]):
+        return seen
+    return date_key(entry)
+
+
+def full_date(value: str | None) -> str:
+    """A YYYY-MM-DD date, or "" when the source only really knows the year. OpenAlex
+    files a year-only work under January 1st, which would sort it as the oldest paper
+    of its year instead of an undated one."""
+    value = (value or "").strip()
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", value) or value.endswith("-01-01"):
+        return ""
+    return value
+
+
 def is_preprint_venue(venue: str | None) -> bool:
     return bool(venue) and bool(
         re.match(r"^\s*(arxiv(\.org)?|corr|ssrn|biorxiv|medrxiv|hal)\s*$", venue, re.I)
@@ -652,7 +673,7 @@ def fetch_openalex(pubs: list[dict]) -> dict[str, list[dict]]:
                     authors=", ".join((a.get("author") or {}).get("display_name", "")
                                       for a in work.get("authorships") or []),
                     year=work.get("publication_year"),
-                    date=work.get("publication_date") or "",
+                    date=full_date(work.get("publication_date")),
                     venue=source.get("display_name") or "",
                     url=(work.get("primary_location") or {}).get("landing_page_url") or "",
                     doi=doi,
@@ -782,9 +803,79 @@ def collapse(group: list[dict]) -> dict:
 
 def merge_slug(layers: dict[str, list[dict]]) -> list[dict]:
     flat = [e for entries in layers.values() for e in entries]
-    merged = [collapse(g) for g in group_duplicates(flat)]
-    merged.sort(key=lambda e: (date_key(e), norm_title(e["title"])), reverse=True)
-    return merged
+    return [collapse(g) for g in group_duplicates(flat)]
+
+
+def index_by_identity(entries: list[dict]) -> dict[str, dict]:
+    index: dict[str, dict] = {}
+    for entry in entries:
+        for key in identity_keys(entry):
+            index.setdefault(key, entry)
+    return index
+
+
+def find_previous(entry: dict, index: dict[str, dict]) -> dict | None:
+    return next((index[k] for k in identity_keys(entry) if k in index), None)
+
+
+# ------------------------------------------------------------------------- enrichment
+#
+# Scholar gives a year and nothing else. Its entries are looked up by exact title in
+# Crossref and OpenAlex for the publication date and DOI — metadata only: neither lookup
+# claims the work cites anything. What a previous run found is reused first, so the
+# network is only asked about a paper until it has a date.
+
+
+class Enricher:
+    def __init__(self, budget_s: int = 120):
+        self.session = requests.Session()
+        self.session.headers["User-Agent"] = "marcpinet.fr citation sync"
+        self.deadline = time.monotonic() + budget_s
+
+    def _json(self, url: str, params: dict) -> dict:
+        try:
+            resp = self.session.get(url, params=params, timeout=15)
+            return resp.json() if resp.status_code == 200 else {}
+        except (requests.RequestException, ValueError):
+            return {}
+
+    def crossref(self, title: str) -> tuple[str, str | None]:
+        data = self._json("https://api.crossref.org/works", {
+            "query.bibliographic": title, "rows": 5,
+            "select": "DOI,title,published-online,published-print,published,issued"})
+        for item in (data.get("message") or {}).get("items", []):
+            if norm_title((item.get("title") or [""])[0]) != norm_title(title):
+                continue
+            for field in ("published-online", "published-print", "published", "issued"):
+                parts = ((item.get(field) or {}).get("date-parts") or [[]])[0]
+                if len(parts) == 3 and all(parts):
+                    return "{:04d}-{:02d}-{:02d}".format(*parts), item.get("DOI")
+            return "", item.get("DOI")
+        return "", None
+
+    def openalex(self, title: str) -> tuple[str, str | None]:
+        data = self._json(f"{OPENALEX_API}/works", {
+            "filter": f"title.search:{title.replace(',', ' ')}",
+            "select": "title,publication_date,doi", "per-page": 5})
+        for work in data.get("results", []):
+            if norm_title(work.get("title") or "") == norm_title(title):
+                return full_date(work.get("publication_date")), work.get("doi")
+        return "", None
+
+    def fill(self, entry: dict, previous: dict[str, dict]) -> None:
+        if prev := find_previous(entry, previous):
+            if prev.get("date") and (not entry.get("year") or prev["date"][:4] == str(entry["year"])):
+                entry["date"] = entry.get("date") or prev["date"]
+            entry["doi"] = entry.get("doi") or prev.get("doi")
+        if entry.get("date") or time.monotonic() > self.deadline:
+            return
+        for lookup in (self.crossref, self.openalex):
+            date, doi = lookup(entry["title"])
+            entry["doi"] = entry.get("doi") or clean_doi(doi)
+            if date and (not entry.get("year") or date[:4] == str(entry["year"])):
+                entry["date"] = date
+                log(f"  dated from {lookup.__name__}: {entry['title'][:60]} → {date}")
+                return
 
 
 # ------------------------------------------------------------------------------- main
@@ -840,6 +931,9 @@ def main() -> int:
         # and no longer lists the paper, it should not still be credited.
         return [{**e, "sources": [name]} for e in cached.get(slug, []) if name in e.get("sources", [])]
 
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    prev_index = {slug: index_by_identity(entries) for slug, entries in cached.items()}
+    enricher = Enricher()
     suspicious: list[str] = []
     papers = []
     for pub in pubs:
@@ -861,7 +955,18 @@ def main() -> int:
                 layers[f"previous:{name}"] = kept
                 log(f"  {slug}: kept {len(kept)} cached {name} entries")
 
+        for entry in (e for entries in layers.values() for e in entries if not e.get("date")):
+            enricher.fill(entry, prev_index.get(slug, {}))
+
         citations = merge_slug(layers)
+        for c in citations:
+            prev = find_previous(c, prev_index.get(slug, {}))
+            # Only a citation that appears between two runs has a meaningful first sighting;
+            # whatever a paper's first ever run finds could date from any time before.
+            c["first_seen"] = prev.get("first_seen") if prev else (today if slug in cached else None)
+            if not c["first_seen"]:
+                del c["first_seen"]
+        citations.sort(key=lambda e: (display_order_key(e), norm_title(e["title"])), reverse=True)
         record = {
             "slug": slug,
             "title": pub["title"],
