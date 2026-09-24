@@ -3,8 +3,8 @@ name: Refresh citation counts
 on:
   schedule:
     # Daily, 04:12 UTC. Off the hour on purpose: GitHub queues everything scheduled at
-    # :00 together, and a Scholar request from a congested runner is likelier to be met
-    # with a captcha.
+    # :00 together. A run costs 1 SerpAPI search + 1 per paper (per 20 citations): ~60 a
+    # month today, well inside the free 250.
     - cron: "12 4 * * *"
   workflow_dispatch:
 
@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   refresh:
-    name: Sync Google Scholar + Semantic Scholar
+    name: Sync Google Scholar + Semantic Scholar + OpenAlex
     runs-on: ubuntu-latest
     # Backstop only: the script budgets each source itself so a slow Scholar still lets
     # the Semantic Scholar refresh through instead of failing the whole job.
@@ -37,8 +37,11 @@ jobs:
 
       - name: Fetch citations
         env:
-          SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}
           SCRAPERAPI_KEY: ${{ secrets.SCRAPERAPI_KEY }}
+          SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
+          # A runner's IP gets a captcha from Scholar every time; don't waste the budget.
+          SCHOLAR_DIRECT: "0"
         run: python scripts/fetch_citations.py
 
       - name: Commit if anything changed

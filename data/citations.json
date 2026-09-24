@@ -7,7 +7,8 @@
       "count": 4,
       "by_source": {
         "scholar": 2,
-        "semanticscholar": 2
+        "semanticscholar": 2,
+        "openalex": 0
       },
       "citations": [
         {
@@ -62,7 +63,8 @@
             "scholar"
           ]
         }
-      ]
+      ],
+      "scholar_cites_id": "10741312500140774016"
     }
   ],
   "total": 4

@@ -22,7 +22,7 @@
 {%- endmacro pub_meta %}
 
 {# "Cited by N" for one publication, expanding on click to the papers that cite it. The
-   data is data/citations.json — the union of Google Scholar and Semantic Scholar, refreshed
+   data is data/citations.json — the union of Google Scholar, Semantic Scholar and OpenAlex, refreshed
    daily by .github/workflows/citations.yml (see scripts/fetch_citations.py). Keyed on the
    page slug, so a publication the sync hasn't matched (or one with no citations yet) simply
    renders nothing. Plain <details>, so it costs no JS. #}
@@ -54,14 +54,14 @@
                     {%- if c.authors %}<span class="cite-authors">{{ c.authors }}</span>{% endif -%}
                     {%- if c.venue %}{% if c.authors %}<span class="bullet">·</span>{% endif %}<em>{{ c.venue }}</em>{% endif -%}
                     {%- if c.year %}{% if c.authors or c.venue %}<span class="bullet">·</span>{% endif %}{{ c.year }}{% endif -%}
-                    <span class="cite-src">{% for s in c.sources %}{% if s == "scholar" %}Scholar{% else %}S2{% endif %}{% if not loop.last %}&nbsp;+&nbsp;{% endif %}{% endfor %}</span>
+                    <span class="cite-src">{% for s in c.sources %}{% if s == "scholar" %}Scholar{% elif s == "openalex" %}OpenAlex{% else %}S2{% endif %}{% if not loop.last %}&nbsp;+&nbsp;{% endif %}{% endfor %}</span>
                   </div>
                 </div>
               </li>
             {% endfor %}
           </ol>
           <div class="cite-foot">
-            Google Scholar and Semantic Scholar combined, duplicates merged{% if cites.generated %} · updated {{ cites.generated | date(format="%d %b %Y") }}{% endif %}
+            Google Scholar, Semantic Scholar and OpenAlex combined, duplicates merged{% if cites.generated %} · updated {{ cites.generated | date(format="%d %b %Y") }}{% endif %}
           </div>
         </div>
       </details>

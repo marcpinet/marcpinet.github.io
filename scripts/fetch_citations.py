@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Refresh data/citations.json — who cites each publication in content/research/.
 
-Two sources are queried and UNIONed, because they disagree in both directions:
-Semantic Scholar's graph API (fast, structured) and Google Scholar via `scholarly`
-(broader, but scraped and regularly blocked from datacenter IPs).
+Three sources are queried and UNIONed, because they disagree in every direction:
+Semantic Scholar's graph API and OpenAlex (fast, structured, open, but they only see a
+citation once the citing paper's reference list has been ingested) and Google Scholar
+(broadest and first to index new papers, but scraped: see fetch_google_scholar).
 
 Duplicates across the two are collapsed on DOI / arXiv id / normalised title, and the
 surviving record is the MOST RECENT version of the citing work (a journal version wins
@@ -14,12 +15,18 @@ Failure of one source is never destructive: that source's share of the previous
 data/citations.json is re-injected into the union, so a captcha'd Scholar run leaves the
 site exactly as it was instead of silently halving every count.
 
+A source that answers but suddenly reports NO citations for a paper it previously had
+some for is treated as a glitch (soft block, index hiccup) rather than believed.
+
 Env:
+  SERPAPI_KEY               recommended; Google Scholar through SerpAPI. The only route
+                            that reliably gets past Scholar's captcha from CI.
+  SCRAPERAPI_KEY            optional; Scholar HTML through ScraperAPI, tried next.
   SEMANTIC_SCHOLAR_API_KEY  optional; the shared unauthenticated pool works fine at this
                             volume, and a key that answers 403 is dropped automatically.
-  SCRAPERAPI_KEY            optional; routes Google Scholar through ScraperAPI, which is
-                            the practical way to make it work from CI.
-  SKIP_SCHOLAR / SKIP_S2    set to 1 to skip a source (its previous share is kept).
+  OPENALEX_API_KEY          optional; OpenAlex's anonymous daily allowance is plenty.
+  SKIP_SCHOLAR / SKIP_S2 / SKIP_OPENALEX
+                            set to 1 to skip a source (its previous share is kept).
 """
 
 from __future__ import annotations
@@ -50,12 +57,14 @@ S2_CITATION_FIELDS = (
 
 SCHOLAR = "scholar"
 S2 = "semanticscholar"
+OPENALEX = "openalex"
+SOURCES = (SCHOLAR, S2, OPENALEX)
 
-# Wall-clock budget per source. Scholar's last-resort route is a pool of free public
-# proxies, most of which are dead: without a ceiling a single bad day would keep a CI
-# runner busy for hours and still commit nothing.
+# Wall-clock budget per source, so one hung source cannot keep the runner busy for hours
+# and still commit nothing.
 TIMEOUTS = {S2: int(os.environ.get("S2_TIMEOUT", 300)),
-            SCHOLAR: int(os.environ.get("SCHOLAR_TIMEOUT", 900))}
+            OPENALEX: int(os.environ.get("OPENALEX_TIMEOUT", 300)),
+            SCHOLAR: int(os.environ.get("SCHOLAR_TIMEOUT", 600))}
 
 
 def log(msg: str) -> None:
@@ -320,83 +329,340 @@ def fetch_semantic_scholar(pubs: list[dict]) -> dict[str, list[dict]]:
 
 
 # --------------------------------------------------------------------- google scholar
+#
+# The profile page is NOT a source of citations here, only of cluster ids. Its per-paper
+# "Cited by" count is a cache Google refreshes on its own schedule (days, sometimes
+# weeks), and the old implementation only followed a paper whose profile count was
+# non-zero, then trusted whatever the profile said. The search page behind
+# `scholar?cites=<cluster id>` is live: a newly indexed citing paper shows up there long
+# before the profile catches up. So: resolve each publication to its cluster id(s) once,
+# remember them in data/citations.json, and always query the `cites=` page directly.
 
 
-def fetch_google_scholar(pubs: list[dict]) -> dict[str, list[dict]]:
-    """Scrape Scholar, trying progressively more desperate transports.
+class ScholarBlocked(RuntimeError):
+    """Google answered with a captcha / rate limit instead of results."""
 
-    Google serves a captcha to anything that looks like a datacenter, and often to
-    residential IPs too, so a plain request is the least likely route to work. ScraperAPI
-    (a key in $SCRAPERAPI_KEY) is the only one that works reliably; the free public proxy
-    pool is a slow, unreliable last resort. All of them failing is a normal outcome and
-    the caller keeps the previous Scholar data.
-    """
-    from scholarly import ProxyGenerator, scholarly
 
-    routes: list[tuple[str, object]] = []
-    if key := os.environ.get("SCRAPERAPI_KEY"):
-        routes.append(("ScraperAPI", lambda pg: pg.ScraperAPI(key)))
-    routes.append(("direct", None))
-    if os.environ.get("SCHOLAR_FREE_PROXIES", "1") == "1":
-        routes.append(("free proxies", lambda pg: pg.FreeProxies()))
+SCHOLAR_BASE = "https://scholar.google.com"
+BROWSER_UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 "
+              "(KHTML, like Gecko) Chrome/140.0 Safari/537.36")
 
-    last_error: Exception | None = None
-    for label, setup in routes:
-        log(f"  GS: trying {label}")
-        try:
-            if setup is None:
-                scholarly.use_proxy(None)
-            else:
-                generator = ProxyGenerator()
-                if not setup(generator):
-                    log(f"  GS: {label} unavailable")
+
+def split_scholar_byline(line: str) -> tuple[str, str, int | None]:
+    """"A Author, B Author - Venue, 2026 - publisher" → (authors, venue, year).
+
+    The same line comes back from the HTML page and from SerpAPI's `summary`. Scholar
+    truncates long parts with "…", which is left as is."""
+    parts = [p.strip() for p in re.split(r"\s+-\s+", line or "")]
+    authors = parts[0] if parts else ""
+    middle = parts[1] if len(parts) >= 2 else ""
+    year = None
+    if m := re.search(r"(?:^|,\s*)((?:19|20)\d\d)\s*$", middle):
+        year = int(m.group(1))
+        middle = middle[: m.start()].strip(" ,")
+    elif re.fullmatch(r"(?:19|20)\d\d", middle):
+        year, middle = int(middle), ""
+    # With only two parts the second is usually the publisher/site, not a venue.
+    venue = middle if len(parts) > 2 or year else ""
+    return authors.replace(" ", " "), venue, year
+
+
+def join_ids(*groups) -> str:
+    """Union of comma-separated cluster ids, order-stable. Ids are only ever added: when
+    Scholar merges two versions of a paper the profile lists both, and a stale id still
+    answers."""
+    seen: list[str] = []
+    for group in groups:
+        for cid in re.split(r"[,\s]+", str(group or "")):
+            if cid.isdigit() and cid not in seen:
+                seen.append(cid)
+    return ",".join(seen)
+
+
+class SerpApiScholar:
+    """Google Scholar through SerpAPI: they solve the captchas, we get JSON. The only
+    route that works from a CI runner day after day (free tier: 250 searches/month;
+    a run costs 1 + one per 20 citations per cited paper)."""
+
+    label = "SerpAPI"
+
+    def __init__(self, key: str):
+        self.key = key
+        self.session = requests.Session()
+
+    def _get(self, params: dict) -> dict:
+        resp = self.session.get("https://serpapi.com/search.json",
+                                params={**params, "api_key": self.key, "hl": "en"}, timeout=60)
+        data = resp.json() if resp.headers.get("content-type", "").startswith("application/json") else {}
+        error = data.get("error", "")
+        # An empty result set is reported as an "error"; it is a real, valid answer.
+        if error and "hasn't returned any results" in error:
+            return {"organic_results": []}
+        if resp.status_code != 200 or error or not data:
+            raise RuntimeError(f"serpapi {resp.status_code}: {error or resp.text[:200]}")
+        return data
+
+    def profile_ids(self) -> dict[str, str]:
+        out: dict[str, str] = {}
+        start = 0
+        while True:
+            data = self._get({"engine": "google_scholar_author", "author_id": SCHOLAR_AUTHOR_ID,
+                              "num": 100, "start": start})
+            articles = data.get("articles", [])
+            for art in articles:
+                cites = (art.get("cited_by") or {}).get("cites_id")
+                if cites:
+                    out[norm_title(art.get("title", ""))] = cites
+            if len(articles) < 100:
+                return out
+            start += 100
+
+    def search_ids(self, title: str) -> str | None:
+        data = self._get({"engine": "google_scholar", "q": f'"{title}"', "num": 10})
+        for res in data.get("organic_results", []):
+            if norm_title(res.get("title", "")) == norm_title(title):
+                links = res.get("inline_links") or {}
+                return join_ids((links.get("cited_by") or {}).get("cites_id"),
+                                (links.get("versions") or {}).get("cluster_id")) or None
+        return None
+
+    def citing(self, cites: str) -> list[dict]:
+        out, start = [], 0
+        while True:
+            data = self._get({"engine": "google_scholar", "cites": cites, "num": 20, "start": start})
+            page = data.get("organic_results", [])
+            for res in page:
+                authors, venue, year = split_scholar_byline(
+                    (res.get("publication_info") or {}).get("summary", ""))
+                out.append({"title": res.get("title", ""), "url": res.get("link", ""),
+                            "authors": authors, "venue": venue, "year": year})
+            total = (data.get("search_information") or {}).get("total_results") or 0
+            start += 20
+            if not page or start >= total or start >= 1000:
+                return out
+
+
+class HtmlScholar:
+    """Google Scholar's own HTML, fetched directly or through ScraperAPI. Parsed by hand
+    rather than through `scholarly`, whose unpinned dependencies break it every few
+    months (bibtexparser 2 removed the module it imports)."""
+
+    def __init__(self, label: str, scraperapi_key: str | None = None):
+        self.label = label
+        self.scraperapi_key = scraperapi_key
+        self.session = requests.Session()
+        self.session.headers.update({"User-Agent": BROWSER_UA, "Accept-Language": "en-US,en;q=0.9"})
+
+    def _get(self, path: str, params: dict):
+        from bs4 import BeautifulSoup
+
+        url = requests.Request("GET", f"{SCHOLAR_BASE}{path}", params={**params, "hl": "en"}).prepare().url
+        if self.scraperapi_key:
+            resp = self.session.get("https://api.scraperapi.com/",
+                                    params={"api_key": self.scraperapi_key, "url": url}, timeout=90)
+        else:
+            resp = self.session.get(url, timeout=30)
+            time.sleep(4)  # be a slow, boring client
+        html = resp.text
+        if (resp.status_code in (403, 429, 503) or "/sorry/" in resp.url
+                or "gs_captcha" in html or "unusual traffic" in html):
+            raise ScholarBlocked(f"{self.label}: blocked ({resp.status_code})")
+        resp.raise_for_status()
+        return BeautifulSoup(html, "html.parser")
+
+    def profile_ids(self) -> dict[str, str]:
+        out: dict[str, str] = {}
+        start = 0
+        while True:
+            soup = self._get("/citations", {"user": SCHOLAR_AUTHOR_ID, "cstart": start, "pagesize": 100})
+            rows = soup.select("tr.gsc_a_tr")
+            if start == 0 and not soup.select_one("#gsc_prf_in"):
+                raise ScholarBlocked(f"{self.label}: profile page has no profile in it")
+            for row in rows:
+                title = row.select_one("a.gsc_a_at")
+                cited = row.select_one("a.gsc_a_ac")
+                if title and cited and (m := re.search(r"cites=([\d,]+)", cited.get("href", ""))):
+                    out[norm_title(title.get_text())] = m.group(1)
+            if len(rows) < 100:
+                return out
+            start += 100
+
+    def _results(self, soup) -> list:
+        if not soup.select_one("#gs_res_ccl"):
+            raise ScholarBlocked(f"{self.label}: no result list on the page")
+        return soup.select("div.gs_r.gs_or[data-cid]")
+
+    def search_ids(self, title: str) -> str | None:
+        soup = self._get("/scholar", {"q": f'"{title}"'})
+        for res in self._results(soup):
+            head = res.select_one("h3.gs_rt")
+            if head:
+                for tag in head.select("span.gs_ctc, span.gs_ctg2, span.gs_ct1, span.gs_ct2"):
+                    tag.decompose()
+                if norm_title(head.get_text()) == norm_title(title):
+                    return res["data-cid"]
+        return None
+
+    def citing(self, cites: str) -> list[dict]:
+        out, start = [], 0
+        while True:
+            soup = self._get("/scholar", {"cites": cites, "num": 20, "start": start})
+            page = self._results(soup)
+            for res in page:
+                head = res.select_one("h3.gs_rt")
+                if not head:
                     continue
-                scholarly.use_proxy(generator)
-            return _scrape_scholar(scholarly, pubs)
+                link = head.select_one("a")
+                for tag in head.select("span.gs_ctc, span.gs_ctg2, span.gs_ct1, span.gs_ct2"):
+                    tag.decompose()
+                byline = res.select_one("div.gs_a")
+                authors, venue, year = split_scholar_byline(re.sub(r"\s+", " ", byline.get_text()) if byline else "")
+                out.append({"title": re.sub(r"\s+", " ", head.get_text()).strip(),
+                            "url": link.get("href", "") if link else "",
+                            "authors": authors, "venue": venue, "year": year})
+            start += 20
+            if len(page) < 20 or start >= 1000:
+                return out
+
+
+def scholar_routes() -> list:
+    routes = []
+    if key := os.environ.get("SERPAPI_KEY"):
+        routes.append(SerpApiScholar(key))
+    if key := os.environ.get("SCRAPERAPI_KEY"):
+        routes.append(HtmlScholar("ScraperAPI", key))
+    if os.environ.get("SCHOLAR_DIRECT", "1") == "1":
+        routes.append(HtmlScholar("direct"))
+    return routes
+
+
+def fetch_google_scholar(pubs: list[dict], known_ids: dict[str, str]) -> dict[str, list[dict]]:
+    """Try each transport in turn; the first that gets through does the whole run.
+
+    From a datacenter IP (and, lately, from many residential ones too) the direct route
+    is met with a captcha, so without $SERPAPI_KEY or $SCRAPERAPI_KEY a failure here is
+    the expected outcome, and the caller keeps the previous Scholar data."""
+    routes = scholar_routes()
+    if not routes:
+        raise RuntimeError("no route configured (set SERPAPI_KEY)")
+    last_error: Exception | None = None
+    for route in routes:
+        log(f"  GS: trying {route.label}")
+        try:
+            return _scrape_scholar(route, pubs, known_ids)
         except Exception as exc:  # noqa: BLE001 — try the next transport
             last_error = exc
-            log(f"  GS: {label} failed ({exc.__class__.__name__}: {exc})")
-
+            log(f"  GS: {route.label} failed ({exc.__class__.__name__}: {exc})")
     raise RuntimeError(f"google scholar unreachable: {last_error}")
 
 
-def _scrape_scholar(scholarly, pubs: list[dict]) -> dict[str, list[dict]]:
-    author = scholarly.search_author_id(SCHOLAR_AUTHOR_ID)
-    author = scholarly.fill(author, sections=["publications"])
-    by_title = {norm_title(p.get("bib", {}).get("title", "")): p
-                for p in author.get("publications", [])}
+def _scrape_scholar(route, pubs: list[dict], known_ids: dict[str, str]) -> dict[str, list[dict]]:
+    # The profile is only consulted to learn cluster ids (including ones added when
+    # Scholar merges versions); a profile that fails to load is not fatal as long as
+    # every publication already has an id.
+    try:
+        profile = route.profile_ids()
+    except ScholarBlocked:
+        if not all(known_ids.get(p["slug"]) or p["scholar_cites_id"] for p in pubs):
+            raise
+        profile = {}
 
     results: dict[str, list[dict]] = {}
     for pub in pubs:
-        match = by_title.get(pub["norm"])
-        if not match:
-            log(f"  GS: no match for {pub['slug']}")
-            results[pub["slug"]] = []
-            continue
-        if not match.get("num_citations"):
+        ids = join_ids(pub["scholar_cites_id"], known_ids.get(pub["slug"]), profile.get(pub["norm"]))
+        if not ids:
+            # Uncited according to the (stale) profile: ask the live search index.
+            ids = join_ids(route.search_ids(pub["title"]))
+        known_ids[pub["slug"]] = ids
+        if not ids:
+            log(f"  GS: {pub['slug']}: not found on Scholar yet")
             results[pub["slug"]] = []
             continue
 
-        filled = scholarly.fill(match)
         entries = []
-        for citing in scholarly.citedby(filled):
-            bib = citing.get("bib", {}) or {}
-            authors = bib.get("author", "")
-            if isinstance(authors, list):
-                authors = ", ".join(authors)
-            authors = authors.replace(" and ", ", ")
-            year = bib.get("pub_year")
-            entry = make_entry(
-                title=bib.get("title", ""),
-                authors=authors,
-                year=int(year) if str(year).isdigit() else None,
-                venue=bib.get("venue", "") or bib.get("journal", "") or "",
-                url=citing.get("pub_url", "") or "",
-                source=SCHOLAR,
-            )
+        for hit in route.citing(ids):
+            entry = make_entry(title=hit["title"], authors=hit["authors"], year=hit["year"],
+                               venue=hit["venue"], url=hit["url"], source=SCHOLAR)
             if entry:
                 entries.append(entry)
-        log(f"  GS: {pub['slug']}: {len(entries)} citing papers")
+        log(f"  GS: {pub['slug']} (cites={ids}): {len(entries)} citing papers")
+        results[pub["slug"]] = entries
+    return results
+
+
+# --------------------------------------------------------------------------- openalex
+#
+# Free, keyless, and fed by Crossref reference lists, so it tends to see journal papers
+# that Semantic Scholar has not linked yet (and vice versa). A preprint and its published
+# version are often separate OpenAlex works, hence every work with the exact title counts.
+
+OPENALEX_API = "https://api.openalex.org"
+
+
+def fetch_openalex(pubs: list[dict]) -> dict[str, list[dict]]:
+    session = requests.Session()
+    base_params = {}
+    if key := os.environ.get("OPENALEX_API_KEY"):
+        base_params["api_key"] = key
+
+    def get(path: str, params: dict | None = None) -> dict | None:
+        for attempt in range(5):
+            resp = session.get(f"{OPENALEX_API}/{path}", params={**base_params, **(params or {})}, timeout=30)
+            if resp.status_code == 404:
+                return None
+            if resp.status_code in (429, 500, 502, 503, 504):
+                time.sleep(2 * 2 ** attempt)
+                continue
+            resp.raise_for_status()
+            return resp.json()
+        raise RuntimeError(f"openalex: giving up on {path} ({resp.status_code})")
+
+    results: dict[str, list[dict]] = {}
+    for pub in pubs:
+        work_ids: set[str] = set()
+        dois = {pub["doi"], f"10.48550/arxiv.{pub['arxiv']}" if pub["arxiv"] else None}
+        for doi in filter(None, dois):
+            if work := get(f"works/doi:{doi}", {"select": "id"}):
+                work_ids.add(work["id"].rsplit("/", 1)[-1])
+        found = get("works", {"filter": f"title.search:{pub['title'].replace(',', ' ')}",
+                              "select": "id,title", "per-page": 25}) or {}
+        for work in found.get("results", []):
+            if norm_title(work.get("title") or "") == pub["norm"]:
+                work_ids.add(work["id"].rsplit("/", 1)[-1])
+        if not work_ids:
+            log(f"  OA: no match for {pub['slug']}")
+            results[pub["slug"]] = []
+            continue
+
+        entries, cursor = [], "*"
+        while cursor:
+            page = get("works", {
+                "filter": f"cites:{'|'.join(sorted(work_ids))}",
+                "select": "id,title,doi,publication_year,publication_date,authorships,primary_location,ids",
+                "per-page": 200, "cursor": cursor,
+            }) or {}
+            for work in page.get("results", []):
+                doi = clean_doi(work.get("doi"))
+                source = ((work.get("primary_location") or {}).get("source") or {})
+                arxiv = None
+                if doi and (m := re.match(r"10\.48550/arxiv\.(.+)$", doi)):
+                    arxiv = m.group(1)
+                entry = make_entry(
+                    title=work.get("title") or "",
+                    authors=", ".join((a.get("author") or {}).get("display_name", "")
+                                      for a in work.get("authorships") or []),
+                    year=work.get("publication_year"),
+                    date=work.get("publication_date") or "",
+                    venue=source.get("display_name") or "",
+                    url=(work.get("primary_location") or {}).get("landing_page_url") or "",
+                    doi=doi,
+                    arxiv=arxiv,
+                    source=OPENALEX,
+                )
+                if entry:
+                    entries.append(entry)
+            cursor = (page.get("meta") or {}).get("next_cursor") if page.get("results") else None
+        log(f"  OA: {pub['slug']} ({','.join(sorted(work_ids))}): {len(entries)} citing papers")
         results[pub["slug"]] = entries
     return results
 
@@ -524,15 +790,16 @@ def merge_slug(layers: dict[str, list[dict]]) -> list[dict]:
 # ------------------------------------------------------------------------------- main
 
 
-def load_previous() -> dict[str, list[dict]]:
-    """Previous citations, per slug — the safety net when a source is unavailable."""
+def load_previous() -> dict[str, dict]:
+    """Previous record per slug — the safety net when a source is unavailable, and the
+    memory of each paper's Scholar cluster ids."""
     if not OUT_FILE.exists():
         return {}
     try:
         data = json.loads(OUT_FILE.read_text(encoding="utf-8"))
     except json.JSONDecodeError:
         return {}
-    return {p["slug"]: p.get("citations", []) for p in data.get("papers", [])}
+    return {p["slug"]: p for p in data.get("papers", [])}
 
 
 def main() -> int:
@@ -543,12 +810,17 @@ def main() -> int:
     log(f"{len(pubs)} publication(s): {', '.join(p['slug'] for p in pubs)}")
 
     previous = load_previous()
+    cached = {slug: rec.get("citations", []) for slug, rec in previous.items()}
+    # Filled in place by the Scholar fetch; seeded so a blocked run forgets nothing.
+    scholar_ids = {slug: rec.get("scholar_cites_id", "") for slug, rec in previous.items()}
+
     fresh: dict[str, dict[str, list[dict]]] = {p["slug"]: {} for p in pubs}
     status: dict[str, dict] = {}
 
     for name, skip_env, fetch in (
         (S2, "SKIP_S2", fetch_semantic_scholar),
-        (SCHOLAR, "SKIP_SCHOLAR", fetch_google_scholar),
+        (OPENALEX, "SKIP_OPENALEX", fetch_openalex),
+        (SCHOLAR, "SKIP_SCHOLAR", lambda p: fetch_google_scholar(p, scholar_ids)),
     ):
         if os.environ.get(skip_env) == "1":
             log(f"{name}: skipped (${skip_env}=1)")
@@ -563,43 +835,55 @@ def main() -> int:
             log(f"{name}: FAILED ({exc.__class__.__name__}: {exc})")
             status[name] = {"ok": False, "error": f"{exc.__class__.__name__}: {exc}"}
 
+    def previous_share(slug: str, name: str) -> list[dict]:
+        # Keep only this source's claim on each cached entry: if another source answered
+        # and no longer lists the paper, it should not still be credited.
+        return [{**e, "sources": [name]} for e in cached.get(slug, []) if name in e.get("sources", [])]
+
+    suspicious: list[str] = []
     papers = []
     for pub in pubs:
-        layers = dict(fresh.get(pub["slug"], {}))
-        # Re-inject the previous contribution of every source that did not answer, so a
-        # blocked run degrades to "unchanged" rather than to "count dropped".
-        for name, st in status.items():
-            if not st["ok"]:
-                # Keep only this source's claim on each cached entry: if the other source
-                # answered and no longer lists the paper, it should not still be credited.
-                kept = [{**e, "sources": [name]}
-                        for e in previous.get(pub["slug"], []) if name in e.get("sources", [])]
-                if kept:
-                    layers[f"previous:{name}"] = kept
-                    log(f"  {pub['slug']}: kept {len(kept)} cached {name} entries")
+        slug = pub["slug"]
+        layers = dict(fresh.get(slug, {}))
+        for name in SOURCES:
+            if name not in status:
+                continue
+            kept = []
+            if not status[name]["ok"]:
+                # Re-inject the previous contribution of every source that did not answer,
+                # so a blocked run degrades to "unchanged" rather than to "count dropped".
+                kept = previous_share(slug, name)
+            elif not layers.get(name) and (kept := previous_share(slug, name)):
+                # Citations do not vanish. A source that had some and now reports none is
+                # far likelier soft-blocked or mid-reindex than right.
+                suspicious.append(f"{name} returned nothing for {slug} (had {len(kept)})")
+            if kept:
+                layers[f"previous:{name}"] = kept
+                log(f"  {slug}: kept {len(kept)} cached {name} entries")
 
         citations = merge_slug(layers)
-        papers.append(
-            {
-                "slug": pub["slug"],
-                "title": pub["title"],
-                "count": len(citations),
-                "by_source": {
-                    SCHOLAR: sum(1 for c in citations if SCHOLAR in c["sources"]),
-                    S2: sum(1 for c in citations if S2 in c["sources"]),
-                },
-                "citations": citations,
-            }
-        )
-        log(f"{pub['slug']}: {len(citations)} unique citing paper(s)")
+        record = {
+            "slug": slug,
+            "title": pub["title"],
+            "count": len(citations),
+            "by_source": {name: sum(1 for c in citations if name in c["sources"]) for name in SOURCES},
+            "citations": citations,
+        }
+        if scholar_ids.get(slug):
+            record["scholar_cites_id"] = scholar_ids[slug]
+        papers.append(record)
+        log(f"{slug}: {len(citations)} unique citing paper(s) "
+            f"({', '.join(f'{k} {v}' for k, v in record['by_source'].items())})")
 
     # A source that failed is reported to the CI log, not written into the data: recording
     # it would rewrite the file (and so commit) on every flaky Scholar day even when not a
     # single citation changed.
+    prefix = "::warning title=Citation source unavailable::" if os.environ.get("GITHUB_ACTIONS") else "WARNING: "
     for name, st in status.items():
         if not st["ok"] and st["error"] != "skipped":
-            prefix = "::warning title=Citation source unavailable::" if os.environ.get("GITHUB_ACTIONS") else "WARNING: "
             log(f"{prefix}{name} could not be reached ({st['error']}); its previous results were kept")
+    for note in suspicious:
+        log(f"{prefix}{note}; previous results were kept")
 
     payload = {
         "papers": papers,
