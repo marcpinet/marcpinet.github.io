@@ -1,5 +1,5 @@
 {
-  "generated": "2026-09-24T13:04:09Z",
+  "generated": "2026-09-25T09:35:06Z",
   "papers": [
     {
       "slug": "anomalies-mtsad-univariate",
@@ -18,7 +18,7 @@
           "date": "",
           "venue": "IEEE Transactions on …",
           "url": "https://ieeexplore.ieee.org/abstract/document/11695677/",
-          "doi": null,
+          "doi": "10.1109/ticps.2026.3735617",
           "arxiv": null,
           "sources": [
             "scholar"
