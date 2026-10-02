@@ -76,7 +76,9 @@
       var r = wrap.getBoundingClientRect();
       W = Math.max(1, r.width); H = Math.max(1, r.height);
       midC = H * 0.5; bandHalf = H * 0.15;       // centered channel band
-      canvas.width = Math.round(W * dpr); canvas.height = Math.round(H * dpr);
+      var cw = Math.round(W * dpr), ch = Math.round(H * dpr);
+      if (canvas.width === cw && canvas.height === ch) return;   // re-setting width clears + reallocates
+      canvas.width = cw; canvas.height = ch;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     }
 
@@ -164,9 +166,14 @@
       ctx.clearRect(0, 0, W, H);
       var x, i, j, a, sx;
 
-      // sample the channels across the width
-      var xs = [], vAll = [];
-      for (x = 0; x <= W; x += 2) { xs.push(x); vAll.push(channelsAt(x + scroll)); }
+      // sample the channels on a grid anchored in *world* space, so every vertex slides
+      // left at exactly the scroll speed. A screen-anchored grid resamples the ~3px noise
+      // octaves at a new phase each frame → aliasing that makes the detail appear to slow,
+      // stall and catch up periodically (a wagon-wheel micro-freeze).
+      var xs = [], vAll = [], STEP = 2;
+      for (x = Math.floor(scroll / STEP) * STEP; x - scroll <= W + STEP; x += STEP) {
+        xs.push(x - scroll); vAll.push(channelsAt(x));
+      }
 
       // flagged windows, styled by which detector family fires: filled when the
       // per-channel score catches it, dashed when only the cross-channel score does
@@ -198,9 +205,10 @@
       }
     }
 
-    function frame() {
+    function frame(now) {
       rafId = requestAnimationFrame(frame);
-      var now = performance.now();
+      // rAF's vsync timestamp, not performance.now(): callback start jitters, the
+      // frame's presentation time doesn't → evenly spaced scroll steps
       var dt = last ? Math.min(0.1, (now - last) / 1000) : 0;
       last = now;
       scroll += SCROLL * dt;
