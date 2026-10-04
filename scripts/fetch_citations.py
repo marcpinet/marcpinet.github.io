@@ -25,6 +25,8 @@ Env:
   SEMANTIC_SCHOLAR_API_KEY  optional; the shared unauthenticated pool works fine at this
                             volume, and a key that answers 403 is dropped automatically.
   OPENALEX_API_KEY          optional; OpenAlex's anonymous daily allowance is plenty.
+  NEW_CITATIONS_FILE        optional; where to write the citations first seen this run,
+                            for scripts/notify_discord.py to announce once committed.
   SKIP_SCHOLAR / SKIP_S2 / SKIP_OPENALEX
                             set to 1 to skip a source (its previous share is kept).
 """
@@ -47,6 +49,7 @@ import requests
 ROOT = Path(__file__).resolve().parent.parent
 RESEARCH_DIR = ROOT / "content" / "research"
 OUT_FILE = ROOT / "data" / "citations.json"
+SITE_URL = "https://marcpinet.fr"
 
 SCHOLAR_AUTHOR_ID = "NsXT970AAAAJ"
 S2_AUTHOR_ID = "2439961296"
@@ -223,13 +226,18 @@ def read_publications() -> list[dict]:
             if m := re.search(r"doi\.org/(10\.[^\s]+)$", url, re.I):
                 doi = doi or clean_doi(m.group(1))
 
+        arxiv = clean_arxiv(extra.get("arxiv")) or arxiv
+        doi = clean_doi(extra.get("doi")) or doi
         pubs.append(
             {
                 "slug": path.stem,
                 "title": front.get("title", path.stem),
                 "norm": norm_title(front.get("title", "")),
-                "arxiv": clean_arxiv(extra.get("arxiv")) or arxiv,
-                "doi": clean_doi(extra.get("doi")) or doi,
+                "arxiv": arxiv,
+                "doi": doi,
+                "url": (f"https://arxiv.org/abs/{arxiv}" if arxiv
+                        else f"https://doi.org/{doi}" if doi
+                        else f"{SITE_URL}/research/{path.stem}/"),
                 "s2_paper_id": extra.get("s2_paper_id"),
                 "scholar_cites_id": extra.get("scholar_cites_id"),
             }
@@ -935,6 +943,7 @@ def main() -> int:
     prev_index = {slug: index_by_identity(entries) for slug, entries in cached.items()}
     enricher = Enricher()
     suspicious: list[str] = []
+    new_citations: list[dict] = []
     papers = []
     for pub in pubs:
         slug = pub["slug"]
@@ -959,6 +968,7 @@ def main() -> int:
             enricher.fill(entry, prev_index.get(slug, {}))
 
         citations = merge_slug(layers)
+        first_sightings = []
         for c in citations:
             prev = find_previous(c, prev_index.get(slug, {}))
             # Only a citation that appears between two runs has a meaningful first sighting;
@@ -966,6 +976,9 @@ def main() -> int:
             c["first_seen"] = prev.get("first_seen") if prev else (today if slug in cached else None)
             if not c["first_seen"]:
                 del c["first_seen"]
+            # Same rule as first_seen: a paper's first ever run is a backlog, not news.
+            if not prev and slug in cached:
+                first_sightings.append(c)
         citations.sort(key=lambda e: (display_order_key(e), norm_title(e["title"])), reverse=True)
         record = {
             "slug": slug,
@@ -977,6 +990,8 @@ def main() -> int:
         if scholar_ids.get(slug):
             record["scholar_cites_id"] = scholar_ids[slug]
         papers.append(record)
+        paper = {"slug": slug, "title": pub["title"], "url": pub["url"], "count": len(citations)}
+        new_citations.extend({"paper": paper, "citation": c} for c in first_sightings)
         log(f"{slug}: {len(citations)} unique citing paper(s) "
             f"({', '.join(f'{k} {v}' for k, v in record['by_source'].items())})")
 
@@ -1015,6 +1030,12 @@ def main() -> int:
         encoding="utf-8",
     )
     log(f"wrote {OUT_FILE.relative_to(ROOT)} ({payload['total']} citations)")
+
+    # Written only alongside a changed data file: a new citation always changes it.
+    if (notify_path := os.environ.get("NEW_CITATIONS_FILE")) and new_citations:
+        Path(notify_path).write_text(json.dumps(new_citations, indent=2, ensure_ascii=False),
+                                     encoding="utf-8")
+        log(f"{len(new_citations)} new citation(s) queued for notification")
     return 0
 
 

@@ -42,6 +42,7 @@ jobs:
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
           # A runner's IP gets a captcha from Scholar every time; don't waste the budget.
           SCHOLAR_DIRECT: "0"
+          NEW_CITATIONS_FILE: ${{ runner.temp }}/new_citations.json
         run: python scripts/fetch_citations.py
 
       - name: Commit if anything changed
@@ -68,3 +69,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh workflow run build.yml --ref main
+
+      # Only after the push: a run that fails to commit announces nothing, and the next
+      # run, still seeing those citations as new, announces them then.
+      - name: Announce new citations on Discord
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          DISCORD_WEBHOOK_LINK: ${{ secrets.DISCORD_WEBHOOK_LINK }}
+          MY_DISCORD_USER_ID: ${{ secrets.MY_DISCORD_USER_ID }}
+        run: python scripts/notify_discord.py "$RUNNER_TEMP/new_citations.json"
