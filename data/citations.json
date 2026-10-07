@@ -1,13 +1,13 @@
 {
-  "generated": "2026-09-25T09:35:06Z",
+  "generated": "2026-10-07T11:02:08Z",
   "papers": [
     {
       "slug": "anomalies-mtsad-univariate",
       "title": "Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate",
-      "count": 5,
+      "count": 6,
       "by_source": {
         "scholar": 3,
-        "semanticscholar": 2,
+        "semanticscholar": 3,
         "openalex": 0
       },
       "citations": [
@@ -65,6 +65,20 @@
           ]
         },
         {
+          "title": "Lightweight CNN-Based Anomaly Detection for High Voltage Converter Modulators in the Spallation Neutron Source",
+          "authors": "Alberto D. Cencillo, Leonardo Concepción, Julián Luengo, I. Triguero",
+          "year": 2026,
+          "date": "2026-05-29",
+          "venue": "arXiv.org",
+          "url": "https://arxiv.org/abs/2605.31259",
+          "doi": "10.48550/arxiv.2605.31259",
+          "arxiv": "2605.31259",
+          "sources": [
+            "semanticscholar"
+          ],
+          "first_seen": "2026-10-07"
+        },
+        {
           "title": "Contaminated by Construction: Training Contamination and Sampling Granularity Decide Which Anomaly Detector Wins",
           "authors": "H Tabasi, G Gupta",
           "year": 2026,
@@ -81,5 +95,5 @@
       "scholar_cites_id": "10741312500140774016"
     }
   ],
-  "total": 5
+  "total": 6
 }
