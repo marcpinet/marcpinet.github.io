@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T11:02:08Z",
+  "generated": "2026-10-08T11:19:23Z",
   "papers": [
     {
       "slug": "anomalies-mtsad-univariate",
@@ -66,7 +66,7 @@
         },
         {
           "title": "Lightweight CNN-Based Anomaly Detection for High Voltage Converter Modulators in the Spallation Neutron Source",
-          "authors": "Alberto D. Cencillo, Leonardo Concepción, Julián Luengo, I. Triguero",
+          "authors": "Alberto D. Cencillo, Leonardo Concepción, J. Luengo, I. Triguero",
           "year": 2026,
           "date": "2026-05-29",
           "venue": "arXiv.org",
