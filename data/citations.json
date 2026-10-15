@@ -1,16 +1,30 @@
 {
-  "generated": "2026-10-08T11:19:23Z",
+  "generated": "2026-10-15T09:06:57Z",
   "papers": [
     {
       "slug": "anomalies-mtsad-univariate",
       "title": "Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate",
-      "count": 6,
+      "count": 7,
       "by_source": {
         "scholar": 3,
-        "semanticscholar": 3,
+        "semanticscholar": 4,
         "openalex": 0
       },
       "citations": [
+        {
+          "title": "Correlation-Aware Reconstruction for Multivariate Time Series Anomaly Detection",
+          "authors": "Md. Johir Raihan, Zahra Zamanzadeh Darban, Yue-Yang Liu, F. Salim, L. Kuhlmann, Mahsa Salehi",
+          "year": 2026,
+          "date": "2026-10-11",
+          "venue": "",
+          "url": "https://arxiv.org/abs/2610.15250",
+          "doi": null,
+          "arxiv": "2610.15250",
+          "sources": [
+            "semanticscholar"
+          ],
+          "first_seen": "2026-10-15"
+        },
         {
           "title": "ST-CCGN: Spatiotemporal Co-Clustering Graph Network for Multivariate Time-Series Anomaly Detection in Industrial Control Systems",
           "authors": "Y Xue, Z Yang, DKY Yau, R Deng",
@@ -95,5 +109,5 @@
       "scholar_cites_id": "10741312500140774016"
     }
   ],
-  "total": 6
+  "total": 7
 }
