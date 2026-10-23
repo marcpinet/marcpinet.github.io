@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-17T08:31:35Z",
+  "generated": "2026-10-23T09:18:52Z",
   "papers": [
     {
       "slug": "anomalies-mtsad-univariate",
@@ -7,7 +7,7 @@
       "count": 7,
       "by_source": {
         "scholar": 4,
-        "semanticscholar": 4,
+        "semanticscholar": 5,
         "openalex": 0
       },
       "citations": [
@@ -28,15 +28,16 @@
         },
         {
           "title": "ST-CCGN: Spatiotemporal Co-Clustering Graph Network for Multivariate Time-Series Anomaly Detection in Industrial Control Systems",
-          "authors": "Y Xue, Z Yang, DKY Yau, R Deng",
+          "authors": "Ya-Wen Xue, Ze-Yu Yang, David K. Y. Yau, Rui-Long Deng",
           "year": 2026,
           "date": "",
-          "venue": "IEEE Transactions on …",
+          "venue": "IEEE Transactions on Industrial Cyber-Physical Systems",
           "url": "https://ieeexplore.ieee.org/abstract/document/11695677/",
           "doi": "10.1109/ticps.2026.3735617",
           "arxiv": null,
           "sources": [
-            "scholar"
+            "scholar",
+            "semanticscholar"
           ],
           "first_seen": "2026-09-24"
         },
