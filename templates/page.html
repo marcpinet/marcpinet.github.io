@@ -43,7 +43,7 @@
 
   {% if page.extra.github_link and not page.extra.links %}
     <div class="post-links">
-      <a href="{{ page.extra.github_link }}" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="{{ page.extra.github_link }}" target="_blank" rel="noopener noreferrer">GitHub{{ macros::github_stars(link=page.extra.github_link, class="post-stars") }}</a>
     </div>
   {% endif %}
 

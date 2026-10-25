@@ -1,0 +1,92 @@
+{
+  "repos": [
+    {
+      "repo": "marcpinet/citracer",
+      "stars": 38
+    },
+    {
+      "repo": "marcpinet/connect4-ai",
+      "stars": 3
+    },
+    {
+      "repo": "marcpinet/doublage",
+      "stars": 3
+    },
+    {
+      "repo": "marcpinet/edgeai-bird",
+      "stars": 1
+    },
+    {
+      "repo": "marcpinet/epidemic-modeling",
+      "stars": 4
+    },
+    {
+      "repo": "marcpinet/handigits",
+      "stars": 2
+    },
+    {
+      "repo": "marcpinet/jobgpumonitor",
+      "stars": 2
+    },
+    {
+      "repo": "marcpinet/letsgobiking",
+      "stars": 1
+    },
+    {
+      "repo": "marcpinet/lo-texto",
+      "stars": 2
+    },
+    {
+      "repo": "marcpinet/maze-generator-and-solver",
+      "stars": 3
+    },
+    {
+      "repo": "marcpinet/mimimi",
+      "stars": 6
+    },
+    {
+      "repo": "marcpinet/neat-cars",
+      "stars": 16
+    },
+    {
+      "repo": "marcpinet/neuralnetlib",
+      "stars": 6
+    },
+    {
+      "repo": "marcpinet/nyaadownloader",
+      "stars": 148
+    },
+    {
+      "repo": "marcpinet/parm",
+      "stars": 4
+    },
+    {
+      "repo": "marcpinet/polyquiz",
+      "stars": 2
+    },
+    {
+      "repo": "marcpinet/poubelledroid",
+      "stars": 3
+    },
+    {
+      "repo": "marcpinet/quanridor",
+      "stars": 2
+    },
+    {
+      "repo": "marcpinet/sort-visualizer",
+      "stars": 3
+    },
+    {
+      "repo": "marcpinet/therightbibtex",
+      "stars": 5
+    },
+    {
+      "repo": "marcpinet/websem-og24",
+      "stars": 0
+    },
+    {
+      "repo": "marcpinet/zotegrep",
+      "stars": 18
+    }
+  ]
+}

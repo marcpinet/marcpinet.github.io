@@ -73,6 +73,19 @@
     border-bottom: 1px solid var(--accent);
   }
 
+  .post-stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    margin-left: 0.4rem;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .post-stars svg {
+    width: 10px;
+    height: 10px;
+  }
+
   .post-body {
     /* Hide the first H1 inside the body (user markdown title duplicating the template title) */
     > h1:first-of-type {

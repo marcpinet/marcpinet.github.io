@@ -75,6 +75,33 @@ a.project-entry:hover {
   color: var(--accent);
 }
 
+/* Sits just left of the GitHub mark, sharing its baseline and hover treatment. */
+.project-stars {
+  position: absolute;
+  right: calc(0.85rem + 14px + 0.4rem);
+  bottom: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  height: 14px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-muted);
+  pointer-events: none;
+  transition: color 0.18s ease;
+}
+
+.project-stars svg {
+  width: 11px;
+  height: 11px;
+}
+
+.project-entry:hover .project-stars {
+  color: var(--accent);
+}
+
 .project-entry-pinned .project-year {
   position: absolute;
   top: 0.9rem;
