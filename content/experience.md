@@ -41,7 +41,7 @@ template = "about.html"
 </div>
 
 <div class="entry-description">
-Industrial PhD (CIFRE) on Self-supervised detection and explanation of anomalies in time series data for large-scale network security. Research focus on developing robust deep learning architectures for real-time anomaly characterization, and LLMs combined with RAG-based methods for automated interpretation using business knowledge bases, eliminating human expert intervention.
+Self-supervised detection and explanation of anomalies in time series data for large-scale network security. Anomaly detectors flag that \emph{something} happened, but never \emph{what}. My thesis addresses this gap, from detecting anomalies to characterizing and explaining them in natural language, sparing experts the manual investigation of each alarm and reducing intervention costs.
 </div>
 
 <div class="fields">
