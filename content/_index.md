@@ -12,7 +12,7 @@ interests = [
     "Representation Learning",
     "Time Series Analysis",
     "Anomaly Detection",
-    "Anomaly Explanation",
+    "Anomaly Interpretation",
     "Large Language Models (LLMs)",
 ]
 

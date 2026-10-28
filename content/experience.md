@@ -41,12 +41,12 @@ template = "about.html"
 </div>
 
 <div class="entry-description">
-Self-supervised detection and explanation of anomalies in time series data for large-scale network security. Anomaly detectors flag that \emph{something} happened, but never \emph{what}. My thesis addresses this gap, from detecting anomalies to characterizing and explaining them in natural language, sparing experts the manual investigation of each alarm and reducing intervention costs.
+Self-supervised detection and interpretation of anomalies in time series data for large-scale network security. Anomaly detectors flag that \emph{something} happened, but never \emph{what}. My thesis addresses this gap, from detecting anomalies to characterizing and interpreting them in natural language, sparing experts the manual investigation of each alarm and reducing intervention costs.
 </div>
 
 <div class="fields">
 <span class="field-tag">Anomaly Detection</span>
-<span class="field-tag">Anomaly Explanation</span>
+<span class="field-tag">Anomaly Interpretation</span>
 <span class="field-tag">Self-Supervised Learning</span>
 <span class="field-tag">Time Series Analysis</span>
 <span class="field-tag">Machine Learning</span>
