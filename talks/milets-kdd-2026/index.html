@@ -1,0 +1,284 @@
+<!doctype html><html data-theme=light lang=en><head><meta charset=UTF-8><meta content="width=device-width,initial-scale=1.0" name=viewport><title>Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate · Marc Pinet</title><link href=/favicon.ico rel=icon type=image/x-icon><link href=https://marcpinet.fr/main.css media=screen rel=stylesheet><link href=https://fonts.googleapis.com rel=preconnect><link crossorigin href=https://fonts.gstatic.com rel=preconnect><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400&display=swap" rel=stylesheet><meta content="Contributed talk on why today's MTSAD benchmarks can't validate cross-channel modeling." name=description><meta content="index, follow" name=robots><meta content="Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate · Marc Pinet" property=og:title><meta content=website property=og:type><meta content="Contributed talk on why today's MTSAD benchmarks can't validate cross-channel modeling." property=og:description><meta content="Marc Pinet" property=og:site_name><meta content=https://marcpinet.fr/talks/milets-kdd-2026/ property=og:url><meta content=https://marcpinet.fr/processed_images/me.291c17e707165504.jpg property=og:image><meta content=400 property=og:image:width><meta content=400 property=og:image:height><meta content=summary name=twitter:card><meta content=#cb6441 name=theme-color><script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Marc Pinet",
+    "url": "https:&#x2F;&#x2F;marcpinet.fr",
+    "description": "My personal website.",
+    "sameAs": [
+      
+        
+      
+        
+          "https:&#x2F;&#x2F;scholar.google.com&#x2F;citations?user=NsXT970AAAAJ",
+        
+      
+        
+          "https:&#x2F;&#x2F;github.com&#x2F;marcpinet&#x2F;",
+        
+      
+        
+          "https:&#x2F;&#x2F;www.linkedin.com&#x2F;in&#x2F;marc-pinet&#x2F;",
+        
+      
+        
+          "https:&#x2F;&#x2F;x.com&#x2F;marcpinet0&#x2F;",
+        
+      
+        
+      
+    ]
+  }
+  </script><script>(function() {
+      var saved = null;
+      try { saved = localStorage.getItem('theme'); } catch (e) {}
+      document.documentElement.setAttribute('data-theme', saved === 'dark' ? 'dark' : 'light');
+    })();</script><body data-page=talks/milets-kdd-2026><header class=site-header><div class=nav-container><a class=site-title href=https://marcpinet.fr>Marc Pinet</a><nav class=site-nav id=site-nav><a href=/research>Research</a><a href=/experience>Experience</a><a href=/education>Education</a><a href=/service>Service</a><a href=/projects>Projects</a><a href=/misc>Misc.</a></nav><div class=nav-actions><button aria-label="Toggle theme" class=theme-toggle type=button>Light</button><button aria-label="Toggle menu" aria-controls=site-nav aria-expanded=false class=nav-toggle type=button><span class=nav-toggle-bar></span> <span class=nav-toggle-bar></span> <span class=nav-toggle-bar></span></button></div></div></header><main><article class="post-article talk-article"><div class=post-meta><time datetime=2026-08-10>August 2026</time></div><h1 class=post-title>Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate</h1><p class=post-venue>KDD 2026, Mining and Learning from Time Series Workshop (MILETS), Jeju, South Korea<img alt class=flag height=15 loading=lazy src=https://marcpinet.fr/flags/kr.svg width=20><div class=post-links><a href=/research/anomalies-mtsad-univariate/>Paper</a><a rel="noopener noreferrer" href=https://kdd-milets.github.io/milets2026/ target=_blank>Workshop</a><a rel="noopener noreferrer" href=https://kdd-milets.github.io/milets2026/accepted%20papers/1camera_ready_paper_anomalies_mostly_univariate.pdf target=_blank>Camera-ready</a><a rel="noopener noreferrer" href=https://arxiv.org/abs/2606.02670 target=_blank>arXiv</a><a rel="noopener noreferrer" href=https://github.com/marcpinet/mtsad-benchmarks-are-mostly-univariate target=_blank>Code</a></div><div class=tldr><strong>tl;dr:</strong> Contributed talk on why today's MTSAD benchmarks can't validate cross-channel modeling.</div><div class=deck data-appendix-from=17 data-count=28 id=deck><div class=deck-stage><img alt="Slide 1 of 28" class=deck-img decoding=async height=900 id=deck-img src=https://marcpinet.fr/talks/milets-kdd-2026/slide-01.webp width=1600><button aria-label="Previous slide" class="deck-nav deck-prev" aria-controls=deck-img type=button><svg viewbox="0 0 24 24" aria-hidden=true><path d="M15 4 7 12l8 8" fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 /></svg></button><button aria-label="Next slide" class="deck-nav deck-next" aria-controls=deck-img type=button><svg viewbox="0 0 24 24" aria-hidden=true><path d="m9 4 8 8-8 8" fill=none stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 /></svg></button></div><div class=deck-bar><div aria-live=polite class=deck-count><span id=deck-cur>1</span><span class=deck-sep>/</span>28<span class=deck-tag hidden id=deck-tag>backup</span></div><div class=deck-actions><button aria-controls=deck-grid aria-expanded=false class=deck-btn data-act=grid type=button>All slides</button><button class="deck-btn deck-btn-full" data-act=full type=button>Fullscreen</button><a class=deck-btn download href=https://marcpinet.fr/talks/milets-kdd-2026/milets-kdd-2026-slides.pdf>PDF</a><a class=deck-btn download href=https://marcpinet.fr/talks/milets-kdd-2026/milets-kdd-2026-slides.pptx>.pptx</a></div></div><div class=deck-grid hidden id=deck-grid><button aria-label="Go to slide 1" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-01.webp data-i=1 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-01.webp width=360> <span class=deck-thumb-n>1</span></button><button aria-label="Go to slide 2" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-02.webp data-i=2 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-02.webp width=360> <span class=deck-thumb-n>2</span></button><button aria-label="Go to slide 3" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-03.webp data-i=3 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-03.webp width=360> <span class=deck-thumb-n>3</span></button><button aria-label="Go to slide 4" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-04.webp data-i=4 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-04.webp width=360> <span class=deck-thumb-n>4</span></button><button aria-label="Go to slide 5" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-05.webp data-i=5 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-05.webp width=360> <span class=deck-thumb-n>5</span></button><button aria-label="Go to slide 6" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-06.webp data-i=6 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-06.webp width=360> <span class=deck-thumb-n>6</span></button><button aria-label="Go to slide 7" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-07.webp data-i=7 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-07.webp width=360> <span class=deck-thumb-n>7</span></button><button aria-label="Go to slide 8" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-08.webp data-i=8 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-08.webp width=360> <span class=deck-thumb-n>8</span></button><button aria-label="Go to slide 9" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-09.webp data-i=9 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-09.webp width=360> <span class=deck-thumb-n>9</span></button><button aria-label="Go to slide 10" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-10.webp data-i=10 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-10.webp width=360> <span class=deck-thumb-n>10</span></button><button aria-label="Go to slide 11" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-11.webp data-i=11 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-11.webp width=360> <span class=deck-thumb-n>11</span></button><button aria-label="Go to slide 12" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-12.webp data-i=12 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-12.webp width=360> <span class=deck-thumb-n>12</span></button><button aria-label="Go to slide 13" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-13.webp data-i=13 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-13.webp width=360> <span class=deck-thumb-n>13</span></button><button aria-label="Go to slide 14" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-14.webp data-i=14 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-14.webp width=360> <span class=deck-thumb-n>14</span></button><button aria-label="Go to slide 15" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-15.webp data-i=15 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-15.webp width=360> <span class=deck-thumb-n>15</span></button><button aria-label="Go to slide 16" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-16.webp data-i=16 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-16.webp width=360> <span class=deck-thumb-n>16</span></button><div class=deck-grid-sep>Backup slides</div><button aria-label="Go to slide 17" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-17.webp data-i=17 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-17.webp width=360> <span class=deck-thumb-n>17</span></button><button aria-label="Go to slide 18" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-18.webp data-i=18 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-18.webp width=360> <span class=deck-thumb-n>18</span></button><button aria-label="Go to slide 19" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-19.webp data-i=19 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-19.webp width=360> <span class=deck-thumb-n>19</span></button><button aria-label="Go to slide 20" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-20.webp data-i=20 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-20.webp width=360> <span class=deck-thumb-n>20</span></button><button aria-label="Go to slide 21" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-21.webp data-i=21 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-21.webp width=360> <span class=deck-thumb-n>21</span></button><button aria-label="Go to slide 22" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-22.webp data-i=22 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-22.webp width=360> <span class=deck-thumb-n>22</span></button><button aria-label="Go to slide 23" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-23.webp data-i=23 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-23.webp width=360> <span class=deck-thumb-n>23</span></button><button aria-label="Go to slide 24" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-24.webp data-i=24 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-24.webp width=360> <span class=deck-thumb-n>24</span></button><button aria-label="Go to slide 25" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-25.webp data-i=25 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-25.webp width=360> <span class=deck-thumb-n>25</span></button><button aria-label="Go to slide 26" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-26.webp data-i=26 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-26.webp width=360> <span class=deck-thumb-n>26</span></button><button aria-label="Go to slide 27" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-27.webp data-i=27 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-27.webp width=360> <span class=deck-thumb-n>27</span></button><button aria-label="Go to slide 28" class=deck-thumb data-full=https://marcpinet.fr/talks/milets-kdd-2026/slide-28.webp data-i=28 type=button><img alt decoding=async height=203 loading=lazy src=https://marcpinet.fr/talks/milets-kdd-2026/thumbs/slide-28.webp width=360> <span class=deck-thumb-n>28</span></button></div><noscript><p class=deck-noscript>Slide navigation needs JavaScript — <a href=https://marcpinet.fr/talks/milets-kdd-2026/milets-kdd-2026-slides.pdf>download the deck as PDF</a> instead.</p></noscript></div><script>/* Slide deck: pre-rendered images, no PDF/Office runtime. Navigation via the arrows,
+       the thumbnail grid, ← → Home End (and g / f / Esc), or a horizontal swipe. The
+       current slide is mirrored into the URL hash (#slide-7) so a slide can be linked. */
+    (function () {
+      var deck = document.getElementById('deck');
+      if (!deck) return;
+      var img = document.getElementById('deck-img');
+      var grid = document.getElementById('deck-grid');
+      var curEl = document.getElementById('deck-cur');
+      var tagEl = document.getElementById('deck-tag');
+      var gridBtn = deck.querySelector('[data-act="grid"]');
+      var fullBtn = deck.querySelector('[data-act="full"]');
+      var thumbs = Array.prototype.slice.call(grid.querySelectorAll('.deck-thumb'));
+      var srcs = thumbs.map(function (t) { return t.dataset.full; });
+      var N = srcs.length;
+      var APPENDIX = parseInt(deck.dataset.appendixFrom, 10) || 0;
+      var cur = 1;
+
+      function preload(i) { if (i >= 1 && i <= N) { var p = new Image(); p.src = srcs[i - 1]; } }
+
+      function show(i, push) {
+        i = Math.min(N, Math.max(1, i));
+        cur = i;
+        img.src = srcs[i - 1];
+        img.alt = 'Slide ' + i + ' of ' + N;
+        curEl.textContent = i;
+        if (tagEl) tagEl.hidden = !(APPENDIX && i >= APPENDIX);
+        thumbs.forEach(function (t, k) { t.classList.toggle('is-current', k === i - 1); });
+        deck.querySelector('.deck-prev').disabled = i === 1;
+        deck.querySelector('.deck-next').disabled = i === N;
+        preload(i + 1); preload(i - 1);
+        if (push !== false) {
+          try { history.replaceState(null, '', '#slide-' + i); } catch (e) {}
+        }
+      }
+
+      deck.querySelector('.deck-prev').addEventListener('click', function () { show(cur - 1); });
+      deck.querySelector('.deck-next').addEventListener('click', function () { show(cur + 1); });
+      thumbs.forEach(function (t) {
+        t.addEventListener('click', function () { show(parseInt(t.dataset.i, 10)); toggleGrid(false); });
+      });
+
+      function toggleGrid(open) {
+        if (open === undefined) open = grid.hidden;
+        grid.hidden = !open;
+        gridBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        gridBtn.textContent = open ? 'Hide slides' : 'All slides';
+        if (open) {
+          var c = thumbs[cur - 1];
+          if (c && c.scrollIntoView) c.scrollIntoView({ block: 'nearest' });
+        }
+      }
+      gridBtn.addEventListener('click', function () { toggleGrid(); });
+
+      /* Fullscreen: the deck element itself, so the bar stays reachable. */
+      function fsElement() { return document.fullscreenElement || document.webkitFullscreenElement; }
+      fullBtn.addEventListener('click', function () {
+        if (fsElement()) {
+          (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+        } else {
+          var req = deck.requestFullscreen || deck.webkitRequestFullscreen;
+          if (req) req.call(deck);
+        }
+      });
+      document.addEventListener('fullscreenchange', function () {
+        fullBtn.textContent = fsElement() ? 'Exit fullscreen' : 'Fullscreen';
+      });
+
+      document.addEventListener('keydown', function (e) {
+        if (e.metaKey || e.ctrlKey || e.altKey) return;
+        var t = e.target;
+        if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+        /* Only steal the arrows while the deck is on screen (or fullscreen). */
+        var r = deck.getBoundingClientRect();
+        var visible = fsElement() === deck || (r.bottom > 0 && r.top < window.innerHeight);
+        if (!visible) return;
+        switch (e.key) {
+          case 'ArrowLeft': case 'PageUp': show(cur - 1); e.preventDefault(); break;
+          case 'ArrowRight': case 'PageDown': case ' ': show(cur + 1); e.preventDefault(); break;
+          case 'Home': show(1); e.preventDefault(); break;
+          case 'End': show(N); e.preventDefault(); break;
+          case 'g': toggleGrid(); break;
+          case 'Escape': if (!grid.hidden) toggleGrid(false); break;
+        }
+      });
+
+      /* Horizontal swipe on touch, ignoring vertical scrolls. */
+      var tx = 0, ty = 0;
+      deck.addEventListener('touchstart', function (e) {
+        tx = e.changedTouches[0].clientX; ty = e.changedTouches[0].clientY;
+      }, { passive: true });
+      deck.addEventListener('touchend', function (e) {
+        var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+        if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.5) show(cur + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+
+      function fromHash() { return /^#slide-(\d+)$/.exec(location.hash || ''); }
+      /* replaceState fires no hashchange, so this only reacts to a pasted/clicked #slide-N. */
+      window.addEventListener('hashchange', function () {
+        var h = fromHash();
+        if (h) show(parseInt(h[1], 10), false);
+      });
+      var m = fromHash();
+      show(m ? parseInt(m[1], 10) : 1, !!m);
+    })();</script><section class=post-body><p>Contributed talk at the 12th <a href=https://kdd-milets.github.io/milets2026/ rel=external>Mining and Learning from Time Series</a> workshop, co-located with <a href=https://kdd2026.kdd.org/ rel=external>KDD 2026</a> in Jeju, South Korea.<p>Many recent multivariate time series anomaly detection models model cross-channel dependencies, assuming the anomalies in our benchmarks actually carry cross-channel structure. The talk walks through the per-segment diagnostic framework we use to test that assumption on eight public benchmarks, the synthetic sanity check that shows the framework <em>does</em> catch cross-channel-only anomalies when they exist, and what follows for how we should be evaluating these models.<p>Slides 17 onwards are the backup slides used during questions.</section></article></main><footer class=site-footer><div>© 2026 · Marc Pinet</div><div class=site-footer-socials><a href=mailto:marc.pinet.06@gmail.com>Email</a><a href="https://scholar.google.com/citations?user=NsXT970AAAAJ" rel="noopener noreferrer" target=_blank>Scholar</a><a rel="noopener noreferrer" href=https://github.com/marcpinet/ target=_blank>GitHub</a><a rel="noopener noreferrer" href=https://www.linkedin.com/in/marc-pinet/ target=_blank>LinkedIn</a><a rel="noopener noreferrer" href=https://x.com/marcpinet0/ target=_blank>X</a><a rel="noopener noreferrer" href=https://raw.githubusercontent.com/marcpinet/marcpinet.github.io/cv/cv.pdf target=_blank>CV</a></div></footer><script>(function() {
+      function updateLabel() {
+        var btn = document.querySelector('.theme-toggle');
+        if (!btn) return;
+        var t = document.documentElement.getAttribute('data-theme');
+        btn.textContent = t === 'dark' ? 'Light' : 'Dark';
+      }
+      document.addEventListener('DOMContentLoaded', function() {
+        updateLabel();
+        var btn = document.querySelector('.theme-toggle');
+        if (btn) {
+          btn.addEventListener('click', function() {
+            var t = document.documentElement.getAttribute('data-theme');
+            var next = t === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            try { localStorage.setItem('theme', next); } catch (e) {}
+            updateLabel();
+          });
+        }
+
+        /* Mobile nav: hamburger toggles the dropdown; Escape / outside-click closes it. */
+        var navToggle = document.querySelector('.nav-toggle');
+        var navContainer = document.querySelector('.nav-container');
+        if (navToggle && navContainer) {
+          function closeNav() {
+            navContainer.classList.remove('nav-open');
+            navToggle.setAttribute('aria-expanded', 'false');
+          }
+          navToggle.addEventListener('click', function() {
+            var open = navContainer.classList.toggle('nav-open');
+            navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          });
+          document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navContainer.classList.contains('nav-open')) closeNav();
+          });
+          document.addEventListener('click', function(e) {
+            if (navContainer.classList.contains('nav-open') && !navContainer.contains(e.target)) closeNav();
+          });
+        }
+        document.querySelectorAll('.field-tag').forEach(function(tag) {
+          var text = tag.textContent.trim();
+          if (!text || tag.querySelector('a')) return;
+          var query = text.replace(/\s*\([^)]*\)\s*/g, '').trim().replace(/\s+/g, '_');
+          var link = document.createElement('a');
+          link.href = 'https://en.wikipedia.org/wiki/' + encodeURIComponent(query);
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = text;
+          tag.textContent = '';
+          tag.appendChild(link);
+        });
+
+        /* Duration calculation on entry dates (format: "Oct 2025 - Present" or "Apr 2022 - Jul 2022") */
+        var MONTHS = ['jan','feb','mar','apr','may','jun','jul','aug','sep','oct','nov','dec'];
+        function parseMonthYear(s) {
+          var m = s.trim().match(/^([A-Za-z]{3,})\s+(\d{4})$/);
+          if (!m) return null;
+          var mi = MONTHS.indexOf(m[1].toLowerCase().slice(0,3));
+          if (mi < 0) return null;
+          return new Date(parseInt(m[2], 10), mi, 1);
+        }
+        function formatDuration(months) {
+          if (months < 1) return '< 1 MONTH';
+          var years = Math.floor(months / 12);
+          var rem = months % 12;
+          if (years === 0) return rem + ' MONTH' + (rem !== 1 ? 'S' : '');
+          var y = years + ' YEAR' + (years !== 1 ? 'S' : '');
+          if (rem === 0) return y;
+          return y + ', ' + rem + ' MONTH' + (rem !== 1 ? 'S' : '');
+        }
+        document.querySelectorAll('.entry-date').forEach(function(el) {
+          if (el.dataset.dur === '1') return;
+          var text = el.textContent.trim();
+          var parts = text.split(/\s[-–]\s/);
+          if (parts.length !== 2) return;
+          var start = parseMonthYear(parts[0]);
+          if (!start) return;
+          var isPresent = /present/i.test(parts[1]);
+          var end = isPresent ? new Date() : parseMonthYear(parts[1]);
+          if (!end) return;
+          var diff = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth());
+          el.textContent = text + ' (' + formatDuration(diff) + ')';
+          el.dataset.dur = '1';
+        });
+
+        /* Tag truncation: show first N, reveal rest on click */
+        var MAX_TAGS = 5;
+        document.querySelectorAll('.fields').forEach(function(container) {
+          if (container.dataset.trunc === '1') return;
+          var tags = Array.prototype.slice.call(container.querySelectorAll('.field-tag'));
+          if (tags.length <= MAX_TAGS) return;
+          var hidden = tags.slice(MAX_TAGS);
+          hidden.forEach(function(t) { t.classList.add('fields-hidden'); });
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'fields-toggle';
+          btn.textContent = '+ ' + hidden.length + ' more';
+          btn.addEventListener('click', function() {
+            var expanded = container.classList.toggle('fields-expanded');
+            hidden.forEach(function(t) { t.classList.toggle('fields-hidden', !expanded); });
+            btn.textContent = expanded ? 'show less' : '+ ' + hidden.length + ' more';
+          });
+          container.appendChild(btn);
+          container.dataset.trunc = '1';
+        });
+
+        /* News feed: freeze GIF thumbnails to their first frame (animations stay on the
+           Projects section); reveal + lazy-load older items behind "show more". */
+        function freezeGif(img) {
+          try {
+            if (img.dataset.frozen) return;
+            if (!/\.gif(\?|$)/i.test(img.getAttribute('src') || '')) return;
+            if (!img.naturalWidth) return;
+            img.dataset.frozen = '1';
+            /* Draw frame 1 into a canvas and swap it in for the <img>. We only DISPLAY the
+               canvas (never read it back / toDataURL), so a cross-origin-tainted canvas is fine. */
+            var c = document.createElement('canvas');
+            c.width = img.naturalWidth;
+            c.height = img.naturalHeight;
+            c.getContext('2d').drawImage(img, 0, 0);
+            img.replaceWith(c);
+          } catch (e) {}
+        }
+        function watchFreeze(img) {
+          if (img.complete && img.naturalWidth) freezeGif(img);
+          else img.addEventListener('load', function() { freezeGif(img); }, { once: true });
+        }
+        document.querySelectorAll('.news-thumb img').forEach(watchFreeze);
+        var moreBtn = document.querySelector('.news-show-more');
+        if (moreBtn) {
+          moreBtn.addEventListener('click', function() {
+            var rest = document.querySelector('.news-rest');
+            if (rest) {
+              rest.querySelectorAll('img[data-src]').forEach(function(img) {
+                img.src = img.getAttribute('data-src');
+                img.removeAttribute('data-src');
+                watchFreeze(img);
+              });
+              rest.hidden = false;
+            }
+            moreBtn.remove();
+          });
+        }
+      });
+    })();</script>
