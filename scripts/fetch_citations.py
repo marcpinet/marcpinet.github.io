@@ -6,8 +6,9 @@ Semantic Scholar's graph API and OpenAlex (fast, structured, open, but they only
 citation once the citing paper's reference list has been ingested) and Google Scholar
 (broadest and first to index new papers, but scraped: see fetch_google_scholar).
 
-Duplicates across the two are collapsed on DOI / arXiv id / normalised title, and the
-surviving record is the MOST RECENT version of the citing work (a journal version wins
+Duplicates across the two are collapsed on DOI / arXiv id / normalised title, or failing
+those on a near-identical title with an author in common (versions of a paper that its
+authors retitled slightly on the way to publication), and the surviving record is the MOST RECENT version of the citing work (a journal version wins
 over the preprint it supersedes), with any field the winner is missing backfilled from
 its twin.
 
@@ -33,6 +34,7 @@ Env:
 
 from __future__ import annotations
 
+import difflib
 import json
 import os
 import re
@@ -116,6 +118,12 @@ def clean_arxiv(value: str | None) -> str | None:
     return value or None
 
 
+def arxiv_from_url(url: str | None) -> str | None:
+    if m := re.search(r"arxiv\.org/(?:abs|pdf)/([\w.\-/]+?)(?:v\d+)?(?:\.pdf)?$", url or "", re.I):
+        return clean_arxiv(m.group(1))
+    return None
+
+
 def clean_doi(value: str | None) -> str | None:
     if not value:
         return None
@@ -192,7 +200,9 @@ def make_entry(
         "venue": (venue or "").strip(),
         "url": (url or "").strip(),
         "doi": clean_doi(doi),
-        "arxiv": clean_arxiv(arxiv),
+        # Scholar never names the arXiv id, but often links straight to it: and the id is
+        # what survives an arXiv v1 → v2 retitling.
+        "arxiv": clean_arxiv(arxiv) or arxiv_from_url(url),
         "sources": [source],
     }
 
@@ -221,8 +231,7 @@ def read_publications() -> list[dict]:
         arxiv = doi = None
         for link in extra.get("links", []) or []:
             url = link.get("url", "")
-            if m := re.search(r"arxiv\.org/(?:abs|pdf)/([\w.\-/]+?)(?:v\d+)?(?:\.pdf)?$", url, re.I):
-                arxiv = arxiv or clean_arxiv(m.group(1))
+            arxiv = arxiv or arxiv_from_url(url)
             if m := re.search(r"doi\.org/(10\.[^\s]+)$", url, re.I):
                 doi = doi or clean_doi(m.group(1))
 
@@ -713,8 +722,56 @@ def identity_keys(entry: dict) -> list[str]:
     return keys
 
 
+# Versions of one work that share no identifier at all: Scholar has indexed the journal
+# version while Semantic Scholar still only knows the preprint, and the authors retitled it
+# in between ("…in Multimodal Cyber-Physical Systems" → "…in Multimodal Industrial-IoT
+# Cyber-Physical Systems"). They are matched on a near-identical title plus a shared author.
+
+TITLE_SIMILARITY = 0.85
+# Preprint servers (arXiv, SSRN, bio/medRxiv, Research Square, Preprints.org, TechRxiv,
+# OSF): a DOI of theirs names an early version of a work, never a rival publication.
+PREPRINT_DOI = re.compile(r"^10\.(48550|2139|1101|21203|20944|36227|31219)/")
+
+
+def surnames(authors: str) -> set[str]:
+    """Each author's last name, folded: what Scholar's "MJ Raihan" and Semantic Scholar's
+    "Mohammad J. Raihan" have in common."""
+    out = set()
+    for name in (authors or "").split(","):
+        tokens = norm_title(name).split()
+        if tokens and len(tokens[-1]) > 1 and tokens[-1] != "al":
+            out.add(tokens[-1])
+    return out
+
+
+def numerals(norm: str) -> set[str]:
+    """Tokens that number a work ("Part II", "YOLOv4", "2026"): titles that differ there
+    are a series, not a retitling."""
+    return {t for t in norm.split() if re.search(r"\d", t) or re.fullmatch(r"[ivx]+", t)}
+
+
+def conflicting_ids(a: dict, b: dict) -> bool:
+    """Retitling never changes an arXiv id, and a preprint and its journal version have one
+    publication DOI between them: two different ones mean two different works."""
+    arxiv_a, arxiv_b = ({k for k in identity_keys(e) if k.startswith("arxiv:")} for e in (a, b))
+    if arxiv_a and arxiv_b and not arxiv_a & arxiv_b:
+        return True
+    published = {d for d in (a.get("doi"), b.get("doi")) if d and not PREPRINT_DOI.match(d)}
+    return len(published) == 2
+
+
+def same_work(a: dict, b: dict) -> bool:
+    ta, tb = norm_title(a["title"]), norm_title(b["title"])
+    if not ta or not tb or numerals(ta) != numerals(tb) or conflicting_ids(a, b):
+        return False
+    if not surnames(a.get("authors", "")) & surnames(b.get("authors", "")):
+        return False
+    return difflib.SequenceMatcher(None, ta, tb, autojunk=False).ratio() >= TITLE_SIMILARITY
+
+
 def group_duplicates(entries: list[dict]) -> list[list[dict]]:
-    """Cluster entries that share any identifier, transitively."""
+    """Cluster entries that share any identifier, transitively; then join the clusters that
+    are the same work under a slightly different title (see same_work)."""
     groups: list[dict] = []  # {"keys": set, "entries": list}
     index: dict[str, int] = {}
 
@@ -738,7 +795,14 @@ def group_duplicates(entries: list[dict]) -> list[list[dict]]:
         for k in groups[target]["keys"]:
             index[k] = target
 
-    return [g["entries"] for g in groups if g["entries"]]
+    clusters: list[list[dict]] = []
+    for cluster in (g["entries"] for g in groups if g["entries"]):
+        hits = [c for c in clusters
+                if any(same_work(a, b) for a in cluster for b in c)
+                and not any(conflicting_ids(a, b) for a in cluster for b in c)]
+        clusters = [c for c in clusters if not any(c is h for h in hits)]
+        clusters.append([e for c in (cluster, *hits) for e in c])
+    return clusters
 
 
 def pick_url(ranked: list[dict]) -> str:
@@ -822,8 +886,15 @@ def index_by_identity(entries: list[dict]) -> dict[str, dict]:
     return index
 
 
-def find_previous(entry: dict, index: dict[str, dict]) -> dict | None:
-    return next((index[k] for k in identity_keys(entry) if k in index), None)
+def find_previous(entry: dict, index: dict[str, dict], fuzzy: bool = False) -> dict | None:
+    """The previous run's record of this work. `fuzzy` also accepts a retitled version: right
+    for "is this citation new?", wrong for borrowing metadata (the preprint's date is not
+    the journal version's)."""
+    if hit := next((index[k] for k in identity_keys(entry) if k in index), None):
+        return hit
+    if fuzzy:
+        return next((p for p in {id(p): p for p in index.values()}.values() if same_work(entry, p)), None)
+    return None
 
 
 # ------------------------------------------------------------------------- enrichment
@@ -970,7 +1041,7 @@ def main() -> int:
         citations = merge_slug(layers)
         first_sightings = []
         for c in citations:
-            prev = find_previous(c, prev_index.get(slug, {}))
+            prev = find_previous(c, prev_index.get(slug, {}), fuzzy=True)
             # Only a citation that appears between two runs has a meaningful first sighting;
             # whatever a paper's first ever run finds could date from any time before.
             c["first_seen"] = prev.get("first_seen") if prev else (today if slug in cached else None)

@@ -1,10 +1,10 @@
 {
-  "generated": "2026-11-02T12:18:08Z",
+  "generated": "2026-11-02T12:24:59Z",
   "papers": [
     {
       "slug": "anomalies-mtsad-univariate",
       "title": "Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate",
-      "count": 8,
+      "count": 7,
       "by_source": {
         "scholar": 5,
         "semanticscholar": 5,
@@ -19,9 +19,10 @@
           "venue": "IoT",
           "url": "https://www.mdpi.com/2624-831X/7/4/94",
           "doi": "10.3390/iot7040094",
-          "arxiv": null,
+          "arxiv": "2607.06094",
           "sources": [
-            "scholar"
+            "scholar",
+            "semanticscholar"
           ],
           "first_seen": "2026-11-02"
         },
@@ -82,19 +83,6 @@
           ]
         },
         {
-          "title": "Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Cyber-Physical Systems",
-          "authors": "Alexander Apartsin, Y. Aperstein",
-          "year": 2026,
-          "date": "2026-07-07",
-          "venue": "arXiv.org",
-          "url": "https://arxiv.org/abs/2607.06094",
-          "doi": "10.48550/arxiv.2607.06094",
-          "arxiv": "2607.06094",
-          "sources": [
-            "semanticscholar"
-          ]
-        },
-        {
           "title": "Lightweight CNN-Based Anomaly Detection for High Voltage Converter Modulators in the Spallation Neutron Source",
           "authors": "Alberto D. Cencillo, Leonardo Concepción, J. Luengo, I. Triguero",
           "year": 2026,
@@ -125,5 +113,5 @@
       "scholar_cites_id": "10741312500140774016"
     }
   ],
-  "total": 8
+  "total": 7
 }
