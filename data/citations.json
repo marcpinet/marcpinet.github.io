@@ -1,16 +1,30 @@
 {
-  "generated": "2026-10-23T09:18:52Z",
+  "generated": "2026-11-02T12:18:08Z",
   "papers": [
     {
       "slug": "anomalies-mtsad-univariate",
       "title": "Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate",
-      "count": 7,
+      "count": 8,
       "by_source": {
-        "scholar": 4,
+        "scholar": 5,
         "semanticscholar": 5,
         "openalex": 0
       },
       "citations": [
+        {
+          "title": "Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Industrial-IoT Cyber-Physical Systems",
+          "authors": "A Apartsin, Y Aperstein",
+          "year": 2026,
+          "date": "2026-10-30",
+          "venue": "IoT",
+          "url": "https://www.mdpi.com/2624-831X/7/4/94",
+          "doi": "10.3390/iot7040094",
+          "arxiv": null,
+          "sources": [
+            "scholar"
+          ],
+          "first_seen": "2026-11-02"
+        },
         {
           "title": "Correlation-Aware Reconstruction for Multivariate Time Series Anomaly Detection",
           "authors": "MJ Raihan, ZZ Darban, Y Liu, FD Salim…",
@@ -111,5 +125,5 @@
       "scholar_cites_id": "10741312500140774016"
     }
   ],
-  "total": 7
+  "total": 8
 }
