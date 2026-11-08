@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-02T12:24:59Z",
+  "generated": "2026-11-08T11:14:19Z",
   "papers": [
     {
       "slug": "anomalies-mtsad-univariate",
@@ -8,19 +8,20 @@
       "by_source": {
         "scholar": 5,
         "semanticscholar": 5,
-        "openalex": 0
+        "openalex": 1
       },
       "citations": [
         {
           "title": "Modeling Normal Is All You Need: Joint Latent Clustering for Anomaly Detection in Multimodal Industrial-IoT Cyber-Physical Systems",
-          "authors": "A Apartsin, Y Aperstein",
+          "authors": "Alexander Apartsin, Yehudit Aperstein",
           "year": 2026,
           "date": "2026-10-30",
           "venue": "IoT",
-          "url": "https://www.mdpi.com/2624-831X/7/4/94",
+          "url": "https://doi.org/10.3390/iot7040094",
           "doi": "10.3390/iot7040094",
           "arxiv": "2607.06094",
           "sources": [
+            "openalex",
             "scholar",
             "semanticscholar"
           ],
