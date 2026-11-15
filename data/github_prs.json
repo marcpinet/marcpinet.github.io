@@ -1,0 +1,20 @@
+{
+  "prs": [
+    {
+      "repo": "decisionintelligence/tab",
+      "number": 9,
+      "state": "open"
+    },
+    {
+      "repo": "scality/shad",
+      "number": 5,
+      "state": "open"
+    },
+    {
+      "repo": "thedatumorg/tsb-ad",
+      "number": 79,
+      "state": "merged",
+      "merged_at": "2026-10-07"
+    }
+  ]
+}

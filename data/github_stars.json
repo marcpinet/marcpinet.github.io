@@ -1,6 +1,10 @@
 {
   "repos": [
     {
+      "repo": "decisionintelligence/tab",
+      "stars": 146
+    },
+    {
       "repo": "marcpinet/citracer",
       "stars": 40
     },
@@ -87,6 +91,14 @@
     {
       "repo": "marcpinet/zotegrep",
       "stars": 36
+    },
+    {
+      "repo": "scality/shad",
+      "stars": 5
+    },
+    {
+      "repo": "thedatumorg/tsb-ad",
+      "stars": 348
     }
   ]
 }

@@ -176,3 +176,206 @@ a.project-entry:hover {
     padding-right: 0;
   }
 }
+
+/* ---- Open-source contributions: PRs to other people's repos, a collapsed <details>
+   above "Personal projects". The summary IS the section heading (same small-caps h2),
+   with a caret and a count; it turns accent on hover/open so it reads as clickable. ---- */
+
+.contrib {
+  margin-top: 3rem;
+}
+
+.contrib > summary {
+  list-style: none; /* native triangle off — we draw our own caret */
+  cursor: pointer;
+  user-select: none;
+}
+
+.contrib > summary::-webkit-details-marker {
+  display: none;
+}
+
+.contrib > summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.contrib-heading {
+  display: flex;
+  flex-wrap: wrap; /* on a phone the hint drops to its own line instead of squeezing */
+  align-items: center;
+  gap: 0.3rem 0.55rem;
+  margin: 0;
+  transition: color 0.15s ease;
+}
+
+.contrib > summary:hover .contrib-heading,
+.contrib[open] .contrib-heading {
+  color: var(--accent);
+}
+
+.contrib-caret {
+  width: 6px;
+  height: 7.5px;
+  flex: 0 0 auto;
+  transition: transform 0.15s ease;
+}
+
+.contrib[open] .contrib-caret {
+  transform: rotate(90deg);
+}
+
+.contrib-count {
+  padding: 0 6px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.8;
+}
+
+/* "(click to expand)" / "(click to collapse)": plain lowercase next to the small-caps
+   heading, swapped by the <details> open state (CSS only). Visual cue only; the summary
+   already exposes the expanded state to screen readers, hence aria-hidden. */
+.contrib-hint {
+  font-size: 0.95em;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  opacity: 0.75;
+}
+
+.contrib-hint-open,
+.contrib[open] .contrib-hint-closed {
+  display: none;
+}
+
+.contrib[open] .contrib-hint-open {
+  display: inline;
+}
+
+.contrib-list {
+  list-style: none;
+  margin: 0.5rem 0 0;
+  padding: 0;
+}
+
+/* Status chip in a fixed-width column so every title starts on the same line,
+   whatever the chip says. */
+.contrib-entry {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.contrib-entry:first-child {
+  border-top: none;
+}
+
+.contrib-entry:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.contrib-status {
+  flex: 0 0 4.6rem;
+}
+
+.contrib-status .pub-status {
+  margin-left: 0;
+  white-space: nowrap;
+}
+
+/* PR states: pending = amber (same as "in review"), merged = purple (GitHub's merged
+   colour), closed = the neutral default chip, wip (no PR yet) = the neutral chip
+   with a dashed outline, like a draft. */
+.pub-status.pr-wip {
+  border-style: dashed;
+}
+
+.pub-status.pr-open {
+  color: var(--chip-amber);
+  background: var(--chip-amber-bg);
+  border: none;
+}
+
+.pub-status.pr-merged {
+  color: var(--chip-purple);
+  background: var(--chip-purple-bg);
+  border: none;
+}
+
+.contrib-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.contrib-title {
+  font-family: var(--font-serif);
+  font-size: 0.98rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text);
+  border-bottom: none;
+}
+
+a.contrib-title:hover {
+  color: var(--accent);
+  border-bottom: none;
+}
+
+/* minify_html drops whitespace between inline elements, so spacing comes from the gap. */
+.contrib-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: 0.45em;
+  margin-top: 0.2rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.contrib-meta a {
+  color: inherit;
+  border-bottom: none;
+}
+
+.contrib-meta a:hover {
+  color: var(--accent);
+  border-bottom: none;
+}
+
+.contrib-meta .bullet {
+  opacity: 0.6;
+}
+
+.contrib-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.contrib-stars svg {
+  width: 10px;
+  height: 10px;
+}
+
+.contrib-note {
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contrib-heading,
+  .contrib-caret {
+    transition: none;
+  }
+}

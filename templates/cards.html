@@ -9,6 +9,65 @@
     <p class="page-intro">{{ section.extra.intro | safe }}</p>
   {% endif %}
 
+  {# ---- Open-source contributions: PRs to other people's repos, from [[extra.contributions]]
+     in content/projects/_index.md. Collapsed by default (pure <details>, no JS). The status
+     in data/github_prs.json (refreshed daily by scripts/fetch_stars.py) wins over the one
+     in front matter, so a PR that gets merged flips to "merged" on its own.
+     An entry whose `pr` is missing or not a number ("", "X") is work not submitted yet:
+     "wip" chip, links to `link` (e.g. the fork's branch) or else the repo, and the
+     script leaves it alone. Such an entry can still say status = "merged" (a patch the
+     maintainers took without a PR). ---- #}
+  {% set contribs = section.extra.contributions | default(value=[]) %}
+  {% if contribs | length > 0 %}
+    {% set pr_data = load_data(path="data/github_prs.json", required=false) %}
+    <details class="contrib">
+      <summary>
+        <h2 class="projects-category contrib-heading"><svg class="contrib-caret" viewBox="0 0 8 10" aria-hidden="true"><path fill="currentColor" d="M0 0l8 5-8 5z"/></svg><span>Open-source contributions</span><span class="contrib-count">{{ contribs | length }}</span><span class="contrib-hint" aria-hidden="true"><span class="contrib-hint-closed">(click to expand)</span><span class="contrib-hint-open">(click to collapse)</span></span></h2>
+      </summary>
+      <ul class="contrib-list">
+        {% for c in contribs | sort(attribute="date") | reverse %}
+          {% set repo_l = c.repo | lower %}
+          {% set repo_url = "https://github.com/" ~ c.repo %}
+          {% set pr = c.pr | default(value=0) | int(default=0) %}
+          {% set fm_status = c.status | default(value="") %}
+          {% set when = c.date | default(value="") %}
+          {% if pr > 0 %}
+            {% set pr_default = repo_url ~ "/pull/" ~ pr %}
+            {% set href = c.link | default(value=pr_default) %}
+            {% set status = fm_status %}
+            {% if pr_data %}
+              {% set hits = pr_data.prs | filter(attribute="repo", value=repo_l) | filter(attribute="number", value=pr) %}
+              {% if hits | length > 0 %}
+                {% set status = hits[0].state %}
+                {% if hits[0].merged_at %}{% set when = hits[0].merged_at %}{% endif %}
+              {% endif %}
+            {% endif %}
+            {% if status != "merged" and status != "closed" %}{% set status = "open" %}{% endif %}
+          {% else %}
+            {% set href = c.link | default(value=repo_url) %}
+            {% if fm_status == "merged" or fm_status == "closed" %}{% set status = fm_status %}{% else %}{% set status = "wip" %}{% endif %}
+          {% endif %}
+          {% if status == "merged" %}{% set label = "merged" %}{% set tip = "Merged upstream" %}{% set verb = "merged" %}
+          {% elif status == "closed" %}{% set label = "closed" %}{% set tip = "Closed without merging" %}{% set verb = "" %}
+          {% elif status == "open" %}{% set label = "pending" %}{% set tip = "Pull request open, awaiting review" %}{% set verb = "opened" %}
+          {% else %}{% set label = "wip" %}{% set tip = "Work in progress, pull request not opened yet" %}{% set verb = "started" %}{% endif %}
+          <li class="contrib-entry">
+            <span class="contrib-status"><span class="pub-status pr-{{ status }}" title="{{ tip }}">{{ label }}</span></span>
+            <div class="contrib-body">
+            <a class="contrib-title" href="{{ href }}" target="_blank" rel="noopener noreferrer">{{ c.title }}</a>
+            <div class="contrib-meta">
+              <a href="{{ repo_url }}" target="_blank" rel="noopener noreferrer">{{ c.repo }}</a>{% if pr > 0 %}<span class="contrib-pr">#{{ pr }}</span>{% endif %}{{ macros::github_stars(link=repo_url, class="contrib-stars") }}{% if when %}<span class="bullet">·</span><span>{% if verb %}{{ verb }} {% endif %}{{ when | date(format="%b %Y") }}</span>{% endif %}
+            </div>
+            {% if c.note %}
+              <div class="contrib-note">{{ c.note | markdown(inline=true) | replace(from='rel="external"', to='rel="external noopener noreferrer" target="_blank"') | safe }}</div>
+            {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </details>
+  {% endif %}
+
   {% set personal_pages = [] %}
   {% set school_pages = [] %}
   {% set work_pages = [] %}
