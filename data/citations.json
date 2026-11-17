@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-08T11:14:19Z",
+  "generated": "2026-11-17T13:15:54Z",
   "papers": [
     {
       "slug": "anomalies-mtsad-univariate",
@@ -8,7 +8,7 @@
       "by_source": {
         "scholar": 5,
         "semanticscholar": 5,
-        "openalex": 1
+        "openalex": 4
       },
       "citations": [
         {
@@ -29,14 +29,15 @@
         },
         {
           "title": "Correlation-Aware Reconstruction for Multivariate Time Series Anomaly Detection",
-          "authors": "MJ Raihan, ZZ Darban, Y Liu, FD Salim…",
+          "authors": "Md. Johir Raihan, Zahra Zamanzadeh Darban, Yueyang Liu, Flora D. Salim, Levin Kuhlmann, Mahsa Salehi",
           "year": 2026,
           "date": "2026-10-11",
-          "venue": "arXiv preprint arXiv …",
+          "venue": "arXiv (Cornell University)",
           "url": "https://arxiv.org/abs/2610.15250",
-          "doi": null,
+          "doi": "10.48550/arxiv.2610.15250",
           "arxiv": "2610.15250",
           "sources": [
+            "openalex",
             "scholar",
             "semanticscholar"
           ],
@@ -48,10 +49,11 @@
           "year": 2026,
           "date": "",
           "venue": "IEEE Transactions on Industrial Cyber-Physical Systems",
-          "url": "https://ieeexplore.ieee.org/abstract/document/11695677/",
+          "url": "https://doi.org/10.1109/ticps.2026.3735617",
           "doi": "10.1109/ticps.2026.3735617",
           "arxiv": null,
           "sources": [
+            "openalex",
             "scholar",
             "semanticscholar"
           ],
@@ -59,20 +61,21 @@
         },
         {
           "title": "Evaluating univariate time series anomaly detection: Results and practical guidelines from the UCR Anomaly Archive",
-          "authors": "D Cacciagrano, F Corradini, A Mehmeti…",
+          "authors": "Diletta Cacciagrano, Flavio Corradini, Avdil Mehmeti, Marco Piangerelli, Martina Zannotti",
           "year": 2026,
           "date": "2026-08-08",
-          "venue": "Intelligent Systems with …",
-          "url": "https://www.sciencedirect.com/science/article/pii/S2667305326000918",
+          "venue": "Intelligent Systems with Applications",
+          "url": "https://doi.org/10.1016/j.iswa.2026.200717",
           "doi": "10.1016/j.iswa.2026.200717",
           "arxiv": null,
           "sources": [
+            "openalex",
             "scholar"
           ]
         },
         {
           "title": "Exploring Zero-Shot Foundation Models for Multivariate Time Series Anomaly Detection",
-          "authors": "M. Uray, S. Messineo, Roland Kwitt, Stefan Huber",
+          "authors": "M. Uray, Saverio Messineo, Roland Kwitt, Stefan Huber",
           "year": 2026,
           "date": "2026-07-14",
           "venue": "arXiv.org",
