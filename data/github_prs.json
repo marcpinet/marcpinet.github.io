@@ -15,6 +15,11 @@
       "number": 79,
       "state": "merged",
       "merged_at": "2026-10-07"
+    },
+    {
+      "repo": "thedatumorg/vus",
+      "number": 8,
+      "state": "open"
     }
   ]
 }
