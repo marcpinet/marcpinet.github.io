@@ -22,11 +22,10 @@ template = "cards.html"
 
 [[extra.contributions]]
 repo = "TheDatumOrg/VUS"
-pr = "X"
+pr = 8
 title = "Optimized and vectorized some VUS-PR operations"
-status = ""
+status = "open"
 date = "2026-11-15"
-link = "https://github.com/marcpinet/VUS/tree/perf/vectorize-vus-opt"
 # note = ""
 
 [[extra.contributions]]
