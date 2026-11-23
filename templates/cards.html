@@ -22,7 +22,7 @@
     {% set pr_data = load_data(path="data/github_prs.json", required=false) %}
     <details class="contrib">
       <summary>
-        <h2 class="projects-category contrib-heading"><svg class="contrib-caret" viewBox="0 0 8 10" aria-hidden="true"><path fill="currentColor" d="M0 0l8 5-8 5z"/></svg><span>Open-source contributions</span><span class="contrib-count">{{ contribs | length }}</span><span class="contrib-hint" aria-hidden="true"><span class="contrib-hint-closed">(click to expand)</span><span class="contrib-hint-open">(click to collapse)</span></span></h2>
+        <h2 class="projects-category contrib-heading"><svg class="contrib-caret" viewBox="0 0 8 10" aria-hidden="true"><path fill="currentColor" d="M0 0l8 5-8 5z"/></svg><span>Relevant pull requests</span><span class="contrib-count">{{ contribs | length }}</span><span class="contrib-hint" aria-hidden="true"><span class="contrib-hint-closed">(click to expand)</span><span class="contrib-hint-open">(click to collapse)</span></span></h2>
       </summary>
       <ul class="contrib-list">
         {% for c in contribs | sort(attribute="date") | reverse %}
