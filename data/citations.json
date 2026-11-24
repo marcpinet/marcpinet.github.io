@@ -1,13 +1,13 @@
 {
-  "generated": "2026-11-19T12:57:06Z",
+  "generated": "2026-11-24T14:48:32Z",
   "papers": [
     {
       "slug": "anomalies-mtsad-univariate",
       "title": "Anomalies in Multivariate Time Series Benchmarks Are Mostly Univariate",
-      "count": 7,
+      "count": 8,
       "by_source": {
         "scholar": 5,
-        "semanticscholar": 5,
+        "semanticscholar": 6,
         "openalex": 5
       },
       "citations": [
@@ -101,6 +101,20 @@
           "first_seen": "2026-10-07"
         },
         {
+          "title": "Unified taxonomy for multivariate time series anomaly detection using deep learning",
+          "authors": "Bruna Alves, Armando J. Pinho, S. Gouveia",
+          "year": 2026,
+          "date": "2026-03-19",
+          "venue": "Artificial Intelligence Review",
+          "url": "https://doi.org/10.1007/s10462-026-11660-0",
+          "doi": "10.1007/s10462-026-11660-0",
+          "arxiv": "2603.18941",
+          "sources": [
+            "semanticscholar"
+          ],
+          "first_seen": "2026-11-24"
+        },
+        {
           "title": "Contaminated by Construction: Training Contamination and Sampling Granularity Decide Which Anomaly Detector Wins",
           "authors": "H Tabasi, G Gupta",
           "year": 2026,
@@ -118,5 +132,5 @@
       "scholar_cites_id": "10741312500140774016"
     }
   ],
-  "total": 7
+  "total": 8
 }
