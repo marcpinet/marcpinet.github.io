@@ -1,5 +1,5 @@
 {
-  "generated": "2026-11-24T14:48:32Z",
+  "generated": "2026-11-25T14:14:42Z",
   "papers": [
     {
       "slug": "anomalies-mtsad-univariate",
@@ -8,7 +8,7 @@
       "by_source": {
         "scholar": 5,
         "semanticscholar": 6,
-        "openalex": 5
+        "openalex": 6
       },
       "citations": [
         {
@@ -29,10 +29,10 @@
         },
         {
           "title": "Correlation-Aware Reconstruction for Multivariate Time Series Anomaly Detection",
-          "authors": "Md. Johir Raihan, Zahra Zamanzadeh Darban, Yueyang Liu, Flora D. Salim, Levin Kuhlmann, Mahsa Salehi",
+          "authors": "MJ Raihan, ZZ Darban, Y Liu, FD Salim…",
           "year": 2026,
           "date": "2026-10-11",
-          "venue": "arXiv (Cornell University)",
+          "venue": "arXiv preprint arXiv …",
           "url": "https://arxiv.org/abs/2610.15250",
           "doi": "10.48550/arxiv.2610.15250",
           "arxiv": "2610.15250",
@@ -58,6 +58,21 @@
             "semanticscholar"
           ],
           "first_seen": "2026-09-24"
+        },
+        {
+          "title": "Unified taxonomy for multivariate time series anomaly detection using deep learning",
+          "authors": "Bruna Alves, Armando J. Pinho, Sónia Gouveia",
+          "year": 2026,
+          "date": "2026-08-27",
+          "venue": "Artificial Intelligence Review",
+          "url": "https://doi.org/10.1007/s10462-026-11660-0",
+          "doi": "10.1007/s10462-026-11660-0",
+          "arxiv": "2603.18941",
+          "sources": [
+            "openalex",
+            "semanticscholar"
+          ],
+          "first_seen": "2026-11-24"
         },
         {
           "title": "Evaluating univariate time series anomaly detection: Results and practical guidelines from the UCR Anomaly Archive",
@@ -99,20 +114,6 @@
             "semanticscholar"
           ],
           "first_seen": "2026-10-07"
-        },
-        {
-          "title": "Unified taxonomy for multivariate time series anomaly detection using deep learning",
-          "authors": "Bruna Alves, Armando J. Pinho, S. Gouveia",
-          "year": 2026,
-          "date": "2026-03-19",
-          "venue": "Artificial Intelligence Review",
-          "url": "https://doi.org/10.1007/s10462-026-11660-0",
-          "doi": "10.1007/s10462-026-11660-0",
-          "arxiv": "2603.18941",
-          "sources": [
-            "semanticscholar"
-          ],
-          "first_seen": "2026-11-24"
         },
         {
           "title": "Contaminated by Construction: Training Contamination and Sampling Granularity Decide Which Anomaly Detector Wins",
